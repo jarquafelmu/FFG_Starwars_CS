@@ -1906,6 +1906,8 @@ input[type="checkbox"].sheet-toggle:checked + span::before {
 }
 
 /* Header section */
+input.sheet-header-section-toggle:checked ~ div.sheet-header-section,
+
 input.sheet-stats-section-toggle:checked ~ div.sheet-stats-section,
 input.sheet-destiny-section-toggle:checked ~ div.sheet-destiny-section,
 input.sheet-dice-section-toggle:checked ~ div.sheet-dice-section,
@@ -1962,6 +1964,8 @@ input.sheet-footer-toggle:checked ~ div.sheet-footer {
 }
 
 /* Header section */
+input.sheet-header-section-toggle ~ div.sheet-header-section,
+
 input.sheet-destiny-section-toggle ~ div.sheet-destiny-section,
 input.sheet-dice-section-toggle ~ div.sheet-dice-section,
 input.sheet-motivations-section-toggle ~ div.sheet-motivations-section,
