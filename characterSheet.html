@@ -56,7 +56,7 @@
                         </div>
                     </div><!-- Recent Changes List -->
                 </td>
-                <td><input type="text" name="attr_sheet-version" value="5.0.4.0" disabled /></td>
+                <td><input type="text" name="attr_sheet-version" value="5.0.5.0" disabled /></td>
             </tr>
         </table><!--Version Info-->
     </div>
@@ -5690,7 +5690,9 @@
             <div class="sheet-row">
                 <div class="sheet-small-12 sheet-column">
                     <h3 class="sheet-section-header">Planetary Vehicle Details</h3>
-                    <table cellspacing="0" cellpadding="0" border="0">
+                    <input style="width: 250px;height: 30px;margin: -44px -20px 0 297px;float:left;" class="sheet-toggle sheet-details-section-toggle" type="checkbox" checked="checked"/>
+                    <div class="sheet-details-section">
+                        <table cellspacing="0" cellpadding="0" border="0">
                         <tr>
                             <td><label>Name:</label></td>
                             <td><input name="attr_transport-planetary-name" type="text" /></td>
@@ -5731,84 +5733,89 @@
                             <td><input name='attr_planetary-vehicle_value' type="text" /></td>
                         </tr>
                     </table>
+                    </div>
                 </div>
+                <div class="sheet-clear"></div>
             </div><!-- Planetary Vehicle Info -->
             <div class="sheet-row">
                 <div class="sheet-small-12 sheet-column">
-                    <br />
                     <h3 class="sheet-section-header">Crew Roles</h3>
-                    <table cellspacing="0" cellpadding="0" border="0">
-                        <thead>
-                        <tr>
-                            <th style="width:180px;">Character Name</th>
-                            <th style="width:180px;">Role <span style="font-size:10px">(Pilot, Co-pilot, Engineer)</span></th>
-                            <th><span style="float:left">Dice</span></th>
-                            <th colspan="2"><span style="float:left">Skill</span></th>
-                        </tr>
-                        </thead>
-                    </table>
-                    <fieldset class="repeating_spaceCrewRoles">
+                    <input style="width: 250px;height: 30px;margin: -44px -20px 0 297px;float:left;" class="sheet-toggle sheet-roles-section-toggle" type="checkbox" checked="checked"/>
+                    <div class="sheet-roles-section">
                         <table cellspacing="0" cellpadding="0" border="0">
-                            <tbody>
+                            <thead>
                             <tr>
-                                <td style="width:180px;"><input name='attr_planetaryRoleCharacterName' type="text" /></td>
-                                <td style="width:180px;"><input name='attr_planetaryRoleName' type="text" /></td>
-                                <td><input name='attr_planetaryRoleDice' type="text" /></td>
-                                <td>
-                                    <select name='attr_planetaryRoleSkill'>
-                                        <option value="" disabled>General Skills</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:intellect,rankAstrogation) label(skill:Astrogation|Vehicle:@{transport-planetary-name}|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Astrogation</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:brawn,rankAthletics) label(skill:Athletics|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Athletics</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:presence,rankCharm) label(skill:Charm|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Charm</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:presence,rankCoercion) label(skill:Coercion|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Coercion</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:intellect,rankComputers) label(skill:Computers|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Computers</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:presence,rankCool) label(skill:Cool|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Cool</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|encum|skill:agility,rankCoordination) label(skill:Coordination|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Coordination</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:cunning,rankDeception) label(skill:Deception|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Deception</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:willpower,rankDiscipline) label(skill:Discipline|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Discipline</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:presence,rankLeadership) label(skill:Leadership|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Leadership</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:intellect,rankMechanics) label(skill:Mechanics|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Mechanics</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:intellect,rankMedicine) label(skill:Medicine|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Medicine</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:presence,rankNegotiation) label(skill:Negotiation|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Negotiation</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:cunning,rankPerception) label(skill:Perception|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Perception</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|encum|skill:agility,rankPlanetary) label(skill:Piloting-Planetary|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Piloting (Planetary)</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|encum|skill:agility,rankSpace) label(skill:Piloting-Space|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Piloting (Space)</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:brawn,rankResilience) label(skill:Resilience|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Resilience</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:cunning,rankSkulduggery) label(skill:Skulduggery|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Skulduggery</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|encum|skill:agility,rankStealth) label(skill:Stealth|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Stealth</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:cunning,rankStreetwise) label(skill:Streetwise|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Streetwise</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:cunning,rankSurvival) label(skill:Survival|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Survival</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:willpower,rankVigilance) label(skill:Vigilance|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Vigilance</option>
-                                        <option value="" disabled>Combat Skills</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:brawn,rankBrawl) label(skill:Brawl|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Brawl</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|encum|skill:agility,rankGunnery) label(skill:Gunnery|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Gunnery</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:brawn,rankMelee) label(skill:Melee|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Melee</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:charLightsaber,rankLightsaber) label(skill:Lightsaber|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Lightsaber</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|encum|skill:agility,rankLight) label(skill:Ranged-Light|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Ranged (Light)</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|encum|skill:agility,rankHeavy) label(skill:Ranged-Heavy|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Ranged (Heavy)</option>
-                                        <option value="" disabled>Knowledge Skills</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:intellect,rankCore) label(skill:Core Worlds|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Core Worlds</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:intellect,rankEducation) label(skill:Education|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Education</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:intellect,rankLore) label(skill:Lore|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Lore</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:intellect,rankOuter) label(skill:Outer Rim|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Outer Rim</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:intellect,rankUnderworld) label(skill:Underworld|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Underworld</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:intellect,rankXenology) label(skill:Xenology|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Xenology</option>
-                                        <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:intellect,rankWarfare) label(skill:Warfare|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Warfare</option>
-                                    </select>
-                                </td>
-                                <td><button type='roll' name='roll_space-shipRole' value=@{planetaryRoleSkill}></button></td>
+                                <th style="width:180px;">Character Name</th>
+                                <th style="width:180px;">Role <span style="font-size:10px">(Pilot, Co-pilot, Engineer)</span></th>
+                                <th><span style="float:left">Dice</span></th>
+                                <th colspan="2"><span style="float:left">Skill</span></th>
                             </tr>
-                            </tbody>
+                            </thead>
                         </table>
-                    </fieldset>
-                    <br />
+                        <fieldset class="repeating_spaceCrewRoles">
+                            <table cellspacing="0" cellpadding="0" border="0">
+                                <tbody>
+                                <tr>
+                                    <td style="width:180px;"><input name='attr_planetaryRoleCharacterName' type="text" /></td>
+                                    <td style="width:180px;"><input name='attr_planetaryRoleName' type="text" /></td>
+                                    <td><input name='attr_planetaryRoleDice' type="text" /></td>
+                                    <td>
+                                        <select name='attr_planetaryRoleSkill'>
+                                            <option value="" disabled>General Skills</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:intellect,rankAstrogation) label(skill:Astrogation|Vehicle:@{transport-planetary-name}|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Astrogation</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:brawn,rankAthletics) label(skill:Athletics|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Athletics</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:presence,rankCharm) label(skill:Charm|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Charm</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:presence,rankCoercion) label(skill:Coercion|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Coercion</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:intellect,rankComputers) label(skill:Computers|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Computers</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:presence,rankCool) label(skill:Cool|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Cool</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|encum|skill:agility,rankCoordination) label(skill:Coordination|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Coordination</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:cunning,rankDeception) label(skill:Deception|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Deception</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:willpower,rankDiscipline) label(skill:Discipline|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Discipline</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:presence,rankLeadership) label(skill:Leadership|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Leadership</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:intellect,rankMechanics) label(skill:Mechanics|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Mechanics</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:intellect,rankMedicine) label(skill:Medicine|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Medicine</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:presence,rankNegotiation) label(skill:Negotiation|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Negotiation</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:cunning,rankPerception) label(skill:Perception|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Perception</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|encum|skill:agility,rankPlanetary) label(skill:Piloting-Planetary|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Piloting (Planetary)</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|encum|skill:agility,rankSpace) label(skill:Piloting-Space|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Piloting (Space)</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:brawn,rankResilience) label(skill:Resilience|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Resilience</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:cunning,rankSkulduggery) label(skill:Skulduggery|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Skulduggery</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|encum|skill:agility,rankStealth) label(skill:Stealth|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Stealth</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:cunning,rankStreetwise) label(skill:Streetwise|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Streetwise</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:cunning,rankSurvival) label(skill:Survival|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Survival</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:willpower,rankVigilance) label(skill:Vigilance|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Vigilance</option>
+                                            <option value="" disabled>Combat Skills</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:brawn,rankBrawl) label(skill:Brawl|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Brawl</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|encum|skill:agility,rankGunnery) label(skill:Gunnery|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Gunnery</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:brawn,rankMelee) label(skill:Melee|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Melee</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:charLightsaber,rankLightsaber) label(skill:Lightsaber|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Lightsaber</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|encum|skill:agility,rankLight) label(skill:Ranged-Light|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Ranged (Light)</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|encum|skill:agility,rankHeavy) label(skill:Ranged-Heavy|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Ranged (Heavy)</option>
+                                            <option value="" disabled>Knowledge Skills</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:intellect,rankCore) label(skill:Core Worlds|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Core Worlds</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:intellect,rankEducation) label(skill:Education|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Education</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:intellect,rankLore) label(skill:Lore|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Lore</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:intellect,rankOuter) label(skill:Outer Rim|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Outer Rim</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:intellect,rankUnderworld) label(skill:Underworld|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Underworld</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:intellect,rankXenology) label(skill:Xenology|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Xenology</option>
+                                            <option value="!eed rollPlayer(character:@{planetaryRoleCharacterName}|skill:intellect,rankWarfare) label(skill:Warfare|Vehicle:@{transport-planetary-name}|Role:@{planetaryRoleName}) @{planetaryRoleDice} @{dicePool} (gmdice)">Warfare</option>
+                                        </select>
+                                    </td>
+                                    <td><button type='roll' name='roll_space-shipRole' value=@{planetaryRoleSkill}></button></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </fieldset>
+                    </div>
                 </div>
+                <div class="sheet-clear"></div>
             </div><!-- Planetary Vehicle Crew Roles -->
             <div class="sheet-row">
                 <div class="sheet-small-12 sheet-column">
-                    <br />
                     <h3 class="sheet-section-header">Weapons</h3>
-                    <table cellspacing="0" cellpadding="0" border="0">
+                    <input style="width: 250px;height: 30px;margin: -44px -20px 0 297px;float:left;" class="sheet-toggle sheet-weapon-section-toggle" type="checkbox" checked="checked"/>
+                    <div class="sheet-weapon-section">
+                        <table cellspacing="0" cellpadding="0" border="0">
                         <thead>
                         <tr>
                             <th>Character Name</th>
@@ -5820,7 +5827,7 @@
                         </tr>
                         </thead>
                     </table>
-                    <fieldset class="repeating_planetaryWeapons">
+                        <fieldset class="repeating_planetaryWeapons">
                         <table cellspacing="0" cellpadding="0" border="0">
                             <tbody>
                             <tr>
@@ -5885,12 +5892,16 @@
                         </table>
                         <br />
                     </fieldset>
+                    </div>
                 </div>
+                <div class="sheet-clear"></div>
             </div><!-- Planetary Vehicle Weapons -->
             <div class="sheet-row">
                 <div class="sheet-small-12 sheet-column">
                     <h3 class="sheet-section-header">Attachments</h3>
-                    <table cellspacing="0" cellpadding="0" border="0">
+                    <input style="width: 250px;height: 30px;margin: -44px -20px 0 297px;float:left;" class="sheet-toggle sheet-attachments-section-toggle" type="checkbox" checked="checked"/>
+                    <div class="sheet-attachments-section">
+                        <table cellspacing="0" cellpadding="0" border="0">
                         <tbody>
                         <tr>
                             <th style="width:25%">Name</th>
@@ -5900,7 +5911,7 @@
                         </tr>
                         </tbody>
                     </table>
-                    <fieldset class="repeating_planetary-attachments">
+                        <fieldset class="repeating_planetary-attachments">
                         <table cellspacing="0" cellpadding="0" border="0">
                             <tbody>
                             <tr>
@@ -5930,13 +5941,16 @@
                         </table>
                         <br />
                     </fieldset>
+                    </div>
                 </div>
                 <div class="sheet-clear"></div>
             </div><!-- Planetary Vehicle Attachments Section -->
             <div class="sheet-row">
                 <div class="sheet-small-12 sheet-column">
                     <h3 class="sheet-section-header">Cargo Hold</h3>
-                    <table>
+                    <input style="width: 250px;height: 30px;margin: -44px -20px 0 297px;float:left;" class="sheet-toggle sheet-cargo-section-toggle" type="checkbox" checked="checked"/>
+                    <div class="sheet-cargo-section">
+                        <table>
                         <tr>
                             <td><label><b>Encumbrance Capacity</b></label></td>
                             <td><input name="attr_planetary-encumbrance_max" type="text" value="0" /></td>
@@ -5944,7 +5958,7 @@
                             <td><input name="attr_planetary-encumbrance_current" type="text" value="0" /></td>
                         </tr>
                     </table><!--Encumbrance Stats-->
-                    <fieldset class="repeating_space-cargo">
+                        <fieldset class="repeating_space-cargo">
                         <br />
                         <table cellspacing="0" cellpadding="0" border="0">
                             <tbody>
@@ -5994,13 +6008,16 @@
                             </tbody>
                         </table>
                     </fieldset><!--Cargo Specifics-->
+                    </div>
                 </div>
                 <div class="sheet-clear"></div>
             </div><!-- Planetary Vehicle Cargo Hold Section -->
             <div class="sheet-row">
                 <div class="sheet-small-12 sheet-column">
                     <h3 class="sheet-section-header">Passengers</h3>
-                    <table>
+                    <input style="width: 250px;height: 30px;margin: -44px -20px 0 297px;float:left;" class="sheet-toggle sheet-passengers-section-toggle" type="checkbox" checked="checked"/>
+                    <div class="sheet-passengers-section">
+                        <table>
                         <tr>
                             <td><label><b>Capacity</b></label></td>
                             <td><input name="attr_planetary-passengers_max" type="text" value="0" /></td>
@@ -6008,7 +6025,7 @@
                             <td><input name="attr_planetary-passengers_current" type="text" value="0" /></td>
                         </tr>
                     </table><!--Passengers Stat-->
-                    <fieldset class="repeating_space-passengers">
+                        <fieldset class="repeating_space-passengers">
                         <br />
                         <table cellspacing="0" cellpadding="0" border="0">
                             <tbody>
@@ -6037,6 +6054,7 @@
                             </tbody>
                         </table>
                     </fieldset><!--Passenger Specifics-->
+                    </div>
                 </div>
                 <div class="sheet-clear"></div>
             </div><!-- Planetary Vehicle Passenger Section -->
@@ -6506,9 +6524,9 @@
         <span class="sheet-tab-new">&emsp;Critical Hits&emsp;</span>
 
         <div class="sheet-tab-content sheet-tab-transport-beast-general">
+            <h3 class="sheet-section-header">Riding Beast Details</h3>
             <div class="sheet-row">
                 <div class="sheet-small-12 sheet-column">
-                    <h3 class="sheet-section-header">Riding Beast Details</h3>
                     <table class="sheet-character" cellspacing="0" cellpadding="0" border="0">
                         <tbody>
                         <tr>
@@ -8029,8 +8047,7 @@
     <input type="radio" name="attr_companion-sheet" class="sheet-tab-new sheet-tab-companion-info" value="1" checked="checked" />
     <span class="sheet-tab-new">&emsp;Companion Info&emsp;</span>
 
-    <input type="radio" name="attr_companion-sheet" class="sheet-tab-new sheet-tab-companion-combat" style="
-    width: 249px;" value="2" />
+    <input type="radio" name="attr_companion-sheet" class="sheet-tab-new sheet-tab-companion-combat" style="width: 249px;" value="2" />
     <span class="sheet-tab-new" style="left: -128px;">&emsp;Skills, Talents, Weapons &amp; Powers&emsp;</span>
     <input type="radio" name="attr_companion-sheet" class="sheet-tab-new sheet-tab-companion-inventory" style="left: -100px; margin-left: -25px;" value="3" />
     <span class="sheet-tab-new" style="margin-left: -225px;">&emsp;Item Inventory&emsp;</span>
