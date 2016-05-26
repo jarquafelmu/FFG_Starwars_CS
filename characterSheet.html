@@ -10,7 +10,7 @@
             <tr>
                 <td><label>Version</label></td>
                 <td>
-                    5.0.6.1
+                    5.0.6.2
                 </td>
                 <td style="width: 28%;"><label>For more information on this version visit:</label></td>
                 <td><input disabled value="https://github.com/jarquafelmu/FFG_Starwars_CS" type="text"/></td>
@@ -19,86 +19,6 @@
     </div>
     <br />
 </div><!--Character Sheet Header-->
-
-<div class="sheet-player-dice">
-    <div class="sheet-row">
-        <h3 class="sheet-section-header">Dice Pool</h3>
-        <input style="width: 250px;height: 30px;margin: -44px -20px 0 297px;float:left;" class="sheet-toggle sheet-dice-section-toggle" type="checkbox" checked="checked"/>
-        <div class="sheet-dice-section">
-            <table class="sheet-dice-pool" cellspacing="0" cellpadding="0" border="0">
-                <tbody>
-                <tr>
-                    <td class="sheet-light"><img src="http://galacticcampaigns.com/images/EotE/Boost/boostBlank.png" /><input name="attr_b" type="number" step="1" max="9" min="0" value="0"></td>
-                    <td class="sheet-light"><img src="http://galacticcampaigns.com/images/EotE/Ability/abilityBlank.png" /><input name="attr_g" type="number" step="1" max="9" min="0" value="0"></td>
-                    <td class="sheet-light"><img src="http://galacticcampaigns.com/images/EotE/Proficiency/ProficiencyBlank.png" /><input name="attr_y" type="number" step="1" max="9" min="0" value="0"></td>
-                    <td class="sheet-force"><img src="http://galacticcampaigns.com/images/EotE/Force/ForceL.png" /><input name="attr_w" type="number" step="1" max="9" min="0" value="0"></td>
-                    <td class="sheet-dark"><img src="http://galacticcampaigns.com/images/EotE/Setback/SetBackBlank.png" /><input name="attr_blk" type="number" step="1" max="9" min="-9" value="0"></td>
-                    <td class="sheet-dark"><img src="http://galacticcampaigns.com/images/EotE/Difficulty/DifficultyBlank.png" /><input name="attr_p" type="number" step="1" max="9" min="-7" value="0"></td>
-                    <td class="sheet-dark"><img src="http://galacticcampaigns.com/images/EotE/Challenge/ChallengeBlank.png" /><input name="attr_r" type="number" step="1" max="9" min="-7" value="0"></td>
-                </tr>
-                <tr>
-                    <td colspan="3" class="sheet-upgrade sheet-light">
-                        <label>
-                            &nbsp;&nbsp;&nbsp;&nbsp;Upgrade:
-                            <input name="attr_upgradeAbility" type="number" step="1" max="9" min="0" value="0">
-                        </label>
-                        <label>
-                            <input name="attr_downgradeProficiency" type="number" step="1" max="9" min="0" value="0">
-                            :Downgrade
-                        </label>
-                    </td>
-                    <td class="sheet-force">
-                        <input type='hidden' name='attr_dicePool' value='@{g}g @{y}y @{p}p @{r}r @{b}b @{blk}blk @{w}w upgrade(ability|@{upgradeAbility}) downgrade(proficiency|@{downgradeProficiency}) upgrade(difficulty|@{upgradeDifficulty}) downgrade(challenge|@{downgradeChallenge})' />
-                        <button type='roll' name='roll_DicePool' value='!eed characterID(@{character_id}) label(Dice:Dice Pool) @{dicePool} (gmdice)'></button>
-                        <button type='roll' name='roll_ResetDicePool' value='!eed resetdice characterID(@{character_id})'></button>
-                    </td>
-                    <td colspan="3" class="sheet-downgrade sheet-dark">
-                        <label>
-                            &nbsp;&nbsp;&nbsp;&nbsp;Upgrade:
-                            <input name="attr_upgradeDifficulty" type="number" step="1" max="9" min="0" value="0">
-                        </label>
-                        <label>
-                            <input name="attr_downgradeChallenge" type="number" step="1" max="9" min="0" value="0">
-                            Downgrade:
-                        </label>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div><!-- Dice Pool -->
-    <div class="sheet-clear"></div>
-    <div class="sheet-row">
-        <h3 class="sheet-section-header">Destiny Pool</h3>
-        <input style="width: 250px;height: 30px;margin: -44px -20px 0 297px;float:left;" class="sheet-toggle sheet-destiny-section-toggle" type="checkbox" checked="checked"/>
-        <div class="sheet-destiny-section">
-            <table class="sheet-destiny" cellspaceing="0" cellpadding="0" border="0">
-                <tbody>
-                <tr>
-                    <td colspan="1">
-                        <button type='roll' class="sheet-btn-lightSide" name="Update-Dest-Pool" value='!eed characterID(@{character_id}) destiny registerPlayer'>Sync Pool with GM</button><br><br>
-                        <button type='roll' class="sheet-btn-lightSide" name="Roll-Destiny" value='!eed characterID(@{character_id}) 1w destiny doRoll'>Roll Destiny</button>
-                    </td>
-                    <td>
-                        <label>Light</label>
-                        <input name='attr_light' value="@{lightSidePoints}" type="number" disabled />
-                    </td>
-                    <td>
-                        <button type='roll' class="sheet-btn-lightSide" name="Use-Darkside-Point" value='!eed characterID(@{character_id}) destiny useLight'>&#8592; Use Light Side</button>
-                    </td>
-                    <td>
-                        <label>Dark</label>
-                        <input name='attr_dark' value="@{darkSidePoints}" type="number" disabled />
-                    </td>
-                    <td></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div><!-- Destiny Pool -->
-    <br/>
-    <div class="sheet-clear"></div>
-</div><!-- Dice & Destiny Pools -->
 
 <!--Player Sheet Tabs-->
 <input type="radio" name="attr_pcgm" class="sheet-tab-new sheet-tab-character-sheet sheet-player-sheet" value="1" checked="checked" />
@@ -115,6 +35,88 @@
 <!--GM Sheet Tabs-->
 <input type="radio" name="attr_pcgm" class="sheet-tab-new sheet-tab-gm-dice sheet-gm-sheet" value="6" />
 <span class="sheet-tab-new sheet-gm-sheet">GM Resources</span>
+
+<div class="sheet-separator sheet-player-dice">
+    <b>Dice &amp; Destiny Pool</b><input style="width:148px;margin:-13px -20px 0 -132px" class="sheet-toggle sheet-top-section-toggle" type="checkbox" checked="checked"/><span></span>
+    <div class="sheet-top-section">
+        <div class="sheet-row">
+            <h3 class="sheet-section-header">Dice Pool</h3>
+            <input style="width: 250px;height: 30px;margin: -44px -20px 0 297px;float:left;" class="sheet-toggle sheet-dice-section-toggle" type="checkbox" checked="checked"/>
+            <div class="sheet-dice-section">
+                <table class="sheet-dice-pool" cellspacing="0" cellpadding="0" border="0">
+                    <tbody>
+                    <tr>
+                        <td class="sheet-light"><img src="http://galacticcampaigns.com/images/EotE/Boost/boostBlank.png" /><input name="attr_b" type="number" step="1" max="9" min="0" value="0"></td>
+                        <td class="sheet-light"><img src="http://galacticcampaigns.com/images/EotE/Ability/abilityBlank.png" /><input name="attr_g" type="number" step="1" max="9" min="0" value="0"></td>
+                        <td class="sheet-light"><img src="http://galacticcampaigns.com/images/EotE/Proficiency/ProficiencyBlank.png" /><input name="attr_y" type="number" step="1" max="9" min="0" value="0"></td>
+                        <td class="sheet-force"><img src="http://galacticcampaigns.com/images/EotE/Force/ForceL.png" /><input name="attr_w" type="number" step="1" max="9" min="0" value="0"></td>
+                        <td class="sheet-dark"><img src="http://galacticcampaigns.com/images/EotE/Setback/SetBackBlank.png" /><input name="attr_blk" type="number" step="1" max="9" min="-9" value="0"></td>
+                        <td class="sheet-dark"><img src="http://galacticcampaigns.com/images/EotE/Difficulty/DifficultyBlank.png" /><input name="attr_p" type="number" step="1" max="9" min="-7" value="0"></td>
+                        <td class="sheet-dark"><img src="http://galacticcampaigns.com/images/EotE/Challenge/ChallengeBlank.png" /><input name="attr_r" type="number" step="1" max="9" min="-7" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="sheet-upgrade sheet-light">
+                            <label>
+                                &nbsp;&nbsp;&nbsp;&nbsp;Upgrade:
+                                <input name="attr_upgradeAbility" type="number" step="1" max="9" min="0" value="0">
+                            </label>
+                            <label>
+                                <input name="attr_downgradeProficiency" type="number" step="1" max="9" min="0" value="0">
+                                :Downgrade
+                            </label>
+                        </td>
+                        <td class="sheet-force">
+                            <input type='hidden' name='attr_dicePool' value='@{g}g @{y}y @{p}p @{r}r @{b}b @{blk}blk @{w}w upgrade(ability|@{upgradeAbility}) downgrade(proficiency|@{downgradeProficiency}) upgrade(difficulty|@{upgradeDifficulty}) downgrade(challenge|@{downgradeChallenge})' />
+                            <button type='roll' name='roll_DicePool' value='!eed characterID(@{character_id}) label(Dice:Dice Pool) @{dicePool} (gmdice)'></button>
+                            <button type='roll' name='roll_ResetDicePool' value='!eed resetdice characterID(@{character_id})'></button>
+                        </td>
+                        <td colspan="3" class="sheet-downgrade sheet-dark">
+                            <label>
+                                &nbsp;&nbsp;&nbsp;&nbsp;Upgrade:
+                                <input name="attr_upgradeDifficulty" type="number" step="1" max="9" min="0" value="0">
+                            </label>
+                            <label>
+                                <input name="attr_downgradeChallenge" type="number" step="1" max="9" min="0" value="0">
+                                Downgrade:
+                            </label>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div><!-- Dice Pool -->
+        <div class="sheet-clear"></div>
+        <div class="sheet-row">
+            <h3 class="sheet-section-header">Destiny Pool</h3>
+            <input style="width: 250px;height: 30px;margin: -44px -20px 0 297px;float:left;" class="sheet-toggle sheet-destiny-section-toggle" type="checkbox" checked="checked"/>
+            <div class="sheet-destiny-section">
+                <table class="sheet-destiny" cellspaceing="0" cellpadding="0" border="0">
+                    <tbody>
+                    <tr>
+                        <td colspan="1">
+                            <button type='roll' class="sheet-btn-lightSide" name="Update-Dest-Pool" value='!eed characterID(@{character_id}) destiny registerPlayer'>Sync Pool with GM</button><br><br>
+                            <button type='roll' class="sheet-btn-lightSide" name="Roll-Destiny" value='!eed characterID(@{character_id}) 1w destiny doRoll'>Roll Destiny</button>
+                        </td>
+                        <td>
+                            <label>Light</label>
+                            <input name='attr_light' value="@{lightSidePoints}" type="number" disabled />
+                        </td>
+                        <td>
+                            <button type='roll' class="sheet-btn-lightSide" name="Use-Darkside-Point" value='!eed characterID(@{character_id}) destiny useLight'>&#8592; Use Light Side</button>
+                        </td>
+                        <td>
+                            <label>Dark</label>
+                            <input name='attr_dark' value="@{darkSidePoints}" type="number" disabled />
+                        </td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div><!-- Destiny Pool -->
+    </div>
+    <div class="sheet-clear"></div>
+</div><!-- Dice & Destiny Pools -->
 
 <div class="sheet-tab-content sheet-tab-character-sheet">
     <div class="sheet-row sheet-section-1">

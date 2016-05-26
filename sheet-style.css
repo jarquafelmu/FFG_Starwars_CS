@@ -1,6 +1,6 @@
 /*
 Version Info:
-Version 5.0.6.0
+Version 5.0.6.2
 */
 .sheet-clear {
     clear: both
@@ -472,6 +472,11 @@ div.sheet-tab-content {
     display: none;
     border-top: 1px solid #444;
     margin-top: 2px;
+}
+
+div.sheet-separator {
+    border-top: 1px solid #444;
+    margin-top: 5px;
 }
 
 /* Top Level Tabs */
@@ -1913,6 +1918,7 @@ input[type="checkbox"].sheet-toggle:checked + span::before {
 
 /* Header section */
 input.sheet-header-section-toggle:checked ~ div.sheet-header-section,
+input.sheet-top-section-toggle:checked ~ div.sheet-top-section,
 
 input.sheet-stats-section-toggle:checked ~ div.sheet-stats-section,
 input.sheet-destiny-section-toggle:checked ~ div.sheet-destiny-section,
@@ -1972,6 +1978,7 @@ input.sheet-footer-toggle:checked ~ div.sheet-footer {
 
 /* Header section */
 input.sheet-header-section-toggle ~ div.sheet-header-section,
+input.sheet-top-section-toggle ~ div.sheet-top-section,
 
 input.sheet-destiny-section-toggle ~ div.sheet-destiny-section,
 input.sheet-dice-section-toggle ~ div.sheet-dice-section,

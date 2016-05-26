@@ -1,6 +1,9 @@
 # Roll20 FFG Star Wars Character Sheet
 
 ## Change log
+* 5.0.6.2
+  * Moved the Dice and Destiny section below the sheet type selectors but still displayed on all sheets in order to maintain visual flow as much as possible.
+  * Added the ability the shrink the whole section down to one line similar to the initiative sections. The individual sections are still collapsible. Will do the same for the other sections because now I agree that sometimes you just want to be able to just completely get rid of a section.
 * 5.0.6.1
   * Added support for individual weapons collapsing
 * 5.0.6.0
