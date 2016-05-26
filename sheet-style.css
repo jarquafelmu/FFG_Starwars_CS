@@ -1,6 +1,6 @@
 /*
 Version Info:
-Verion 5.0.0.0
+Version 5.0.6.0
 */
 .sheet-clear {
     clear: both
@@ -672,6 +672,7 @@ input.sheet-tab-gm-adversaries:checked ~ div.sheet-tab-gm-adversaries /* Current
 
 /* Custom Show Hide
  * ------------------------------------ */
+.sheet-player-dice,
 .sheet-player-sheet,
 .sheet-gm-sheet {
     display: none;
@@ -680,6 +681,10 @@ input.sheet-tab-gm-adversaries:checked ~ div.sheet-tab-gm-adversaries /* Current
 input.sheet-player:checked ~ .sheet-player-sheet,
 input.sheet-gm:checked ~ .sheet-gm-sheet {
     display: inline-block;
+}
+
+input.sheet-player:checked ~ .sheet-player-dice {
+    display: block;
 }
 
 input.sheet-gm:checked ~ div.sheet-tab-content {
@@ -1003,6 +1008,7 @@ label.sheet-label-title {
     padding-bottom: 6px;
 }
 
+label.sheet-label-committed,
 label.sheet-label-threshold,
 label.sheet-label-current,
 label.sheet-label-range,

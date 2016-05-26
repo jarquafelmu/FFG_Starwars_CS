@@ -10,7 +10,7 @@
             <tr>
                 <td><label>Version</label></td>
                 <td>
-                    5.0.5.0
+                    5.0.6.0
                 </td>
                 <td style="width: 28%;"><label>For more information on this version visit:</label></td>
                 <td><input disabled value="https://github.com/jarquafelmu/FFG_Starwars_CS" type="text"/></td>
@@ -19,6 +19,86 @@
     </div>
     <br />
 </div><!--Character Sheet Header-->
+
+<div class="sheet-player-dice">
+    <div class="sheet-row">
+        <h3 class="sheet-section-header">Dice Pool</h3>
+        <input style="width: 250px;height: 30px;margin: -44px -20px 0 297px;float:left;" class="sheet-toggle sheet-dice-section-toggle" type="checkbox" checked="checked"/>
+        <div class="sheet-dice-section">
+            <table class="sheet-dice-pool" cellspacing="0" cellpadding="0" border="0">
+                <tbody>
+                <tr>
+                    <td class="sheet-light"><img src="http://galacticcampaigns.com/images/EotE/Boost/boostBlank.png" /><input name="attr_b" type="number" step="1" max="9" min="0" value="0"></td>
+                    <td class="sheet-light"><img src="http://galacticcampaigns.com/images/EotE/Ability/abilityBlank.png" /><input name="attr_g" type="number" step="1" max="9" min="0" value="0"></td>
+                    <td class="sheet-light"><img src="http://galacticcampaigns.com/images/EotE/Proficiency/ProficiencyBlank.png" /><input name="attr_y" type="number" step="1" max="9" min="0" value="0"></td>
+                    <td class="sheet-force"><img src="http://galacticcampaigns.com/images/EotE/Force/ForceL.png" /><input name="attr_w" type="number" step="1" max="9" min="0" value="0"></td>
+                    <td class="sheet-dark"><img src="http://galacticcampaigns.com/images/EotE/Setback/SetBackBlank.png" /><input name="attr_blk" type="number" step="1" max="9" min="-9" value="0"></td>
+                    <td class="sheet-dark"><img src="http://galacticcampaigns.com/images/EotE/Difficulty/DifficultyBlank.png" /><input name="attr_p" type="number" step="1" max="9" min="-7" value="0"></td>
+                    <td class="sheet-dark"><img src="http://galacticcampaigns.com/images/EotE/Challenge/ChallengeBlank.png" /><input name="attr_r" type="number" step="1" max="9" min="-7" value="0"></td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="sheet-upgrade sheet-light">
+                        <label>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Upgrade:
+                            <input name="attr_upgradeAbility" type="number" step="1" max="9" min="0" value="0">
+                        </label>
+                        <label>
+                            <input name="attr_downgradeProficiency" type="number" step="1" max="9" min="0" value="0">
+                            :Downgrade
+                        </label>
+                    </td>
+                    <td class="sheet-force">
+                        <input type='hidden' name='attr_dicePool' value='@{g}g @{y}y @{p}p @{r}r @{b}b @{blk}blk @{w}w upgrade(ability|@{upgradeAbility}) downgrade(proficiency|@{downgradeProficiency}) upgrade(difficulty|@{upgradeDifficulty}) downgrade(challenge|@{downgradeChallenge})' />
+                        <button type='roll' name='roll_DicePool' value='!eed characterID(@{character_id}) label(Dice:Dice Pool) @{dicePool} (gmdice)'></button>
+                        <button type='roll' name='roll_ResetDicePool' value='!eed resetdice characterID(@{character_id})'></button>
+                    </td>
+                    <td colspan="3" class="sheet-downgrade sheet-dark">
+                        <label>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Upgrade:
+                            <input name="attr_upgradeDifficulty" type="number" step="1" max="9" min="0" value="0">
+                        </label>
+                        <label>
+                            <input name="attr_downgradeChallenge" type="number" step="1" max="9" min="0" value="0">
+                            Downgrade:
+                        </label>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div><!-- Dice Pool -->
+    <div class="sheet-clear"></div>
+    <div class="sheet-row">
+        <h3 class="sheet-section-header">Destiny Pool</h3>
+        <input style="width: 250px;height: 30px;margin: -44px -20px 0 297px;float:left;" class="sheet-toggle sheet-destiny-section-toggle" type="checkbox" checked="checked"/>
+        <div class="sheet-destiny-section">
+            <table class="sheet-destiny" cellspaceing="0" cellpadding="0" border="0">
+                <tbody>
+                <tr>
+                    <td colspan="1">
+                        <button type='roll' class="sheet-btn-lightSide" name="Update-Dest-Pool" value='!eed characterID(@{character_id}) destiny registerPlayer'>Sync Pool with GM</button><br><br>
+                        <button type='roll' class="sheet-btn-lightSide" name="Roll-Destiny" value='!eed characterID(@{character_id}) 1w destiny doRoll'>Roll Destiny</button>
+                    </td>
+                    <td>
+                        <label>Light</label>
+                        <input name='attr_light' value="@{lightSidePoints}" type="number" disabled />
+                    </td>
+                    <td>
+                        <button type='roll' class="sheet-btn-lightSide" name="Use-Darkside-Point" value='!eed characterID(@{character_id}) destiny useLight'>&#8592; Use Light Side</button>
+                    </td>
+                    <td>
+                        <label>Dark</label>
+                        <input name='attr_dark' value="@{darkSidePoints}" type="number" disabled />
+                    </td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div><!-- Destiny Pool -->
+    <br/>
+    <div class="sheet-clear"></div>
+</div><!-- Dice & Destiny Pools -->
 
 <!--Player Sheet Tabs-->
 <input type="radio" name="attr_pcgm" class="sheet-tab-new sheet-tab-character-sheet sheet-player-sheet" value="1" checked="checked" />
@@ -67,7 +147,7 @@
                         <label class="sheet-label-title">Encum</label>
                         <input name="attr_encumbrance_max" type="number" min="1" value="1" />
                         <input name="attr_encumbrancemax" type="hidden" value="@{encumbrance|max}" disabled />
-                        <input name="attr_encumbrance" type="number" min="0" value="0" /><br />-->
+                        <input name="attr_encumbrance" type="number" min="0" value="0" /><br />
                         <label class="sheet-label-threshold">Threshold</label>
                         <label class="sheet-label-current">Current</label>
                     </td>
@@ -76,7 +156,7 @@
                         <input name="attr_forcerating" type="number" max="9" min="0" value="0" />
                         <input name="attr_forcecommitted" type="number" max="9" min="0" value="0" /><br />
                         <label class="sheet-label-threshold">Threshold</label>
-                        <label class="sheet-label-current">Committed</label>
+                        <label class="sheet-label-committed">Committed</label>
                     </td>
                 </tr>
                 <tr>
@@ -88,83 +168,6 @@
                 </tbody>
             </table>
         </div><!-- Top Stats -->
-        <div class="sheet-small-6 sheet-column">
-            <br />
-            <h3 class="sheet-section-header">Destiny Pool</h3>
-            <input style="width: 250px;height: 30px;margin: -44px -20px 0 297px;float:left;" class="sheet-toggle sheet-destiny-section-toggle" type="checkbox" checked="checked"/>
-            <div class="sheet-destiny-section">
-                <table class="sheet-destiny" cellspaceing="0" cellpadding="0" border="0">
-                    <tbody>
-                    <tr>
-                        <td colspan="1">
-                            <button type='roll' class="sheet-btn-lightSide" name="Update-Dest-Pool" value='!eed characterID(@{character_id}) destiny registerPlayer'>Sync Pool with GM</button><br><br>
-                            <button type='roll' class="sheet-btn-lightSide" name="Roll-Destiny" value='!eed characterID(@{character_id}) 1w destiny doRoll'>Roll Destiny</button>
-                        </td>
-                        <td>
-                            <label>Light</label>
-                            <input name='attr_light' value="@{lightSidePoints}" type="number" disabled />
-                        </td>
-                        <td>
-                            <button type='roll' class="sheet-btn-lightSide" name="Use-Darkside-Point" value='!eed characterID(@{character_id}) destiny useLight'>&#8592; Use Light Side</button>
-                        </td>
-                        <td>
-                            <label>Dark</label>
-                            <input name='attr_dark' value="@{darkSidePoints}" type="number" disabled />
-                        </td>
-                        <td></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <br>
-            <div class="sheet-clear"></div>
-        </div><!-- Destiny Pool -->
-        <div class="sheet-small-12 sheet-column">
-            <h3 class="sheet-section-header">Dice Pool</h3>
-            <input style="width: 250px;height: 30px;margin: -44px -20px 0 297px;float:left;" class="sheet-toggle sheet-dice-section-toggle" type="checkbox" checked="checked"/>
-            <div class="sheet-dice-section">
-                <table class="sheet-dice-pool" cellspacing="0" cellpadding="0" border="0">
-                    <tbody>
-                    <tr>
-                        <td class="sheet-light"><img src="http://galacticcampaigns.com/images/EotE/Boost/boostBlank.png" /><input name="attr_b" type="number" step="1" max="9" min="0" value="0"></td>
-                        <td class="sheet-light"><img src="http://galacticcampaigns.com/images/EotE/Ability/abilityBlank.png" /><input name="attr_g" type="number" step="1" max="9" min="0" value="0"></td>
-                        <td class="sheet-light"><img src="http://galacticcampaigns.com/images/EotE/Proficiency/ProficiencyBlank.png" /><input name="attr_y" type="number" step="1" max="9" min="0" value="0"></td>
-                        <td class="sheet-force"><img src="http://galacticcampaigns.com/images/EotE/Force/ForceL.png" /><input name="attr_w" type="number" step="1" max="9" min="0" value="0"></td>
-                        <td class="sheet-dark"><img src="http://galacticcampaigns.com/images/EotE/Setback/SetBackBlank.png" /><input name="attr_blk" type="number" step="1" max="9" min="-9" value="0"></td>
-                        <td class="sheet-dark"><img src="http://galacticcampaigns.com/images/EotE/Difficulty/DifficultyBlank.png" /><input name="attr_p" type="number" step="1" max="9" min="-7" value="0"></td>
-                        <td class="sheet-dark"><img src="http://galacticcampaigns.com/images/EotE/Challenge/ChallengeBlank.png" /><input name="attr_r" type="number" step="1" max="9" min="-7" value="0"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" class="sheet-upgrade sheet-light">
-                            <label>
-                                &nbsp;&nbsp;&nbsp;&nbsp;Upgrade:
-                                <input name="attr_upgradeAbility" type="number" step="1" max="9" min="0" value="0">
-                            </label>
-                            <label>
-                                <input name="attr_downgradeProficiency" type="number" step="1" max="9" min="0" value="0">
-                                :Downgrade
-                            </label>
-                        </td>
-                        <td class="sheet-force">
-                            <input type='hidden' name='attr_dicePool' value='@{g}g @{y}y @{p}p @{r}r @{b}b @{blk}blk @{w}w upgrade(ability|@{upgradeAbility}) downgrade(proficiency|@{downgradeProficiency}) upgrade(difficulty|@{upgradeDifficulty}) downgrade(challenge|@{downgradeChallenge})' />
-                            <button type='roll' name='roll_DicePool' value='!eed characterID(@{character_id}) label(Dice:Dice Pool) @{dicePool} (gmdice)'></button>
-                            <button type='roll' name='roll_ResetDicePool' value='!eed resetdice characterID(@{character_id})'></button>
-                        </td>
-                        <td colspan="3" class="sheet-downgrade sheet-dark">
-                            <label>
-                                &nbsp;&nbsp;&nbsp;&nbsp;Upgrade:
-                                <input name="attr_upgradeDifficulty" type="number" step="1" max="9" min="0" value="0">
-                            </label>
-                            <label>
-                                <input name="attr_downgradeChallenge" type="number" step="1" max="9" min="0" value="0">
-                                Downgrade:
-                            </label>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div><!-- Dice Pool -->
         <div class="sheet-clear"></div>
     </div><!--Top of Character Sheet-->
 
@@ -4646,56 +4649,7 @@
     </div><!-- Notes Tab -->
 </div><!-- Player Character sheet -->
 <div class="sheet-tab-content sheet-tab-ship-sheet">
-    <div class="sheet-row sheet-section-1">
-        <div class="sheet-small-12 sheet-column">
-            <h3 class="sheet-section-header">Dice Pool</h3>
-            <input style="width: 250px;height: 30px;margin: -44px -20px 0 297px;float:left;" class="sheet-toggle sheet-dice-section-toggle" type="checkbox" checked="checked"/>
-            <div class="sheet-dice-section">
-                <table class="sheet-dice-pool" cellspacing="0" cellpadding="0" border="0">
-                    <tbody>
-                    <tr>
-                        <td class="sheet-light"><img src="http://galacticcampaigns.com/images/EotE/Boost/boostBlank.png" /><input name="attr_b" type="number" step="1" max="9" min="0" value="0"></td>
-                        <td class="sheet-light"><img src="http://galacticcampaigns.com/images/EotE/Ability/abilityBlank.png" /><input name="attr_g" type="number" step="1" max="9" min="0" value="0"></td>
-                        <td class="sheet-light"><img src="http://galacticcampaigns.com/images/EotE/Proficiency/ProficiencyBlank.png" /><input name="attr_y" type="number" step="1" max="9" min="0" value="0"></td>
-                        <td class="sheet-force"><img src="http://galacticcampaigns.com/images/EotE/Force/ForceL.png" /><input name="attr_w" type="number" step="1" max="9" min="0" value="0"></td>
-                        <td class="sheet-dark"><img src="http://galacticcampaigns.com/images/EotE/Setback/SetBackBlank.png" /><input name="attr_blk" type="number" step="1" max="9" min="-9" value="0"></td>
-                        <td class="sheet-dark"><img src="http://galacticcampaigns.com/images/EotE/Difficulty/DifficultyBlank.png" /><input name="attr_p" type="number" step="1" max="9" min="-7" value="0"></td>
-                        <td class="sheet-dark"><img src="http://galacticcampaigns.com/images/EotE/Challenge/ChallengeBlank.png" /><input name="attr_r" type="number" step="1" max="9" min="-7" value="0"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" class="sheet-upgrade sheet-light">
-                            <label>
-                                &nbsp;&nbsp;&nbsp;&nbsp;Upgrade:
-                                <input name="attr_upgradeAbility" type="number" step="1" max="9" min="0" value="0">
-                            </label>
-                            <label>
-                                <input name="attr_downgradeProficiency" type="number" step="1" max="9" min="0" value="0">
-                                :Downgrade
-                            </label>
-                        </td>
-                        <td class="sheet-force">
-                            <input type="hidden" name='attr_dicePool' value='@{g}g @{y}y @{p}p @{r}r @{b}b @{blk}blk @{w}w upgrade(ability|@{upgradeAbility}) downgrade(proficiency|@{downgradeProficiency}) upgrade(difficulty|@{upgradeDifficulty}) downgrade(challenge|@{downgradeChallenge})' />
-                            <button type='roll' name='roll_DicePool' value='!eed characterID(@{character_id}) label(Dice:Dice Pool) @{dicePool} (gmdice)'></button>
-                            <button type='roll' name='roll_ResetDicePool' value='!eed resetdice characterID(@{character_id})'></button>
-                        </td>
-                        <td colspan="3" class="sheet-downgrade sheet-dark">
-                            <label>
-                                &nbsp;&nbsp;&nbsp;&nbsp;Upgrade:
-                                <input name="attr_upgradeDifficulty" type="number" step="1" max="9" min="0" value="0">
-                            </label>
-                            <label>
-                                <input name="attr_downgradeChallenge" type="number" step="1" max="9" min="0" value="0">
-                                Downgrade:
-                            </label>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div><!-- Dice Pool -->
-        <div class="sheet-clear"></div>
-    </div><!-- Dice Pool on Vehicle Tab -->
-
+    <br/>
     <input type="radio" name="attr_v-sheet" class="sheet-tab-new sheet-tab-transport-space" value="1" checked="checked" />
     <span class="sheet-tab-new">&emsp;Starship&emsp;</span>
     <input type="radio" name="attr_v-sheet" class="sheet-tab-new sheet-tab-transport-planetary" value="2" />
@@ -5654,7 +5608,7 @@
                                 <td><label>Name:</label></td>
                                 <td><input name="attr_transport-planetary-name" type="text" /></td>
                                 <td><label>Hard Points:</label></td>
-                                <td><input name="attr_transport-planetary-hp" type="text" /></td>
+                                <td><input name="attr_transport-planetary-hp" type="number" min="0" max="9" value="0" /></td>
                             </tr>
                             <tr>
                                 <td><label>Vehicle Type/Model:</label></td>
@@ -6772,169 +6726,169 @@
                     <input style="width: 250px;height: 30px;margin: -44px -20px 0 297px;float:left;" class="sheet-toggle sheet-talents-section-toggle" type="checkbox" checked="checked"/>
                     <div class="sheet-talents-section">
                         <table class="sheet-talents" cellspacing="0" cellpadding="0" border="0">
-                        <thead>
-                        <tr>
-                            <th style="width:50%">Name</th>
-                            <th style="width:50%">Ability Summary</th>
-                        </tr>
-                        </thead>
-                    </table>
-                        <fieldset class="repeating_beast-skills">
-                        <table class="sheet-talent">
-                            <tbody>
+                            <thead>
                             <tr>
-                                <td style="width:50%" colspan="5">
-                                    <input type="text" name="attr_beast-talentname" />
-                                </td>
-                                <td style="width:50%" rowspan="2">
-                                    <textarea rows="3" name="attr_beast-talentsummary"></textarea>
-                                </td>
+                                <th style="width:50%">Name</th>
+                                <th style="width:50%">Ability Summary</th>
                             </tr>
-                            <tr>
-                                <td><label>Rank:</label></td>
-                                <td><input type="text" name="attr_beast-talentrank" /></td>
-                                <td>
-                                    <div class="sheet-switch">
-                                        <input type="radio" class="sheet-switch-input-on" name="attr_beast-passiveActive" value="passive" title="Passive" checked="checked">
-                                        <input type="radio" class="sheet-switch-input-off" name="attr_beast-passiveActive" value="active" title="Active">
-                                        <span class="switch-selection"></span>
-                                    </div>
-                                </td>
-                                <td><label>Page:</label></td>
-                                <td><input type="text" name="attr_beast-talentpagenum" /></td>
-                            </tr>
-                            </tbody>
+                            </thead>
                         </table>
-                    </fieldset>
+                        <fieldset class="repeating_beast-skills">
+                            <table class="sheet-talent">
+                                <tbody>
+                                <tr>
+                                    <td style="width:50%" colspan="5">
+                                        <input type="text" name="attr_beast-talentname" />
+                                    </td>
+                                    <td style="width:50%" rowspan="2">
+                                        <textarea rows="3" name="attr_beast-talentsummary"></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label>Rank:</label></td>
+                                    <td><input type="text" name="attr_beast-talentrank" /></td>
+                                    <td>
+                                        <div class="sheet-switch">
+                                            <input type="radio" class="sheet-switch-input-on" name="attr_beast-passiveActive" value="passive" title="Passive" checked="checked">
+                                            <input type="radio" class="sheet-switch-input-off" name="attr_beast-passiveActive" value="active" title="Active">
+                                            <span class="switch-selection"></span>
+                                        </div>
+                                    </td>
+                                    <td><label>Page:</label></td>
+                                    <td><input type="text" name="attr_beast-talentpagenum" /></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </fieldset>
                     </div>
                 </div>
                 <div class="sheet-clear"></div>
             </div><!-- Abilities -->
             <div class="sheet-row">
                 <div class="sheet-small-12 sheet-column">
-                <h3 class="sheet-section-header">Attacks</h3>
-                <input style="width: 250px;height: 30px;margin: -44px -20px 0 297px;float:left;" class="sheet-toggle sheet-weapon-section-toggle" type="checkbox" checked="checked"/>
-                <div class="sheet-weapon-section">
-                    <fieldset class="repeating_beast-weapons">
-                    <table class="sheet-weapons" cellspacing="0" cellpadding="0" border="0">
-                        <tbody>
-                        <tr>
-                            <td></td>
-                            <td>
-                                <label>Damage</label>
-                                <input name='attr_beast-damage' type="text" value="0" />
-                            </td>
-                            <td></td>
-                            <td>
-                                <label>Critical</label>
-                                <input name='attr_beast-critical' type="text" value="0" />
-                            </td>
-                            <td><button type='roll' name='roll_weapon' value='!eed characterID(@{character_id}) label(skill: Riding Beast-@{beast-name}|Weapon:@{beast-weaponmake}|Damage:@{beast-damage}|Critical:@{beast-critical}|Range:@{beast-weaponrange}|Qualities:@{beast-weaponspecial}) @{beast-weapondice} encum(@{transport-beast-encumbrancemax}|@{transport-beast-encumbrance}) @{beast-weaponskill} @{beast-weaponcondition} @{dicePool} (gmdice)'></button></td>
-                            <td>
-                                <label>Encum</label>
-                                <input name='attr_beast-encum' type="text" value="0" />
-                            </td>
-                            <td></td>
-                            <td>
-                                <label>HP</label>
-                                <input name='attr_beast-hp' type="text" value="0" />
-                            </td>
-                            <td></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <table cellspacing="0" cellpadding="0" border="0">
-                        <tbody>
-                        <tr>
-                            <td><label>Make / Model:</label></td>
-                            <td><input name='attr_beast-weaponmake' type="text" /></td>
-                            <td><label>Range:</label></td>
-                            <td>
-                                <select name='attr_beast-weaponrange'>
-                                    <option value="Engaged">Engaged</option>
-                                    <option value="Short">Short</option>
-                                    <option vaule="Medium">Medium</option>
-                                    <option value="Long">Long</option>
-                                    <option value="Extreme">Extreme</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label>Weapon Type:</label></td>
-                            <td><input name='attr_beast-weapontype' type="text" /></td>
-                            <td><label>Skill:</label></td>
-                            <td>
-                                <select name='attr_beast-weaponskill'>
-                                    <option value="skill(@{beast-rankBrawl}|@{beast-brawn})">Brawl</option>
-                                    <option value="skill(@{beast-rankcustomskillname}|@{beast-charcustomskillname})">Custom Skill 1</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label>Dice:</label></td>
-                            <td><input name='attr_beast-weapondice' type="text" /></td>
-                            <td><label>Condition:</label></td>
-                            <td>
-                                <select name='attr_beast-weaponcondition'>
-                                    <option value="">New</option>
-                                    <option value="1blk">Minor</option>
-                                    <option value="1p">Moderate</option>
-                                    <option value="unusableWeapon">Major</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">&nbsp;</td>
-                            <td><label>Special:</label></td>
-                            <td><textarea rows="3" name="attr_beast-weaponspecial"></textarea></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <div class="sheet-attachments-wrapper">
-                        <input type="checkbox" name="attr_beast-weaponattchments" class="sheet-view-attachments" />
-                        <label class="sheet-view-attachments">View Attachments</label>
-                        <div class="sheet-clear"></div>
-                        <table class="sheet-attachments" cellspacing="0" cellpadding="0" border="0">
-                            <thead>
-                            <tr>
-                                <th>Attachment Name</th>
-                                <th>Hard Points</th>
-                                <th>Base Modifiers</th>
-                                <th>Modifications</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td><input name='attr_beast-weaponattch1' type="text" /></td>
-                                <td><input name='attr_beast-weaponattachp1' type="number" /></td>
-                                <td><input name='attr_beast-weaponattachbase1' type="text" /></td>
-                                <td><input name='attr_beast-weaponattachmod1' type="text" /></td>
-                            </tr>
-                            <tr>
-                                <td><input name='attr_beast-weaponattch2' type="text" /></td>
-                                <td><input name='attr_beast-weaponattachp2' type="number" /></td>
-                                <td><input name='attr_beast-weaponattachbase2' type="text" /></td>
-                                <td><input name='attr_beast-weaponattachmod2' type="text" /></td>
-                            </tr>
-                            <tr>
-                                <td><input name='attr_beast-weaponattch3' type="text" /></td>
-                                <td><input name='attr_beast-weaponattachp3' type="number" /></td>
-                                <td><input name='attr_beast-weaponattachbase3' type="text" /></td>
-                                <td><input name='attr_beast-weaponattachmod3' type="text" /></td>
-                            </tr>
-                            <tr>
-                                <td><input name='attr_beast-weaponattch4' type="text" /></td>
-                                <td><input name='attr_beast-weaponattachp4' type="number" /></td>
-                                <td><input name='attr_beast-weaponattachbase4' type="text" /></td>
-                                <td><input name='attr_beast-weaponattachmod4' type="text" /></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div><!-- Weapon Attachments -->
-                    <br />
-                </fieldset>
+                    <h3 class="sheet-section-header">Attacks</h3>
+                    <input style="width: 250px;height: 30px;margin: -44px -20px 0 297px;float:left;" class="sheet-toggle sheet-weapon-section-toggle" type="checkbox" checked="checked"/>
+                    <div class="sheet-weapon-section">
+                        <fieldset class="repeating_beast-weapons">
+                            <table class="sheet-weapons" cellspacing="0" cellpadding="0" border="0">
+                                <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <label>Damage</label>
+                                        <input name='attr_beast-damage' type="text" value="0" />
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        <label>Critical</label>
+                                        <input name='attr_beast-critical' type="text" value="0" />
+                                    </td>
+                                    <td><button type='roll' name='roll_weapon' value='!eed characterID(@{character_id}) label(skill: Riding Beast-@{beast-name}|Weapon:@{beast-weaponmake}|Damage:@{beast-damage}|Critical:@{beast-critical}|Range:@{beast-weaponrange}|Qualities:@{beast-weaponspecial}) @{beast-weapondice} encum(@{transport-beast-encumbrancemax}|@{transport-beast-encumbrance}) @{beast-weaponskill} @{beast-weaponcondition} @{dicePool} (gmdice)'></button></td>
+                                    <td>
+                                        <label>Encum</label>
+                                        <input name='attr_beast-encum' type="text" value="0" />
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        <label>HP</label>
+                                        <input name='attr_beast-hp' type="text" value="0" />
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <table cellspacing="0" cellpadding="0" border="0">
+                                <tbody>
+                                <tr>
+                                    <td><label>Make / Model:</label></td>
+                                    <td><input name='attr_beast-weaponmake' type="text" /></td>
+                                    <td><label>Range:</label></td>
+                                    <td>
+                                        <select name='attr_beast-weaponrange'>
+                                            <option value="Engaged">Engaged</option>
+                                            <option value="Short">Short</option>
+                                            <option vaule="Medium">Medium</option>
+                                            <option value="Long">Long</option>
+                                            <option value="Extreme">Extreme</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label>Weapon Type:</label></td>
+                                    <td><input name='attr_beast-weapontype' type="text" /></td>
+                                    <td><label>Skill:</label></td>
+                                    <td>
+                                        <select name='attr_beast-weaponskill'>
+                                            <option value="skill(@{beast-rankBrawl}|@{beast-brawn})">Brawl</option>
+                                            <option value="skill(@{beast-rankcustomskillname}|@{beast-charcustomskillname})">Custom Skill 1</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label>Dice:</label></td>
+                                    <td><input name='attr_beast-weapondice' type="text" /></td>
+                                    <td><label>Condition:</label></td>
+                                    <td>
+                                        <select name='attr_beast-weaponcondition'>
+                                            <option value="">New</option>
+                                            <option value="1blk">Minor</option>
+                                            <option value="1p">Moderate</option>
+                                            <option value="unusableWeapon">Major</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">&nbsp;</td>
+                                    <td><label>Special:</label></td>
+                                    <td><textarea rows="3" name="attr_beast-weaponspecial"></textarea></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="sheet-attachments-wrapper">
+                                <input type="checkbox" name="attr_beast-weaponattchments" class="sheet-view-attachments" />
+                                <label class="sheet-view-attachments">View Attachments</label>
+                                <div class="sheet-clear"></div>
+                                <table class="sheet-attachments" cellspacing="0" cellpadding="0" border="0">
+                                    <thead>
+                                    <tr>
+                                        <th>Attachment Name</th>
+                                        <th>Hard Points</th>
+                                        <th>Base Modifiers</th>
+                                        <th>Modifications</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><input name='attr_beast-weaponattch1' type="text" /></td>
+                                        <td><input name='attr_beast-weaponattachp1' type="number" /></td>
+                                        <td><input name='attr_beast-weaponattachbase1' type="text" /></td>
+                                        <td><input name='attr_beast-weaponattachmod1' type="text" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input name='attr_beast-weaponattch2' type="text" /></td>
+                                        <td><input name='attr_beast-weaponattachp2' type="number" /></td>
+                                        <td><input name='attr_beast-weaponattachbase2' type="text" /></td>
+                                        <td><input name='attr_beast-weaponattachmod2' type="text" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input name='attr_beast-weaponattch3' type="text" /></td>
+                                        <td><input name='attr_beast-weaponattachp3' type="number" /></td>
+                                        <td><input name='attr_beast-weaponattachbase3' type="text" /></td>
+                                        <td><input name='attr_beast-weaponattachmod3' type="text" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input name='attr_beast-weaponattch4' type="text" /></td>
+                                        <td><input name='attr_beast-weaponattachp4' type="number" /></td>
+                                        <td><input name='attr_beast-weaponattachbase4' type="text" /></td>
+                                        <td><input name='attr_beast-weaponattachmod4' type="text" /></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div><!-- Weapon Attachments -->
+                            <br />
+                        </fieldset>
+                    </div>
                 </div>
-            </div>
             </div><!-- Attacks -->
         </div><!-- Beast General Information -->
         <div class="sheet-tab-content sheet-tab-transport-beast-critical">
@@ -7904,7 +7858,7 @@
                         <input name="attr_companion-forcerating" type="number" max="99" min="0" value="0" />
                         <input name="attr_companion-forcecommitted" type="number" max="99" min="0" value="0" /><br />
                         <label class="sheet-label-threshold">Threshold</label>
-                        <label class="sheet-label-current">Committed</label>
+                        <label class="sheet-label-committed">Committed</label>
                     </td>
                 </tr>
                 <tr>
@@ -7916,52 +7870,6 @@
                 </tbody>
             </table>
         </div><!-- Top Stats -->
-        <div class="sheet-small-12 sheet-column">
-            <h3 class="sheet-section-header">Dice Pool</h3>
-            <input style="width: 250px;height: 30px;margin: -44px -20px 0 297px;float:left;" class="sheet-toggle sheet-dice-section-toggle" type="checkbox" checked="checked"/>
-            <div class="sheet-dice-section">
-                <table class="sheet-dice-pool" cellspacing="0" cellpadding="0" border="0">
-                    <tbody>
-                    <tr>
-                        <td class="sheet-light"><img src="http://galacticcampaigns.com/images/EotE/Boost/boostBlank.png" /><input name="attr_b" type="number" step="1" max="9" min="0" value="0"></td>
-                        <td class="sheet-light"><img src="http://galacticcampaigns.com/images/EotE/Ability/abilityBlank.png" /><input name="attr_g" type="number" step="1" max="9" min="0" value="0"></td>
-                        <td class="sheet-light"><img src="http://galacticcampaigns.com/images/EotE/Proficiency/ProficiencyBlank.png" /><input name="attr_y" type="number" step="1" max="9" min="0" value="0"></td>
-                        <td class="sheet-force"><img src="http://galacticcampaigns.com/images/EotE/Force/ForceL.png" /><input name="attr_w" type="number" step="1" max="9" min="0" value="0"></td>
-                        <td class="sheet-dark"><img src="http://galacticcampaigns.com/images/EotE/Setback/SetBackBlank.png" /><input name="attr_blk" type="number" step="1" max="9" min="-9" value="0"></td>
-                        <td class="sheet-dark"><img src="http://galacticcampaigns.com/images/EotE/Difficulty/DifficultyBlank.png" /><input name="attr_p" type="number" step="1" max="9" min="-7" value="0"></td>
-                        <td class="sheet-dark"><img src="http://galacticcampaigns.com/images/EotE/Challenge/ChallengeBlank.png" /><input name="attr_r" type="number" step="1" max="9" min="-7" value="0"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" class="sheet-upgrade sheet-light">
-                            <label>
-                                &nbsp;&nbsp;&nbsp;&nbsp;Upgrade:
-                                <input name="attr_upgradeAbility" type="number" step="1" max="9" min="0" value="0">
-                            </label>
-                            <label>
-                                <input name="attr_downgradeProficiency" type="number" step="1" max="9" min="0" value="0">
-                                :Downgrade
-                            </label>
-                        </td>
-                        <td class="sheet-force">
-                            <input type="hidden" name="attr_dicePool" value='@{g}g @{y}y @{p}p @{r}r @{b}b @{blk}blk @{w}w upgrade(ability|@{upgradeAbility}) downgrade(proficiency|@{downgradeProficiency}) upgrade(difficulty|@{upgradeDifficulty}) downgrade(challenge|@{downgradeChallenge})' />
-                            <button type='roll' name='roll_DicePool' value='!eed characterID(@{character_id}) label(Dice:Companion Dice Pool) @{dicePool} (gmdice)'></button>
-                            <button type='roll' name='roll_ResetDicePool' value='!eed resetdice characterID(@{character_id})'></button>
-                        </td>
-                        <td colspan="3" class="sheet-downgrade sheet-dark">
-                            <label>
-                                &nbsp;&nbsp;&nbsp;&nbsp;Upgrade:
-                                <input name="attr_companion-upgradeDifficulty" type="number" step="1" max="9" min="0" value="0">
-                            </label>
-                            <label>
-                                <input name="attr_companion-downgradeChallenge" type="number" step="1" max="9" min="0" value="0">
-                                Downgrade:
-                            </label>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div><!-- Dice Pool -->
         <div class="sheet-clear"></div>
     </div><!-- Stats and Dice -->
 
@@ -12057,7 +11965,6 @@
     </div><!-- Companion Critical Injuries -->
 </div><!-- Player Companion sheet -->
 <div class="sheet-tab-content sheet-tab-npc-sheet">
-    <!--TODO explore allowing npc to roll darkside destiny point from player sheet-->
     <div class="sheet-row sheet-section-1">
         <div class="sheet-small-12 sheet-column">
             <table class="sheet-swsd" cellspacing="0" cellpadding="0" border="0">
@@ -12097,7 +12004,7 @@
                         <input name="attr_npc-forcerating" type="number" max="99" min="0" value="0" />
                         <input name="attr_npc-forcecommitted" type="number" max="99" min="0" value="0" /><br />
                         <label class="sheet-label-threshold">Threshold</label>
-                        <label class="sheet-label-current">Committed</label>
+                        <label class="sheet-label-committed">Committed</label>
                     </td>
                 </tr>
                 <tr>
@@ -12109,52 +12016,6 @@
                 </tbody>
             </table>
         </div><!-- Top Stats -->
-        <div class="sheet-small-12 sheet-column">
-            <h3 class="sheet-section-header">Dice Pool</h3>
-            <input style="width: 250px;height: 30px;margin: -44px -20px 0 297px;float:left;" class="sheet-toggle sheet-dice-section-toggle" type="checkbox" checked="checked"/>
-            <div class="sheet-dice-section">
-                <table class="sheet-dice-pool" cellspacing="0" cellpadding="0" border="0">
-                    <tbody>
-                    <tr>
-                        <td class="sheet-light"><img src="http://galacticcampaigns.com/images/EotE/Boost/boostBlank.png" /><input name="attr_b" type="number" step="1" max="9" min="0" value="0"></td>
-                        <td class="sheet-light"><img src="http://galacticcampaigns.com/images/EotE/Ability/abilityBlank.png" /><input name="attr_g" type="number" step="1" max="9" min="0" value="0"></td>
-                        <td class="sheet-light"><img src="http://galacticcampaigns.com/images/EotE/Proficiency/ProficiencyBlank.png" /><input name="attr_y" type="number" step="1" max="9" min="0" value="0"></td>
-                        <td class="sheet-force"><img src="http://galacticcampaigns.com/images/EotE/Force/ForceL.png" /><input name="attr_w" type="number" step="1" max="9" min="0" value="0"></td>
-                        <td class="sheet-dark"><img src="http://galacticcampaigns.com/images/EotE/Setback/SetBackBlank.png" /><input name="attr_blk" type="number" step="1" max="9" min="-9" value="0"></td>
-                        <td class="sheet-dark"><img src="http://galacticcampaigns.com/images/EotE/Difficulty/DifficultyBlank.png" /><input name="attr_p" type="number" step="1" max="9" min="-7" value="0"></td>
-                        <td class="sheet-dark"><img src="http://galacticcampaigns.com/images/EotE/Challenge/ChallengeBlank.png" /><input name="attr_r" type="number" step="1" max="9" min="-7" value="0"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" class="sheet-upgrade sheet-light">
-                            <label>
-                                &nbsp;&nbsp;&nbsp;&nbsp;Upgrade:
-                                <input name="attr_upgradeAbility" type="number" step="1" max="9" min="0" value="0">
-                            </label>
-                            <label>
-                                <input name="attr_downgradeProficiency" type="number" step="1" max="9" min="0" value="0">
-                                :Downgrade
-                            </label>
-                        </td>
-                        <td class="sheet-force">
-                            <input type="hidden" name="attr_dicePool" value='@{g}g @{y}y @{p}p @{r}r @{b}b @{blk}blk @{w}w upgrade(ability|@{upgradeAbility}) downgrade(proficiency|@{downgradeProficiency}) upgrade(difficulty|@{upgradeDifficulty}) downgrade(challenge|@{downgradeChallenge})' />
-                            <button type='roll' name='roll_DicePool' value='!eed characterID(@{character_id}) label(Dice:Dice Pool) @{dicePool} (gmdice)'></button>
-                            <button type='roll' name='roll_ResetDicePool' value='!eed resetdice characterID(@{character_id})'></button>
-                        </td>
-                        <td colspan="3" class="sheet-downgrade sheet-dark">
-                            <label>
-                                &nbsp;&nbsp;&nbsp;&nbsp;Upgrade:
-                                <input name="attr_npc-upgradeDifficulty" type="number" step="1" max="9" min="0" value="0">
-                            </label>
-                            <label>
-                                <input name="attr_npc-downgradeChallenge" type="number" step="1" max="9" min="0" value="0">
-                                Downgrade:
-                            </label>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div><!-- Dice Pool -->
         <div class="sheet-clear"></div>
     </div><!-- Stats and Dice -->
 

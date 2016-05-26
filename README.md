@@ -1,11 +1,15 @@
 # Roll20 FFG Star Wars Character Sheet
 
 ## Change log
+* 5.0.6.0
+  * In an effort of making the dice and destiny pool more accessible as well as to make progress on the ongoing project of cleaning up and optimizing the code base I have moved them above the sheet type selectors. Now from any sheet you can access those two sections. This also removes sections of duplicated code.
+  * Changed the planetary vehicle hard points box to be a number type instead of a text type to fall in line with the space vehicle.
+  * Fixed the spacing on the force threshold and committed labels.
 * 5.0.5.0
   * The vehicle sheet is now finished with the collapsing project.
   * All sections are now complete in being collapsible.
   * Removed the Riding Beast's initiative section in an effort to optimize and reduce the code base where possible.
-    * While yes I can see reasons why some one would want their riding beast to act on a turn other than theirs, the reality is that this is probably a huge minority of players and mechanically the riding beast would work just as well acting on the turn of the owner.
+    * While yes I can see reasons why someone would want their riding beast to act on a turn other than theirs, the reality is that this is probably a huge minority of players and mechanically the riding beast would work just as well acting on the turn of the owner.
     * From a code base perspective this didn't really feel like a huge necessity to warrant the code hit in keeping around.
   * Removed all weapon skills from the riding beasts attack drop down save for Brawl and one Custom Skill in a effort to reduce and optimize the code base.
     * This was done for the following reasons:
