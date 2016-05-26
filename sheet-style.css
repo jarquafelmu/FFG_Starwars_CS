@@ -1955,7 +1955,7 @@ input.sheet-initiative-section-toggle:checked ~ div.sheet-initiative-section,
 
 input.sheet-toggle.sheet-initiative-toggle-small:checked ~ div.sheet-initiative-toggle-small,
 
-/* Campaign Details */
+/* Repeating Section Toggles */
 input.sheet-assignment-toggle:checked ~ div.sheet-assignment,
 input.sheet-mission-toggle:checked ~ div.sheet-mission,
 input.sheet-geninfo-toggle:checked ~ div.sheet-geninfo,
@@ -1963,6 +1963,7 @@ input.sheet-location-toggle:checked ~ div.sheet-location,
 input.sheet-rewards-toggle:checked ~ div.sheet-rewards,
 input.sheet-details-toggle:checked ~ div.sheet-details,
 input.sheet-list-toggle:checked ~ div.sheet-list,
+input.sheet-weapon-toggle:checked ~ div.sheet-weapon,
 
 /* footer */
 input.sheet-footer-toggle:checked ~ div.sheet-footer {
@@ -2011,7 +2012,9 @@ input.sheet-tools-section-toggle ~ div.sheet-tools-section,
 input.sheet-other-gear-section-toggle ~ div.sheet-other-gear-section,
 input.sheet-initiative-section-toggle ~ div.sheet-initiative-section,
 
-/* Campaign Details */
+input.sheet-toggle.sheet-initiative-toggle-small ~ div.sheet-initiative-toggle-small,
+
+/* Repeating Section Toggles */
 input.sheet-assignment-toggle ~ div.sheet-assignment,
 input.sheet-mission-toggle ~ div.sheet-mission,
 input.sheet-geninfo-toggle ~ div.sheet-geninfo,
@@ -2019,8 +2022,7 @@ input.sheet-location-toggle ~ div.sheet-location,
 input.sheet-rewards-toggle ~ div.sheet-rewards,
 input.sheet-details-toggle ~ div.sheet-details,
 input.sheet-list-toggle ~ div.sheet-list,
-
-input.sheet-toggle.sheet-initiative-toggle-small ~ div.sheet-initiative-toggle-small,
+input.sheet-weapon-toggle ~ div.sheet-weapon,
 
 /* footer */
 input.sheet-footer-toggle ~ div.sheet-footer {

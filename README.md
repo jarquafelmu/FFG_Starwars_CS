@@ -1,6 +1,8 @@
 # Roll20 FFG Star Wars Character Sheet
 
 ## Change log
+* 5.0.6.1
+  * Added support for individual weapons collapsing
 * 5.0.6.0
   * In an effort of making the dice and destiny pool more accessible as well as to make progress on the ongoing project of cleaning up and optimizing the code base I have moved them above the sheet type selectors. Now from any sheet you can access those two sections. This also removes sections of duplicated code.
   * Changed the planetary vehicle hard points box to be a number type instead of a text type to fall in line with the space vehicle.

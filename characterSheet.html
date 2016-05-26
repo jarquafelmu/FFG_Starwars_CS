@@ -10,7 +10,7 @@
             <tr>
                 <td><label>Version</label></td>
                 <td>
-                    5.0.6.0
+                    5.0.6.1
                 </td>
                 <td style="width: 28%;"><label>For more information on this version visit:</label></td>
                 <td><input disabled value="https://github.com/jarquafelmu/FFG_Starwars_CS" type="text"/></td>
@@ -3400,184 +3400,187 @@
                 <input style="width: 250px;height: 30px;margin: -44px -20px 0 297px;float:left;" class="sheet-toggle sheet-weapon-section-toggle" type="checkbox" checked="checked"/>
                 <div class="sheet-weapon-section">
                     <fieldset class="repeating_weapons">
-                        <div class="sheet-row">
-                            <table class="sheet-weapons" cellspacing="0" cellpadding="0" border="0">
-                                <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <label>Damage</label>
-                                        <input name='attr_damage' type="text" value="0" />
-                                    </td>
-                                    <td></td>
-                                    <td>
-                                        <label>Critical</label>
-                                        <input name='attr_critical' type="text" value="0" />
-                                    </td>
-                                    <td><button type='roll' name='roll_weapon' value='!eed characterID(@{character_id}) label(Weapon:@{weaponmake}|Damage:@{damage}|Critical:@{critical}|Range:@{weaponrange}|Qualities:@{weaponspecial}) @{weapondice} encum(@{encumbrancemax}|@{encumbrance}) @{weaponskill} @{weaponcondition} @{dicePool} (gmdice)'></button></td>
-                                    <td>
-                                        <label>Encum</label>
-                                        <input name='attr_weapon-encum' type="text" value="0" />
-                                    </td>
-                                    <td></td>
-                                    <td>
-                                        <label>HP</label>
-                                        <input name='attr_weapon-hp' type="text" value="0" />
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                </tbody>
-                            </table><!-- Weapon Top Stats -->
-                            <table cellspacing="0" cellpadding="0" border="0">
-                                <tbody>
-                                <tr>
-                                    <td><label>Make / Model:</label></td>
-                                    <td><input name='attr_weaponmake' type="text" /></td>
-                                    <td><label>Range:</label></td>
-                                    <td>
-                                        <select name='attr_weaponrange'>
-                                            <option value="Engaged">Engaged</option>
-                                            <option value="Short">Short</option>
-                                            <option vaule="Medium">Medium</option>
-                                            <option value="Long">Long</option>
-                                            <option value="Extreme">Extreme</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><label>Weapon Type:</label></td>
-                                    <td><input name='attr_weapontype' type="text" /></td>
-                                    <td><label>Skill:</label></td>
-                                    <td>
-                                        <select name='attr_weaponskill'>
-                                            <optgroup label="Combat Skills">
-                                                <option value="skill(@{rankBrawl}|@{brawn})">Brawl</option>
-                                                <option value="skill(@{rankGunnery}|@{agility})">Gunnery</option>
-                                                <option value="skill(@{rankMelee}|@{brawn})">Melee</option>
-                                                <option value="skill(@{rankLight}|@{agility})">Ranged - Light</option>
-                                                <option value="skill(@{rankHeavy}|@{agility})">Ranged - Heavy</option>
-                                                <option value="skill(@{rankLightsaber}|@{charLightsaber})">Lightsaber</option>
-                                            </optgroup>
-                                            <optgroup label="General Skills">
-                                                <option value="skill(@{rankMechanics}|@{intellect})">Mechanics</option>
-                                                <option value="skill(@{rankMedicine}|@{intellect})">Medicine</option>
-                                                <option value="skill(@{rankResilience}|@{brawn})">Resilience</option>
-                                            </optgroup>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><label>Modifiers:</label></td>
-                                    <td><input name='attr_weapondice' type="text" /></td>
-                                    <td><label>Condition:</label></td>
-                                    <td>
-                                        <select name='attr_weaponcondition'>
-                                            <option value="">New</option>
-                                            <option value="1blk">Minor</option>
-                                            <option value="1p">Moderate</option>
-                                            <option value="unusableWeapon">Major</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><label>Book &amp; Page:</label></td>
-                                    <td><input name='attr_weapon_bookpage' type="text" /></td>
-                                    <td><label>Rarity</label></td>
-                                    <td><input name='attr_weapon_rarity' type="number" min="1" max="10" /></td>
-                                </tr>
-                                <tr>
-                                    <td><label>Restricted:</label></td>
-                                    <td>
-                                        <select name='attr_weapon_restrict'>
-                                            <option value="no">No</option>
-                                            <option value="yes">Yes</option>
-                                        </select>
-                                    </td>
-                                    <td><label>Value:</label></td>
-                                    <td><input name='attr_weapon_value' type="text" /></td>
-                                </tr>
-                                <tr>
-                                    <td><label>Features:</label></td>
-                                    <td><textarea rows="2" name="attr_weaponfeatures"></textarea></td>
-                                    <td><label>Qualities:</label></td>
-                                    <td><textarea rows="2" name="attr_weaponspecial"></textarea></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4">
-                                        &nbsp;
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table><!-- Weapon Info -->
-                            <div class="sheet-attachments-wrapper">
-                                <input type="checkbox" name="attr_weaponattchments" class="sheet-view-attachments" />
-                                <label class="sheet-view-attachments">View Attachments</label>
-                                <div class="sheet-clear"></div>
-                                <table class="sheet-attachments" cellspacing="0" cellpadding="0" border="0">
-                                    <thead>
-                                    <tr>
-                                        <th>Attachment Name</th>
-                                        <th>Hard Points</th>
-                                        <th>Base Modifiers</th>
-                                        <th>Modifications</th>
-                                        <th>Book &amp; Page</th>
-                                    </tr>
-                                    </thead>
+                        <b>Weapon</b><input style="width:78px;margin:-13px -20px 0 -62px" class="sheet-toggle sheet-weapon-toggle" type="checkbox" checked="checked"/><span></span>
+                        <div class="sheet-weapon">
+                            <div class="sheet-row">
+                                <table class="sheet-weapons" cellspacing="0" cellpadding="0" border="0">
                                     <tbody>
                                     <tr>
-                                        <td><input name='attr_weaponattach1' type="text" /></td>
-                                        <td><input name='attr_weaponattachHP1' type="number" /></td>
-                                        <td><textarea rows="3" name="attr_weaponattachbase1"></textarea></td>
-                                        <td><textarea rows="3" name="attr_weaponattachmod1"></textarea></td>
-                                        <td><input type="text" name="attr_weaponattachbookpage1"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input name='attr_weaponattach2' type="text" /></td>
-                                        <td><input name='attr_weaponattachHP2' type="number" /></td>
-                                        <td><textarea rows="3" name="attr_weaponattachbase2"></textarea></td>
-                                        <td><textarea rows="3" name="attr_weaponattachmod2"></textarea></td>
-                                        <td><input type="text" name="attr_weaponattachbookpage2"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input name='attr_weaponattach3' type="text" /></td>
-                                        <td><input name='attr_weaponattachHP3' type="number" /></td>
-                                        <td><textarea rows="3" name="attr_weaponattachbase3"></textarea></td>
-                                        <td><textarea rows="3" name="attr_weaponattachmod3"></textarea></td>
-                                        <td><input type="text" name="attr_weaponattachbookpage3"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input name='attr_weaponattach4' type="text" /></td>
-                                        <td><input name='attr_weaponattachHP4' type="number" /></td>
-                                        <td><textarea rows="3" name="attr_weaponattachbase4"></textarea></td>
-                                        <td><textarea rows="3" name="attr_weaponattachmod4"></textarea></td>
-                                        <td><input type="text" name="attr_weaponattachbookpage4"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input name='attr_weaponattach5' type="text" /></td>
-                                        <td><input name='attr_weaponattachHP5' type="number" /></td>
-                                        <td><textarea rows="3" name="attr_weaponattachbase5"></textarea></td>
-                                        <td><textarea rows="3" name="attr_weaponattachmod5"></textarea></td>
-                                        <td><input type="text" name="attr_weaponattachbookpage5"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input name='attr_weaponattach6' type="text" /></td>
-                                        <td><input name='attr_weaponattachHP6' type="number" /></td>
-                                        <td><textarea rows="3" name="attr_weaponattachbase6"></textarea></td>
-                                        <td><textarea rows="3" name="attr_weaponattachmod6"></textarea></td>
-                                        <td><input type="text" name="attr_weaponattachbookpage6"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input name='attr_weaponattach7' type="text" /></td>
-                                        <td><input name='attr_weaponattachHP7' type="number" /></td>
-                                        <td><textarea rows="3" name="attr_weaponattachbase7"></textarea></td>
-                                        <td><textarea rows="3" name="attr_weaponattachmod7"></textarea></td>
-                                        <td><input type="text" name="attr_weaponattachbookpage7"/></td>
+                                        <td></td>
+                                        <td>
+                                            <label>Damage</label>
+                                            <input name='attr_damage' type="text" value="0" />
+                                        </td>
+                                        <td></td>
+                                        <td>
+                                            <label>Critical</label>
+                                            <input name='attr_critical' type="text" value="0" />
+                                        </td>
+                                        <td><button type='roll' name='roll_weapon' value='!eed characterID(@{character_id}) label(Weapon:@{weaponmake}|Damage:@{damage}|Critical:@{critical}|Range:@{weaponrange}|Qualities:@{weaponspecial}) @{weapondice} encum(@{encumbrancemax}|@{encumbrance}) @{weaponskill} @{weaponcondition} @{dicePool} (gmdice)'></button></td>
+                                        <td>
+                                            <label>Encum</label>
+                                            <input name='attr_weapon-encum' type="text" value="0" />
+                                        </td>
+                                        <td></td>
+                                        <td>
+                                            <label>HP</label>
+                                            <input name='attr_weapon-hp' type="text" value="0" />
+                                        </td>
+                                        <td></td>
                                     </tr>
                                     </tbody>
-                                </table>
-                            </div><!-- Weapon Attachments -->
-                            <div class="sheet-clear"></div>
+                                </table><!-- Weapon Top Stats -->
+                                <table cellspacing="0" cellpadding="0" border="0">
+                                    <tbody>
+                                    <tr>
+                                        <td><label>Make / Model:</label></td>
+                                        <td><input name='attr_weaponmake' type="text" /></td>
+                                        <td><label>Range:</label></td>
+                                        <td>
+                                            <select name='attr_weaponrange'>
+                                                <option value="Engaged">Engaged</option>
+                                                <option value="Short">Short</option>
+                                                <option vaule="Medium">Medium</option>
+                                                <option value="Long">Long</option>
+                                                <option value="Extreme">Extreme</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Weapon Type:</label></td>
+                                        <td><input name='attr_weapontype' type="text" /></td>
+                                        <td><label>Skill:</label></td>
+                                        <td>
+                                            <select name='attr_weaponskill'>
+                                                <optgroup label="Combat Skills">
+                                                    <option value="skill(@{rankBrawl}|@{brawn})">Brawl</option>
+                                                    <option value="skill(@{rankGunnery}|@{agility})">Gunnery</option>
+                                                    <option value="skill(@{rankMelee}|@{brawn})">Melee</option>
+                                                    <option value="skill(@{rankLight}|@{agility})">Ranged - Light</option>
+                                                    <option value="skill(@{rankHeavy}|@{agility})">Ranged - Heavy</option>
+                                                    <option value="skill(@{rankLightsaber}|@{charLightsaber})">Lightsaber</option>
+                                                </optgroup>
+                                                <optgroup label="General Skills">
+                                                    <option value="skill(@{rankMechanics}|@{intellect})">Mechanics</option>
+                                                    <option value="skill(@{rankMedicine}|@{intellect})">Medicine</option>
+                                                    <option value="skill(@{rankResilience}|@{brawn})">Resilience</option>
+                                                </optgroup>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Modifiers:</label></td>
+                                        <td><input name='attr_weapondice' type="text" /></td>
+                                        <td><label>Condition:</label></td>
+                                        <td>
+                                            <select name='attr_weaponcondition'>
+                                                <option value="">New</option>
+                                                <option value="1blk">Minor</option>
+                                                <option value="1p">Moderate</option>
+                                                <option value="unusableWeapon">Major</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Book &amp; Page:</label></td>
+                                        <td><input name='attr_weapon_bookpage' type="text" /></td>
+                                        <td><label>Rarity</label></td>
+                                        <td><input name='attr_weapon_rarity' type="number" min="1" max="10" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Restricted:</label></td>
+                                        <td>
+                                            <select name='attr_weapon_restrict'>
+                                                <option value="no">No</option>
+                                                <option value="yes">Yes</option>
+                                            </select>
+                                        </td>
+                                        <td><label>Value:</label></td>
+                                        <td><input name='attr_weapon_value' type="text" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Features:</label></td>
+                                        <td><textarea rows="2" name="attr_weaponfeatures"></textarea></td>
+                                        <td><label>Qualities:</label></td>
+                                        <td><textarea rows="2" name="attr_weaponspecial"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table><!-- Weapon Info -->
+                                <div class="sheet-attachments-wrapper">
+                                    <input type="checkbox" name="attr_weaponattchments" class="sheet-view-attachments" />
+                                    <label class="sheet-view-attachments">View Attachments</label>
+                                    <div class="sheet-clear"></div>
+                                    <table class="sheet-attachments" cellspacing="0" cellpadding="0" border="0">
+                                        <thead>
+                                        <tr>
+                                            <th>Attachment Name</th>
+                                            <th>Hard Points</th>
+                                            <th>Base Modifiers</th>
+                                            <th>Modifications</th>
+                                            <th>Book &amp; Page</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td><input name='attr_weaponattach1' type="text" /></td>
+                                            <td><input name='attr_weaponattachHP1' type="number" /></td>
+                                            <td><textarea rows="3" name="attr_weaponattachbase1"></textarea></td>
+                                            <td><textarea rows="3" name="attr_weaponattachmod1"></textarea></td>
+                                            <td><input type="text" name="attr_weaponattachbookpage1"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input name='attr_weaponattach2' type="text" /></td>
+                                            <td><input name='attr_weaponattachHP2' type="number" /></td>
+                                            <td><textarea rows="3" name="attr_weaponattachbase2"></textarea></td>
+                                            <td><textarea rows="3" name="attr_weaponattachmod2"></textarea></td>
+                                            <td><input type="text" name="attr_weaponattachbookpage2"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input name='attr_weaponattach3' type="text" /></td>
+                                            <td><input name='attr_weaponattachHP3' type="number" /></td>
+                                            <td><textarea rows="3" name="attr_weaponattachbase3"></textarea></td>
+                                            <td><textarea rows="3" name="attr_weaponattachmod3"></textarea></td>
+                                            <td><input type="text" name="attr_weaponattachbookpage3"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input name='attr_weaponattach4' type="text" /></td>
+                                            <td><input name='attr_weaponattachHP4' type="number" /></td>
+                                            <td><textarea rows="3" name="attr_weaponattachbase4"></textarea></td>
+                                            <td><textarea rows="3" name="attr_weaponattachmod4"></textarea></td>
+                                            <td><input type="text" name="attr_weaponattachbookpage4"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input name='attr_weaponattach5' type="text" /></td>
+                                            <td><input name='attr_weaponattachHP5' type="number" /></td>
+                                            <td><textarea rows="3" name="attr_weaponattachbase5"></textarea></td>
+                                            <td><textarea rows="3" name="attr_weaponattachmod5"></textarea></td>
+                                            <td><input type="text" name="attr_weaponattachbookpage5"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input name='attr_weaponattach6' type="text" /></td>
+                                            <td><input name='attr_weaponattachHP6' type="number" /></td>
+                                            <td><textarea rows="3" name="attr_weaponattachbase6"></textarea></td>
+                                            <td><textarea rows="3" name="attr_weaponattachmod6"></textarea></td>
+                                            <td><input type="text" name="attr_weaponattachbookpage6"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input name='attr_weaponattach7' type="text" /></td>
+                                            <td><input name='attr_weaponattachHP7' type="number" /></td>
+                                            <td><textarea rows="3" name="attr_weaponattachbase7"></textarea></td>
+                                            <td><textarea rows="3" name="attr_weaponattachmod7"></textarea></td>
+                                            <td><input type="text" name="attr_weaponattachbookpage7"/></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div><!-- Weapon Attachments -->
+                            </div>
                         </div>
+                        <div class="sheet-clear"></div>
                     </fieldset><!-- Weapon Info -->
                 </div>
             </div>
@@ -8290,158 +8293,162 @@
                 <input style="width: 250px;height: 30px;margin: -44px -20px 0 297px;float:left;" class="sheet-toggle sheet-weapon-section-toggle" type="checkbox" checked="checked"/>
                 <div class="sheet-weapon-section">
                     <fieldset class="repeating_companion-weapons">
-                        <div class="sheet-row">
-                            <table class="sheet-weapons" cellspacing="0" cellpadding="0" border="0">
-                                <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <label>Damage</label>
-                                        <input name='attr_companion-damage' type="text" value="0" />
-                                    </td>
-                                    <td></td>
-                                    <td>
-                                        <label>Critical</label>
-                                        <input name='attr_companion-critical' type="text" value="0" />
-                                    </td>
-                                    <td><button type='roll' name='roll_weapon' value='!eed characterID(@{character_id}) label(Weapon:Companion @{companion-weaponmake}|Companion Name:@{companion-name}|Damage:@{companion-damage}|Critical:@{companion-critical}|Range:@{companion-weaponrange}|Qualities:@{companion-weaponspecial}) @{companion-weapondice} encum(@{companion-encumbrancemax}|@{companion-encumbrance}) @{companion-weaponskill} @{companion-weaponcondition} @{dicePool} (gmdice)'></button></td>
-                                    <td>
-                                        <label>Encum</label>
-                                        <input name='attr_companion-encum' type="text" value="0" />
-                                    </td>
-                                    <td></td>
-                                    <td>
-                                        <label>HP</label>
-                                        <input name='attr_companion-hp' type="text" value="0" />
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <table cellspacing="0" cellpadding="0" border="0">
-                                <tbody>
-                                <tr>
-                                    <td><label>Make / Model:</label></td>
-                                    <td><input name='attr_companion-weaponmake' type="text" /></td>
-                                    <td><label>Range:</label></td>
-                                    <td>
-                                        <select name='attr_companion-weaponrange'>
-                                            <option value="Engaged">Engaged</option>
-                                            <option value="Short">Short</option>
-                                            <option vaule="Medium">Medium</option>
-                                            <option value="Long">Long</option>
-                                            <option value="Extreme">Extreme</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><label>Weapon Type:</label></td>
-                                    <td><input name='attr_companion-weapontype' type="text" /></td>
-                                    <td><label>Skill:</label></td>
-                                    <td>
-                                        <select name='attr_companion-weaponskill'>
-                                            <option value="skill(@{companion-rankBrawl}|@{companion-brawn})">Brawl</option>
-                                            <option value="skill(@{companion-rankGunnery}|@{companion-agility})">Gunnery</option>
-                                            <option value="skill(@{companion-rankMelee}|@{companion-brawn})">Melee</option>
-                                            <option value="skill(@{companion-rankLight}|@{companion-agility})">Ranged - Light</option>
-                                            <option value="skill(@{companion-rankHeavy}|@{companion-agility})">Ranged - Heavy</option>
-                                            <option value="skill(@{companion-rankLightsaber}|@{companion-charLightsaber})">Lightsaber</option>
-                                            <option value="skill(@{companion-rankMechanics}|@{companion-intellect})">Mechanics</option>
-                                            <option value="skill(@{companion-rankResilience}|@{companion-brawn})">Resilience</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><label>Modifiers:</label></td>
-                                    <td><input name='attr_companion-weapondice' type="text" /></td>
-                                    <td><label>Condition:</label></td>
-                                    <td>
-                                        <select name='attr_companion-weaponcondition'>
-                                            <option value="">New</option>
-                                            <option value="1blk">Minor</option>
-                                            <option value="1p">Moderate</option>
-                                            <option value="unusableWeapon">Major</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><label>Features:</label></td>
-                                    <td><textarea rows="2" name="attr_companion-weaponfeatures"></textarea></td>
-                                    <td><label>Qualities:</label></td>
-                                    <td><textarea rows="3" name="attr_companion-weaponspecial"></textarea></td>
-                                </tr>
-                                <tr><td colspan="4">&nbsp;</td></tr>
-                                </tbody>
-                            </table>
-                            <div class="sheet-attachments-wrapper">
-                                <input type="checkbox" name="attr_companion-weaponattchments" class="sheet-view-attachments" />
-                                <label class="sheet-view-attachments">View Attachments</label>
-                                <div class="sheet-clear"></div>
-                                <table class="sheet-attachments" cellspacing="0" cellpadding="0" border="0">
-                                    <thead>
-                                    <tr>
-                                        <th>Attachment Name</th>
-                                        <th>Hard Points</th>
-                                        <th>Base Modifiers</th>
-                                        <th>Modifications</th>
-                                        <th>Book &amp; Page</th>
-                                    </tr>
-                                    </thead>
+                        <b>Weapon</b><input style="width:78px;margin:-13px -20px 0 -62px" class="sheet-toggle sheet-weapon-toggle" type="checkbox" checked="checked"/><span></span>
+                        <div class="sheet-weapon">
+                            <div class="sheet-row">
+                                <table class="sheet-weapons" cellspacing="0" cellpadding="0" border="0">
                                     <tbody>
                                     <tr>
-                                        <td><input name='attr_companion-weaponattach1' type="text" /></td>
-                                        <td><input name='attr_companion-weaponattachHP1' type="number" /></td>
-                                        <td><textarea rows="3" name="attr_companion-weaponattachbase1"></textarea></td>
-                                        <td><textarea rows="3" name="attr_companion-weaponattachmod1"></textarea></td>
-                                        <td><input type="text" name="attr_companion-weaponattachbookpage1"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input name='attr_companion-weaponattach2' type="text" /></td>
-                                        <td><input name='attr_companion-weaponattachHP2' type="number" /></td>
-                                        <td><textarea rows="3" name="attr_companion-weaponattachbase2"></textarea></td>
-                                        <td><textarea rows="3" name="attr_companion-weaponattachmod2"></textarea></td>
-                                        <td><input type="text" name="attr_companion-weaponattachbookpage2"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input name='attr_companion-weaponattach3' type="text" /></td>
-                                        <td><input name='attr_companion-weaponattachHP3' type="number" /></td>
-                                        <td><textarea rows="3" name="attr_companion-weaponattachbase3"></textarea></td>
-                                        <td><textarea rows="3" name="attr_companion-weaponattachmod3"></textarea></td>
-                                        <td><input type="text" name="attr_companion-weaponattachbookpage3"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input name='attr_companion-weaponattach4' type="text" /></td>
-                                        <td><input name='attr_companion-weaponattachHP4' type="number" /></td>
-                                        <td><textarea rows="3" name="attr_companion-weaponattachbase4"></textarea></td>
-                                        <td><textarea rows="3" name="attr_companion-weaponattachmod4"></textarea></td>
-                                        <td><input type="text" name="attr_companion-weaponattachbookpage4"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input name='attr_companion-weaponattach5' type="text" /></td>
-                                        <td><input name='attr_companion-weaponattachHP5' type="number" /></td>
-                                        <td><textarea rows="3" name="attr_companion-weaponattachbase5"></textarea></td>
-                                        <td><textarea rows="3" name="attr_companion-weaponattachmod5"></textarea></td>
-                                        <td><input type="text" name="attr_companion-weaponattachbookpage5"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input name='attr_companion-weaponattach6' type="text" /></td>
-                                        <td><input name='attr_companion-weaponattachHP6' type="number" /></td>
-                                        <td><textarea rows="3" name="attr_companion-weaponattachbase6"></textarea></td>
-                                        <td><textarea rows="3" name="attr_companion-weaponattachmod6"></textarea></td>
-                                        <td><input type="text" name="attr_companion-weaponattachbookpage6"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input name='attr_companion-weaponattach7' type="text" /></td>
-                                        <td><input name='attr_companion-weaponattachHP7' type="number" /></td>
-                                        <td><textarea rows="3" name="attr_companion-weaponattachbase7"></textarea></td>
-                                        <td><textarea rows="3" name="attr_companion-weaponattachmod7"></textarea></td>
-                                        <td><input type="text" name="attr_companion-weaponattachbookpage7"/></td>
+                                        <td></td>
+                                        <td>
+                                            <label>Damage</label>
+                                            <input name='attr_companion-damage' type="text" value="0" />
+                                        </td>
+                                        <td></td>
+                                        <td>
+                                            <label>Critical</label>
+                                            <input name='attr_companion-critical' type="text" value="0" />
+                                        </td>
+                                        <td><button type='roll' name='roll_weapon' value='!eed characterID(@{character_id}) label(Weapon:Companion @{companion-weaponmake}|Companion Name:@{companion-name}|Damage:@{companion-damage}|Critical:@{companion-critical}|Range:@{companion-weaponrange}|Qualities:@{companion-weaponspecial}) @{companion-weapondice} encum(@{companion-encumbrancemax}|@{companion-encumbrance}) @{companion-weaponskill} @{companion-weaponcondition} @{dicePool} (gmdice)'></button></td>
+                                        <td>
+                                            <label>Encum</label>
+                                            <input name='attr_companion-encum' type="text" value="0" />
+                                        </td>
+                                        <td></td>
+                                        <td>
+                                            <label>HP</label>
+                                            <input name='attr_companion-hp' type="text" value="0" />
+                                        </td>
+                                        <td></td>
                                     </tr>
                                     </tbody>
                                 </table>
+                                <table cellspacing="0" cellpadding="0" border="0">
+                                    <tbody>
+                                    <tr>
+                                        <td><label>Make / Model:</label></td>
+                                        <td><input name='attr_companion-weaponmake' type="text" /></td>
+                                        <td><label>Range:</label></td>
+                                        <td>
+                                            <select name='attr_companion-weaponrange'>
+                                                <option value="Engaged">Engaged</option>
+                                                <option value="Short">Short</option>
+                                                <option vaule="Medium">Medium</option>
+                                                <option value="Long">Long</option>
+                                                <option value="Extreme">Extreme</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Weapon Type:</label></td>
+                                        <td><input name='attr_companion-weapontype' type="text" /></td>
+                                        <td><label>Skill:</label></td>
+                                        <td>
+                                            <select name='attr_companion-weaponskill'>
+                                                <option value="skill(@{companion-rankBrawl}|@{companion-brawn})">Brawl</option>
+                                                <option value="skill(@{companion-rankGunnery}|@{companion-agility})">Gunnery</option>
+                                                <option value="skill(@{companion-rankMelee}|@{companion-brawn})">Melee</option>
+                                                <option value="skill(@{companion-rankLight}|@{companion-agility})">Ranged - Light</option>
+                                                <option value="skill(@{companion-rankHeavy}|@{companion-agility})">Ranged - Heavy</option>
+                                                <option value="skill(@{companion-rankLightsaber}|@{companion-charLightsaber})">Lightsaber</option>
+                                                <option value="skill(@{companion-rankMechanics}|@{companion-intellect})">Mechanics</option>
+                                                <option value="skill(@{companion-rankResilience}|@{companion-brawn})">Resilience</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Modifiers:</label></td>
+                                        <td><input name='attr_companion-weapondice' type="text" /></td>
+                                        <td><label>Condition:</label></td>
+                                        <td>
+                                            <select name='attr_companion-weaponcondition'>
+                                                <option value="">New</option>
+                                                <option value="1blk">Minor</option>
+                                                <option value="1p">Moderate</option>
+                                                <option value="unusableWeapon">Major</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Features:</label></td>
+                                        <td><textarea rows="2" name="attr_companion-weaponfeatures"></textarea></td>
+                                        <td><label>Qualities:</label></td>
+                                        <td><textarea rows="3" name="attr_companion-weaponspecial"></textarea></td>
+                                    </tr>
+                                    <tr><td colspan="4">&nbsp;</td></tr>
+                                    </tbody>
+                                </table>
+                                <div class="sheet-attachments-wrapper">
+                                    <input type="checkbox" name="attr_companion-weaponattchments" class="sheet-view-attachments" />
+                                    <label class="sheet-view-attachments">View Attachments</label>
+                                    <div class="sheet-clear"></div>
+                                    <table class="sheet-attachments" cellspacing="0" cellpadding="0" border="0">
+                                        <thead>
+                                        <tr>
+                                            <th>Attachment Name</th>
+                                            <th>Hard Points</th>
+                                            <th>Base Modifiers</th>
+                                            <th>Modifications</th>
+                                            <th>Book &amp; Page</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td><input name='attr_companion-weaponattach1' type="text" /></td>
+                                            <td><input name='attr_companion-weaponattachHP1' type="number" /></td>
+                                            <td><textarea rows="3" name="attr_companion-weaponattachbase1"></textarea></td>
+                                            <td><textarea rows="3" name="attr_companion-weaponattachmod1"></textarea></td>
+                                            <td><input type="text" name="attr_companion-weaponattachbookpage1"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input name='attr_companion-weaponattach2' type="text" /></td>
+                                            <td><input name='attr_companion-weaponattachHP2' type="number" /></td>
+                                            <td><textarea rows="3" name="attr_companion-weaponattachbase2"></textarea></td>
+                                            <td><textarea rows="3" name="attr_companion-weaponattachmod2"></textarea></td>
+                                            <td><input type="text" name="attr_companion-weaponattachbookpage2"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input name='attr_companion-weaponattach3' type="text" /></td>
+                                            <td><input name='attr_companion-weaponattachHP3' type="number" /></td>
+                                            <td><textarea rows="3" name="attr_companion-weaponattachbase3"></textarea></td>
+                                            <td><textarea rows="3" name="attr_companion-weaponattachmod3"></textarea></td>
+                                            <td><input type="text" name="attr_companion-weaponattachbookpage3"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input name='attr_companion-weaponattach4' type="text" /></td>
+                                            <td><input name='attr_companion-weaponattachHP4' type="number" /></td>
+                                            <td><textarea rows="3" name="attr_companion-weaponattachbase4"></textarea></td>
+                                            <td><textarea rows="3" name="attr_companion-weaponattachmod4"></textarea></td>
+                                            <td><input type="text" name="attr_companion-weaponattachbookpage4"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input name='attr_companion-weaponattach5' type="text" /></td>
+                                            <td><input name='attr_companion-weaponattachHP5' type="number" /></td>
+                                            <td><textarea rows="3" name="attr_companion-weaponattachbase5"></textarea></td>
+                                            <td><textarea rows="3" name="attr_companion-weaponattachmod5"></textarea></td>
+                                            <td><input type="text" name="attr_companion-weaponattachbookpage5"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input name='attr_companion-weaponattach6' type="text" /></td>
+                                            <td><input name='attr_companion-weaponattachHP6' type="number" /></td>
+                                            <td><textarea rows="3" name="attr_companion-weaponattachbase6"></textarea></td>
+                                            <td><textarea rows="3" name="attr_companion-weaponattachmod6"></textarea></td>
+                                            <td><input type="text" name="attr_companion-weaponattachbookpage6"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input name='attr_companion-weaponattach7' type="text" /></td>
+                                            <td><input name='attr_companion-weaponattachHP7' type="number" /></td>
+                                            <td><textarea rows="3" name="attr_companion-weaponattachbase7"></textarea></td>
+                                            <td><textarea rows="3" name="attr_companion-weaponattachmod7"></textarea></td>
+                                            <td><input type="text" name="attr_companion-weaponattachbookpage7"/></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div><!-- Weapon Attachments -->
+                                <div class="sheet-clear"></div>
                             </div>
-                            <div class="sheet-clear"></div>
-                        </div><!-- Weapon Attachments -->
+                        </div><!-- Weapon Info -->
+                        <div class="sheet-clear"></div>
                     </fieldset>
                 </div>
             </div>
@@ -12475,163 +12482,167 @@
                 <input style="width: 250px;height: 30px;margin: -44px -20px 0 297px;float:left;" class="sheet-toggle sheet-weapon-section-toggle" type="checkbox" checked="checked"/>
                 <div class="sheet-weapon-section">
                     <fieldset class="repeating_npc-weapons">
-                        <div class="sheet-row">
-                            <table class="sheet-weapons" cellspacing="0" cellpadding="0" border="0">
-                                <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <label>Damage</label>
-                                        <input name='attr_npc-damage' type="text" value="0" />
-                                    </td>
-                                    <td></td>
-                                    <td>
-                                        <label>Critical</label>
-                                        <input name='attr_npc-critical' type="text" value="0" />
-                                    </td>
-                                    <td><button type='roll' name='roll_weapon' value='!eed characterID(@{character_id}) label(Weapon:@{npc-weaponmake}|Damage:@{npc-damage}|Critical:@{npc-critical}|Range:@{npc-weaponrange}|Qualities:@{npc-weaponspecial}) @{npc-weapondice} encum(@{npc-encumbrancemax}|@{npc-encumbrance}) @{npc-weaponskill} @{npc-weaponcondition} @{dicePool} (gmdice)'></button></td>
-                                    <td>
-                                        <label>Encum</label>
-                                        <input name='attr_npc-encum' type="text" value="0" />
-                                    </td>
-                                    <td></td>
-                                    <td>
-                                        <label>HP</label>
-                                        <input name='attr_npc-hp' type="text" value="0" />
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <table cellspacing="0" cellpadding="0" border="0">
-                                <tbody>
-                                <tr>
-                                    <td><label>Make / Model:</label></td>
-                                    <td><input name='attr_npc-weaponmake' type="text" /></td>
-                                    <td><label>Range:</label></td>
-                                    <td>
-                                        <select name='attr_npc-weaponrange'>
-                                            <option value="Engaged">Engaged</option>
-                                            <option value="Short">Short</option>
-                                            <option vaule="Medium">Medium</option>
-                                            <option value="Long">Long</option>
-                                            <option value="Extreme">Extreme</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><label>Weapon Type:</label></td>
-                                    <td><input name='attr_npc-weapontype' type="text" /></td>
-                                    <td><label>Skill:</label></td>
-                                    <td>
-                                        <select name='attr_npc-weaponskill'>
-                                            <optgroup label="Combat Skills">
-                                                <option value="skill(@{npc-rankBrawl}|@{npc-brawn}|@{npc-minion-group-size}|@{npc-minionskillBrawl})">Brawl</option>
-                                                <option value="skill(@{npc-rankGunnery}|@{npc-agility}|@{npc-minion-group-size}|@{npc-minionskillGunnery})">Gunnery</option>
-                                                <option value="skill(@{npc-rankMelee}|@{npc-brawn}|@{npc-minion-group-size}|@{npc-minionskillMelee})">Melee</option>
-                                                <option value="skill(@{npc-rankLight}|@{npc-agility}|@{npc-minion-group-size}|@{npc-minionskillLight})">Ranged - Light</option>
-                                                <option value="skill(@{npc-rankHeavy}|@{npc-agility}|@{npc-minion-group-size}|@{npc-minionskillHeavy})">Ranged - Heavy</option>
-                                                <option value="skill(@{npc-rankLightsaber}|@{npc-charLightsaber}|@{npc-minion-group-size}|@{npc-minionskillLightsaber})">Lightsaber</option>
-                                            </optgroup>
-                                            <optgroup label="General Skills">
-                                                <option value="skill(@{npc-rankMechanics}|@{npc-intellect}|@{npc-minion-group-size}|@{npc-minionskillMechanics})">Mechanics</option>
-                                                <option value="skill(@{npc-rankMedicine}|@{npc-intellect}|@{npc-minion-group-size}|@{npc-minionskillMedicine})">Medicine</option>
-                                                <option value="skill(@{npc-rankResilience}|@{npc-brawn}|@{npc-minion-group-size}|@{npc-minionskillResilience})">Resilience</option>
-                                            </optgroup>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><label>Modifiers:</label></td>
-                                    <td><input name='attr_npc-weapondice' type="text" /></td>
-                                    <td><label>Condition:</label></td>
-                                    <td>
-                                        <select name='attr_npc-weaponcondition'>
-                                            <option value="">New</option>
-                                            <option value="1blk">Minor</option>
-                                            <option value="1p">Moderate</option>
-                                            <option value="unusableWeapon">Major</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><label>Features:</label></td>
-                                    <td><textarea rows="2" name="attr_npc-weaponfeatures"></textarea></td>
-                                    <td><label>Qualities:</label></td>
-                                    <td><textarea rows="3" name="attr_npc-weaponspecial"></textarea></td>
-                                </tr>
-                                <tr><td colspan="4">&nbsp;</td></tr>
-                                </tbody>
-                            </table>
-                            <div class="sheet-attachments-wrapper">
-                                <input type="checkbox" name="attr_npc-weaponattchments" class="sheet-view-attachments" />
-                                <label class="sheet-view-attachments">View Attachments</label>
-                                <div class="sheet-clear"></div>
-                                <table class="sheet-attachments" cellspacing="0" cellpadding="0" border="0">
-                                    <thead>
-                                    <tr>
-                                        <th>Attachment Name</th>
-                                        <th>Hard Points</th>
-                                        <th>Base Modifiers</th>
-                                        <th>Modifications</th>
-                                        <th>Book &amp; Page</th>
-                                    </tr>
-                                    </thead>
+                        <b>Weapon</b><input style="width:78px;margin:-13px -20px 0 -62px" class="sheet-toggle sheet-weapon-toggle" type="checkbox" checked="checked"/><span></span>
+                        <div class="sheet-weapon">
+                            <div class="sheet-row">
+                                <table class="sheet-weapons" cellspacing="0" cellpadding="0" border="0">
                                     <tbody>
                                     <tr>
-                                        <td><input name='attr_npc-weaponattach1' type="text" /></td>
-                                        <td><input name='attr_npc-weaponattachHP1' type="number" /></td>
-                                        <td><textarea rows="3" name="attr_npc-weaponattachbase1"></textarea></td>
-                                        <td><textarea rows="3" name="attr_npc-weaponattachmod1"></textarea></td>
-                                        <td><input type="text" name="attr_npc-weaponattachbookpage1"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input name='attr_npc-weaponattach2' type="text" /></td>
-                                        <td><input name='attr_npc-weaponattachHP2' type="number" /></td>
-                                        <td><textarea rows="3" name="attr_npc-weaponattachbase2"></textarea></td>
-                                        <td><textarea rows="3" name="attr_npc-weaponattachmod2"></textarea></td>
-                                        <td><input type="text" name="attr_npc-weaponattachbookpage2"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input name='attr_npc-weaponattach3' type="text" /></td>
-                                        <td><input name='attr_npc-weaponattachHP3' type="number" /></td>
-                                        <td><textarea rows="3" name="attr_npc-weaponattachbase3"></textarea></td>
-                                        <td><textarea rows="3" name="attr_npc-weaponattachmod3"></textarea></td>
-                                        <td><input type="text" name="attr_npc-weaponattachbookpage3"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input name='attr_npc-weaponattach4' type="text" /></td>
-                                        <td><input name='attr_npc-weaponattachHP4' type="number" /></td>
-                                        <td><textarea rows="3" name="attr_npc-weaponattachbase4"></textarea></td>
-                                        <td><textarea rows="3" name="attr_npc-weaponattachmod4"></textarea></td>
-                                        <td><input type="text" name="attr_npc-weaponattachbookpage4"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input name='attr_npc-weaponattach5' type="text" /></td>
-                                        <td><input name='attr_npc-weaponattachHP5' type="number" /></td>
-                                        <td><textarea rows="3" name="attr_npc-weaponattachbase5"></textarea></td>
-                                        <td><textarea rows="3" name="attr_npc-weaponattachmod5"></textarea></td>
-                                        <td><input type="text" name="attr_npc-weaponattachbookpage5"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input name='attr_npc-weaponattach6' type="text" /></td>
-                                        <td><input name='attr_npc-weaponattachHP6' type="number" /></td>
-                                        <td><textarea rows="3" name="attr_npc-weaponattachbase6"></textarea></td>
-                                        <td><textarea rows="3" name="attr_npc-weaponattachmod6"></textarea></td>
-                                        <td><input type="text" name="attr_npc-weaponattachbookpage6"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input name='attr_npc-weaponattach7' type="text" /></td>
-                                        <td><input name='attr_npc-weaponattachHP7' type="number" /></td>
-                                        <td><textarea rows="3" name="attr_npc-weaponattachbase7"></textarea></td>
-                                        <td><textarea rows="3" name="attr_npc-weaponattachmod7"></textarea></td>
-                                        <td><input type="text" name="attr_npc-weaponattachbookpage7"/></td>
+                                        <td></td>
+                                        <td>
+                                            <label>Damage</label>
+                                            <input name='attr_npc-damage' type="text" value="0" />
+                                        </td>
+                                        <td></td>
+                                        <td>
+                                            <label>Critical</label>
+                                            <input name='attr_npc-critical' type="text" value="0" />
+                                        </td>
+                                        <td><button type='roll' name='roll_weapon' value='!eed characterID(@{character_id}) label(Weapon:@{npc-weaponmake}|Damage:@{npc-damage}|Critical:@{npc-critical}|Range:@{npc-weaponrange}|Qualities:@{npc-weaponspecial}) @{npc-weapondice} encum(@{npc-encumbrancemax}|@{npc-encumbrance}) @{npc-weaponskill} @{npc-weaponcondition} @{dicePool} (gmdice)'></button></td>
+                                        <td>
+                                            <label>Encum</label>
+                                            <input name='attr_npc-encum' type="text" value="0" />
+                                        </td>
+                                        <td></td>
+                                        <td>
+                                            <label>HP</label>
+                                            <input name='attr_npc-hp' type="text" value="0" />
+                                        </td>
+                                        <td></td>
                                     </tr>
                                     </tbody>
                                 </table>
+                                <table cellspacing="0" cellpadding="0" border="0">
+                                    <tbody>
+                                    <tr>
+                                        <td><label>Make / Model:</label></td>
+                                        <td><input name='attr_npc-weaponmake' type="text" /></td>
+                                        <td><label>Range:</label></td>
+                                        <td>
+                                            <select name='attr_npc-weaponrange'>
+                                                <option value="Engaged">Engaged</option>
+                                                <option value="Short">Short</option>
+                                                <option vaule="Medium">Medium</option>
+                                                <option value="Long">Long</option>
+                                                <option value="Extreme">Extreme</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Weapon Type:</label></td>
+                                        <td><input name='attr_npc-weapontype' type="text" /></td>
+                                        <td><label>Skill:</label></td>
+                                        <td>
+                                            <select name='attr_npc-weaponskill'>
+                                                <optgroup label="Combat Skills">
+                                                    <option value="skill(@{npc-rankBrawl}|@{npc-brawn}|@{npc-minion-group-size}|@{npc-minionskillBrawl})">Brawl</option>
+                                                    <option value="skill(@{npc-rankGunnery}|@{npc-agility}|@{npc-minion-group-size}|@{npc-minionskillGunnery})">Gunnery</option>
+                                                    <option value="skill(@{npc-rankMelee}|@{npc-brawn}|@{npc-minion-group-size}|@{npc-minionskillMelee})">Melee</option>
+                                                    <option value="skill(@{npc-rankLight}|@{npc-agility}|@{npc-minion-group-size}|@{npc-minionskillLight})">Ranged - Light</option>
+                                                    <option value="skill(@{npc-rankHeavy}|@{npc-agility}|@{npc-minion-group-size}|@{npc-minionskillHeavy})">Ranged - Heavy</option>
+                                                    <option value="skill(@{npc-rankLightsaber}|@{npc-charLightsaber}|@{npc-minion-group-size}|@{npc-minionskillLightsaber})">Lightsaber</option>
+                                                </optgroup>
+                                                <optgroup label="General Skills">
+                                                    <option value="skill(@{npc-rankMechanics}|@{npc-intellect}|@{npc-minion-group-size}|@{npc-minionskillMechanics})">Mechanics</option>
+                                                    <option value="skill(@{npc-rankMedicine}|@{npc-intellect}|@{npc-minion-group-size}|@{npc-minionskillMedicine})">Medicine</option>
+                                                    <option value="skill(@{npc-rankResilience}|@{npc-brawn}|@{npc-minion-group-size}|@{npc-minionskillResilience})">Resilience</option>
+                                                </optgroup>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Modifiers:</label></td>
+                                        <td><input name='attr_npc-weapondice' type="text" /></td>
+                                        <td><label>Condition:</label></td>
+                                        <td>
+                                            <select name='attr_npc-weaponcondition'>
+                                                <option value="">New</option>
+                                                <option value="1blk">Minor</option>
+                                                <option value="1p">Moderate</option>
+                                                <option value="unusableWeapon">Major</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Features:</label></td>
+                                        <td><textarea rows="2" name="attr_npc-weaponfeatures"></textarea></td>
+                                        <td><label>Qualities:</label></td>
+                                        <td><textarea rows="3" name="attr_npc-weaponspecial"></textarea></td>
+                                    </tr>
+                                    <tr><td colspan="4">&nbsp;</td></tr>
+                                    </tbody>
+                                </table>
+                                <div class="sheet-attachments-wrapper">
+                                    <input type="checkbox" name="attr_npc-weaponattchments" class="sheet-view-attachments" />
+                                    <label class="sheet-view-attachments">View Attachments</label>
+                                    <div class="sheet-clear"></div>
+                                    <table class="sheet-attachments" cellspacing="0" cellpadding="0" border="0">
+                                        <thead>
+                                        <tr>
+                                            <th>Attachment Name</th>
+                                            <th>Hard Points</th>
+                                            <th>Base Modifiers</th>
+                                            <th>Modifications</th>
+                                            <th>Book &amp; Page</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td><input name='attr_npc-weaponattach1' type="text" /></td>
+                                            <td><input name='attr_npc-weaponattachHP1' type="number" /></td>
+                                            <td><textarea rows="3" name="attr_npc-weaponattachbase1"></textarea></td>
+                                            <td><textarea rows="3" name="attr_npc-weaponattachmod1"></textarea></td>
+                                            <td><input type="text" name="attr_npc-weaponattachbookpage1"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input name='attr_npc-weaponattach2' type="text" /></td>
+                                            <td><input name='attr_npc-weaponattachHP2' type="number" /></td>
+                                            <td><textarea rows="3" name="attr_npc-weaponattachbase2"></textarea></td>
+                                            <td><textarea rows="3" name="attr_npc-weaponattachmod2"></textarea></td>
+                                            <td><input type="text" name="attr_npc-weaponattachbookpage2"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input name='attr_npc-weaponattach3' type="text" /></td>
+                                            <td><input name='attr_npc-weaponattachHP3' type="number" /></td>
+                                            <td><textarea rows="3" name="attr_npc-weaponattachbase3"></textarea></td>
+                                            <td><textarea rows="3" name="attr_npc-weaponattachmod3"></textarea></td>
+                                            <td><input type="text" name="attr_npc-weaponattachbookpage3"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input name='attr_npc-weaponattach4' type="text" /></td>
+                                            <td><input name='attr_npc-weaponattachHP4' type="number" /></td>
+                                            <td><textarea rows="3" name="attr_npc-weaponattachbase4"></textarea></td>
+                                            <td><textarea rows="3" name="attr_npc-weaponattachmod4"></textarea></td>
+                                            <td><input type="text" name="attr_npc-weaponattachbookpage4"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input name='attr_npc-weaponattach5' type="text" /></td>
+                                            <td><input name='attr_npc-weaponattachHP5' type="number" /></td>
+                                            <td><textarea rows="3" name="attr_npc-weaponattachbase5"></textarea></td>
+                                            <td><textarea rows="3" name="attr_npc-weaponattachmod5"></textarea></td>
+                                            <td><input type="text" name="attr_npc-weaponattachbookpage5"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input name='attr_npc-weaponattach6' type="text" /></td>
+                                            <td><input name='attr_npc-weaponattachHP6' type="number" /></td>
+                                            <td><textarea rows="3" name="attr_npc-weaponattachbase6"></textarea></td>
+                                            <td><textarea rows="3" name="attr_npc-weaponattachmod6"></textarea></td>
+                                            <td><input type="text" name="attr_npc-weaponattachbookpage6"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input name='attr_npc-weaponattach7' type="text" /></td>
+                                            <td><input name='attr_npc-weaponattachHP7' type="number" /></td>
+                                            <td><textarea rows="3" name="attr_npc-weaponattachbase7"></textarea></td>
+                                            <td><textarea rows="3" name="attr_npc-weaponattachmod7"></textarea></td>
+                                            <td><input type="text" name="attr_npc-weaponattachbookpage7"/></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div><!-- Weapon Attachments -->
+                                <div class="sheet-clear"></div>
                             </div>
-                            <div class="sheet-clear"></div>
-                        </div><!-- Weapon Attachments -->
+                        </div><!-- Weapon Info -->
+                        <div class="sheet-clear"></div>
                     </fieldset>
                 </div>
             </div>
