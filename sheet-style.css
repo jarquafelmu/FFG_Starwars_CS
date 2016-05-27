@@ -1880,9 +1880,18 @@ label.sheet-npc-minion-group {
     padding: 1% 0%;
 }
 
+.sheet-textbox {
+    height: 164px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
 /************************
  * Sheet Toggle Section *
  ************************/
+div.sheet-section-spacer {
+    margin-bottom: 20px;
+}
 
 /* Hide actual checkbox */
 input[type="checkbox"].sheet-toggle {
@@ -1959,6 +1968,17 @@ input.sheet-tools-section-toggle:checked ~ div.sheet-tools-section,
 input.sheet-other-gear-section-toggle:checked ~ div.sheet-other-gear-section,
 input.sheet-initiative-section-toggle:checked ~ div.sheet-initiative-section,
 
+input.sheet-equipment-section-toggle:checked ~ div.sheet-equipment-section,
+
+input.sheet-initiative-toggle-small:checked ~ div.sheet-initiative-toggle-small,
+input.sheet-info-toggle-small:checked ~ div.sheet-info-toggle-small,
+input.sheet-weapons-toggle-small:checked ~ div.sheet-weapons-toggle-small,
+input.sheet-characteristic-toggle-small:checked ~ div.sheet-characteristic-toggle-small,
+input.sheet-skills-toggle-small:checked ~ div.sheet-skills-toggle-small,
+input.sheet-talents-toggle-small:checked ~ div.sheet-talents-toggle-small,
+input.sheet-equipment-toggle-small:checked ~ div.sheet-equipment-toggle-small,
+input.sheet-force-toggle-small:checked ~ div.sheet-force-toggle-small,
+
 input.sheet-toggle.sheet-initiative-toggle-small:checked ~ div.sheet-initiative-toggle-small,
 
 /* Repeating Section Toggles */
@@ -2019,7 +2039,16 @@ input.sheet-tools-section-toggle ~ div.sheet-tools-section,
 input.sheet-other-gear-section-toggle ~ div.sheet-other-gear-section,
 input.sheet-initiative-section-toggle ~ div.sheet-initiative-section,
 
-input.sheet-toggle.sheet-initiative-toggle-small ~ div.sheet-initiative-toggle-small,
+input.sheet-equipment-section-toggle ~ div.sheet-equipment-section,
+
+input.sheet-initiative-toggle-small ~ div.sheet-initiative-toggle-small,
+input.sheet-info-toggle-small ~ div.sheet-info-toggle-small,
+input.sheet-weapons-toggle-small ~ div.sheet-weapons-toggle-small,
+input.sheet-characteristic-toggle-small ~ div.sheet-characteristic-toggle-small,
+input.sheet-skills-toggle-small ~ div.sheet-skills-toggle-small,
+input.sheet-talents-toggle-small ~ div.sheet-talents-toggle-small,
+input.sheet-equipment-toggle-small ~ div.sheet-equipment-toggle-small,
+input.sheet-force-toggle-small ~ div.sheet-force-toggle-small,
 
 /* Repeating Section Toggles */
 input.sheet-assignment-toggle ~ div.sheet-assignment,
