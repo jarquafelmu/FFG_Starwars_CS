@@ -8525,7 +8525,7 @@
                             <thead>
                             <tr>
                                 <th>General Skills</th>
-                                <th class="sheet-companion-minion-title" title="Check to allow the skill to use the minion group size to determine proficiency and ability dice">Minion</th>
+                                <th>Career</th>
                                 <th colspan="2">Rank</th>
                                 <th colspan="2">
                                     <span style="float:left">Modifiers</span>
@@ -8561,7 +8561,7 @@
                                 <td>
                                     <label>Cool (Pr)</label>
                                 </td>
-                                <td><input name='attr_companion-minionskillCool' type="checkbox" value="1"></td>
+                                <td><input name='attr_companion-careerskillCool' type="checkbox" value="1"></td>
                                 <td><input type="number" name="attr_companion-rankCool" max="6" min="0" value="0" /></td>
                                 <td>
                                     <input class="sheet-yd" type="hidden" name="attr_companion-yCool" value="(((@{companion-presence} + @{companion-rankCool}) - abs(@{companion-presence} - @{companion-rankCool})) / 2)" disabled><span></span>
@@ -8579,7 +8579,7 @@
                                 <td>
                                     <label>Vigilance (Will)</label>
                                 </td>
-                                <td><input name='attr_companion-minionskillVigilance' type="checkbox" value="1"></td>
+                                <td><input name='attr_companion-careerskillVigilance' type="checkbox" value="1"></td>
                                 <td><input type="number" name="attr_companion-rankVigilance" max="6" min="0" value="0" /></td>
                                 <td>
                                     <input class="sheet-yd" type="hidden" name="attr_companion-yVigilance" value="(((@{companion-willpower} + @{companion-rankVigilance}) - abs(@{companion-willpower} - @{companion-rankVigilance})) / 2)" disabled><span></span>
@@ -8599,7 +8599,7 @@
                             <thead>
                             <tr>
                                 <th>Combat Skills</th>
-                                <th class="sheet-companion-minion-title" title="Check to allow the skill to use the minion group size to determine proficiency and ability dice">Minion</th>
+                                <th>Career</th>
                                 <th colspan="2">Rank</th>
                                 <th colspan="2">Mods</th>
                             </tr>
@@ -8617,7 +8617,7 @@
                                         <option value="@{companion-presence}">Presence</option>
                                     </select>
                                 </td>
-                                <td><input name='attr_companion-minionskillLightsaber' type="checkbox" value="1"></td>
+                                <td><input name='attr_companion-careerskillLightsaber' type="checkbox" value="1"></td>
                                 <td><input type="number" name="attr_companion-rankLightsaber" max="6" min="0" value="0" /></td>
                                 <td>
                                     <input class="sheet-yd" type="hidden" name="attr_companion-yLightsaber" value="(((@{companion-charLightsaber} + @{companion-rankLightsaber}) - abs(@{companion-charLightsaber} - @{companion-rankLightsaber})) / 2)" disabled><span></span>
@@ -8635,7 +8635,7 @@
                                 <td>
                                     <label>Brawl (Br)</label>
                                 </td>
-                                <td><input name='attr_companion-minionskillBrawl' type="checkbox" value="1"></td>
+                                <td><input name='attr_companion-careerskillBrawl' type="checkbox" value="1"></td>
                                 <td><input type="number" name="attr_companion-rankBrawl" max="6" min="0" value="0" /></td>
                                 <td>
                                     <input class="sheet-yd" type="hidden" name="attr_companion-yBrawl" value="(((@{companion-brawn} + @{companion-rankBrawl}) - abs(@{companion-brawn} - @{companion-rankBrawl})) / 2)" disabled><span></span>
@@ -8653,7 +8653,7 @@
                                 <td>
                                     <label>Gunnery (Agi)</label>
                                 </td>
-                                <td><input name='attr_companion-minionskillGunnery' type="checkbox" value="1"></td>
+                                <td><input name='attr_companion-careerskillGunnery' type="checkbox" value="1"></td>
                                 <td><input type="number" name="attr_companion-rankGunnery" max="6" min="0" value="0" /></td>
                                 <td>
                                     <input class="sheet-yd" type="hidden" name="attr_companion-yGunnery" value="(((@{companion-agility} + @{companion-rankGunnery}) - abs(@{companion-agility} - @{companion-rankGunnery})) / 2)" disabled><span></span>
@@ -8671,7 +8671,7 @@
                                 <td>
                                     <label>Melee (Br)</label>
                                 </td>
-                                <td><input name='attr_companion-minionskillMelee' type="checkbox" value="1"></td>
+                                <td><input name='attr_companion-careerskillMelee' type="checkbox" value="1"></td>
                                 <td><input type="number" name="attr_companion-rankMelee" max="6" min="0" value="0" /></td>
                                 <td>
                                     <input class="sheet-yd" type="hidden" name="attr_companion-yMelee" value="(((@{companion-brawn} + @{companion-rankMelee}) - abs(@{companion-brawn} - @{companion-rankMelee})) / 2)" disabled><span></span>
@@ -8689,7 +8689,7 @@
                                 <td>
                                     <label>Ranged - Light (Ag)</label>
                                 </td>
-                                <td><input name='attr_companion-minionskillLight' type="checkbox" value="1"></td>
+                                <td><input name='attr_companion-careerskillLight' type="checkbox" value="1"></td>
                                 <td><input type="number" name="attr_companion-rankLight" max="6" min="0" value="0" /></td>
                                 <td>
                                     <input class="sheet-yd" type="hidden" name="attr_companion-yLight" value="(((@{companion-agility} + @{companion-rankLight}) - abs(@{companion-agility} - @{companion-rankLight})) / 2)" disabled><span></span>
@@ -8707,7 +8707,7 @@
                                 <td>
                                     <label>Ranged - Heavy (Ag)</label>
                                 </td>
-                                <td><input name='attr_companion-minionskillHeavy' type="checkbox" value="1"></td>
+                                <td><input name='attr_companion-careerskillHeavy' type="checkbox" value="1"></td>
                                 <td><input type="number" name="attr_companion-rankHeavy" max="6" min="0" value="0" /></td>
                                 <td>
                                     <input class="sheet-yd" type="hidden" name="attr_companion-yHeavy" value="(((@{companion-agility} + @{companion-rankHeavy}) - abs(@{companion-agility} - @{companion-rankHeavy})) / 2)" disabled><span></span>
@@ -8728,7 +8728,7 @@
                             <tr>
                                 <th>Custom Skills</th>
                                 <th>Char</th>
-                                <th class="sheet-companion-minion" title="Check to allow this skill to use the minion group size to determine proficiency and ability dice">Minion</th>
+                                <th>Career</th>
                                 <th colspan="2">Rank</th>
                                 <th colspan="2">Mods</th>
                             </tr>
@@ -8746,7 +8746,7 @@
                                         <option value="@{companion-presence}">Presence</option>
                                     </select>
                                 </td>
-                                <td><input name='attr_companion-minionskillcustomskillname1' type="checkbox" value="1"></td>
+                                <td><input name='attr_companion-careerskillcustomskillname1' type="checkbox" value="1"></td>
                                 <td><input type="number" name="attr_companion-rankcustomskillname1" max="6" min="0" value="0" /></td>
                                 <td>
                                     <input class="sheet-yd" type="hidden" name="attr_companion-ycustomskillname1" value="(((@{companion-charcustomskillname1} + @{companion-rankcustomskillname1}) - abs(@{companion-charcustomskillname1} - @{companion-rankcustomskillname1})) / 2)" disabled><span></span>
@@ -8772,7 +8772,7 @@
                                         <option value="@{companion-presence}">Presence</option>
                                     </select>
                                 </td>
-                                <td><input name='attr_companion-minionskillcustomskillname2' type="checkbox" value="1"></td>
+                                <td><input name='attr_companion-careerskillcustomskillname2' type="checkbox" value="1"></td>
                                 <td><input type="number" name="attr_companion-rankcustomskillname2" max="6" min="0" value="0" /></td>
                                 <td>
                                     <input class="sheet-yd" type="hidden" name="attr_companion-ycustomskillname2" value="(((@{companion-charcustomskillname2} + @{companion-rankcustomskillname2}) - abs(@{companion-charcustomskillname2} - @{companion-rankcustomskillname2})) / 2)" disabled><span></span>
@@ -8798,7 +8798,7 @@
                                         <option value="@{companion-presence}">Presence</option>
                                     </select>
                                 </td>
-                                <td><input name='attr_companion-minionskillcustomskillname3' type="checkbox" value="1"></td>
+                                <td><input name='attr_companion-careerskillcustomskillname3' type="checkbox" value="1"></td>
                                 <td><input type="number" name="attr_companion-rankcustomskillname3" max="6" min="0" value="0" /></td>
                                 <td>
                                     <input class="sheet-yd" type="hidden" name="attr_companion-ycustomskillname3" value="(((@{companion-charcustomskillname3} + @{companion-rankcustomskillname3}) - abs(@{companion-charcustomskillname3} - @{companion-rankcustomskillname3})) / 2)" disabled><span></span>
@@ -8824,7 +8824,7 @@
                                         <option value="@{companion-presence}">Presence</option>
                                     </select>
                                 </td>
-                                <td><input name='attr_companion-minionskillcustomskillname4' type="checkbox" value="1"></td>
+                                <td><input name='attr_companion-careerskillcustomskillname4' type="checkbox" value="1"></td>
                                 <td><input type="number" name="attr_companion-rankcustomskillname4" max="6" min="0" value="0" /></td>
                                 <td>
                                     <input class="sheet-yd" type="hidden" name="attr_companion-ycustomskillname4" value="(((@{companion-charcustomskillname4} + @{companion-rankcustomskillname4}) - abs(@{companion-charcustomskillname4} - @{companion-rankcustomskillname4})) / 2)" disabled><span></span>
@@ -8850,7 +8850,7 @@
                                         <option value="@{companion-presence}">Presence</option>
                                     </select>
                                 </td>
-                                <td><input name='attr_companion-minionskillcustomskillname5' type="checkbox" value="1"></td>
+                                <td><input name='attr_companion-careerskillcustomskillname5' type="checkbox" value="1"></td>
                                 <td><input type="number" name="attr_companion-rankcustomskillname5" max="6" min="0" value="0" /></td>
                                 <td>
                                     <input class="sheet-yd" type="hidden" name="attr_companion-ycustomskillname5" value="(((@{companion-charcustomskillname5} + @{companion-rankcustomskillname5}) - abs(@{companion-charcustomskillname5} - @{companion-rankcustomskillname5})) / 2)" disabled><span></span>
@@ -8866,6 +8866,38 @@
                             </tr><!--Custom Skill 5-->
                             </tbody>
                         </table><!--Custom Skills Section-->
+                        <fieldset class="repeating_specialization">
+                        <table class="sheet-skills sheet-custome-skills" cellspacing="0" cellpadding="0" border="0">
+                            <tbody>
+                            <tr>
+                                <td><input type="text" name="attr_companion-customskillnameREP" /></td>
+                                <td>
+                                    <select name="attr_companion-charcustomskillnameREP">
+                                        <option value="@{companion-brawn}">Brawn</option><!-- encum not working -->
+                                        <option value="@{companion-agility}">Agility</option>
+                                        <option value="@{companion-intellect}">Intellect</option>
+                                        <option value="@{companion-cunning}">Cunning</option>
+                                        <option value="@{companion-willpower}">Willpower</option>
+                                        <option value="@{companion-presence}">Presence</option>
+                                    </select>
+                                </td>
+                                <td><input name='attr_companion-careerskillcustomskillnameREP' type="checkbox" value="REP"></td>
+                                <td><input type="number" name="attr_companion-rankcustomskillnameREP" max="6" min="0" value="0" /></td>
+                                <td>
+                                    <input class="sheet-yd" type="hidden" name="attr_companion-ycustomskillnameREP" value="(((@{companion-charcustomskillnameREP} + @{companion-rankcustomskillnameREP}) - abs(@{companion-charcustomskillnameREP} - @{companion-rankcustomskillnameREP})) / 2)" disabled><span></span>
+                                    <input class="sheet-gd" type="hidden" name="attr_companion-gcustomskillnameREP" value="((((@{companion-charcustomskillnameREP} + @{companion-rankcustomskillnameREP}) + abs(@{companion-charcustomskillnameREP} - @{companion-rankcustomskillnameREP})) / 2) - @{companion-ycustomskillnameREP})" disabled><span></span>
+                                </td>
+                                <td>
+                                    <div class="sheet-dice-icon"></div>
+                                    <div class="sheet-dice-input">
+                                        <input type="text" name="attr_companion-dicecustomskillnameREP" />
+                                    </div>
+                                </td>
+                                <td><button type='roll' name='roll_customskillnameREP' value='!eed characterID(@{character_id}) label(skill:Companion-@{companion-customskillnameREP}|Companion Name:@{companion-name}) @{companion-dicecustomskillnameREP} skill(@{companion-rankcustomskillnameREP}|@{companion-charcustomskillnameREP}) @{dicePool} (gmdice)'></button></td>
+                            </tr><!--Custom Skill REP-->
+                            </tbody>
+                        </table>
+                        </fieldset><!--Repeating Custom Skills Section-->
                     </div><!-- Skills -->
                 </div>
             </div>
