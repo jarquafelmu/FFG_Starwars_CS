@@ -12083,59 +12083,62 @@
     </div><!-- Companion Critical Injuries -->
 </div><!-- Player Companion sheet -->
 <div class="sheet-tab-content sheet-tab-npc-sheet">
-    <div class="sheet-row sheet-section-1">
-        <div class="sheet-small-12 sheet-column">
-            <table class="sheet-swsd" cellspacing="0" cellpadding="0" border="0">
-                <tbody>
-                <tr>
-                    <td>
-                        <label class="sheet-label-title">Wounds</label>
-                        <input name="attr_npc-wounds_max" type="number" max="999" min="1" value="1" />
-                        <input name="attr_npc-wounds" type="number" max="999" min="0" value="0" /><br />
-                        <label class="sheet-label-threshold">Threshold</label>
-                        <label class="sheet-label-current">Current</label>
-                    </td>
-                    <td>
-                        <label class="sheet-label-title">Strain</label>
-                        <input name="attr_npc-strain_max" type="number" max="999" min="0" value="0" />
-                        <input name="attr_npc-strain" type="number" max="999" min="0" value="0" /><br />
-                        <label class="sheet-label-threshold">Threshold</label>
-                        <label class="sheet-label-current">Current</label>
-                    </td>
-                    <td rowspan="2">
-                        <label class="sheet-label-title">Defense</label>
-                        <input name="attr_npc-rangeddefense" type="number" max="99" min="0" value="0" />
-                        <input name="attr_npc-meleedefense" type="number" max="99" min="0" value="0" /><br />
-                        <label class="sheet-label-range">Range</label>
-                        <label class="sheet-label-melee">Melee</label>
-                    </td>
-                    <td rowspan="2">
-                        <label class="sheet-label-title">Encum</label>
-                        <input name="attr_npc-encumbrance_max" type="number" max="99" min="1" value="1" />
-                        <input name="attr_npc-encumbrancemax" type="hidden" value="@{npc-encumbrance|max}" disabled />
-                        <input name="attr_npc-encumbrance" type="number" max="99" min="0" value="0" /><br />
-                        <label class="sheet-label-threshold">Threshold</label>
-                        <label class="sheet-label-current">Current</label>
-                    </td>
-                    <td rowspan="2">
-                        <label class="sheet-label-title">Force Rating</label>
-                        <input name="attr_npc-forcerating" type="number" max="99" min="0" value="0" />
-                        <input name="attr_npc-forcecommitted" type="number" max="99" min="0" value="0" /><br />
-                        <label class="sheet-label-threshold">Threshold</label>
-                        <label class="sheet-label-committed">Committed</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <label class="sheet-label-title">Soak</label>
-                        <input name="attr_npc-soak" type="number" max="99" min="1" value="1" />
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div><!-- Top Stats -->
-        <div class="sheet-clear"></div>
+    <b>Stats</b><input style="width:78px;margin:-13px -20px 0 -62px" class="sheet-toggle sheet-stats-toggle-small" type="checkbox"/><span></span>
+    <div class="sheet-stats-toggle-small">
+        <div class="sheet-row sheet-section-1">
+            <div class="sheet-small-12 sheet-column">
+                <table class="sheet-swsd" cellspacing="0" cellpadding="0" border="0">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <label class="sheet-label-title">Wounds</label>
+                            <input name="attr_npc-wounds_max" type="number" max="999" min="1" value="1" />
+                            <input name="attr_npc-wounds" type="number" max="999" min="0" value="0" /><br />
+                            <label class="sheet-label-threshold">Threshold</label>
+                            <label class="sheet-label-current">Current</label>
+                        </td>
+                        <td>
+                            <label class="sheet-label-title">Strain</label>
+                            <input name="attr_npc-strain_max" type="number" max="999" min="0" value="0" />
+                            <input name="attr_npc-strain" type="number" max="999" min="0" value="0" /><br />
+                            <label class="sheet-label-threshold">Threshold</label>
+                            <label class="sheet-label-current">Current</label>
+                        </td>
+                        <td rowspan="2">
+                            <label class="sheet-label-title">Defense</label>
+                            <input name="attr_npc-rangeddefense" type="number" max="99" min="0" value="0" />
+                            <input name="attr_npc-meleedefense" type="number" max="99" min="0" value="0" /><br />
+                            <label class="sheet-label-range">Range</label>
+                            <label class="sheet-label-melee">Melee</label>
+                        </td>
+                        <td rowspan="2">
+                            <label class="sheet-label-title">Encum</label>
+                            <input name="attr_npc-encumbrance_max" type="number" max="99" min="1" value="1" />
+                            <input name="attr_npc-encumbrancemax" type="hidden" value="@{npc-encumbrance|max}" disabled />
+                            <input name="attr_npc-encumbrance" type="number" max="99" min="0" value="0" /><br />
+                            <label class="sheet-label-threshold">Threshold</label>
+                            <label class="sheet-label-current">Current</label>
+                        </td>
+                        <td rowspan="2">
+                            <label class="sheet-label-title">Force Rating</label>
+                            <input name="attr_npc-forcerating" type="number" max="99" min="0" value="0" />
+                            <input name="attr_npc-forcecommitted" type="number" max="99" min="0" value="0" /><br />
+                            <label class="sheet-label-threshold">Threshold</label>
+                            <label class="sheet-label-committed">Committed</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label class="sheet-label-title">Soak</label>
+                            <input name="attr_npc-soak" type="number" max="99" min="1" value="1" />
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div><!-- Top Stats -->
+        </div>
     </div><!-- Stats -->
+    <div class="sheet-clear"></div>
 
     <input type="radio" name="attr_npc-sheet" class="sheet-tab-new sheet-tab-npc-combat" value="1" />
     <span class="sheet-tab-new">&emsp;NPC&emsp;</span>
