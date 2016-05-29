@@ -8335,7 +8335,7 @@
                                                 <input class="sheet-gd" type="hidden" name="attr_companion-gCoolInit" value="(@{companion-gCool})" disabled><span></span>
                                             </td>
                                             <td><label>Modifiers</label><input name='attr_companion-initiativeCoolDice' type="text" /></td>
-                                            <td><button type='roll' name='roll_companion-CoolInit' value='!eed @{companion-npc-pc} characterID(@{character_id}) label(skill:Companion-Initiative Cool|Companion Name:@{companion-name}) skill(@{companion-rankCool}|@{companion-presence}) @{initiativeCoolDice} @{dicePool}'></button></td>
+                                            <td><button type='roll' name='roll_companion-CoolInit' value='!eed @{companion-npc-pc} characterID(@{character_id}) label(skill:Companion-Initiative Cool|Companion Name:@{companion-name}) skill(@{companion-rankCool}|@{companion-presence}) @{companion-initiativeCoolDice} @{dicePool}'></button></td>
                                         </tr>
                                         <tr>
                                             <td><label>Vigilance (if unexpected):</label></td>
@@ -8344,7 +8344,7 @@
                                                 <input class="sheet-gd" type="hidden" name="attr_companion-gVigilanceInit" value="(@{companion-gVigilance})" disabled><span></span>
                                             </td>
                                             <td><label>Modifiers</label><input name='attr_companion-initiativeVigDice' type="text" /></td>
-                                            <td><button type='roll' name='roll_companion-VigilanceInit' value='!eed @{companion-npc-pc} characterID(@{character_id}) label(skill: Companion-Initiative Vigilance|Companion Name:@{companion-name}) skill(@{companion-rankVigilance}|@{companion-willpower}) @{initiativeVigDice} @{dicePool}'></button></td>
+                                            <td><button type='roll' name='roll_companion-VigilanceInit' value='!eed @{companion-npc-pc} characterID(@{character_id}) label(skill: Companion-Initiative Vigilance|Companion Name:@{companion-name}) skill(@{companion-rankVigilance}|@{companion-willpower}) @{companion-initiativeVigDice} @{dicePool}'></button></td>
                                         </tr>
                                     </table>
                                 </td>
@@ -12135,7 +12135,7 @@
             </table>
         </div><!-- Top Stats -->
         <div class="sheet-clear"></div>
-    </div><!-- Stats and Dice -->
+    </div><!-- Stats -->
 
     <input type="radio" name="attr_npc-sheet" class="sheet-tab-new sheet-tab-npc-combat" value="1" />
     <span class="sheet-tab-new">&emsp;NPC&emsp;</span>
@@ -12175,7 +12175,7 @@
                                                 <input class="sheet-gd" type="hidden" name="attr_npc-gCoolInit" value="@{npc-gCool}" disabled><span></span>
                                             </td>
                                             <td><label>Modifiers</label><input name='attr_npc-initiativeCoolDice' type="text" /></td>
-                                            <td><button type='roll' name='roll_npc-VigilanceInit' value='!eed @{npc-npc-pc} characterID(@{character_id}) label(skill:Initiative Cool) skill(@{npc-rankCool}|@{npc-presence}|@{npc-minion-group-size}|@{npc-minionskillCool}) @{initiativeCoolDice} @{dicePool}'></button></td>
+                                            <td><button type='roll' name='roll_npc-VigilanceInit' value='!eed @{npc-npc-pc} characterID(@{character_id}) label(skill:Initiative Cool) skill(@{npc-rankCool}|@{npc-presence}|@{npc-minion-group-size}|@{npc-minionskillCool}) @{npc-initiativeCoolDice} @{dicePool}'></button></td>
                                         </tr>
                                         <tr>
                                             <td><label>Vigilance (if unexpected):</label></td>
@@ -12184,7 +12184,7 @@
                                                 <input class="sheet-gd" type="hidden" name="attr_npc-gVigilanceInit" value="@{npc-gVigilance}" disabled><span></span>
                                             </td>
                                             <td><label>Modifiers</label><input name='attr_npc-initiativeVigDice' type="text" /></td>
-                                            <td><button type='roll' name='roll_npc-VigilanceInit' value='!eed @{npc-npc-pc} characterID(@{character_id}) label(skill:Initiative Vigilance) skill(@{npc-rankVigilance}|@{npc-willpower}|@{npc-minion-group-size}|@{npc-minionskillVigilance}) @{initiativeVigDice} @{dicePool}'></button></td>
+                                            <td><button type='roll' name='roll_npc-VigilanceInit' value='!eed @{npc-npc-pc} characterID(@{character_id}) label(skill:Initiative Vigilance) skill(@{npc-rankVigilance}|@{npc-willpower}|@{npc-minion-group-size}|@{npc-minionskillVigilance}) @{npc-initiativeVigDice} @{dicePool}'></button></td>
                                         </tr>
                                     </table>
                                 </td>
