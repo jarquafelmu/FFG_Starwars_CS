@@ -1968,7 +1968,17 @@ input.sheet-tools-section-toggle:checked ~ div.sheet-tools-section,
 input.sheet-other-gear-section-toggle:checked ~ div.sheet-other-gear-section,
 input.sheet-initiative-section-toggle:checked ~ div.sheet-initiative-section,
 
+input.sheet-stats-toggle-small:checked ~ div.sheet-stats-toggle-small,
+
 input.sheet-equipment-section-toggle:checked ~ div.sheet-equipment-section,
+
+input.sheet-description-toggle-small:checked ~ div.sheet-description-toggle-small,
+input.sheet-career-toggle-small:checked ~ div.sheet-career-toggle-small,
+
+input.sheet-armor-toggle-small:checked ~ div.sheet-armor-toggle-small,
+input.sheet-cybernetics-toggle-small:checked ~ div.sheet-cybernetics-toggle-small,
+input.sheet-tools-toggle-small:checked ~ div.sheet-tools-toggle-small,
+input.sheet-other-gear-toggle-small:checked ~ div.sheet-other-gear-toggle-small,
 
 input.sheet-initiative-toggle-small:checked ~ div.sheet-initiative-toggle-small,
 input.sheet-info-toggle-small:checked ~ div.sheet-info-toggle-small,
@@ -2040,6 +2050,16 @@ input.sheet-other-gear-section-toggle ~ div.sheet-other-gear-section,
 input.sheet-initiative-section-toggle ~ div.sheet-initiative-section,
 
 input.sheet-equipment-section-toggle ~ div.sheet-equipment-section,
+
+input.sheet-stats-toggle-small ~ div.sheet-stats-toggle-small,
+
+input.sheet-description-toggle-small ~ div.sheet-description-toggle-small,
+input.sheet-career-toggle-small ~ div.sheet-career-toggle-small,
+
+input.sheet-armor-toggle-small ~ div.sheet-armor-toggle-small,
+input.sheet-cybernetics-toggle-small ~ div.sheet-cybernetics-toggle-small,
+input.sheet-tools-toggle-small ~ div.sheet-tools-toggle-small,
+input.sheet-other-gear-toggle-small ~ div.sheet-other-gear-toggle-small,
 
 input.sheet-initiative-toggle-small ~ div.sheet-initiative-toggle-small,
 input.sheet-info-toggle-small ~ div.sheet-info-toggle-small,
