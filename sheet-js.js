@@ -51,7 +51,7 @@
  Debug
  * default: 'off'
  * DescriptionL Sets the logging level of the script in the API console.  If you are having issues with the
- * script rolling incorect dice, turn on debug logging and post the result in the forums. No need to restart the
+ * script rolling incorrectt dice, turn on debug logging and post the result in the forums. No need to restart the
  * script with this command.
  * Command: !eed debug on|off
 
@@ -785,12 +785,18 @@ eote.process.rollPlayer = function (cmd, diceObj) {
         diceObj = eote.process.encum(cmdEncum, diceObj);
     }
     var skillMatch = cmd[1].match(match.skill);
+    if (eote.defaults.globalVars.debugScript) sendChat("Alert", "skillmatch=" + skillMatch.toString());
 
     if (skillMatch) {
 
         var attrArray = skillMatch[1].split(',');
         var attr_1 = getAttrByName(diceObj.vars.characterID, attrArray[0]);
         var attr_2 = getAttrByName(diceObj.vars.characterID, attrArray[1]);
+
+        if (eote.defaults.globalVars.debugScript) {
+            sendChat("Alert", "attr_1 = " + attr_1);
+            sendChat("Alert", "attr_2 = " + attr_2);
+        }
 
         if(!isNaN((parseFloat(attr_1)) && isFinite(attr_1))) { // is numeric
             var cmdSkill = ['skill(' + attr_1 + '|' + attr_2 + ')']; //['skill(0|2)']
@@ -832,6 +838,7 @@ eote.process.destiny = function (cmd, diceObj) {
     var darkSide = parseInt(currentDarkSidePoints[0].get("current"));
     var lightSide = parseInt(currentLightSidePoints[0].get("current"));
 
+    //noinspection FallThroughInSwitchStatementJS
     switch (cmd[1]) {
         case "useDark":
             if (darkSide > 0) {
