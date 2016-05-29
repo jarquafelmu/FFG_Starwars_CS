@@ -1,6 +1,22 @@
 # Roll20 FFG Star Wars Character Sheet
 
 ## Change log
+* 5.7.2
+  * Changed to use the Semantic versioning way of doing the versioning labels.
+    * For more information on what this means please visit: http://semver.org/
+  * Shrunk NPC tab to two tabs: NPC and Critical Injuries
+    * Replaced Talents and Abilities with a single textarea
+    * Added Equipment as a textarea section
+    * Reduced skills to Cool, Vigilance, Combat Skills and five custom skills
+    * Changed the initiative dice calculators to just echo what the actual skills have for their dice calculations to reduce the number of times this has to be entered..
+    * Added NPC Type to NPC Info
+    * Added ability to collapse all npc sections to just one line each
+  * Fixed some invalid html attributes
+  * Corrected indenting for all the html
+  * All companion sections can now shrink to one line.
+  * Added back initiative for riding beast and fixed problems it had before.
+  * Removed skills from the riding beast's attack drop down that weren't included in the riding beast's skills section.
+  * Increased the player's force threshold from 9 to 21.
 * 5.0.6.2
   * Moved the Dice and Destiny section below the sheet type selectors but still displayed on all sheets in order to maintain visual flow as much as possible.
   * Added the ability the shrink the whole section down to one line similar to the initiative sections. The individual sections are still collapsible. Will do the same for the other sections because now I agree that sometimes you just want to be able to just completely get rid of a section.
