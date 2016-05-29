@@ -6444,6 +6444,61 @@
         <span class="sheet-tab-new">&emsp;Critical Hits&emsp;</span>
 
         <div class="sheet-tab-content sheet-tab-transport-beast-general">
+            <b>Initiative</b><input style="width:78px;margin:-13px -20px 0 -62px" class="sheet-toggle sheet-initiative-toggle-small" type="checkbox"/><span></span>
+            <div class="sheet-initiative-toggle-small">
+                <div class="sheet-row">
+                    <div class="sheet-small-12 sheet-column">
+                        <h3 class="sheet-section-header">Initiative</h3>
+                        <input style="width: 250px;height: 30px;margin: -44px -20px 0 297px;float:left;" class="sheet-toggle sheet-initiative-section-toggle" type="checkbox" checked="checked"/>
+                        <div class="sheet-initiative-section">
+                            <table cellspacing="0" cellpadding="0" border="0">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <table>
+                                            <tr>
+                                                <td><label>What kind of Initiative Slot?</label></td>
+                                                <td><label>PC<input type="radio" name="attr_beast-npc-pc" value="pcinit" checked="checked" /></label></td>
+                                                <td><label>NPC<input type="radio" name="attr_beast-npc-pc" value="npcinit" /></label></td>
+                                                <td><label></label></td>
+                                                <td><label></label></td>
+                                                <td><label></label></td>
+                                                <td><label></label></td>
+                                                <td><label></label></td>
+                                                <td><label></label></td>
+                                            </tr>
+                                        </table>
+                                        <table class="sheet-init" cellspacing="0" cellpadding="0" border="0">
+                                            <tr>
+                                                <td><label>Cool (if prepared):</label></td>
+                                                <td>
+                                                    <input class="sheet-yd" type="hidden" name="attr_beast-yCoolInit" value="(@{beast-yCool})" disabled><span></span>
+                                                    <input class="sheet-gd" type="hidden" name="attr_beast-gCoolInit" value="(@{beast-gCool})" disabled><span></span>
+                                                </td>
+                                                <td><label>Modifiers</label><input name='attr_beast-initiativeCoolDice' type="text" /></td>
+                                                <td><button type='roll' name='roll_beast-CoolInit' value='!eed @{beast-npc-pc} characterID(@{character_id}) label(skill:Riding Beast-Initiative Cool) skill(@{beast-rankCool}|@{beast-presence}) @{beast-initiativeCoolDice} @{dicePool}'></button></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label>Vigilance (if unexpected):</label></td>
+                                                <td>
+                                                    <input class="sheet-yd" type="hidden" name="attr_beast-yVigilanceInit" value="(@{beast-yVigilance})" disabled><span></span>
+                                                    <input class="sheet-gd" type="hidden" name="attr_beast-gVigilanceInit" value="(@{beast-gVigilance})" disabled><span></span>
+                                                </td>
+                                                <td><label>Modifiers</label><input name='attr_beast-initiativeVigDice' type="text" /></td>
+                                                <td><button type='roll' name='roll_beast-VigilanceInit' value='!eed @{beast-npc-pc} characterID(@{character_id}) label(skill: Riding Beast-Initiative Vigilance) skill(@{beast-rankVigilance}|@{beast-willpower}) @{beast-initiativeVigDice} @{dicePool}'></button></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- Initiative -->
+            <div class="sheet-clear"></div>
+            <div class="sheet-section-spacer sheet-initiative-toggle-small"></div>
+
             <div class="sheet-row">
                 <div class="sheet-small-12 sheet-column">
                     <h3 class="sheet-section-header">Riding Beast Details</h3>
