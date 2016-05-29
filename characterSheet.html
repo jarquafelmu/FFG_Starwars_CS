@@ -3339,10 +3339,10 @@
         </div><!--Skills List-->
     </div><!-- Skills Tab -->
     <div class="sheet-tab-content sheet-tab-talents">
-        <div class="sheet-row">
-            <div class="sheet-small-12 sheet-column">
-                <b>Initiative</b><input style="width:78px;margin:-13px -20px 0 -62px" class="sheet-toggle sheet-initiative-toggle-small" type="checkbox"/><span></span>
-                <div class="sheet-initiative-toggle-small">
+        <b>Initiative</b><input style="width:78px;margin:-13px -20px 0 -62px" class="sheet-toggle sheet-initiative-toggle-small" type="checkbox"/><span></span>
+        <div class="sheet-initiative-toggle-small">
+            <div class="sheet-row">
+                <div class="sheet-small-12 sheet-column">
                     <h3 class="sheet-section-header">Initiative</h3>
                     <input style="width: 250px;height: 30px;margin: -44px -20px 0 297px;float:left;" class="sheet-toggle sheet-initiative-section-toggle" type="checkbox" checked="checked"/>
                     <div class="sheet-initiative-section">
@@ -3367,19 +3367,19 @@
                                         <tr>
                                             <td><label>Cool (if prepared):</label></td>
                                             <td>
-                                                <input class="sheet-yd" type="hidden" name="attr_yCoolInit" value="(((@{presence} + @{rankCool}) - abs(@{presence} - @{rankCool})) / 2)" disabled><span></span>
-                                                <input class="sheet-gd" type="hidden" name="attr_gCoolInit" value="((((@{presence} + @{rankCool}) + abs(@{presence} - @{rankCool})) / 2) - @{yCoolInit})" disabled><span></span>
+                                                <input class="sheet-yd" type="hidden" name="attr_yCoolInit" value="(@{yCool})" disabled><span></span>
+                                                <input class="sheet-gd" type="hidden" name="attr_gCoolInit" value="(@{gCool})" disabled><span></span>
                                             </td>
                                             <td><label>Modifiers</label><input name='attr_initiativeCoolDice' type="text" /></td>
                                             <td>
-                                                <button type='roll' name='roll_VigilanceInit' value='!eed @{npc-pc} characterID(@{character_id}) label(skill:Initiative Cool) skill(@{rankCool}|@{presence}) @{initiativeCoolDice} @{dicePool}'></button>
+                                                <button type='roll' name='roll_CoolInit' value='!eed @{npc-pc} characterID(@{character_id}) label(skill:Initiative Cool) skill(@{rankCool}|@{presence}) @{initiativeCoolDice} @{dicePool}'></button>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td><label>Vigilance (if unexpected):</label></td>
                                             <td>
-                                                <input class="sheet-yd" type="hidden" name="attr_yVigilanceInit" value="(((@{willpower} + @{rankVigilance}) - abs(@{willpower} - @{rankVigilance})) / 2)" disabled><span></span>
-                                                <input class="sheet-gd" type="hidden" name="attr_gVigilanceInit" value="((((@{willpower} + @{rankVigilance}) + abs(@{willpower} - @{rankVigilance})) / 2) - @{yVigilanceInit})" disabled><span></span>
+                                                <input class="sheet-yd" type="hidden" name="attr_yVigilanceInit" value="(@{yVigilance})" disabled><span></span>
+                                                <input class="sheet-gd" type="hidden" name="attr_gVigilanceInit" value="(@{gVigilance})" disabled><span></span>
                                             </td>
                                             <td><label>Modifiers</label><input name='attr_initiativeVigDice' type="text" /></td>
                                             <td>
@@ -3394,8 +3394,10 @@
                     </div>
                 </div>
             </div>
-            <div class="sheet-clear"></div>
         </div><!-- Initiative -->
+        <div class="sheet-clear"></div>
+        <div class="sheet-section-spacer sheet-initiative-toggle-small"></div>
+
         <div class="sheet-row">
             <div class="sheet-small-12 sheet-column">
                 <h3 class="sheet-section-header">Weapons</h3>
