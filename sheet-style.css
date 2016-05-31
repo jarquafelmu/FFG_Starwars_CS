@@ -1700,7 +1700,6 @@ table.sheet-ship tr:hover td {
     width: 99px;
     height: 66px;
     vertical-align: top;
-    text-align: center;
     padding-top: 40px;
 }
 
@@ -1712,6 +1711,12 @@ table.sheet-ship tr:hover td {
     padding-bottom: 4px;
     font-size: 13px;
     display: block;
+}
+
+.sheet-ship-char-bg.sheet-armor {
+    width: 26%;
+    padding-top: 3px;
+    background-position: center 0;
 }
 
 .sheet-ship [type=number] {
