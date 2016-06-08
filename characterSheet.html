@@ -119,59 +119,62 @@
 </div><!-- Dice & Destiny Pools -->
 
 <div class="sheet-tab-content sheet-tab-character-sheet">
-    <div class="sheet-row sheet-section-1">
-        <div class="sheet-small-12 sheet-column">
-            <table class="sheet-swsd" cellspacing="0" cellpadding="0" border="0">
-                <tbody>
-                <tr>
-                    <td>
-                        <label class="sheet-label-title">Wounds</label>
-                        <input name="attr_wounds_max" type="number" min="1" value="1" />
-                        <input name="attr_wounds" type="number" min="0" value="0" /><br />
-                        <label class="sheet-label-threshold">Threshold</label>
-                        <label class="sheet-label-current">Current</label>
-                    </td>
-                    <td>
-                        <label class="sheet-label-title">Strain</label>
-                        <input name="attr_strain_max" type="number" min="0" value="0" />
-                        <input name="attr_strain" type="number" min="0" value="0" /><br />
-                        <label class="sheet-label-threshold">Threshold</label>
-                        <label class="sheet-label-current">Current</label>
-                    </td>
-                    <td rowspan="2">
-                        <label class="sheet-label-title">Defense</label>
-                        <input name="attr_rangeddefense" type="number" max="10" min="0" value="0" />
-                        <input name="attr_meleedefense" type="number" max="10" min="0" value="0" /><br />
-                        <label class="sheet-label-range">Range</label>
-                        <label class="sheet-label-melee">Melee</label>
-                    </td>
-                    <td rowspan="2">
-                        <label class="sheet-label-title">Encum</label>
-                        <input name="attr_encumbrance_max" type="number" min="1" value="1" />
-                        <input name="attr_encumbrancemax" type="hidden" value="@{encumbrance|max}" disabled />
-                        <input name="attr_encumbrance" type="number" min="0" value="0" /><br />
-                        <label class="sheet-label-threshold">Threshold</label>
-                        <label class="sheet-label-current">Current</label>
-                    </td>
-                    <td rowspan="2">
-                        <label class="sheet-label-title">Force Rating</label>
-                        <input name="attr_forcerating" type="number" max="21" min="0" value="0" />
-                        <input name="attr_forcecommitted" type="number" max="21" min="0" value="0" /><br />
-                        <label class="sheet-label-threshold">Threshold</label>
-                        <label class="sheet-label-committed">Committed</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <label class="sheet-label-title">Soak</label>
-                        <input name="attr_soak" type="number" max="49" min="1" value="1" />
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div><!-- Top Stats -->
-        <div class="sheet-clear"></div>
-    </div><!--Top of Character Sheet-->
+    <b>Stats</b><input style="width:78px;margin:-13px -20px 0 -62px" class="sheet-toggle sheet-stats-toggle-small" type="checkbox"/><span></span>
+    <div class="sheet-stats-toggle-small">
+        <div class="sheet-row sheet-section-1">
+            <div class="sheet-small-12 sheet-column">
+                <table class="sheet-swsd" cellspacing="0" cellpadding="0" border="0">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <label class="sheet-label-title">Wounds</label>
+                            <input name="attr_wounds_max" type="number" min="1" value="1" />
+                            <input name="attr_wounds" type="number" min="0" value="0" /><br />
+                            <label class="sheet-label-threshold">Threshold</label>
+                            <label class="sheet-label-current">Current</label>
+                        </td>
+                        <td>
+                            <label class="sheet-label-title">Strain</label>
+                            <input name="attr_strain_max" type="number" min="0" value="0" />
+                            <input name="attr_strain" type="number" min="0" value="0" /><br />
+                            <label class="sheet-label-threshold">Threshold</label>
+                            <label class="sheet-label-current">Current</label>
+                        </td>
+                        <td rowspan="2">
+                            <label class="sheet-label-title">Defense</label>
+                            <input name="attr_rangeddefense" type="number" max="10" min="0" value="0" />
+                            <input name="attr_meleedefense" type="number" max="10" min="0" value="0" /><br />
+                            <label class="sheet-label-range">Range</label>
+                            <label class="sheet-label-melee">Melee</label>
+                        </td>
+                        <td rowspan="2">
+                            <label class="sheet-label-title">Encum</label>
+                            <input name="attr_encumbrance_max" type="number" min="1" value="1" />
+                            <input name="attr_encumbrancemax" type="hidden" value="@{encumbrance|max}" disabled />
+                            <input name="attr_encumbrance" type="number" min="0" value="0" /><br />
+                            <label class="sheet-label-threshold">Threshold</label>
+                            <label class="sheet-label-current">Current</label>
+                        </td>
+                        <td rowspan="2">
+                            <label class="sheet-label-title">Force Rating</label>
+                            <input name="attr_forcerating" type="number" max="21" min="0" value="0" />
+                            <input name="attr_forcecommitted" type="number" max="21" min="0" value="0" /><br />
+                            <label class="sheet-label-threshold">Threshold</label>
+                            <label class="sheet-label-committed">Committed</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label class="sheet-label-title">Soak</label>
+                            <input name="attr_soak" type="number" max="49" min="1" value="1" />
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div><!-- Top Stats -->
+        </div>
+    </div><!--Stats-->
+    <div class="sheet-clear"></div>
 
     <input type="radio" name="attr_sheet" class="sheet-tab-new sheet-tab-character" value="1" checked="checked" />
     <span class="sheet-tab-new">&emsp;Character Info&emsp;</span>
@@ -187,509 +190,535 @@
     <span class="sheet-tab-new">&emsp; &emsp;Notes&emsp; &emsp;</span>
 
     <div class="sheet-tab-content sheet-tab-character">
-        <div class="sheet-row">
-            <h3 class="sheet-section-header">Character</h3>
-            <input style="width: 250px;height: 30px;margin: -44px -20px 0 297px;float:left;" class="sheet-toggle sheet-main-section-toggle" type="checkbox" checked="checked"/>
-            <div class="sheet-main-section">
-                <div class="sheet-small-12 sheet-column">
-                    <table class="sheet-character" cellspacing="0" cellpadding="0" border="0">
-                        <tbody>
-                        <tr>
-                            <td width="15%"><label>Name:</label></td>
-                            <td width="35%"><input type="text" name="attr_name" /></td>
-                            <td width="15%"><label>Player Name:</label></td>
-                            <td width="35%"><input type="text" name="attr_playername" /></td>
-                        </tr>
-                        <tr>
-                            <td width="15%"><label>Species:</label></td>
-                            <td width="35%">
-                                <select name='attr_species'>
-                                    <option value=""></option>
-                                    <option value="Aleena">Aleena</option>
-                                    <option value="Aqualish (Aquala)">Aqualish (Aquala)</option>
-                                    <option value="Aqualish (Quara)">Aqualish (Quara)</option>
-                                    <option value="Aqualish (Ualaq)">Aqualish (Ualaq)</option>
-                                    <option value="Arcona">Arcona</option>
-                                    <option value="Bardottan">Bardottan</option>
-                                    <option value="Besalisk">Besalisk</option>
-                                    <option value="Bothan">Bothan</option>
-                                    <option value="Caamasi">Caamasi</option>
-                                    <option value="Cerean">Cerean</option>
-                                    <option value="Chadra-Fan">Chadra-Fan</option>
-                                    <option value="Chagrian">Chagrian</option>
-                                    <option value="Chevin">Chevin</option>
-                                    <option value="Chiss">Chiss</option>
-                                    <option value="Corellian Human">Corellian Human</option>
-                                    <option value="Devaronian">Devaronian</option>
-                                    <option value="Drall">Drall</option>
-                                    <option value="Dressellian (Primitive)">Dressellian (Primitive)</option>
-                                    <option value="Dressellian (Non-Primitive)">Dressellian (Non-Primitive)</option>
-                                    <option value="Droid">Droid</option>
-                                    <option value="Dug">Dug</option>
-                                    <option value="Duros">Duros</option>
-                                    <option value="Falleen">Falleen</option>
-                                    <option value="Gand (With Lungs)">Gand (With Lungs)</option>
-                                    <option value="Gand (Without Lungs)">Gand (Without Lungs)</option>
-                                    <option value="Gank">Gank</option>
-                                    <option value="Gossam">Gossam</option>
-                                    <option value="Gotal">Gotal</option>
-                                    <option value="Gran">Gran</option>
-                                    <option value="Gungan">Gungan</option>
-                                    <option value="Human">Human</option>
-                                    <option value="Hutt">Hutt</option>
-                                    <option value="Iktotchi">Iktotchi</option>
-                                    <option value="Ishi Tib">Ishi Tib</option>
-                                    <option value="Ithorian">Ithorian</option>
-                                    <option value="Kel Dor">Kel Dor</option>
-                                    <option value="Klatooinian">Klatooinian</option>
-                                    <option value="Lannik">Lannik</option>
-                                    <option value="Mirialan">Mirialan</option>
-                                    <option value="Mon Calamari">Mon Calamari</option>
-                                    <option value="Mustafarian (Northern)">Mustafarian (Northern)</option>
-                                    <option value="Mustafarian (Southern)">Mustafarian (Southern)</option>
-                                    <option value="Nautolan">Nautolan</option>
-                                    <option value="Neimodian">Neimodian</option>
-                                    <option value="Nikto (Green)">Nikto (Green)</option>
-                                    <option value="Nikto (Mountain)">Nikto (Mountain)</option>
-                                    <option value="Nikto (Pale)">Nikto (Pale)</option>
-                                    <option value="Nikto (Red)">Nikto (Red)</option>
-                                    <option value="Nikto (Southern)">Nikto (Southern)</option>
-                                    <option value="Polis Massan (With Vocal Chords)">Polis Massan (With Vocal Chords)</option>
-                                    <option value="Polis Massan (Without Vocal Chords)">Polis Massan (Without Vocal Chords)</option>
-                                    <option value="Quarren">Quarren</option>
-                                    <option value="Rodian">Rodian</option>
-                                    <option value="Sakiyan">Sakiyan</option>
-                                    <option value="Sathari">Sathari</option>
-                                    <option value="Selonian">Selonian</option>
-                                    <option value="Sullustan">Sullustan</option>
-                                    <option value="Togruta">Togruta</option>
-                                    <option value="Toydarian">Toydarian</option>
-                                    <option value="Trandosian">Trandosian</option>
-                                    <option value="Twi'lek">Twi'lek</option>
-                                    <option value="Verpine">Verpine</option>
-                                    <option value="Weequay">Weequay</option>
-                                    <option value="Whiphid">Whiphid</option>
-                                    <option value="Wookiee">Wookiee</option>
-                                    <option value="Xexto">Xexto</option>
-                                    <option value="Zabrak">Zabrak</option>
-                                </select><!--Species List-->
-                                <input type="text" name="attr_species" />
-                            </td>
-                            <td width="15%"><label>Credits:</label></td>
-                            <td width="35%"><input type="text" name="attr_credits" /></td>
-                        </tr>
-                        <tr>
-                            <td width="15%"><label>Total XP:</label></td>
-                            <td width="35%"><input type="number" name="attr_totalxp" /></td>
-                            <td width="15%"><label>Available XP:</label></td>
-                            <td width="35%"><input type="number" name="attr_availablexp" /></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <div class="sheet-clear"></div>
-                </div>
-                <div>
+        <b>Character</b><input style="width:78px;margin:-13px -20px 0 -62px" class="sheet-toggle sheet-character-toggle-small" type="checkbox"/><span></span>
+        <div class="sheet-character-toggle-small">
+            <div class="sheet-row">
+                <h3 class="sheet-section-header">Character</h3>
+                <input style="width: 250px;height: 30px;margin: -44px -20px 0 297px;float:left;" class="sheet-toggle sheet-main-section-toggle" type="checkbox" checked="checked"/>
+                <div class="sheet-main-section">
                     <div class="sheet-small-12 sheet-column">
-                        <table cellspacing="0" cellpadding="0" border="0">
-                            <thead>
-                            <tr>
-                                <th width="30%">Career</th>
-                                <th width="30%">
-                                    <span style="float:left">Specialization</span>
-                                    <div class="sheet-tips">
-                                        <div class="sheet-help-def sheet-help">
-                                            <div class="sheet-icon">
-                                                <span class="sheet-icon-question">?</span>
-                                            </div>
-                                            <div class="sheet-help-content" style="margin-left:-225px">
-                                                <p>This section is to have you list your specializations</p>
-                                                <p>
-                                                    Career - Indicates the Career the Specilization
-                                                    came from
-                                                </p>
-                                                <p>Specialization - Indicates the name of the Specs</p>
-                                                <p>
-                                                    Is it in your Career? - This is to list if it is an out
-                                                    of career Specialization and thus adds an
-                                                    additional 10XP to pick it up.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div><!-- Modifier Help -->
-                                </th>
-                                <th width="30%">Is it in your Career?</th>
-                            </tr>
-                            </thead>
+                        <table class="sheet-character" cellspacing="0" cellpadding="0" border="0">
                             <tbody>
                             <tr>
-                                <td>
-                                    <input name="attr_career" type="text"/>
-                                </td><!--Career List-->
-                                <td>
-                                    <input name="attr_tree" type="text"/>
-                                </td><!--Specialization List-->
-                                <td>
-                                    <input type="text" name="attr_specialization-career" value="Yes" disabled/>
-                                </td><!--Career Yes/No-->
+                                <td width="15%"><label>Name:</label></td>
+                                <td width="35%"><input type="text" name="attr_name" /></td>
+                                <td width="15%"><label>Player Name:</label></td>
+                                <td width="35%"><input type="text" name="attr_playername" /></td>
+                            </tr>
+                            <tr>
+                                <td width="15%"><label>Species:</label></td>
+                                <td width="35%">
+                                    <select name='attr_species'>
+                                        <option value=""></option>
+                                        <option value="Aleena">Aleena</option>
+                                        <option value="Aqualish (Aquala)">Aqualish (Aquala)</option>
+                                        <option value="Aqualish (Quara)">Aqualish (Quara)</option>
+                                        <option value="Aqualish (Ualaq)">Aqualish (Ualaq)</option>
+                                        <option value="Arcona">Arcona</option>
+                                        <option value="Bardottan">Bardottan</option>
+                                        <option value="Besalisk">Besalisk</option>
+                                        <option value="Bothan">Bothan</option>
+                                        <option value="Caamasi">Caamasi</option>
+                                        <option value="Cerean">Cerean</option>
+                                        <option value="Chadra-Fan">Chadra-Fan</option>
+                                        <option value="Chagrian">Chagrian</option>
+                                        <option value="Chevin">Chevin</option>
+                                        <option value="Chiss">Chiss</option>
+                                        <option value="Corellian Human">Corellian Human</option>
+                                        <option value="Devaronian">Devaronian</option>
+                                        <option value="Drall">Drall</option>
+                                        <option value="Dressellian (Primitive)">Dressellian (Primitive)</option>
+                                        <option value="Dressellian (Non-Primitive)">Dressellian (Non-Primitive)</option>
+                                        <option value="Droid">Droid</option>
+                                        <option value="Dug">Dug</option>
+                                        <option value="Duros">Duros</option>
+                                        <option value="Falleen">Falleen</option>
+                                        <option value="Gand (With Lungs)">Gand (With Lungs)</option>
+                                        <option value="Gand (Without Lungs)">Gand (Without Lungs)</option>
+                                        <option value="Gank">Gank</option>
+                                        <option value="Gossam">Gossam</option>
+                                        <option value="Gotal">Gotal</option>
+                                        <option value="Gran">Gran</option>
+                                        <option value="Gungan">Gungan</option>
+                                        <option value="Human">Human</option>
+                                        <option value="Hutt">Hutt</option>
+                                        <option value="Iktotchi">Iktotchi</option>
+                                        <option value="Ishi Tib">Ishi Tib</option>
+                                        <option value="Ithorian">Ithorian</option>
+                                        <option value="Kel Dor">Kel Dor</option>
+                                        <option value="Klatooinian">Klatooinian</option>
+                                        <option value="Lannik">Lannik</option>
+                                        <option value="Mirialan">Mirialan</option>
+                                        <option value="Mon Calamari">Mon Calamari</option>
+                                        <option value="Mustafarian (Northern)">Mustafarian (Northern)</option>
+                                        <option value="Mustafarian (Southern)">Mustafarian (Southern)</option>
+                                        <option value="Nautolan">Nautolan</option>
+                                        <option value="Neimodian">Neimodian</option>
+                                        <option value="Nikto (Green)">Nikto (Green)</option>
+                                        <option value="Nikto (Mountain)">Nikto (Mountain)</option>
+                                        <option value="Nikto (Pale)">Nikto (Pale)</option>
+                                        <option value="Nikto (Red)">Nikto (Red)</option>
+                                        <option value="Nikto (Southern)">Nikto (Southern)</option>
+                                        <option value="Polis Massan (With Vocal Chords)">Polis Massan (With Vocal Chords)</option>
+                                        <option value="Polis Massan (Without Vocal Chords)">Polis Massan (Without Vocal Chords)</option>
+                                        <option value="Quarren">Quarren</option>
+                                        <option value="Rodian">Rodian</option>
+                                        <option value="Sakiyan">Sakiyan</option>
+                                        <option value="Sathari">Sathari</option>
+                                        <option value="Selonian">Selonian</option>
+                                        <option value="Sullustan">Sullustan</option>
+                                        <option value="Togruta">Togruta</option>
+                                        <option value="Toydarian">Toydarian</option>
+                                        <option value="Trandosian">Trandosian</option>
+                                        <option value="Twi'lek">Twi'lek</option>
+                                        <option value="Verpine">Verpine</option>
+                                        <option value="Weequay">Weequay</option>
+                                        <option value="Whiphid">Whiphid</option>
+                                        <option value="Wookiee">Wookiee</option>
+                                        <option value="Xexto">Xexto</option>
+                                        <option value="Zabrak">Zabrak</option>
+                                    </select><!--Species List-->
+                                    <input type="text" name="attr_species" />
+                                </td>
+                                <td width="15%"><label>Credits:</label></td>
+                                <td width="35%"><input type="text" name="attr_credits" /></td>
+                            </tr>
+                            <tr>
+                                <td width="15%"><label>Total XP:</label></td>
+                                <td width="35%"><input type="number" name="attr_totalxp" /></td>
+                                <td width="15%"><label>Available XP:</label></td>
+                                <td width="35%"><input type="number" name="attr_availablexp" /></td>
                             </tr>
                             </tbody>
                         </table>
-                        <fieldset class="repeating_specialization">
+                        <div class="sheet-clear"></div>
+                    </div>
+
+                    <b>Career</b><input style="width:78px;margin:-13px -20px 0 -62px" class="sheet-toggle sheet-career-toggle-small" type="checkbox"/><span></span>
+                    <div class="sheet-career-toggle-small">
+                        <div class="sheet-small-12 sheet-column">
                             <table cellspacing="0" cellpadding="0" border="0">
+                                <thead>
+                                <tr>
+                                    <th width="30%">Career</th>
+                                    <th width="30%">
+                                        <span style="float:left">Specialization</span>
+                                        <div class="sheet-tips">
+                                            <div class="sheet-help-def sheet-help">
+                                                <div class="sheet-icon">
+                                                    <span class="sheet-icon-question">?</span>
+                                                </div>
+                                                <div class="sheet-help-content" style="margin-left:-225px">
+                                                    <p>This section is to have you list your specializations</p>
+                                                    <p>
+                                                        Career - Indicates the Career the Specilization
+                                                        came from
+                                                    </p>
+                                                    <p>Specialization - Indicates the name of the Specs</p>
+                                                    <p>
+                                                        Is it in your Career? - This is to list if it is an out
+                                                        of career Specialization and thus adds an
+                                                        additional 10XP to pick it up.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div><!-- Modifier Help -->
+                                    </th>
+                                    <th width="30%">Is it in your Career?</th>
+                                </tr>
+                                </thead>
                                 <tbody>
                                 <tr>
-                                    <td width="33%">
-                                        <select name="attr_career-list">
-                                            <optgroup label="Edge of the Empire">
-                                                <option value="Bounty Hunter">Bounty Hunter</option>
-                                                <option value="Colonist">Colonist</option>
-                                                <option value="Explorer">Explorer</option>
-                                                <option value="Hired Gun">Hired Gun</option>
-                                                <option value="Smuggler">Smuggler</option>
-                                                <option value="Technican">Technican</option>
-                                            </optgroup>
-                                            <optgroup label="Age of Rebellion">
-                                                <option value="Ace">Ace</option>
-                                                <option value="Commander">Commander</option>
-                                                <option value="Diplomat">Diplomat</option>
-                                                <option value="Engineer">Engineer</option>
-                                                <option value="Soldier">Soldier</option>
-                                                <option value="Spy">Spy</option>
-                                            </optgroup>
-                                            <optgroup label="Force and Destiny">
-                                                <option value="Consular">Consular</option>
-                                                <option value="Guardian">Guardian</option>
-                                                <option value="Mystic">Mystic</option>
-                                                <option value="Seeker">Seeker</option>
-                                                <option value="Sentinel">Sentinel</option>
-                                                <option value="Warrior">Warrior</option>
-                                            </optgroup>
-                                            <optgroup label="All">
-                                                <option value="Universal">Universal</option>
-                                            </optgroup>
-                                        </select>
+                                    <td>
+                                        <input name="attr_career" type="text"/>
                                     </td><!--Career List-->
-                                    <td width="33.5%">
-                                        <select name="attr_specialization">
-                                            <optgroup label="Edge of the Empire"></optgroup>
-                                            <optgroup label="Bounty Hunter">
-                                                <option value="Assassin">Assassin</option>
-                                                <option value="Gadgeteer">Gadgeteer</option>
-                                                <option value="Survivalist">Survivalist</option>
-                                            </optgroup>
-                                            <optgroup label="Colonist">
-                                                <option value="Doctor">Doctor</option>
-                                                <option value="Politico">Politico</option>
-                                                <option value="Scholar">Scholar</option>
-                                                <option value="Entrepreneur">Entrepreneur</option>
-                                                <option value="Marshal">Marshal</option>
-                                                <option value="Performer">Performer</option>
-                                            </optgroup>
-                                            <optgroup label="Explorer">
-                                                <option value="Scout">Scout</option>
-                                                <option value="Fringer">Fringer</option>
-                                                <option value="Driver">Driver</option>
-                                                <option value="Archaeologist">Archaeologist</option>
-                                                <option value="Big-Game Hunter">Big-Game Hunter</option>
-                                                <option value="Trader">Trader</option>
-                                            </optgroup>
-                                            <optgroup label="Hired Gun">
-                                                <option value="Bodyguard">Bodyguard</option>
-                                                <option value="Demolitionist">Demolitionist</option>
-                                                <option value="Enforcer">Enforcer</option>
-                                                <option value="Heavy">Heavy</option>
-                                                <option value="Marauder">Marauder</option>
-                                                <option value="Mercenary Soldier">Mercenary Soldier</option>
-                                            </optgroup>
-                                            <optgroup label="Smuggler">
-                                                <option value="Pilot">Pilot</option>
-                                                <option value="Scoundrel">Scoundrel</option>
-                                                <option value="Thief">Thief</option>
-                                                <option value="Charmer">Charmer</option>
-                                                <option value="Gambler">Gambler</option>
-                                                <option value="Gunslinger">Gunslinger</option>
-                                            </optgroup>
-                                            <optgroup label="Technician">
-                                                <option value="Mechanic">Mechanic</option>
-                                                <option value="Outlaw Tech">Outlaw Tech</option>
-                                                <option value="Slicer">Slicer</option>
-                                                <option value="Cyber Tech">Cyber Tech</option>
-                                                <option value="Droid Tech">Droid Tech</option>
-                                                <option value="Modder">Modder</option>
-                                            </optgroup>
-                                            <optgroup label="Age of Rebellion"></optgroup>
-                                            <optgroup label="Ace">
-                                                <option value="Driver">Driver</option>
-                                                <option value="Pilot">Pilot</option>
-                                                <option value="Gunner">Gunner</option>
-                                                <option value="Rigger">Rigger</option>
-                                                <option value="Hotshot">Hotshot</option>
-                                                <option value="Beast Rider">Beast Rider</option>
-                                            </optgroup>
-                                            <optgroup label="Commander">
-                                                <option value="Commodore">Commodore</option>
-                                                <option value="Squadron Leader">Squadron Leader</option>
-                                                <option value="Tactician">Tactician</option>
-                                                <option value="Figurehead">Figurehead</option>
-                                                <option value="Instructor">Instructor</option>
-                                                <option value="Strategist">Strategist</option>
-                                            </optgroup>
-                                            <optgroup label="Diplomat">
-                                                <option value="Ambassador">Ambassador</option>
-                                                <option value="Agitator">Agitator</option>
-                                                <option value="Quartermaster">Quartermaster</option>
-                                                <option value="Analyst">Analyst</option>
-                                                <option value="Advocate">Advocate</option>
-                                                <option value="Propagandist">Propagandist</option>
-                                            </optgroup>
-                                            <optgroup label="Engineer">
-                                                <option value="Mechanic">Mechanic</option>
-                                                <option value="Scientist">Scientist</option>
-                                                <option value="Saboteur">Saboteur</option>
-                                            </optgroup>
-                                            <optgroup label="Soldier">
-                                                <option value="Medic">Medic</option>
-                                                <option value="Sharpshooter">Sharpshooter</option>
-                                                <option value="Commando">Commando</option>
-                                            </optgroup>
-                                            <optgroup label="Spy">
-                                                <option value="Slicer">Slicer</option>
-                                                <option value="Infiltrator">Infiltrator</option>
-                                                <option value="Scout">Scout</option>
-                                            </optgroup>
-                                            <optgroup label="Force and Destiny"></optgroup>
-                                            <optgroup label="Consular">
-                                                <option value="Healer">Healer</option>
-                                                <option value="Niman Disciple">Niman Disciple</option>
-                                                <option value="Sage">Sage</option>
-                                            </optgroup>
-                                            <optgroup label="Guardian">
-                                                <option value="Armorer">Armorer</option>
-                                                <option value="Peace Keeper">Peace Keeper</option>
-                                                <option value="Protector">Protector</option>
-                                                <option value="Soresu Defender">Soresu Defender</option>
-                                                <option value="Warden">Warden</option>
-                                                <option value="Warleader">Warleader</option>
-                                            </optgroup>
-                                            <optgroup label="Mystic">
-                                                <option value="Seer">Seer</option>
-                                                <option value="Makashi Duelist">Makashi Duelist</option>
-                                                <option value="Advisor">Advisor</option>
-                                            </optgroup>
-                                            <optgroup label="Seeker">
-                                                <option value="Ataru Striker">Ataru Striker</option>
-                                                <option value="Hunter">Hunter</option>
-                                                <option value="Pathfinder">Pathfinder</option>
-                                            </optgroup>
-                                            <optgroup label="Sentinel">
-                                                <option value="Artisan">Artisan</option>
-                                                <option value="Shadow">Shadow</option>
-                                                <option value="Shien Expert">Shien Expert</option>
-                                            </optgroup>
-                                            <optgroup label="Warrior">
-                                                <option value="Aggressor">Aggressor</option>
-                                                <option value="Shii-Cho Knight">Shii-Cho Knight</option>
-                                                <option value="Starfighter Ace">Starfighter Ace</option>
-                                            </optgroup>
-                                            <optgroup label="Universal">
-                                                <option value="Force Sensitive Exile">Force Sensitive Exile</option>
-                                                <option value="Force Sensitive Emergent">Force Sensitive Emergent</option>
-                                                <option value="Recruit">Recruit</option>
-                                            </optgroup>
-                                        </select>
+                                    <td>
+                                        <input name="attr_tree" type="text"/>
                                     </td><!--Specialization List-->
-                                    <td width="30%">
-                                        <select name="attr_specialization-career-list">
-                                            <option value="yes">Yes</option>
-                                            <option value="no">No</option>
-                                        </select>
+                                    <td>
+                                        <input type="text" name="attr_specialization-career" value="Yes" disabled/>
                                     </td><!--Career Yes/No-->
-                                    <td width="10%"></td><!--Placeholder for spacing-->
                                 </tr>
                                 </tbody>
                             </table>
-                        </fieldset>
-                    </div>
+                            <fieldset class="repeating_specialization">
+                                <table cellspacing="0" cellpadding="0" border="0">
+                                    <tbody>
+                                    <tr>
+                                        <td width="33%">
+                                            <select name="attr_career-list">
+                                                <optgroup label="Edge of the Empire">
+                                                    <option value="Bounty Hunter">Bounty Hunter</option>
+                                                    <option value="Colonist">Colonist</option>
+                                                    <option value="Explorer">Explorer</option>
+                                                    <option value="Hired Gun">Hired Gun</option>
+                                                    <option value="Smuggler">Smuggler</option>
+                                                    <option value="Technican">Technican</option>
+                                                </optgroup>
+                                                <optgroup label="Age of Rebellion">
+                                                    <option value="Ace">Ace</option>
+                                                    <option value="Commander">Commander</option>
+                                                    <option value="Diplomat">Diplomat</option>
+                                                    <option value="Engineer">Engineer</option>
+                                                    <option value="Soldier">Soldier</option>
+                                                    <option value="Spy">Spy</option>
+                                                </optgroup>
+                                                <optgroup label="Force and Destiny">
+                                                    <option value="Consular">Consular</option>
+                                                    <option value="Guardian">Guardian</option>
+                                                    <option value="Mystic">Mystic</option>
+                                                    <option value="Seeker">Seeker</option>
+                                                    <option value="Sentinel">Sentinel</option>
+                                                    <option value="Warrior">Warrior</option>
+                                                </optgroup>
+                                                <optgroup label="All">
+                                                    <option value="Universal">Universal</option>
+                                                </optgroup>
+                                            </select>
+                                        </td><!--Career List-->
+                                        <td width="33.5%">
+                                            <select name="attr_specialization">
+                                                <optgroup label="Edge of the Empire"></optgroup>
+                                                <optgroup label="Bounty Hunter">
+                                                    <option value="Assassin">Assassin</option>
+                                                    <option value="Gadgeteer">Gadgeteer</option>
+                                                    <option value="Survivalist">Survivalist</option>
+                                                </optgroup>
+                                                <optgroup label="Colonist">
+                                                    <option value="Doctor">Doctor</option>
+                                                    <option value="Politico">Politico</option>
+                                                    <option value="Scholar">Scholar</option>
+                                                    <option value="Entrepreneur">Entrepreneur</option>
+                                                    <option value="Marshal">Marshal</option>
+                                                    <option value="Performer">Performer</option>
+                                                </optgroup>
+                                                <optgroup label="Explorer">
+                                                    <option value="Scout">Scout</option>
+                                                    <option value="Fringer">Fringer</option>
+                                                    <option value="Driver">Driver</option>
+                                                    <option value="Archaeologist">Archaeologist</option>
+                                                    <option value="Big-Game Hunter">Big-Game Hunter</option>
+                                                    <option value="Trader">Trader</option>
+                                                </optgroup>
+                                                <optgroup label="Hired Gun">
+                                                    <option value="Bodyguard">Bodyguard</option>
+                                                    <option value="Demolitionist">Demolitionist</option>
+                                                    <option value="Enforcer">Enforcer</option>
+                                                    <option value="Heavy">Heavy</option>
+                                                    <option value="Marauder">Marauder</option>
+                                                    <option value="Mercenary Soldier">Mercenary Soldier</option>
+                                                </optgroup>
+                                                <optgroup label="Smuggler">
+                                                    <option value="Pilot">Pilot</option>
+                                                    <option value="Scoundrel">Scoundrel</option>
+                                                    <option value="Thief">Thief</option>
+                                                    <option value="Charmer">Charmer</option>
+                                                    <option value="Gambler">Gambler</option>
+                                                    <option value="Gunslinger">Gunslinger</option>
+                                                </optgroup>
+                                                <optgroup label="Technician">
+                                                    <option value="Mechanic">Mechanic</option>
+                                                    <option value="Outlaw Tech">Outlaw Tech</option>
+                                                    <option value="Slicer">Slicer</option>
+                                                    <option value="Cyber Tech">Cyber Tech</option>
+                                                    <option value="Droid Tech">Droid Tech</option>
+                                                    <option value="Modder">Modder</option>
+                                                </optgroup>
+                                                <optgroup label="Age of Rebellion"></optgroup>
+                                                <optgroup label="Ace">
+                                                    <option value="Driver">Driver</option>
+                                                    <option value="Pilot">Pilot</option>
+                                                    <option value="Gunner">Gunner</option>
+                                                    <option value="Rigger">Rigger</option>
+                                                    <option value="Hotshot">Hotshot</option>
+                                                    <option value="Beast Rider">Beast Rider</option>
+                                                </optgroup>
+                                                <optgroup label="Commander">
+                                                    <option value="Commodore">Commodore</option>
+                                                    <option value="Squadron Leader">Squadron Leader</option>
+                                                    <option value="Tactician">Tactician</option>
+                                                    <option value="Figurehead">Figurehead</option>
+                                                    <option value="Instructor">Instructor</option>
+                                                    <option value="Strategist">Strategist</option>
+                                                </optgroup>
+                                                <optgroup label="Diplomat">
+                                                    <option value="Ambassador">Ambassador</option>
+                                                    <option value="Agitator">Agitator</option>
+                                                    <option value="Quartermaster">Quartermaster</option>
+                                                    <option value="Analyst">Analyst</option>
+                                                    <option value="Advocate">Advocate</option>
+                                                    <option value="Propagandist">Propagandist</option>
+                                                </optgroup>
+                                                <optgroup label="Engineer">
+                                                    <option value="Mechanic">Mechanic</option>
+                                                    <option value="Scientist">Scientist</option>
+                                                    <option value="Saboteur">Saboteur</option>
+                                                </optgroup>
+                                                <optgroup label="Soldier">
+                                                    <option value="Medic">Medic</option>
+                                                    <option value="Sharpshooter">Sharpshooter</option>
+                                                    <option value="Commando">Commando</option>
+                                                </optgroup>
+                                                <optgroup label="Spy">
+                                                    <option value="Slicer">Slicer</option>
+                                                    <option value="Infiltrator">Infiltrator</option>
+                                                    <option value="Scout">Scout</option>
+                                                </optgroup>
+                                                <optgroup label="Force and Destiny"></optgroup>
+                                                <optgroup label="Consular">
+                                                    <option value="Healer">Healer</option>
+                                                    <option value="Niman Disciple">Niman Disciple</option>
+                                                    <option value="Sage">Sage</option>
+                                                </optgroup>
+                                                <optgroup label="Guardian">
+                                                    <option value="Armorer">Armorer</option>
+                                                    <option value="Peace Keeper">Peace Keeper</option>
+                                                    <option value="Protector">Protector</option>
+                                                    <option value="Soresu Defender">Soresu Defender</option>
+                                                    <option value="Warden">Warden</option>
+                                                    <option value="Warleader">Warleader</option>
+                                                </optgroup>
+                                                <optgroup label="Mystic">
+                                                    <option value="Seer">Seer</option>
+                                                    <option value="Makashi Duelist">Makashi Duelist</option>
+                                                    <option value="Advisor">Advisor</option>
+                                                </optgroup>
+                                                <optgroup label="Seeker">
+                                                    <option value="Ataru Striker">Ataru Striker</option>
+                                                    <option value="Hunter">Hunter</option>
+                                                    <option value="Pathfinder">Pathfinder</option>
+                                                </optgroup>
+                                                <optgroup label="Sentinel">
+                                                    <option value="Artisan">Artisan</option>
+                                                    <option value="Shadow">Shadow</option>
+                                                    <option value="Shien Expert">Shien Expert</option>
+                                                </optgroup>
+                                                <optgroup label="Warrior">
+                                                    <option value="Aggressor">Aggressor</option>
+                                                    <option value="Shii-Cho Knight">Shii-Cho Knight</option>
+                                                    <option value="Starfighter Ace">Starfighter Ace</option>
+                                                </optgroup>
+                                                <optgroup label="Universal">
+                                                    <option value="Force Sensitive Exile">Force Sensitive Exile</option>
+                                                    <option value="Force Sensitive Emergent">Force Sensitive Emergent</option>
+                                                    <option value="Recruit">Recruit</option>
+                                                </optgroup>
+                                            </select>
+                                        </td><!--Specialization List-->
+                                        <td width="30%">
+                                            <select name="attr_specialization-career-list">
+                                                <option value="yes">Yes</option>
+                                                <option value="no">No</option>
+                                            </select>
+                                        </td><!--Career Yes/No-->
+                                        <td width="10%"></td><!--Placeholder for spacing-->
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </fieldset>
+                        </div>
+                    </div><!--Career and Specialization List-->
                     <div class="sheet-clear"></div>
-                </div><!--Career and Specialization List-->
-                <div>
-                    <div class="sheet-small-6 sheet-column">
-                        <table cellspacing="0" cellpadding="0" border="0">
-                            <thead>
-                            <tr><th colspan="2">Description</th></tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td><label>Gender:</label></td>
-                                <td><input type="text" name="attr_chargender" /></td>
-                            </tr>
-                            <tr>
-                                <td><label>Age:</label></td>
-                                <td><input type="text" name="attr_charager" /></td>
-                            </tr>
-                            <tr>
-                                <td><label>Height:</label></td>
-                                <td><input type="text" name="attr_charheight" /></td>
-                            </tr>
-                            <tr>
-                                <td><label>Build:</label></td>
-                                <td><input type="text" name="attr_charbuild" /></td>
-                            </tr>
-                            <tr>
-                                <td><label>Hair:</label></td>
-                                <td><input type="text" name="attr_charhair" /></td>
-                            </tr>
-                            <tr>
-                                <td><label>Eyes:</label></td>
-                                <td><input type="text" name="attr_chareyes" /></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="sheet-small-6 sheet-column">
-                        <table cellspacing="0" cellpadding="0" border="0">
-                            <thead>
-                            <tr><th>Notable Features</th></tr>
-                            </thead>
-                            <tbody>
-                            <tr><td><textarea rows="4" name="attr_charfeatures"></textarea></td></tr>
-                            </tbody>
-                        </table>
-                        <table cellspacing="0" cellpadding="0" border="0">
-                            <thead>
-                            <tr><th>Other</th></tr>
-                            </thead>
-                            <tbody>
-                            <tr><td><textarea rows="4" name="attr_charother"></textarea></td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="sheet-clear"></div>
-                </div><!-- Description -->
-                <div>
-                    <div class="sheet-small-12 sheet-column">
-                        <table cellspacing="0" cellpadding="0" border="0">
-                            <thead>
-                            <tr><th colspan="6">Motivations</th></tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td><label>Category:</label></td>
-                                <td><input type="text" name='attr_attr_motivation-cat' /></td>
-                                <td><label>Type:</label></td>
-                                <td><input type="text" name="attr_motivation-type" /></td>
-                                <td><label>Description:</label></td>
-                                <td><textarea rows="2" name="attr_motivation-desc"></textarea></td>
-                            </tr>
-                            <tr>
-                                <td><label>Category:</label></td>
-                                <td><input type="text" name='attr_attr_motivation-cat2' /></td>
-                                <td><label>Type:</label></td>
-                                <td><input type="text" name="attr_motivation-type2" /></td>
-                                <td><label>Description:</label></td>
-                                <td><textarea rows="2" name="attr_motivation-desc2"></textarea></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="sheet-clear"></div>
-                </div><!-- Motivations -->
-            </div>
-            <div class="sheet-clear"></div>
-        </div><!--Character Info-->
-        <div class="sheet-row">
-            <div class="sheet-small-12 sheet-column">
-                <h3 class="sheet-section-header">Game Mechanics</h3>
-                <input style="width: 250px;height: 30px;margin: -44px -20px 0 297px;float:left;" class="sheet-toggle sheet-mechanics-section-toggle" type="checkbox" checked="checked"/>
-                <div class="sheet-mechanics-section">
-                    <div>
-                        <table cellspacing="0" cellpadding="0" border="0">
-                            <thead>
-                            <tr><th colspan="4">Obligations</th></tr>
-                            </thead>
-                        </table>
-                        <br />
-                        <fieldset class="repeating_obligation">
+                    <div class="sheet-section-spacer sheet-career-toggle-small"></div>
+
+                    <b>Description</b><input style="width:96px;margin:-13px -20px 0 -80px" class="sheet-toggle sheet-description-toggle-small" type="checkbox"/><span></span>
+                    <div class="sheet-description-toggle-small">
+                        <div class="sheet-small-6 sheet-column">
                             <table cellspacing="0" cellpadding="0" border="0">
+                                <thead>
+                                <tr><th colspan="2">Description</th></tr>
+                                </thead>
                                 <tbody>
                                 <tr>
+                                    <td><label>Gender:</label></td>
+                                    <td><input type="text" name="attr_chargender" /></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Age:</label></td>
+                                    <td><input type="text" name="attr_charager" /></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Height:</label></td>
+                                    <td><input type="text" name="attr_charheight" /></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Build:</label></td>
+                                    <td><input type="text" name="attr_charbuild" /></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Hair:</label></td>
+                                    <td><input type="text" name="attr_charhair" /></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Eyes:</label></td>
+                                    <td><input type="text" name="attr_chareyes" /></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="sheet-small-6 sheet-column">
+                            <table cellspacing="0" cellpadding="0" border="0">
+                                <thead>
+                                <tr><th>Notable Features</th></tr>
+                                </thead>
+                                <tbody>
+                                <tr><td><textarea rows="4" name="attr_charfeatures"></textarea></td></tr>
+                                </tbody>
+                            </table>
+                            <table cellspacing="0" cellpadding="0" border="0">
+                                <thead>
+                                <tr><th>Other</th></tr>
+                                </thead>
+                                <tbody>
+                                <tr><td><textarea rows="4" name="attr_charother"></textarea></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div><!-- Description -->
+                    <div class="sheet-clear"></div>
+                    <div class="sheet-section-spacer sheet-description-toggle-small"></div>
+
+                    <b>Motivations</b><input style="width:96px;margin:-13px -20px 0 -80px" class="sheet-toggle sheet-motivation-toggle-small" type="checkbox"/><span></span>
+                    <div class="sheet-motivation-toggle-small">
+                        <div class="sheet-small-12 sheet-column">
+                            <table cellspacing="0" cellpadding="0" border="0">
+                                <thead>
+                                <tr><th colspan="6">Motivations</th></tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><label>Category:</label></td>
+                                    <td><input type="text" name='attr_attr_motivation-cat' /></td>
                                     <td><label>Type:</label></td>
-                                    <td><input type="text" name="attr_obligationtype1" /></td>
-                                    <td><label>Magnitude:</label></td>
-                                    <td><input type="number" name="attr_obligationmag1" min="0" value="0" /></td>
+                                    <td><input type="text" name="attr_motivation-type" /></td>
+                                    <td><label>Description:</label></td>
+                                    <td><textarea rows="2" name="attr_motivation-desc"></textarea></td>
                                 </tr>
                                 <tr>
-                                    <td><label>Details:</label></td>
-                                    <td colspan="3"><textarea rows="3" name="attr_obligationcomp1"></textarea></td>
+                                    <td><label>Category:</label></td>
+                                    <td><input type="text" name='attr_attr_motivation-cat2' /></td>
+                                    <td><label>Type:</label></td>
+                                    <td><input type="text" name="attr_motivation-type2" /></td>
+                                    <td><label>Description:</label></td>
+                                    <td><textarea rows="2" name="attr_motivation-desc2"></textarea></td>
                                 </tr>
                                 </tbody>
                             </table>
-                            <br />
-                        </fieldset>
-                    </div><!--Obligation-->
-                    <div>
-                        <table cellspacing="0" cellpadding="0" border="0">
-                            <thead>
-                            <tr><th colspan="4">Duty</th></tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td style="width:50%"><label style="text-align:right">Contribution Rank:</label></td>
-                                <td style="width:50%"><input type="number" name="attr_contributionRank" min="0" value="0" /></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <br />
-                        <fieldset class="repeating_duty">
+                        </div>
+                        <div class="sheet-clear"></div>
+                    </div><!-- Motivations -->
+                </div>
+                <div class="sheet-clear"></div>
+            </div>
+        </div><!--Character Info-->
+        <div class="sheet-clear"></div>
+        <div class="sheet-section-spacer sheet-character-toggle-small"></div>
+
+        <b>Game Mechanics</b><input style="width:131px;margin:-13px -20px 0 -115px" class="sheet-toggle sheet-game-mechanics-toggle-small" type="checkbox"/><span></span>
+        <div class="sheet-game-mechanics-toggle-small">
+            <div class="sheet-row">
+                <div class="sheet-small-12 sheet-column">
+                    <h3 class="sheet-section-header">Game Mechanics</h3>
+                    <input style="width: 250px;height: 30px;margin: -44px -20px 0 297px;float:left;" class="sheet-toggle sheet-mechanics-section-toggle" type="checkbox" checked="checked"/>
+                    <div class="sheet-mechanics-section">
+                        <b>Obligation</b><input style="width:78px;margin:-13px -20px 0 -62px" class="sheet-toggle sheet-obligation-toggle-small" type="checkbox"/><span></span>
+                        <div class="sheet-obligation-toggle-small">
                             <table cellspacing="0" cellpadding="0" border="0">
+                                <thead>
+                                <tr><th colspan="4">Obligations</th></tr>
+                                </thead>
+                            </table>
+                            <br />
+                            <fieldset class="repeating_obligation">
+                                <table cellspacing="0" cellpadding="0" border="0">
+                                    <tbody>
+                                    <tr>
+                                        <td><label>Type:</label></td>
+                                        <td><input type="text" name="attr_obligationtype1" /></td>
+                                        <td><label>Magnitude:</label></td>
+                                        <td><input type="number" name="attr_obligationmag1" min="0" value="0" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label>Details:</label></td>
+                                        <td colspan="3"><textarea rows="3" name="attr_obligationcomp1"></textarea></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <br />
+                            </fieldset>
+                        </div><!--Obligation-->
+                        <div class="sheet-clear"></div>
+                        <div class="sheet-section-spacer sheet-obligation-toggle-small"></div>
+
+                        <b>Duty</b><input style="width:96px;margin:-13px -20px 0 -80px" class="sheet-toggle sheet-duty-toggle-small" type="checkbox"/><span></span>
+                        <div class="sheet-duty-toggle-small">
+                            <table cellspacing="0" cellpadding="0" border="0">
+                                <thead>
+                                <tr><th colspan="4">Duty</th></tr>
+                                </thead>
                                 <tbody>
                                 <tr>
-                                    <td style="width:25%"><label>Type:</label></td>
-                                    <td style="width:25%"><input type="text" name="attr_dutytype1" /></td>
-                                    <td style="width:25%"><label>Magnitude:</label></td>
-                                    <td style="width:25%"><input type="number" name="attr_dutymag1" min="0" value="0" /></td>
-                                </tr>
-                                <tr>
-                                    <td style="width:25%"><label>Description:</label></td>
-                                    <td style="width:75%" colspan="3"><textarea rows="3" name="attr_dutydesc1"></textarea></td>
+                                    <td style="width:50%"><label style="text-align:right">Contribution Rank:</label></td>
+                                    <td style="width:50%"><input type="number" name="attr_contributionRank" min="0" value="0" /></td>
                                 </tr>
                                 </tbody>
                             </table>
                             <br />
-                        </fieldset>
-                    </div><!--Duty-->
-                    <div>
-                        <table cellspacing="0" cellpadding="0" border="0">
-                            <thead>
-                            <tr><th colspan="4">Morality</th></tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td colspan="2"><label style="text-align:right">Morality:</label></td>
-                                <td colspan="2"><input type="number" name="attr_morality" max="100" min="0" value="50" /></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2"><label>Conflict:</label></td>
-                                <td colspan="2"><input type="number" name="attr_conflict" min="0" value="0" /></td>
-                            </tr>
-                            <tr>
-                                <td><label>Emotional Strength(s):</label></td>
-                                <td><textarea rows="2" name="attr_emotestrengt"></textarea></td>
-                                <td><label>Emotional Weakness(es):</label></td>
-                                <td><textarea rows="2" name="attr_emoteweakness"></textarea></td>
-                            </tr>
-                            <tr>
-                                <td><label>Description:</label></td>
-                                <td><textarea rows="3" name="attr_emotestrengthdesc"></textarea></td>
-                                <td><label>Description:</label></td>
-                                <td><textarea rows="3" name="attr_emoteweaknessdec"></textarea></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div><!--Morality-->
+                            <fieldset class="repeating_duty">
+                                <table cellspacing="0" cellpadding="0" border="0">
+                                    <tbody>
+                                    <tr>
+                                        <td style="width:25%"><label>Type:</label></td>
+                                        <td style="width:25%"><input type="text" name="attr_dutytype1" /></td>
+                                        <td style="width:25%"><label>Magnitude:</label></td>
+                                        <td style="width:25%"><input type="number" name="attr_dutymag1" min="0" value="0" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:25%"><label>Description:</label></td>
+                                        <td style="width:75%" colspan="3"><textarea rows="3" name="attr_dutydesc1"></textarea></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <br />
+                            </fieldset>
+                        </div><!--Duty-->
+                        <div class="sheet-clear"></div>
+                        <div class="sheet-section-spacer sheet-duty-toggle-small"></div>
+
+                        <b>Morality</b><input style="width:96px;margin:-13px -20px 0 -80px" class="sheet-toggle sheet-morality-toggle-small" type="checkbox"/><span></span>
+                        <div class="sheet-morality-toggle-small">
+                            <table cellspacing="0" cellpadding="0" border="0">
+                                <thead>
+                                <tr><th colspan="4">Morality</th></tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td colspan="2"><label style="text-align:right">Morality:</label></td>
+                                    <td colspan="2"><input type="number" name="attr_morality" max="100" min="0" value="50" /></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><label>Conflict:</label></td>
+                                    <td colspan="2"><input type="number" name="attr_conflict" min="0" value="0" /></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Emotional Strength(s):</label></td>
+                                    <td><textarea rows="2" name="attr_emotestrengt"></textarea></td>
+                                    <td><label>Emotional Weakness(es):</label></td>
+                                    <td><textarea rows="2" name="attr_emoteweakness"></textarea></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Description:</label></td>
+                                    <td><textarea rows="3" name="attr_emotestrengthdesc"></textarea></td>
+                                    <td><label>Description:</label></td>
+                                    <td><textarea rows="3" name="attr_emoteweaknessdec"></textarea></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div><!--Morality-->
+                    </div>
                 </div>
+                <div class="sheet-clear"></div>
             </div>
-            <div class="sheet-clear"></div>
         </div><!-- Mechanics -->
     </div><!-- Character Tab -->
     <div class="sheet-tab-content sheet-tab-skills">
@@ -4667,7 +4696,6 @@
     <div class="sheet-tab-content sheet-tab-transport-space">
         <div class="sheet-row">
             <div class="sheet-small-12 sheet-column">
-                <!--TODO try to fix the armor box one more time by nesting it in its own table-->
                 <table class="sheet-ship" cellspacing="0" cellpadding="0" border="0">
                     <tr>
                         <td class="sheet-ship-char-bg">
@@ -12884,18 +12912,18 @@
                                     <td><label>Skill List</label></td>
                                     <td colspan="2">
                                         <select name='attr_npc-ForceSkill'>
-                                            <option value="!eed characterID(@{character_id}) label(skill:Force Power |Power Name:@{npc-forcepowername}) @{npc-forceavailable}w @{dicePool}">No Skill</option>
+                                            <option value="!eed characterID(@{character_id}) label(skill:Force Power |Power Name:@{npc-forcepowername}) @{npc-forceavailable}w @{dicePool} (gmdice)">No Skill</option>
                                             <optgroup label="Combat Skills">
-                                                <option value="!eed rollPlayer(character:@{npc-name}|skill:npc-brawn,npc-rankBrawl) label(skill:Force Power|Skill Name: Brawl|Power Name:@{npc-forcepowername}) @{npc-ForceSkillDice} @{npc-forceavailable}w @{dicePool} (gmdice)">Brawl</option>
-                                                <option value="!eed rollPlayer(character:@{npc-name}|skill:npc-agility,npc-rankLight) label(skill:Force Power|Skill Name: Ranged (Light)|Power Name:@{npc-forcepowername}) @{npc-ForceSkillDice} @{npc-forceavailable}w @{dicePool} (gmdice)">Ranged (Light)</option>
-                                                <option value="!eed rollPlayer(character:@{npc-name}|skill:npc-brawn,npc-rankHeavy) label(skill:Force Power|Skill Name: Ranged (Heavy)|Power Name:@{npc-forcepowername}) @{npc-ForceSkillDice} @{npc-forceavailable}w @{dicePool} (gmdice)">Ranged (Heavy)</option>
+                                                <option value="!eed characterID(@{character_id}) label(skill:Force Power|Skill Name:Brawl|Power Name:@{npc-forcepowername}) skill(@{npc-rankBrawl}|@{npc-brawn}|@{npc-minion-group-size}|@{npc-minionskillBrawl}) @{npc-forceavailable}w @{dicePool} (gmdice)">Brawl</option>
+                                                <option value="!eed characterID(@{character_id}) label(skill:Force Power|Skill Name:Ranged (Light)|Power Name:@{npc-forcepowername}) skill(@{npc-rankLight}|@{npc-agility}|@{npc-minion-group-size}|@{npc-minionskillLight}) @{npc-forceavailable}w @{dicePool} (gmdice)">Ranged (Light)</option>
+                                                <option value="!eed characterID(@{character_id}) label(skill:Force Power|Skill Name:Ranged (Heavy)|Power Name:@{npc-forcepowername}) skill(@{npc-rankHeavy}|@{npc-agility}|@{npc-minion-group-size}|@{npc-minionskillHeavy}) @{npc-forceavailable}w @{dicePool} (gmdice)">Ranged (Heavy)</option>
                                             </optgroup>
                                             <optgroup label="Custom Skills">
-                                                <option value="skill(@{npc-rankcustomskillname1}|@{npc-charcustomskillname1}|@{npc-minion-group-size}|@{npc-minionskillcustomskillname1})">Custom Skill 1</option>
-                                                <option value="skill(@{npc-rankcustomskillname2}|@{npc-charcustomskillname2}|@{npc-minion-group-size}|@{npc-minionskillcustomskillname2})">Custom Skill 2</option>
-                                                <option value="skill(@{npc-rankcustomskillname3}|@{npc-charcustomskillname3}|@{npc-minion-group-size}|@{npc-minionskillcustomskillname3})">Custom Skill 3</option>
-                                                <option value="skill(@{npc-rankcustomskillname4}|@{npc-charcustomskillname4}|@{npc-minion-group-size}|@{npc-minionskillcustomskillname4})">Custom Skill 4</option>
-                                                <option value="skill(@{npc-rankcustomskillname5}|@{npc-charcustomskillname5}|@{npc-minion-group-size}|@{npc-minionskillcustomskillname5})">Custom Skill 5</option>
+                                                <option value="!eed characterID(@{character_id}) label(skill:Force Power|Skill Name: @{npc-customskillname1}|Power Name:@{npc-forcepowername}) skill(@{npc-rankcustomskillname1}|@{npc-charcustomskillname1}|@{npc-minion-group-size}|@{npc-minionskillcustomskillname1}) @{npc-forceavailable}w @{dicePool} (gmdice)">Custom Skill 1</option>
+                                                <option value="!eed characterID(@{character_id}) label(skill:Force Power|Skill Name: @{npc-customskillname2}|Power Name:@{npc-forcepowername}) skill(@{npc-rankcustomskillname2}|@{npc-charcustomskillname2}|@{npc-minion-group-size}|@{npc-minionskillcustomskillname2}) @{npc-forceavailable}w @{dicePool} (gmdice)">Custom Skill 2</option>
+                                                <option value="!eed characterID(@{character_id}) label(skill:Force Power|Skill Name: @{npc-customskillname3}|Power Name:@{npc-forcepowername}) skill(@{npc-rankcustomskillname3}|@{npc-charcustomskillname3}|@{npc-minion-group-size}|@{npc-minionskillcustomskillname3}) @{npc-forceavailable}w @{dicePool} (gmdice)">Custom Skill 3</option>
+                                                <option value="!eed characterID(@{character_id}) label(skill:Force Power|Skill Name: @{npc-customskillname4}|Power Name:@{npc-forcepowername}) skill(@{npc-rankcustomskillname4}|@{npc-charcustomskillname4}|@{npc-minion-group-size}|@{npc-minionskillcustomskillname4}) @{npc-forceavailable}w @{dicePool} (gmdice)">Custom Skill 4</option>
+                                                <option value="!eed characterID(@{character_id}) label(skill:Force Power|Skill Name: @{npc-customskillname5}|Power Name:@{npc-forcepowername}) skill(@{npc-rankcustomskillname5}|@{npc-charcustomskillname5}|@{npc-minion-group-size}|@{npc-minionskillcustomskillname5}) @{npc-forceavailable}w @{dicePool} (gmdice)">Custom Skill 5</option>
                                             </optgroup>
                                         </select>
                                     </td><!--Skill List-->
