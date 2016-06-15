@@ -6687,40 +6687,22 @@
                             <tbody>
                             <tr>
                                 <td>
-                                    <label>Cool (Pr)</label>
+                                    <label>Athletics (Br)</label>
                                 </td>
-                                <td><input name='attr_beast-careerskillCool' type="checkbox" value="1"></td>
-                                <td><input type="number" name="attr_beast-rankCool" max="6" min="0" value="0" /></td>
+                                <td><input name='attr_beast-careerskillAthletics' type="checkbox" value="1"></td>
+                                <td><input type="number" name="attr_beast-rankAthletics" max="6" min="0" value="0" /></td>
                                 <td>
-                                    <input class="sheet-yd" type="hidden" name="attr_beast-yCool" value="(((@{beast-presence} + @{beast-rankCool}) - abs(@{beast-presence} - @{beast-rankCool})) / 2)" disabled><span></span>
-                                    <input class="sheet-gd" type="hidden" name="attr_beast-gCool" value="((((@{beast-presence} + @{beast-rankCool}) + abs(@{beast-presence} - @{beast-rankCool})) / 2) - @{beast-yCool})" disabled><span></span>
-                                </td>
-                                <td>
-                                    <div class="sheet-dice-icon"></div>
-                                    <div class="sheet-dice-input">
-                                        <input type="text" name="attr_beast-diceCool" />
-                                    </div>
-                                </td>
-                                <td><button type='roll' name='roll_beast-Cool' value='!eed characterID(@{character_id}) label(skill:Riding Beast-Cool) @{beast-diceCool} skill(@{beast-rankCool}|@{beast-presence}|Cool) @{dicePool} (gmdice)'></button></td>
-                            </tr><!--Cool-->
-                            <tr>
-                                <td>
-                                    <label>Vigilance (Will)</label>
-                                </td>
-                                <td><input name='attr_beast-careerskillVigilance' type="checkbox" value="1"></td>
-                                <td><input type="number" name="attr_beast-rankVigilance" max="6" min="0" value="0" /></td>
-                                <td>
-                                    <input class="sheet-yd" type="hidden" name="attr_beast-yVigilance" value="(((@{beast-willpower} + @{beast-rankVigilance}) - abs(@{beast-willpower} - @{beast-rankVigilance})) / 2)" disabled><span></span>
-                                    <input class="sheet-gd" type="hidden" name="attr_beast-gVigilance" value="((((@{beast-willpower} + @{beast-rankVigilance}) + abs(@{beast-willpower} - @{beast-rankVigilance})) / 2) - @{beast-yVigilance})" disabled><span></span>
+                                    <input class="sheet-yd" type="hidden" name="attr_beast-yAthletics" value="(((@{beast-brawn} + @{beast-rankAthletics}) - abs(@{beast-brawn} - @{beast-rankAthletics})) / 2)" disabled><span></span>
+                                    <input class="sheet-gd" type="hidden" name="attr_beast-gAthletics" value="((((@{beast-brawn} + @{beast-rankAthletics}) + abs(@{beast-brawn} - @{beast-rankAthletics})) / 2) - @{beast-yAthletics})" disabled><span></span>
                                 </td>
                                 <td>
                                     <div class="sheet-dice-icon"></div>
                                     <div class="sheet-dice-input">
-                                        <input type="text" name="attr_beast-diceVigilance" />
+                                        <input type="text" name="attr_beast-diceAthletics" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_beast-Vigilance' value='!eed characterID(@{character_id}) label(skill:Riding Beast-Vigilance) @{beast-diceVigilance} skill(@{beast-rankVigilance}|@{beast-willpower}|Vigilance) @{dicePool} (gmdice)'></button></td>
-                            </tr><!--Vigilance-->
+                                <td><button type='roll' name='roll_Athletics' value='!eed characterID(@{character_id}) label(skill:Riding Beast-Athletics) @{beast-diceAthletics} encum(@{encumbrancemax}|@{encumbrance}) skill(@{beast-rankAthletics}|@{beast-brawn}|Athletics) @{dicePool} (gmdice)'></button></td>
+                            </tr><!--Athletics-->
                             <tr>
                                 <td>
                                     <label>Brawl (Br)</label>
@@ -6739,6 +6721,60 @@
                                 </td>
                                 <td><button type='roll' name='roll_Brawl' value='!eed characterID(@{character_id}) label(skill:Riding Beast-Brawl) @{beast-diceBrawl} encum(@{transport-beast-encumbrancemax}|@{transport-beast-encumbrance}) skill(@{beast-rankBrawl}|@{beast-brawn}|Brawl) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Brawl-->
+                            <tr>
+                                <td>
+                                    <label>Cool (Pr)</label>
+                                </td>
+                                <td><input name='attr_beast-careerskillCool' type="checkbox" value="1"></td>
+                                <td><input type="number" name="attr_beast-rankCool" max="6" min="0" value="0" /></td>
+                                <td>
+                                    <input class="sheet-yd" type="hidden" name="attr_beast-yCool" value="(((@{beast-presence} + @{beast-rankCool}) - abs(@{beast-presence} - @{beast-rankCool})) / 2)" disabled><span></span>
+                                    <input class="sheet-gd" type="hidden" name="attr_beast-gCool" value="((((@{beast-presence} + @{beast-rankCool}) + abs(@{beast-presence} - @{beast-rankCool})) / 2) - @{beast-yCool})" disabled><span></span>
+                                </td>
+                                <td>
+                                    <div class="sheet-dice-icon"></div>
+                                    <div class="sheet-dice-input">
+                                        <input type="text" name="attr_beast-diceCool" />
+                                    </div>
+                                </td>
+                                <td><button type='roll' name='roll_beast-Cool' value='!eed characterID(@{character_id}) label(skill:Riding Beast-Cool) @{beast-diceCool} skill(@{beast-rankCool}|@{beast-presence}|Cool) @{dicePool} (gmdice)'></button></td>
+                            </tr><!--Cool-->
+                            <tr>
+                                <td>
+                                    <label>Survival (Cun)</label>
+                                </td>
+                                <td><input name='attr_beast-careerskillSurvival' type="checkbox" value="1"></td>
+                                <td><input type="number" name="attr_beast-rankSurvival" max="6" min="0" value="0" /></td>
+                                <td>
+                                    <input class="sheet-yd" type="hidden" name="attr_beast-ySurvival" value="(((@{beast-cunning} + @{beast-rankSurvival}) - abs(@{beast-cunning} - @{beast-rankSurvival})) / 2)" disabled><span></span>
+                                    <input class="sheet-gd" type="hidden" name="attr_beast-gSurvival" value="((((@{beast-cunning} + @{beast-rankSurvival}) + abs(@{beast-cunning} - @{beast-rankSurvival})) / 2) - @{beast-ySurvival})" disabled><span></span>
+                                </td>
+                                <td>
+                                    <div class="sheet-dice-icon"></div>
+                                    <div class="sheet-dice-input">
+                                        <input type="text" name="attr_beast-diceSurvival" />
+                                    </div>
+                                </td>
+                                <td><button type='roll' name='roll_Survival' value='!eed characterID(@{character_id}) label(skill:Riding Beast-Survival) @{beast-diceSurvival} skill(@{beast-rankSurvival}|@{beast-cunning}|Survival) @{dicePool} (gmdice)'></button></td>
+                            </tr><!--Survival-->
+                            <tr>
+                                <td>
+                                    <label>Vigilance (Will)</label>
+                                </td>
+                                <td><input name='attr_beast-careerskillVigilance' type="checkbox" value="1"></td>
+                                <td><input type="number" name="attr_beast-rankVigilance" max="6" min="0" value="0" /></td>
+                                <td>
+                                    <input class="sheet-yd" type="hidden" name="attr_beast-yVigilance" value="(((@{beast-willpower} + @{beast-rankVigilance}) - abs(@{beast-willpower} - @{beast-rankVigilance})) / 2)" disabled><span></span>
+                                    <input class="sheet-gd" type="hidden" name="attr_beast-gVigilance" value="((((@{beast-willpower} + @{beast-rankVigilance}) + abs(@{beast-willpower} - @{beast-rankVigilance})) / 2) - @{beast-yVigilance})" disabled><span></span>
+                                </td>
+                                <td>
+                                    <div class="sheet-dice-icon"></div>
+                                    <div class="sheet-dice-input">
+                                        <input type="text" name="attr_beast-diceVigilance" />
+                                    </div>
+                                </td>
+                                <td><button type='roll' name='roll_beast-Vigilance' value='!eed characterID(@{character_id}) label(skill:Riding Beast-Vigilance) @{beast-diceVigilance} skill(@{beast-rankVigilance}|@{beast-willpower}|Vigilance) @{dicePool} (gmdice)'></button></td>
+                            </tr><!--Vigilance-->
                             </tbody>
                         </table><!--Cool, Vigilance, Brawl-->
                         <table class="sheet-skills sheet-custome-skills" cellspacing="0" cellpadding="0" border="0">
@@ -6807,7 +6843,7 @@
                                             <input type="text" name="attr_beast-dicecustomskillname1" />
                                         </div>
                                     </td>
-                                    <td><button type='roll' name='roll_beast-customskillname1' value='!eed characterID(@{character_id}) label(skill:Riding Beast-@{beast-customskillname1}) @{beast-dicecustomskillname1} skill(@{beast-rankcustomskillname1}|@{beast-charcustomskillname1}|@{customskillname1}) @{dicePool} (gmdice)'></button></td>
+                                    <td><button type='roll' name='roll_beast-customskillname1' value='!eed characterID(@{character_id}) label(skill:Riding Beast-@{beast-customskillname1}) @{beast-dicecustomskillname1} skill(@{beast-rankcustomskillname1}|@{beast-charcustomskillname1}|@{beast-customskillname1}) @{dicePool} (gmdice)'></button></td>
                                 </tr>
                                 </tbody>
                             </table>
