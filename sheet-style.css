@@ -1977,8 +1977,16 @@ input.sheet-stats-toggle-small:checked ~ div.sheet-stats-toggle-small,
 
 input.sheet-equipment-section-toggle:checked ~ div.sheet-equipment-section,
 
-input.sheet-description-toggle-small:checked ~ div.sheet-description-toggle-small,
+input.sheet-character-toggle-small:checked ~ div.sheet-character-toggle-small,
+input.sheet-game-mechanics-toggle-small:checked ~ div.sheet-game-mechanics-toggle-small,
+
 input.sheet-career-toggle-small:checked ~ div.sheet-career-toggle-small,
+input.sheet-description-toggle-small:checked ~ div.sheet-description-toggle-small,
+input.sheet-motivation-toggle-small:checked ~ div.sheet-motivation-toggle-small,
+
+input.sheet-obligation-toggle-small:checked ~ div.sheet-obligation-toggle-small,
+input.sheet-duty-toggle-small:checked ~ div.sheet-duty-toggle-small,
+input.sheet-morality-toggle-small:checked ~ div.sheet-morality-toggle-small,
 
 input.sheet-armor-toggle-small:checked ~ div.sheet-armor-toggle-small,
 input.sheet-cybernetics-toggle-small:checked ~ div.sheet-cybernetics-toggle-small,
@@ -2058,8 +2066,16 @@ input.sheet-equipment-section-toggle ~ div.sheet-equipment-section,
 
 input.sheet-stats-toggle-small ~ div.sheet-stats-toggle-small,
 
-input.sheet-description-toggle-small ~ div.sheet-description-toggle-small,
+input.sheet-character-toggle-small ~ div.sheet-character-toggle-small,
+input.sheet-game-mechanics-toggle-small ~ div.sheet-game-mechanics-toggle-small,
+
 input.sheet-career-toggle-small ~ div.sheet-career-toggle-small,
+input.sheet-description-toggle-small ~ div.sheet-description-toggle-small,
+input.sheet-motivation-toggle-small ~ div.sheet-motivation-toggle-small,
+
+input.sheet-obligation-toggle-small ~ div.sheet-obligation-toggle-small,
+input.sheet-duty-toggle-small ~ div.sheet-duty-toggle-small,
+input.sheet-morality-toggle-small ~ div.sheet-morality-toggle-small,
 
 input.sheet-armor-toggle-small ~ div.sheet-armor-toggle-small,
 input.sheet-cybernetics-toggle-small ~ div.sheet-cybernetics-toggle-small,

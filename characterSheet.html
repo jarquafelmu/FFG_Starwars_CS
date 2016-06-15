@@ -10,7 +10,7 @@
             <tr>
                 <td><label>Version</label></td>
                 <td>
-                    5.7.2
+                    6.1.0
                 </td>
                 <td style="width: 28%;"><label>For more information on this version visit:</label></td>
                 <td><input disabled value="https://github.com/jarquafelmu/FFG_Starwars_CS" type="text"/></td>
@@ -908,7 +908,7 @@
                                     <input type="text" name="attr_diceAstrogation" />
                                 </div>
                             </td>
-                            <td><button type='roll' name='roll_Astrogation' value='!eed characterID(@{character_id}) label(skill:Astrogation) @{diceAstrogation} skill(@{rankAstrogation}|@{intellect}) @{dicePool} (gmdice)'></button></td>
+                            <td><button type='roll' name='roll_Astrogation' value='!eed characterID(@{character_id}) label(skill:Astrogation) @{diceAstrogation} skill(@{rankAstrogation}|@{intellect}|Astrogation) @{dicePool} (gmdice)'></button></td>
                         </tr><!--Astrogation-->
                         <tr>
                             <td>
@@ -1000,7 +1000,7 @@
                                     <input type="text" name="attr_diceAthletics" />
                                 </div>
                             </td>
-                            <td><button type='roll' name='roll_Athletics' value='!eed characterID(@{character_id}) label(skill:Athletics) @{diceAthletics} encum(@{encumbrancemax}|@{encumbrance}) skill(@{rankAthletics}|@{brawn}) @{dicePool} (gmdice)'></button></td>
+                            <td><button type='roll' name='roll_Athletics' value='!eed characterID(@{character_id}) label(skill:Athletics) @{diceAthletics} encum(@{encumbrancemax}|@{encumbrance}) skill(@{rankAthletics}|@{brawn}|Athletics) @{dicePool} (gmdice)'></button></td>
                         </tr><!--Athletics-->
                         <tr>
                             <td>
@@ -1089,7 +1089,7 @@
                                     <input type="text" name="attr_diceCharm" />
                                 </div>
                             </td>
-                            <td><button type='roll' name='roll_Charm' value='!eed characterID(@{character_id}) label(skill:Charm) @{diceCharm} skill(@{rankCharm}|@{presence}) @{dicePool} (gmdice)'></button></td>
+                            <td><button type='roll' name='roll_Charm' value='!eed characterID(@{character_id}) label(skill:Charm) @{diceCharm} skill(@{rankCharm}|@{presence}|Charm) @{dicePool} (gmdice)'></button></td>
                         </tr><!--Charm-->
                         <tr>
                             <td>
@@ -1177,7 +1177,7 @@
                                     <input type="text" name="attr_diceCoercion" />
                                 </div>
                             </td>
-                            <td><button type='roll' name='roll_Coercion' value='!eed characterID(@{character_id}) label(skill:Coercion) @{diceCoercion} skill(@{rankCoercion}|@{willpower}) @{dicePool} (gmdice)'></button></td>
+                            <td><button type='roll' name='roll_Coercion' value='!eed characterID(@{character_id}) label(skill:Coercion) @{diceCoercion} skill(@{rankCoercion}|@{willpower}|Coercion) @{dicePool} (gmdice)'></button></td>
                         </tr><!--Coercion-->
                         <tr>
                             <td>
@@ -1284,7 +1284,7 @@
                                     <input type="text" name="attr_diceComputers" />
                                 </div>
                             </td>
-                            <td><button type='roll' name='roll_Computers' value='!eed characterID(@{character_id}) label(skill:Computers) @{diceComputers} skill(@{rankComputers}|@{intellect}) @{dicePool} (gmdice)'></button></td>
+                            <td><button type='roll' name='roll_Computers' value='!eed characterID(@{character_id}) label(skill:Computers) @{diceComputers} skill(@{rankComputers}|@{intellect}|Computers) @{dicePool} (gmdice)'></button></td>
                         </tr><!--Computers-->
                         <tr>
                             <td>
@@ -1372,7 +1372,7 @@
                                     <input type="text" name="attr_diceCool" />
                                 </div>
                             </td>
-                            <td><button type='roll' name='roll_Cool' value='!eed characterID(@{character_id}) label(skill:Cool) @{diceCool} skill(@{rankCool}|@{presence}) @{dicePool} (gmdice)'></button></td>
+                            <td><button type='roll' name='roll_Cool' value='!eed characterID(@{character_id}) label(skill:Cool) @{diceCool} skill(@{rankCool}|@{presence}|Cool) @{dicePool} (gmdice)'></button></td>
                         </tr><!--Cool-->
                         <tr>
                             <td>
@@ -1463,7 +1463,7 @@
                                     <input type="text" name="attr_diceCoordination" />
                                 </div>
                             </td>
-                            <td><button type='roll' name='roll_Coordination' value='!eed characterID(@{character_id}) label(skill:Coordination) @{diceCoordination} encum(@{encumbrancemax}|@{encumbrance}) skill(@{rankCoordination}|@{agility}) @{dicePool} (gmdice)'></button></td>
+                            <td><button type='roll' name='roll_Coordination' value='!eed characterID(@{character_id}) label(skill:Coordination) @{diceCoordination} encum(@{encumbrancemax}|@{encumbrance}) skill(@{rankCoordination}|@{agility}|Coordination) @{dicePool} (gmdice)'></button></td>
                         </tr><!--Coordination-->
                         <tr>
                             <td>
@@ -1551,7 +1551,7 @@
                                     <input type="text" name="attr_diceDeception" />
                                 </div>
                             </td>
-                            <td><button type='roll' name='roll_Deception' value='!eed characterID(@{character_id}) label(skill:Deception) @{diceDeception} skill(@{rankDeception}|@{cunning}) @{dicePool} (gmdice)'></button></td>
+                            <td><button type='roll' name='roll_Deception' value='!eed characterID(@{character_id}) label(skill:Deception) @{diceDeception} skill(@{rankDeception}|@{cunning}|Deception) @{dicePool} (gmdice)'></button></td>
                         </tr><!--Deception-->
                         <tr>
                             <td>
@@ -1664,7 +1664,7 @@
                                     <input type="text" name="attr_diceDiscipline" />
                                 </div>
                             </td>
-                            <td><button type='roll' name='roll_Discipline' value='!eed characterID(@{character_id}) label(skill:Discipline) @{diceDiscipline} skill(@{rankDiscipline}|@{willpower}) @{dicePool} (gmdice)'></button></td>
+                            <td><button type='roll' name='roll_Discipline' value='!eed characterID(@{character_id}) label(skill:Discipline) @{diceDiscipline} skill(@{rankDiscipline}|@{willpower}|Discipline) @{dicePool} (gmdice)'></button></td>
                         </tr><!--Discipline-->
                         <tr>
                             <td>
@@ -1768,7 +1768,7 @@
                                     <input type="text" name="attr_diceLeadership" />
                                 </div>
                             </td>
-                            <td><button type='roll' name='roll_Leadership' value='!eed characterID(@{character_id}) label(skill:Leadership) @{diceLeadership} skill(@{rankLeadership}|@{presence}) @{dicePool} (gmdice)'></button></td>
+                            <td><button type='roll' name='roll_Leadership' value='!eed characterID(@{character_id}) label(skill:Leadership) @{diceLeadership} skill(@{rankLeadership}|@{presence}|Leadership) @{dicePool} (gmdice)'></button></td>
                         </tr><!--Leadership-->
                         <tr>
                             <td>
@@ -1867,7 +1867,7 @@
                                     <input type="text" name="attr_diceMechanics" />
                                 </div>
                             </td>
-                            <td><button type='roll' name='roll_Mechanics' value='!eed characterID(@{character_id}) label(skill:Mechanics) @{diceMechanics} skill(@{rankMechanics}|@{intellect}) @{dicePool} (gmdice)'></button></td>
+                            <td><button type='roll' name='roll_Mechanics' value='!eed characterID(@{character_id}) label(skill:Mechanics) @{diceMechanics} skill(@{rankMechanics}|@{intellect}|Mechanics) @{dicePool} (gmdice)'></button></td>
                         </tr><!--Mechanics-->
                         <tr>
                             <td>
@@ -1958,7 +1958,7 @@
                                     <input type="text" name="attr_diceMedicine" />
                                 </div>
                             </td>
-                            <td><button type='roll' name='roll_Medicine' value='!eed characterID(@{character_id}) label(skill:Medicine) @{diceMedicine} skill(@{rankMedicine}|@{intellect}) @{dicePool} (gmdice)'></button></td>
+                            <td><button type='roll' name='roll_Medicine' value='!eed characterID(@{character_id}) label(skill:Medicine) @{diceMedicine} skill(@{rankMedicine}|@{intellect}|Medicine) @{dicePool} (gmdice)'></button></td>
                         </tr><!--Medicine-->
                         <tr>
                             <td>
@@ -2049,7 +2049,7 @@
                                     <input type="text" name="attr_diceNegotiation" />
                                 </div>
                             </td>
-                            <td><button type='roll' name='roll_Negotiation' value='!eed characterID(@{character_id}) label(skill:Negotiation) @{diceNegotiation} skill(@{rankNegotiation}|@{presence}) @{dicePool} (gmdice)'></button></td>
+                            <td><button type='roll' name='roll_Negotiation' value='!eed characterID(@{character_id}) label(skill:Negotiation) @{diceNegotiation} skill(@{rankNegotiation}|@{presence}|Negotiation) @{dicePool} (gmdice)'></button></td>
                         </tr><!--Negotiation-->
                         <tr>
                             <td>
@@ -2138,7 +2138,7 @@
                                     <input type="text" name="attr_dicePerception" />
                                 </div>
                             </td>
-                            <td><button type='roll' name='roll_Perception' value='!eed characterID(@{character_id}) label(skill:Perception) @{dicePerception} skill(@{rankPerception}|@{cunning}) @{dicePool} (gmdice)'></button></td>
+                            <td><button type='roll' name='roll_Perception' value='!eed characterID(@{character_id}) label(skill:Perception) @{dicePerception} skill(@{rankPerception}|@{cunning}|Perception) @{dicePool} (gmdice)'></button></td>
                         </tr><!--Perception-->
                         <tr>
                             <td>
@@ -2228,7 +2228,7 @@
                                     <input type="text" name="attr_dicePlanetary" />
                                 </div>
                             </td>
-                            <td><button type='roll' name='roll_Planetary' value='!eed characterID(@{character_id}) label(skill:Piloting - Planetary) @{dicePlanetary} encum(@{encumbrancemax}|@{encumbrance}) skill(@{rankPlanetary}|@{agility}) @{dicePool} (gmdice)'></button></td>
+                            <td><button type='roll' name='roll_Planetary' value='!eed characterID(@{character_id}) label(skill:Piloting - Planetary) @{dicePlanetary} encum(@{encumbrancemax}|@{encumbrance}) skill(@{rankPlanetary}|@{agility}|PilotingPlanetary) @{dicePool} (gmdice)'></button></td>
                         </tr><!--Piloting (Planetary)-->
                         <tr>
                             <td>
@@ -2317,7 +2317,7 @@
                                     <input type="text" name="attr_diceSpace" />
                                 </div>
                             </td>
-                            <td><button type='roll' name='roll_Space' value='!eed characterID(@{character_id}) label(skill:Piloting - Space) @{diceSpace} encum(@{encumbrancemax}|@{encumbrance}) skill(@{rankSpace}|@{agility}) @{dicePool} (gmdice)'></button></td>
+                            <td><button type='roll' name='roll_Space' value='!eed characterID(@{character_id}) label(skill:Piloting - Space) @{diceSpace} encum(@{encumbrancemax}|@{encumbrance}) skill(@{rankSpace}|@{agility}|PilotingSpace) @{dicePool} (gmdice)'></button></td>
                         </tr><!--Piloting (Space)-->
                         <tr>
                             <td>
@@ -2406,7 +2406,7 @@
                                     <input type="text" name="attr_diceResilience" />
                                 </div>
                             </td>
-                            <td><button type='roll' name='roll_Resilience' value='!eed characterID(@{character_id}) label(skill:Resilience) @{diceResilience} encum(@{encumbrancemax}|@{encumbrance}) skill(@{rankResilience}|@{brawn}) @{dicePool} (gmdice)'></button></td>
+                            <td><button type='roll' name='roll_Resilience' value='!eed characterID(@{character_id}) label(skill:Resilience) @{diceResilience} encum(@{encumbrancemax}|@{encumbrance}) skill(@{rankResilience}|@{brawn}|Resilience) @{dicePool} (gmdice)'></button></td>
                         </tr><!--Resilience-->
                         <tr>
                             <td>
@@ -2494,7 +2494,7 @@
                                     <input type="text" name="attr_diceSkulduggery" />
                                 </div>
                             </td>
-                            <td><button type='roll' name='roll_Skulduggery' value='!eed characterID(@{character_id}) label(skill:Skulduggery) @{diceSkulduggery} skill(@{rankSkulduggery}|@{cunning}) @{dicePool} (gmdice)'></button></td>
+                            <td><button type='roll' name='roll_Skulduggery' value='!eed characterID(@{character_id}) label(skill:Skulduggery) @{diceSkulduggery} skill(@{rankSkulduggery}|@{cunning}|Skulduggery) @{dicePool} (gmdice)'></button></td>
                         </tr><!--Skulduggery-->
                         <tr>
                             <td>
@@ -2582,7 +2582,7 @@
                                     <input type="text" name="attr_diceStealth" />
                                 </div>
                             </td>
-                            <td><button type='roll' name='roll_Stealth' value='!eed characterID(@{character_id}) label(skill:Stealth) @{diceStealth} encum(@{encumbrancemax}|@{encumbrance}) skill(@{rankStealth}|@{agility}) @{dicePool} (gmdice)'></button></td>
+                            <td><button type='roll' name='roll_Stealth' value='!eed characterID(@{character_id}) label(skill:Stealth) @{diceStealth} encum(@{encumbrancemax}|@{encumbrance}) skill(@{rankStealth}|@{agility}|Stealth) @{dicePool} (gmdice)'></button></td>
                         </tr><!--Stealth-->
                         <tr>
                             <td>
@@ -2670,7 +2670,7 @@
                                     <input type="text" name="attr_diceStreetwise" />
                                 </div>
                             </td>
-                            <td><button type='roll' name='roll_Streetwise' value='!eed characterID(@{character_id}) label(skill:Streetwise) @{diceStreetwise} skill(@{rankStreetwise}|@{cunning}) @{dicePool} (gmdice)'></button></td>
+                            <td><button type='roll' name='roll_Streetwise' value='!eed characterID(@{character_id}) label(skill:Streetwise) @{diceStreetwise} skill(@{rankStreetwise}|@{cunning}|Streetwise) @{dicePool} (gmdice)'></button></td>
                         </tr><!--Streetwise-->
                         <tr>
                             <td>
@@ -2762,7 +2762,7 @@
                                     <input type="text" name="attr_diceSurvival" />
                                 </div>
                             </td>
-                            <td><button type='roll' name='roll_Survival' value='!eed characterID(@{character_id}) label(skill:Survival) @{diceSurvival} skill(@{rankSurvival}|@{cunning}) @{dicePool} (gmdice)'></button></td>
+                            <td><button type='roll' name='roll_Survival' value='!eed characterID(@{character_id}) label(skill:Survival) @{diceSurvival} skill(@{rankSurvival}|@{cunning}|Survival) @{dicePool} (gmdice)'></button></td>
                         </tr><!--Survival-->
                         <tr>
                             <td>
@@ -2850,7 +2850,7 @@
                                     <input type="text" name="attr_diceVigilance" />
                                 </div>
                             </td>
-                            <td><button type='roll' name='roll_Vigilance' value='!eed characterID(@{character_id}) label(skill:Vigilance) @{diceVigilance} skill(@{rankVigilance}|@{willpower}) @{dicePool} (gmdice)'></button></td>
+                            <td><button type='roll' name='roll_Vigilance' value='!eed characterID(@{character_id}) label(skill:Vigilance) @{diceVigilance} skill(@{rankVigilance}|@{willpower}|Vigilance) @{dicePool} (gmdice)'></button></td>
                         </tr><!--Vigilance-->
                         </tbody>
                     </table><!--General Skills Section-->
@@ -3337,7 +3337,7 @@
                                     <input type="text" name="attr_dicecustomskillname1" />
                                 </div>
                             </td>
-                            <td><button type='roll' name='roll_customskillname1' value='!eed characterID(@{character_id}) label(skill:@{customskillname1}) @{dicecustomskillname1} skill(@{rankcustomskillname1}|@{charcustomskillname1}) @{dicePool} (gmdice)'></button></td>
+                            <td><button type='roll' name='roll_customskillname1' value='!eed characterID(@{character_id}) label(skill:@{customskillname1}) @{dicecustomskillname1} skill(@{rankcustomskillname1}|@{charcustomskillname1}|@{customskillname1}) @{dicePool} (gmdice)'></button></td>
                         </tr><!--Custom Skill 1-->
                         <tr>
                             <td><input type="text" name="attr_customskillname2" /></td>
@@ -3363,7 +3363,7 @@
                                     <input type="text" name="attr_dicecustomskillname2" />
                                 </div>
                             </td>
-                            <td><button type='roll' name='roll_customskillname2' value='!eed characterID(@{character_id}) label(skill:@{customskillname2}) @{dicecustomskillname2} skill(@{rankcustomskillname2}|@{charcustomskillname2}) @{dicePool} (gmdice)'></button></td>
+                            <td><button type='roll' name='roll_customskillname2' value='!eed characterID(@{character_id}) label(skill:@{customskillname2}) @{dicecustomskillname2} skill(@{rankcustomskillname2}|@{charcustomskillname2}|@{customskillname2}) @{dicePool} (gmdice)'></button></td>
                         </tr><!--Custom Skill 2-->
                         </tbody>
                     </table><!--Custom Skills Section-->
@@ -6701,7 +6701,7 @@
                                         <input type="text" name="attr_beast-diceCool" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_beast-Cool' value='!eed characterID(@{character_id}) label(skill:Riding Beast-Cool) @{beast-diceCool} skill(@{beast-rankCool}|@{beast-presence}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_beast-Cool' value='!eed characterID(@{character_id}) label(skill:Riding Beast-Cool) @{beast-diceCool} skill(@{beast-rankCool}|@{beast-presence}|Cool) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Cool-->
                             <tr>
                                 <td>
@@ -6719,7 +6719,7 @@
                                         <input type="text" name="attr_beast-diceVigilance" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_beast-Vigilance' value='!eed characterID(@{character_id}) label(skill:Riding Beast-Vigilance) @{beast-diceVigilance} skill(@{beast-rankVigilance}|@{beast-willpower}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_beast-Vigilance' value='!eed characterID(@{character_id}) label(skill:Riding Beast-Vigilance) @{beast-diceVigilance} skill(@{beast-rankVigilance}|@{beast-willpower}|Vigilance) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Vigilance-->
                             <tr>
                                 <td>
@@ -6737,7 +6737,7 @@
                                         <input type="text" name="attr_beast-diceBrawl" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_Brawl' value='!eed characterID(@{character_id}) label(skill:Riding Beast-Brawl) @{beast-diceBrawl} encum(@{transport-beast-encumbrancemax}|@{transport-beast-encumbrance}) skill(@{beast-rankBrawl}|@{beast-brawn}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_Brawl' value='!eed characterID(@{character_id}) label(skill:Riding Beast-Brawl) @{beast-diceBrawl} encum(@{transport-beast-encumbrancemax}|@{transport-beast-encumbrance}) skill(@{beast-rankBrawl}|@{beast-brawn}|Brawl) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Brawl-->
                             </tbody>
                         </table><!--Cool, Vigilance, Brawl-->
@@ -6776,7 +6776,7 @@
                                         <input type="text" name="attr_beast-dicecustomskillname" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_beast-customskillname' value='!eed characterID(@{character_id}) label(skill:Riding Beast-@{beast-customskillname}) @{beast-dicecustomskillname} skill(@{beast-rankcustomskillname}|@{beast-charcustomskillname}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_beast-customskillname' value='!eed characterID(@{character_id}) label(skill:Riding Beast-@{beast-customskillname}) @{beast-dicecustomskillname} skill(@{beast-rankcustomskillname}|@{beast-charcustomskillname}|customskillname) @{dicePool} (gmdice)'></button></td>
                             </tr>
                             </tbody>
                         </table><!--Custom Skill-->
@@ -6807,7 +6807,7 @@
                                             <input type="text" name="attr_beast-dicecustomskillname1" />
                                         </div>
                                     </td>
-                                    <td><button type='roll' name='roll_beast-customskillname1' value='!eed characterID(@{character_id}) label(skill:Riding Beast-@{beast-customskillname1}) @{beast-dicecustomskillname1} skill(@{beast-rankcustomskillname1}|@{beast-charcustomskillname1}) @{dicePool} (gmdice)'></button></td>
+                                    <td><button type='roll' name='roll_beast-customskillname1' value='!eed characterID(@{character_id}) label(skill:Riding Beast-@{beast-customskillname1}) @{beast-dicecustomskillname1} skill(@{beast-rankcustomskillname1}|@{beast-charcustomskillname1}|@{customskillname1}) @{dicePool} (gmdice)'></button></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -8757,7 +8757,7 @@
                                         <input type="text" name="attr_companion-diceAstrogation" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_Astrogation' value='!eed characterID(@{character_id}) label(skill:Astrogation) @{companion-diceAstrogation} skill(@{companion-rankAstrogation}|@{companion-intellect}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_Astrogation' value='!eed characterID(@{character_id}) label(skill:Astrogation) @{companion-diceAstrogation} skill(@{companion-rankAstrogation}|@{companion-intellect}|Astrogation) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Astrogation-->
                             <tr>
                                 <td>
@@ -8849,7 +8849,7 @@
                                         <input type="text" name="attr_companion-diceAthletics" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_Athletics' value='!eed characterID(@{character_id}) label(skill:Athletics) @{companion-diceAthletics} encum(@{encumbrancemax}|@{encumbrance}) skill(@{companion-rankAthletics}|@{companion-brawn}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_Athletics' value='!eed characterID(@{character_id}) label(skill:Athletics) @{companion-diceAthletics} encum(@{encumbrancemax}|@{encumbrance}) skill(@{companion-rankAthletics}|@{companion-brawn}|Athletics) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Athletics-->
                             <tr>
                                 <td>
@@ -8938,7 +8938,7 @@
                                         <input type="text" name="attr_companion-diceCharm" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_Charm' value='!eed characterID(@{character_id}) label(skill:Charm) @{companion-diceCharm} skill(@{companion-rankCharm}|@{companion-presence}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_Charm' value='!eed characterID(@{character_id}) label(skill:Charm) @{companion-diceCharm} skill(@{companion-rankCharm}|@{companion-presence}|Charm) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Charm-->
                             <tr>
                                 <td>
@@ -9026,7 +9026,7 @@
                                         <input type="text" name="attr_companion-diceCoercion" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_Coercion' value='!eed characterID(@{character_id}) label(skill:Coercion) @{companion-diceCoercion} skill(@{companion-rankCoercion}|@{companion-willpower}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_Coercion' value='!eed characterID(@{character_id}) label(skill:Coercion) @{companion-diceCoercion} skill(@{companion-rankCoercion}|@{companion-willpower}|Coercion) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Coercion-->
                             <tr>
                                 <td>
@@ -9133,7 +9133,7 @@
                                         <input type="text" name="attr_companion-diceComputers" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_Computers' value='!eed characterID(@{character_id}) label(skill:Computers) @{companion-diceComputers} skill(@{companion-rankComputers}|@{companion-intellect}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_Computers' value='!eed characterID(@{character_id}) label(skill:Computers) @{companion-diceComputers} skill(@{companion-rankComputers}|@{companion-intellect}|Computers) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Computers-->
                             <tr>
                                 <td>
@@ -9221,7 +9221,7 @@
                                         <input type="text" name="attr_companion-diceCool" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_Cool' value='!eed characterID(@{character_id}) label(skill:Cool) @{companion-diceCool} skill(@{companion-rankCool}|@{companion-presence}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_Cool' value='!eed characterID(@{character_id}) label(skill:Cool) @{companion-diceCool} skill(@{companion-rankCool}|@{companion-presence}|Cool) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Cool-->
                             <tr>
                                 <td>
@@ -9312,7 +9312,7 @@
                                         <input type="text" name="attr_companion-diceCoordination" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_Coordination' value='!eed characterID(@{character_id}) label(skill:Coordination) @{companion-diceCoordination} encum(@{encumbrancemax}|@{encumbrance}) skill(@{companion-rankCoordination}|@{companion-agility}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_Coordination' value='!eed characterID(@{character_id}) label(skill:Coordination) @{companion-diceCoordination} encum(@{encumbrancemax}|@{encumbrance}) skill(@{companion-rankCoordination}|@{companion-agility}|Coordination) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Coordination-->
                             <tr>
                                 <td>
@@ -9400,7 +9400,7 @@
                                         <input type="text" name="attr_companion-diceDeception" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_Deception' value='!eed characterID(@{character_id}) label(skill:Deception) @{companion-diceDeception} skill(@{companion-rankDeception}|@{companion-cunning}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_Deception' value='!eed characterID(@{character_id}) label(skill:Deception) @{companion-diceDeception} skill(@{companion-rankDeception}|@{companion-cunning}|Deception) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Deception-->
                             <tr>
                                 <td>
@@ -9513,7 +9513,7 @@
                                         <input type="text" name="attr_companion-diceDiscipline" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_Discipline' value='!eed characterID(@{character_id}) label(skill:Discipline) @{companion-diceDiscipline} skill(@{companion-rankDiscipline}|@{companion-willpower}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_Discipline' value='!eed characterID(@{character_id}) label(skill:Discipline) @{companion-diceDiscipline} skill(@{companion-rankDiscipline}|@{companion-willpower}|Discipline) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Discipline-->
                             <tr>
                                 <td>
@@ -9617,7 +9617,7 @@
                                         <input type="text" name="attr_companion-diceLeadership" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_Leadership' value='!eed characterID(@{character_id}) label(skill:Leadership) @{companion-diceLeadership} skill(@{companion-rankLeadership}|@{companion-presence}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_Leadership' value='!eed characterID(@{character_id}) label(skill:Leadership) @{companion-diceLeadership} skill(@{companion-rankLeadership}|@{companion-presence}|Leadership) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Leadership-->
                             <tr>
                                 <td>
@@ -9716,7 +9716,7 @@
                                         <input type="text" name="attr_companion-diceMechanics" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_Mechanics' value='!eed characterID(@{character_id}) label(skill:Mechanics) @{companion-diceMechanics} skill(@{companion-rankMechanics}|@{companion-intellect}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_Mechanics' value='!eed characterID(@{character_id}) label(skill:Mechanics) @{companion-diceMechanics} skill(@{companion-rankMechanics}|@{companion-intellect}|Mechanics) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Mechanics-->
                             <tr>
                                 <td>
@@ -9807,7 +9807,7 @@
                                         <input type="text" name="attr_companion-diceMedicine" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_Medicine' value='!eed characterID(@{character_id}) label(skill:Medicine) @{companion-diceMedicine} skill(@{companion-rankMedicine}|@{companion-intellect}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_Medicine' value='!eed characterID(@{character_id}) label(skill:Medicine) @{companion-diceMedicine} skill(@{companion-rankMedicine}|@{companion-intellect}|Medicine) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Medicine-->
                             <tr>
                                 <td>
@@ -9898,7 +9898,7 @@
                                         <input type="text" name="attr_companion-diceNegotiation" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_Negotiation' value='!eed characterID(@{character_id}) label(skill:Negotiation) @{companion-diceNegotiation} skill(@{companion-rankNegotiation}|@{companion-presence}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_Negotiation' value='!eed characterID(@{character_id}) label(skill:Negotiation) @{companion-diceNegotiation} skill(@{companion-rankNegotiation}|@{companion-presence}|Negotiation) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Negotiation-->
                             <tr>
                                 <td>
@@ -9987,7 +9987,7 @@
                                         <input type="text" name="attr_companion-dicePerception" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_Perception' value='!eed characterID(@{character_id}) label(skill:Perception) @{companion-dicePerception} skill(@{companion-rankPerception}|@{companion-cunning}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_Perception' value='!eed characterID(@{character_id}) label(skill:Perception) @{companion-dicePerception} skill(@{companion-rankPerception}|@{companion-cunning}|Perception) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Perception-->
                             <tr>
                                 <td>
@@ -10077,7 +10077,7 @@
                                         <input type="text" name="attr_companion-dicePlanetary" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_Planetary' value='!eed characterID(@{character_id}) label(skill:Piloting - Planetary) @{companion-dicePiloting - Planetary} encum(@{encumbrancemax}|@{encumbrance}) skill(@{companion-rankPlanetary}|@{companion-agility}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_Planetary' value='!eed characterID(@{character_id}) label(skill:Piloting - Planetary) @{companion-dicePlanetary} encum(@{encumbrancemax}|@{encumbrance}) skill(@{companion-rankPlanetary}|@{companion-agility}|PilotingPlanetary) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Piloting (Planetary)-->
                             <tr>
                                 <td>
@@ -10166,7 +10166,7 @@
                                         <input type="text" name="attr_companion-diceSpace" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_Space' value='!eed characterID(@{character_id}) label(skill:Piloting - Space) @{companion-dicePiloting - Space} encum(@{encumbrancemax}|@{encumbrance}) skill(@{companion-rankSpace}|@{companion-agility}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_Space' value='!eed characterID(@{character_id}) label(skill:Piloting - Space) @{companion-diceSpace} encum(@{encumbrancemax}|@{encumbrance}) skill(@{companion-rankSpace}|@{companion-agility}|PilotingSpace) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Piloting (Space)-->
                             <tr>
                                 <td>
@@ -10255,7 +10255,7 @@
                                         <input type="text" name="attr_companion-diceResilience" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_Resilience' value='!eed characterID(@{character_id}) label(skill:Resilience) @{companion-diceResilience} encum(@{encumbrancemax}|@{encumbrance}) skill(@{companion-rankResilience}|@{companion-brawn}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_Resilience' value='!eed characterID(@{character_id}) label(skill:Resilience) @{companion-diceResilience} encum(@{encumbrancemax}|@{encumbrance}) skill(@{companion-rankResilience}|@{companion-brawn}|Resilience) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Resilience-->
                             <tr>
                                 <td>
@@ -10343,7 +10343,7 @@
                                         <input type="text" name="attr_companion-diceSkulduggery" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_Skulduggery' value='!eed characterID(@{character_id}) label(skill:Skulduggery) @{companion-diceSkulduggery} skill(@{companion-rankSkulduggery}|@{companion-cunning}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_Skulduggery' value='!eed characterID(@{character_id}) label(skill:Skulduggery) @{companion-diceSkulduggery} skill(@{companion-rankSkulduggery}|@{companion-cunning}|Skulduggery) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Skulduggery-->
                             <tr>
                                 <td>
@@ -10431,7 +10431,7 @@
                                         <input type="text" name="attr_companion-diceStealth" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_Stealth' value='!eed characterID(@{character_id}) label(skill:Stealth) @{companion-diceStealth} encum(@{encumbrancemax}|@{encumbrance}) skill(@{companion-rankStealth}|@{companion-agility}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_Stealth' value='!eed characterID(@{character_id}) label(skill:Stealth) @{companion-diceStealth} encum(@{encumbrancemax}|@{encumbrance}) skill(@{companion-rankStealth}|@{companion-agility}|Stealth) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Stealth-->
                             <tr>
                                 <td>
@@ -10519,7 +10519,7 @@
                                         <input type="text" name="attr_companion-diceStreetwise" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_Streetwise' value='!eed characterID(@{character_id}) label(skill:Streetwise) @{companion-diceStreetwise} skill(@{companion-rankStreetwise}|@{companion-cunning}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_Streetwise' value='!eed characterID(@{character_id}) label(skill:Streetwise) @{companion-diceStreetwise} skill(@{companion-rankStreetwise}|@{companion-cunning}|Streetwise) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Streetwise-->
                             <tr>
                                 <td>
@@ -10611,7 +10611,7 @@
                                         <input type="text" name="attr_companion-diceSurvival" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_Survival' value='!eed characterID(@{character_id}) label(skill:Survival) @{companion-diceSurvival} skill(@{companion-rankSurvival}|@{companion-cunning}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_Survival' value='!eed characterID(@{character_id}) label(skill:Survival) @{companion-diceSurvival} skill(@{companion-rankSurvival}|@{companion-cunning}|Survival) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Survival-->
                             <tr>
                                 <td>
@@ -10699,7 +10699,7 @@
                                         <input type="text" name="attr_companion-diceVigilance" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_Vigilance' value='!eed characterID(@{character_id}) label(skill:Vigilance) @{companion-diceVigilance} skill(@{companion-rankVigilance}|@{companion-willpower}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_Vigilance' value='!eed characterID(@{character_id}) label(skill:Vigilance) @{companion-diceVigilance} skill(@{companion-rankVigilance}|@{companion-willpower}|Vigilance) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Vigilance-->
                             </tbody>
                         </table><!--General Skills Section-->
@@ -11186,7 +11186,7 @@
                                         <input type="text" name="attr_companion-dicecustomskillname1" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_customskillname1' value='!eed characterID(@{character_id}) label(skill:@{companion-customskillname1}) @{companion-dicecustomskillname1} skill(@{companion-rankcustomskillname1}|@{companion-charcustomskillname1}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_customskillname1' value='!eed characterID(@{character_id}) label(skill:@{companion-customskillname1}) @{companion-dicecustomskillname1} skill(@{companion-rankcustomskillname1}|@{companion-charcustomskillname1}|@{companion-customskillname1}) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Custom Skill 1-->
                             <tr>
                                 <td><input type="text" name="attr_companion-customskillname2" /></td>
@@ -11212,7 +11212,7 @@
                                         <input type="text" name="attr_companion-dicecustomskillname2" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_customskillname2' value='!eed characterID(@{character_id}) label(skill:@{companion-customskillname2}) @{companion-dicecustomskillname2} skill(@{companion-rankcustomskillname2}|@{companion-charcustomskillname2}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_customskillname2' value='!eed characterID(@{character_id}) label(skill:@{companion-customskillname2}) @{companion-dicecustomskillname2} skill(@{companion-rankcustomskillname2}|@{companion-charcustomskillname2}|@{companion-customskillname2}) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Custom Skill 2-->
                             </tbody>
                         </table><!--Custom Skills Section-->
@@ -12559,7 +12559,7 @@
                                         <input type="text" name="attr_npc-diceCool" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_Cool' value='!eed characterID(@{character_id}) label(skill:Cool) @{npc-diceCool} skill(@{npc-rankCool}|@{npc-presence}|@{npc-minion-group-size}|@{npc-minionskillCool}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_Cool' value='!eed characterID(@{character_id}) label(skill:Cool) @{npc-diceCool} skill(@{npc-rankCool}|@{npc-presence}|@{npc-minion-group-size}|@{npc-minionskillCool}|Cool) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Cool-->
                             <tr>
                                 <td>
@@ -12577,7 +12577,7 @@
                                         <input type="text" name="attr_npc-diceVigilance" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_Vigilance' value='!eed characterID(@{character_id}) label(skill:Vigilance) @{npc-diceVigilance} skill(@{npc-rankVigilance}|@{npc-willpower}|@{npc-minion-group-size}|@{npc-minionskillVigilance}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_Vigilance' value='!eed characterID(@{character_id}) label(skill:Vigilance) @{npc-diceVigilance} skill(@{npc-rankVigilance}|@{npc-willpower}|@{npc-minion-group-size}|@{npc-minionskillVigilance}|Vigilance) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Vigilance-->
                             </tbody>
                         </table><!--General Skills Section-->
@@ -12687,7 +12687,7 @@
                                         <input type="text" name="attr_npc-diceLight" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_Light' value='!eed characterID(@{character_id}) label(skill:Ranged - Light) @{npc-diceRanged - Light} encum(@{encumbrancemax}|@{encumbrance}) skill(@{npc-rankLight}|@{npc-agility}|@{npc-minion-group-size}|@{npc-minionskillLight}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_Light' value='!eed characterID(@{character_id}) label(skill:Ranged - Light) @{npc-diceLight} encum(@{encumbrancemax}|@{encumbrance}) skill(@{npc-rankLight}|@{npc-agility}|@{npc-minion-group-size}|@{npc-minionskillLight}|RangedLight) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Ranged - Light-->
                             <tr>
                                 <td>
@@ -12705,7 +12705,7 @@
                                         <input type="text" name="attr_npc-diceHeavy" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_Heavy' value='!eed characterID(@{character_id}) label(skill:Ranged - Heavy) @{npc-diceRanged - Heavy} encum(@{encumbrancemax}|@{encumbrance}) skill(@{npc-rankHeavy}|@{npc-agility}|@{npc-minion-group-size}|@{npc-minionskillHeavy}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_Heavy' value='!eed characterID(@{character_id}) label(skill:Ranged - Heavy) @{npc-diceHeavy} encum(@{encumbrancemax}|@{encumbrance}) skill(@{npc-rankHeavy}|@{npc-agility}|@{npc-minion-group-size}|@{npc-minionskillHeavy}|RangedHeavy) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Ranged - Heavy-->
                             </tbody>
                         </table><!--Combat Skills Section-->
@@ -12744,7 +12744,7 @@
                                         <input type="text" name="attr_npc-dicecustomskillname1" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_customskillname1' value='!eed characterID(@{character_id}) label(skill:@{npc-customskillname1}) @{npc-dicecustomskillname1} skill(@{npc-rankcustomskillname1}|@{npc-charcustomskillname1}|@{npc-minion-group-size}|@{npc-minionskillcustomskillname1}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_customskillname1' value='!eed characterID(@{character_id}) label(skill:@{npc-customskillname1}) @{npc-dicecustomskillname1} skill(@{npc-rankcustomskillname1}|@{npc-charcustomskillname1}|@{npc-minion-group-size}|@{npc-minionskillcustomskillname1}|@{npc-customskillname1}) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Custom Skill 1-->
                             <tr>
                                 <td><input type="text" name="attr_npc-customskillname2" /></td>
@@ -12770,7 +12770,7 @@
                                         <input type="text" name="attr_npc-dicecustomskillname2" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_customskillname2' value='!eed characterID(@{character_id}) label(skill:@{npc-customskillname2}) @{npc-dicecustomskillname2} skill(@{npc-rankcustomskillname2}|@{npc-charcustomskillname2}|@{npc-minion-group-size}|@{npc-minionskillcustomskillname2}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_customskillname2' value='!eed characterID(@{character_id}) label(skill:@{npc-customskillname2}) @{npc-dicecustomskillname2} skill(@{npc-rankcustomskillname2}|@{npc-charcustomskillname2}|@{npc-minion-group-size}|@{npc-minionskillcustomskillname2}|@{npc-customskillname2}) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Custom Skill 2-->
                             <tr>
                                 <td><input type="text" name="attr_npc-customskillname3" /></td>
@@ -12796,7 +12796,7 @@
                                         <input type="text" name="attr_npc-dicecustomskillname3" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_customskillname3' value='!eed characterID(@{character_id}) label(skill:@{npc-customskillname3}) @{npc-dicecustomskillname3} skill(@{npc-rankcustomskillname3}|@{npc-charcustomskillname3}|@{npc-minion-group-size}|@{npc-minionskillcustomskillname3}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_customskillname3' value='!eed characterID(@{character_id}) label(skill:@{npc-customskillname3}) @{npc-dicecustomskillname3} skill(@{npc-rankcustomskillname3}|@{npc-charcustomskillname3}|@{npc-minion-group-size}|@{npc-minionskillcustomskillname3}|@{npc-customskillname3}) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Custom Skill 3-->
                             <tr>
                                 <td><input type="text" name="attr_npc-customskillname4" /></td>
@@ -12822,7 +12822,7 @@
                                         <input type="text" name="attr_npc-dicecustomskillname4" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_customskillname4' value='!eed characterID(@{character_id}) label(skill:@{npc-customskillname4}) @{npc-dicecustomskillname4} skill(@{npc-rankcustomskillname4}|@{npc-charcustomskillname4}|@{npc-minion-group-size}|@{npc-minionskillcustomskillname4}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_customskillname4' value='!eed characterID(@{character_id}) label(skill:@{npc-customskillname4}) @{npc-dicecustomskillname4} skill(@{npc-rankcustomskillname4}|@{npc-charcustomskillname4}|@{npc-minion-group-size}|@{npc-minionskillcustomskillname4}|@{npc-customskillname4}) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Custom Skill 4-->
                             <tr>
                                 <td><input type="text" name="attr_npc-customskillname5" /></td>
@@ -12848,7 +12848,7 @@
                                         <input type="text" name="attr_npc-dicecustomskillname5" />
                                     </div>
                                 </td>
-                                <td><button type='roll' name='roll_customskillname5' value='!eed characterID(@{character_id}) label(skill:@{npc-customskillname5}) @{npc-dicecustomskillname5} skill(@{npc-rankcustomskillname5}|@{npc-charcustomskillname5}|@{npc-minion-group-size}|@{npc-minionskillcustomskillname5}) @{dicePool} (gmdice)'></button></td>
+                                <td><button type='roll' name='roll_customskillname5' value='!eed characterID(@{character_id}) label(skill:@{npc-customskillname5}) @{npc-dicecustomskillname5} skill(@{npc-rankcustomskillname5}|@{npc-charcustomskillname5}|@{npc-minion-group-size}|@{npc-minionskillcustomskillname5}|@{npc-customskillname5}) @{dicePool} (gmdice)'></button></td>
                             </tr><!--Custom Skill 5-->
                             </tbody>
                         </table><!--Custom Skills Section-->

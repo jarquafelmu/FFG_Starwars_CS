@@ -155,6 +155,584 @@ eote.init = function () {
     eote.events();
 };
 
+eote.skillSuggestions = {
+    general: {
+        Astrogation: {
+            success: [
+                {
+                    text: "Better target for the destination, e.g.: place vessel directly into orbit around target planet.",
+                    required: 1
+                },
+                {text: "Reduce time spent calculating.", required: 1}
+            ],
+            advantage: [
+                {text: "Reduce travel time.", required: 1},
+                {text: "Identify convenient stopovers to resupply or conduct additional business.", required: 1}
+            ],
+            triumph: [
+                {text: "Complete calculations in minimum time.", required: 1},
+                {text: "Greatly reduce travel time.", required: 1},
+                {text: "Reveal highly valuable but previously unknown information.", required: 1}
+            ],
+            threat: [
+                {text: "Decrease accuracy of hyperspace jump.", required: 1},
+                {text: "Increase travel time.", required: 1},
+                {text: "Miss relevant details when analyzing hyperspace routes or galactic maps.", required: 1}
+            ],
+            despair: [
+                {text: "Greatly decrease accuracy of hyperspace jump.", required: 1},
+                {text: "Greatly increase travel time.", required: 1},
+                {
+                    text: "Miss large amounts of relevant details when analyzing hyperspace routes or galactic maps.",
+                    required: 1
+                },
+                {
+                    text: "Trigger something truly awful happening, such as jumping out of hyperspace in the path of an asteroid.",
+                    required: 1
+                }
+            ]
+        },
+        Athletics: {
+            success: [
+                {text: "Reduce time required.", required: 1},
+                {text: "Increase distance travelled.", required: 1}
+            ],
+            advantage: [
+                {text: "Generate bonus on other physical checks performed later or by allies that turn.", required: 1},
+                {
+                    text: "Spend 2 advantage to grant additional maneuver during turn to move or perform physical activity.",
+                    required: 2
+                }
+            ],
+            triumph: [
+                {text: "Perform the check with truly impressive results.", required: 1}
+            ],
+            threat: [
+                {text: "Small amounts cause strain.", required: 1},
+                {
+                    text: "Larger amounts may cause character to fall prone, or even suffer a wound from sprains and bruises.",
+                    required: 1
+                }
+            ],
+            despair: [
+                {
+                    text: "Inflict a Critical Injury, which the GM can choose to be thematic or roll randomly.",
+                    required: 1
+                }
+            ]
+        },
+        Charm: {
+            success: [
+                {
+                    text: "Gain an extra scene in which target is willing to support you for each additional success.",
+                    required: 1
+                }
+            ],
+            advantage: [
+                {text: "Affect unexpected subjects beyond the original target.", required: 1}
+            ],
+            triumph: [
+                {text: "Have target NPC become recurring character who remains predisposed to assist.", required: 1}
+            ],
+            threat: [
+                {text: "Reduce the number of people able to influence", required: 1},
+                {text: "Turn those affected negatively against character.", required: 1}
+            ],
+            despair: [
+                {text: "Turn NPC against character and make into a minor recurring adversary.", required: 1}
+            ]
+        },
+        Coercion: {
+            success: [
+                {text: "Spend 2 extra successes to inflict one strain on target. ", required: 2}
+            ],
+            advantage: [
+                {text: "Affect unexpected subjects beyond the original target.", required: 1}
+            ],
+            triumph: [
+                {text: "Shift allegiance of target.", required: 1}
+            ],
+            threat: [
+                {text: "Target has building resentment towards character.", required: 1}
+            ],
+            despair: [
+                {text: "Reveal something about goals and motivations to target.", required: 1}
+            ]
+        },
+        Computers: {
+            success: [
+                {text: "Reduce time required.", required: 1}
+            ],
+            advantage: [
+                {text: "Uncover additional information about the system.", required: 1}
+            ],
+            triumph: [
+                {
+                    text: "Obfuscate actions taken add a challenge die to any check to detect or identify the characters actions.",
+                    required: 1
+                }
+            ],
+            threat: [
+                {
+                    text: "The character does a poor job of concealing his presence in the system. Security systems are alerted, and add a boost die to the check of any NPC attempting to discover evidence of his actions.",
+                    required: 1
+                }
+            ],
+            despair: [
+                {
+                    text: "Leave behind trace information of your own system in the system being sliced. Add a boost die to the check of any NPC using the target system to slice the character's system.",
+                    required: 1
+                }
+            ]
+        },
+        Cool: {
+            success: [
+                {
+                    text: "If fear check: The character avoids any fear effects, except those triggered by threats",
+                    required: 1
+                }],
+            advantage: [
+                {text: "Gain an additional insight into the situation at hand.", required: 1},
+                {text: "If fear check: Gain a boost die on the character's first check.", required: 1},
+                {
+                    text: "If fear check: If spending multiple advantage, grant a boost die to an additional player's first check.",
+                    required: 2
+                }
+            ],
+            triumph: [
+                {text: "Heal 3 strain.", required: 1},
+                {
+                    text: "If fear check: Can be spent to cancel all previous penalties from fear checks, or",
+                    required: 1
+                },
+                {
+                    text: "If fear check: Spent to ensure the character need not make any additional fear checks during the encounter, no matter the source.",
+                    required: 1
+                }
+            ],
+            failure: [
+                {
+                    text: "If fear check: The character adds a setback die to each action he takes during the encounter.",
+                    required: 1
+                }
+            ],
+            threat: [
+                {text: "Miss a vital detail or event.", required: 1},
+                {
+                    text: "If fear check: The character suffers a number of strain equal to the number of Failures.",
+                    required: 1
+                },
+                {
+                    text: "If fear check: If the check generates three threat or more, the character can be staggered for his first turn, instead.",
+                    required: 3
+                }
+            ],
+            despair: [
+                {text: "The character is overwhelmed by the chaos and is stunned for one round.", required: 1},
+                {
+                    text: "If fear check: The character is incredibly frightened and increases the difficulty of all checks until the end of the encounter by one.",
+                    required: 1
+                }
+            ]
+        },
+        Coordination: {
+            success: [
+                {text: "Reduce time required.", required: 1},
+                {text: "Increase distance travelled by 25%, (maximum 100% increase).", required: 1}
+            ],
+            advantage: [
+                {text: "Spend 2 advantage to grant additional maneuver during turn.", required: 2}
+            ],
+            triumph: [
+                {text: "Perform the check with truly impressive results.", required: 1}
+            ],
+            threat: [
+                {text: "Lose free maneuver for one round.", required: 1}
+            ],
+            despair: [
+                {text: "Suffer a wound", required: 1},
+                {text: "Lose a vital piece of equipment.", required: 1}
+            ]
+        },
+        Deception: {
+            success: [
+                {text: "Extend duration of Deceit action.", required: 1}
+            ],
+            advantage: [
+                {text: "Increase the value of any goods or services gained through the action.", required: 1}
+            ],
+            triumph: [
+                {
+                    text: "Fool the target into believing the character is trustworthy - future Deceit checks against target do not require an opposed check.",
+                    required: 1
+                }
+            ],
+            threat: [
+                {text: "Give away a portion of the lie, making target suspicious.", required: 1}
+            ],
+            despair: [
+                {
+                    text: "Target realises he has been lied to and spreads word of his deceit to harm his reputation or uses the situation to his advantage.",
+                    required: 1
+                }
+            ]
+        },
+        Discipline: {
+            success: [
+                {text: "Downgrade difficulty of the dice pool for next action (max. 1).", required: 1},
+                {
+                    text: "If fear check: The character avoids any fear effects, except those triggered by threats",
+                    required: 1
+                }
+            ],
+            advantage: [
+                {text: "Gain an additional insight into the situation at hand.", required: 1},
+                {text: "If fear check: Gain a boost die on the character's first check.", required: 1},
+                {
+                    text: "If fear check: If spending multiple advantage, grant a boost die to an additional player's first check.",
+                    required: 2
+                }
+            ],
+            triumph: [
+                {
+                    text: "Add a boost die to any Discipline checks made by allies during the following round.",
+                    required: 1
+                },
+                {
+                    text: "If fear check: Can be spent to cancel all previous penalties from fear checks, or",
+                    required: 1
+                },
+                {
+                    text: "If fear check: Spent to ensure the character need not make any additional fear checks during the encounter, no matter the source.",
+                    required: 1
+                }
+            ],
+            failure: [
+                {
+                    text: "If fear check: The character adds a setback die to each action he takes during the encounter.",
+                    required: 1
+                }
+            ],
+            threat: [
+                {
+                    text: "Undermine the characters resolve, perhaps inflicting a penalty on further actions in distressing circumstances.",
+                    required: 1
+                },
+                {
+                    text: "If fear check: The character suffers a number of strain equal to the number of Failures.",
+                    required: 1
+                },
+                {
+                    text: "If fear check: If the check generates three threat or more, the character can be staggered for his first turn, instead.",
+                    required: 3
+                }
+            ],
+            despair: [
+                {
+                    text: "The character is overwhelmed entirely and is unable to perform more than one maneuver next round.",
+                    required: 1
+                },
+                {
+                    text: "If fear check: The character is incredibly frightened and increases the difficulty of all checks until the end of the encounter by one.",
+                    required: 1
+                }
+            ]
+        },
+        Leadership: {
+            success: [
+                {text: "Extend target's support for additional scenes.", required: 1},
+                {text: "Increase efficiency or effectiveness of target during ordered actions.", required: 1}
+            ],
+            advantage: [
+                {text: "Affect bystanders in addition to target.", required: 1}
+            ],
+            triumph: [
+                {
+                    text: "Have target NPC become recurring character who decides to faithfully follow the acting character.",
+                    required: 1
+                }
+            ],
+            threat: [
+                {
+                    text: "Decrease the efficiency of ordered actions, causing them to take longer or be done poorly.",
+                    required: 1
+                }
+            ],
+            despair: [
+                {
+                    text: "Undermine the character's authority, damaging the characters ability to command target or those who witnessed the attempt.",
+                    required: 1
+                },
+                {
+                    text: "With multiple despair the target may become a recurring thorn in the character's side,refusing future orders or turning others against the character.",
+                    required: 2
+                }
+            ]
+        },
+        Mechanics: {
+            success: [
+                {text: "Reduce time required by 10-20%", required: 1}
+            ],
+            advantage: [
+                {
+                    text: "Grant a boost die on checks when using repaired item, or even the Superior quality, for a session.",
+                    required: 1
+                }
+            ],
+            triumph: [
+                {text: "Give device additional single use function.", required: 1}
+            ],
+            threat: [
+                {
+                    text: "Particularly shoddy repairs or temporary measures, the GM may spend threat to cause the target object or system to malfunction shortly after check completed.",
+                    required: 1
+                }
+            ],
+            despair: [
+                {text: "Cause further harm to target object or system.", required: 1},
+                {text: "Cause other components of target to malfunction.", required: 1}
+            ]
+        },
+        Medicine: {
+            success: [
+                {text: "Target recovers one additional wound.", required: 1},
+                {text: "Reduce healing time by one hour.", required: 1}
+            ],
+            advantage: [
+                {text: "Eliminate one strain from target.", required: 1}
+            ],
+            triumph: [
+                {text: "Heal additional wounds while attempting to heal Critical Injury, or vice versa.", required: 1}
+            ],
+            threat: [
+                {text: "Inflict strain on the target due to shock of procedure.", required: 1},
+                {text: "Increase time procedure takes.", required: 1}
+            ],
+            despair: [
+                {text: "A truly terrible accident, perhaps inflicting further wounds on target.", required: 1}
+            ]
+        },
+        Negotiation: {
+            success: [
+                {text: "Increase acting character's profit by 5%.", required: 1},
+                {text: "Modify scope of agreement.", required: 1}
+            ],
+            advantage: [
+                {text: "Earn unrelated boons from target, concessions if failed or extra perks if passed.", required: 1}
+            ],
+            triumph: [
+                {text: "Have target NPC become regular client or specialist vendor.", required: 1}
+            ],
+
+            threat: [
+                {text: "Increase cost of goods purchased.", required: 1},
+                {text: "Decrease value of goods sold.", required: 1},
+                {text: "Shorten contracts negotiated.", required: 1}
+            ],
+            despair: [
+                {
+                    text: "Seriously sabotage goals during the interaction, perhaps receive counterfeit goods or payment, or agree to terms entirely beyond scope of negotiation.",
+                    required: 1
+                }
+            ]
+        },
+        Perception: {
+            success: [
+                {text: "Reveal additional details.", required: 1}
+            ],
+            advantage: [
+                {text: "Recall additional information associated with object noticed.", required: 1}
+            ],
+            triumph: [
+                {
+                    text: "Notice details that can be useful later to gain a boost die on future interactions with noticed object.",
+                    required: 1
+                }
+            ],
+            threat: [
+                {text: "Conceal a vital detail about situation or environment.", required: 1}
+            ],
+            despair: [
+                {text: "Obtain false information about surroundings or target.", required: 1}
+            ]
+        },
+        PilotingPlanetary: {
+            success: [
+                {text: "Gain insights into situation.", required: 1},
+                {text: "Deduce way to modify vehicle to make it more effective in future.", required: 1}
+            ],
+            advantage: [
+                {
+                    text: "Reveal vulnerability in opponent's piloting style or vehicle, giving benefit in later rounds.",
+                    required: 1
+                }
+            ],
+            triumph: [
+                {text: "Grant additional maneuver while continuing to pilot vehicle.", required: 1}
+            ],
+            threat: [
+                {
+                    text: "Spend two threat to give opponents a boost die on checks against character and vehicle due to momentary malfunction in system.",
+                    required: 2
+                }
+            ],
+            despair: [
+                {
+                    text: "Deal damage to vehicle as character strains systems throughout vehicle during check.",
+                    required: 1
+                }
+            ]
+        },
+        PilotingSpace: {
+            success: [
+                {text: "Gain insights into situation.", required: 1},
+                {text: "Deduce way to modify vehicle to make it more effective in future.", required: 1}
+            ],
+            advantage: [
+                {
+                    text: "Reveal vulnerability in opponent's piloting style or vehicle, giving benefit in later rounds.",
+                    required: 1
+                }
+            ],
+            triumph: [
+                {text: "Grant additional maneuver while continuing to pilot vehicle.", required: 1}
+            ],
+            threat: [
+                {
+                    text: "Spend two threat to give opponents a boost die on checks against character and vehicle due to momentary malfunction in system.",
+                    required: 2
+                }
+            ],
+            despair: [
+                {
+                    text: "Deal damage to vehicle as character strains systems throughout vehicle during check.",
+                    required: 1
+                }
+            ]
+        },
+        Resilience: {
+            success: [
+                {text: "Extend effects of the success to increase time between checks.", required: 1}
+            ],
+            advantage: [
+                {text: "Identify way to reduce difficulty of future checks against same threat.", required: 1}
+            ],
+            triumph: [
+                {text: "Recover 3 strain.", required: 1}
+            ],
+            threat: [
+                {text: "Overburden the character, inflicting penalties on subsequent checks.", required: 1}
+            ],
+            despair: [
+                {
+                    text: "Inflict a wound or minor Critical Injury on character, as they succumb to harsh conditions.",
+                    required: 1
+                }
+            ]
+        },
+        Skulduggery: {
+            success: [
+                {text: "Gain additional insights about nature of opposition.", required: 1}
+            ],
+            advantage: [
+                {text: "Identify additional potential target.", required: 1}
+            ],
+            triumph: [
+                {text: "Earn an unexpected boon.", required: 1}
+            ],
+            threat: [
+                {
+                    text: "Opportunity to catch character immediately after act, number of threats determine immediacy of discovery and ensuing danger.",
+                    required: 1
+                }
+            ],
+            despair: [
+                {text: "Leave behind evidence of larceny.", required: 1}
+            ]
+        },
+        Stealth: {
+            success: [
+                {text: "Assist allied character infiltrating at same time.", required: 1}
+            ],
+            advantage: [
+                {text: "Decrease time taken to perform action while hidden.", required: 1}
+            ],
+            triumph: [
+                {text: "Identify way to completely distract opponent for duration of scene.", required: 1}
+            ],
+            threat: [
+                {text: "Increase time taken to perform action while hidden by 20%.", required: 1}
+            ],
+            despair: [
+                {text: "Leave behind evidence of passing, concerning identity and possibly motive.", required: 1}
+            ]
+        },
+        Streetwise: {
+            success: [
+                {text: "Reduce time or funds required to obtain item, information or service.", required: 1}
+            ],
+            advantage: [
+                {text: "Reveal additional rumours or alternative sources.", required: 1}
+            ],
+            triumph: [
+                {text: "Gain semi-permanent contact on street.", required: 1}
+            ],
+            threat: [
+                {text: "Seed gathered information with minor falsehoods.", required: 1}
+            ],
+            despair: [
+                {text: "Character lets slip details about self or information sought.", required: 1}
+            ]
+        },
+        Survival: {
+            success: [
+                {text: "Assist other character in surviving.", required: 1},
+                {text: "Stockpile goods to increase time between checks.", required: 1}
+            ],
+            advantage: [
+                {text: "Gain insight into environment to make future checks simpler.", required: 1},
+                {
+                    text: "When tracking, learn significant detail about target, such as number, species or how recently tracks were made.",
+                    required: 1
+                }
+            ],
+            triumph: [
+                {
+                    text: "When handling domesticated animal, predispose animal towards character earning loyal companion.",
+                    required: 1
+                },
+                {text: "When tracking, learn vital clue about target.", required: 1}
+            ],
+            threat: [
+                {text: "Spend vital resources (food, fuel, etc.) during check.", required: 1}
+            ],
+            despair: [
+                {text: "Inflict wounds, Critical Injuries or large amounts of strain on character.", required: 1}
+            ]
+        },
+        Vigilance: {
+            success: [
+                {text: "Character is particularly well prepared.", required: 1}
+            ],
+            advantage: [
+                {text: "Notice key environmental factor.", required: 1}
+            ],
+            triumph: [
+                {text: "Gain extra maneuver during first round of combat.", required: 1}
+            ],
+            threat: [
+                {text: "Miss key piece of information about situation or environment.", required: 1}
+            ],
+            despair: [
+                {
+                    text: "The character is unable to perform more than one maneuver during first round of combat.",
+                    required: 1
+                }
+            ]
+        }
+    }
+};
+
 eote.defaults = {
     globalVars: {
         diceLogChat: true,
@@ -275,7 +853,7 @@ eote.defaults = {
         destiny: /destiny (useDark|useLight|registerPlayer|sendUpdate|doRoll|clearPool)/
     },
     destinyListeners: []
-};
+};;
 
 eote.createGMDicePool = function () {
 
@@ -422,7 +1000,9 @@ eote.defaults.dice = function () {
         characterID: '',
         playerName: '',
         playerID: '',
-        label: ''
+        label: '',
+        spendingSuggestions: {},
+        skillName: ''
     };
     this.totals = {
         success: 0,
@@ -476,6 +1056,7 @@ eote.defaults.dice = function () {
 };
 
 eote.process = {};
+eote.process.skillSpending = {};
 
 eote.process.logger = function (functionName, cmd) {
     if (eote.defaults.globalVars.debugScript) {
@@ -576,6 +1157,7 @@ eote.process.setup = function (cmd, playerName, playerID) {
     var skillMatch = cmd.match(eote.defaults.regex.skill);
 
     if (skillMatch) {
+        /*TODO skills are processed here for the dice roller*/
         diceObj = eote.process.skill(skillMatch, diceObj);
     }
     var opposedMatch = cmd.match(eote.defaults.regex.opposed);
@@ -600,10 +1182,11 @@ eote.process.setup = function (cmd, playerName, playerID) {
     }
     /* Roll dice and update success / fail 
      * ------------------------------------------------------------- */
+    /*TODO this is where dice are rolled*/
     diceObj = eote.process.rollDice(diceObj);
 
     /* Custom rolls
-     * Description: Custom dice components have thier own message, results and
+     * Description: Custom dice components have their own message, results and
      * often will return false to not allow proceeding scripts to fire
      * --------------------------------------------------------------*/
     var resetdiceMatch = cmd.match(eote.defaults.regex.resetdice);
@@ -642,11 +1225,91 @@ eote.process.setup = function (cmd, playerName, playerID) {
     /* Display dice output in chat window 
      * ------------------------------------------------------------- */
     eote.process.diceOutput(diceObj, playerName, playerID);
+
+    // process and display skill suggestions
+    if (diceObj.vars.skillName != null) {
+        diceObj = eote.process.skillSpending.processSuggestions(diceObj);
+        eote.process.skillSpending.display(diceObj);
+    }
 };
 
 /* DICE PROCESS FUNCTION
  * 
  * ---------------------------------------------------------------- */
+
+eote.process.skillSpending.processSuggestions = function(diceObj) {
+    diceObj.vars.spendingSuggestions = {
+        success: "",
+        advantage: "",
+        triumph: "",
+        failure: "",
+        threat: "",
+        despair: "",
+        isSuggestions: false
+    };
+
+    var skillSpending = eote.process.skillSpending.getSkillSuggestion;
+    var spendingSuggestions = diceObj.vars.spendingSuggestions;
+    Object.keys(diceObj.totals).forEach(function(key) {
+        var value = diceObj.totals[key];
+        if (value > 0) {
+            diceObj = skillSpending(diceObj, key, value, 0);
+        }
+    });
+    return diceObj;
+};
+
+eote.process.skillSpending.getSkillSuggestion = function(diceObj, key, value, skillType) {
+    var skillName = diceObj.vars.skillName;
+    switch (skillType) {
+        case 0:
+            var generalSkills = eote.skillSuggestions.general;
+            if (generalSkills.hasOwnProperty(skillName)) {
+                var skill = generalSkills[skillName];
+                if (skill.hasOwnProperty(key)) {
+                    var skillJSON = skill[key];
+                    for (var i = 0; i < skillJSON.length; i++) {
+                        if (skillJSON[i].required <= value) {
+                            diceObj.vars.spendingSuggestions[key] += "<li>" + skillJSON[i].text + "</li>";
+                            diceObj.vars.spendingSuggestions.isSuggestions = true;
+                        }
+                    }
+                }
+            }
+            break;
+        default:
+            // this should never be entered
+            sendChat("System", "No skill group associated with skill: " + skillName);
+    }
+    return diceObj;
+};
+
+eote.process.skillSpending.display = function (diceObj) {
+    var suggestions = diceObj.vars.spendingSuggestions;
+    var displayResults = eote.process.skillSpending.displayResult;
+
+    // if there are suggestions to be suggested, whisper them to the player and GM where needed
+    if (diceObj.vars.spendingSuggestions.isSuggestions) {
+        // display results shown to character owners and GM
+        Object.keys(diceObj.vars.spendingSuggestions).forEach(function (key) {
+            property = suggestions[key];
+            if (property != "" && key != "isSuggestions") {
+                if (key == "success" || key == "advantage" || key == "triumph") {
+                    displayResults("gm", key, property);
+                    displayResults("\"" + diceObj.vars.characterName + "\"", key, property);
+                } else if (key == "failure" || key == "threat" || key == "despair") {
+                    displayResults("gm", key, property);
+                }
+            }
+        });
+    }
+};
+
+/* Whispers the recipient a suggestion for how to spend a skill's result*/
+eote.process.skillSpending.displayResult = function (recipient, key, property) {
+    var results = "/w " + recipient + " Suggestions for spending " + key + "<br><ul>" + property + "</ul>";
+    sendChat("System", results);
+};
 
 eote.process.log = function (cmd) {
 
@@ -660,19 +1323,19 @@ eote.process.log = function (cmd) {
     switch (cmd[1]) {
         case "on": //if 'on' outputs dice to chat window
             eote.defaults.globalVars.diceLogChat = true;
-            sendChat("Dice Sytem", 'Output rolled dice to chat window "On"');
+            sendChat("Dice System", 'Output rolled dice to chat window "On"');
             break;
         case "off": //if 'off' outputs only results to chat window
             eote.defaults.globalVars.diceLogChat = false;
-            sendChat("Dice Sytem", 'Output rolled dice to chat window "Off"');
+            sendChat("Dice System", 'Output rolled dice to chat window "Off"');
             break;
         case "multi": //if 'multi' multiple sets dice per line
             eote.defaults.globalVars.diceLogRolledOnOneLine = false;
-            sendChat("Dice Sytem", 'Mulitple line output "Off". NOTE: This setting can cause issues with the Roll Templates. Recommended setting is !eed log single');
+            sendChat("Dice System", 'Multiple line output "Off". NOTE: This setting can cause issues with the Roll Templates. Recommended setting is !eed log single');
             break;
         case "single": //if 'single' single set of dice per line
             eote.defaults.globalVars.diceLogRolledOnOneLine = true;
-            sendChat("Dice Sytem", 'Mulitple line output "On"');
+            sendChat("Dice System", 'Multiple line output "On"');
             break;
     }
 };
@@ -681,11 +1344,11 @@ eote.process.debug = function (cmd) {
     switch (cmd[1]) {
         case "on":
             eote.defaults.globalVars.debugScript = true;
-            sendChat("Dice Sytem", 'Debug Script "On"');
+            sendChat("Dice System", 'Debug Script "On"');
             break;
         case "off":
             eote.defaults.globalVars.debugScript = false;
-            sendChat("Dice Sytem", 'Debug Script "Off"');
+            sendChat("Dice System", 'Debug Script "Off"');
             break;
     }
 };
@@ -702,23 +1365,23 @@ eote.process.graphics = function (cmd) {
     switch (cmd[1]) {
         case "on":
             eote.defaults.globalVars.diceGraphicsChat = true;
-            sendChat("Dice Sytem", 'Chat graphics "On"');
+            sendChat("Dice System", 'Chat graphics "On"');
             break;
         case "off":
             eote.defaults.globalVars.diceGraphicsChat = false;
-            sendChat("Dice Sytem", 'Chat graphics "Off"');
+            sendChat("Dice System", 'Chat graphics "Off"');
             break;
         case "s":
             eote.defaults.globalVars.diceGraphicsChatSize = eote.defaults.graphics.SIZE.SMALL;
-            sendChat("Dice Sytem", 'Chat graphics size "Small"');
+            sendChat("Dice System", 'Chat graphics size "Small"');
             break;
         case "m":
             eote.defaults.globalVars.diceGraphicsChatSize = eote.defaults.graphics.SIZE.MEDIUM;
-            sendChat("Dice Sytem", 'Chat graphics size "Medium"');
+            sendChat("Dice System", 'Chat graphics size "Medium"');
             break;
         case "l":
             eote.defaults.globalVars.diceGraphicsChatSize = eote.defaults.graphics.SIZE.LARGE;
-            sendChat("Dice Sytem", 'Chat graphics size "Large"');
+            sendChat("Dice System", 'Chat graphics size "Large"');
             break;
     }
 };
@@ -775,11 +1438,12 @@ eote.process.rollPlayer = function (cmd, diceObj) {
         return false;
     }
     var encumMatch = cmd[1].match(match.encum);
-
+    var attr_1 = null;
+    var attr_2 = null;
     if (encumMatch) {
         //encumbrance
-        var attr_1 = getAttrByName(diceObj.vars.characterID, 'encumbrance', 'max');
-        var attr_2 = getAttrByName(diceObj.vars.characterID, 'encumbrance');
+        attr_1 = getAttrByName(diceObj.vars.characterID, 'encumbrance', 'max');
+        attr_2 = getAttrByName(diceObj.vars.characterID, 'encumbrance');
         var cmdEncum = ['encum(' + attr_1 + '|' + attr_2 + ')']; //["encum(3|5)"]
 
         diceObj = eote.process.encum(cmdEncum, diceObj);
@@ -790,19 +1454,20 @@ eote.process.rollPlayer = function (cmd, diceObj) {
     if (skillMatch) {
 
         var attrArray = skillMatch[1].split(',');
-        var attr_1 = getAttrByName(diceObj.vars.characterID, attrArray[0]);
-        var attr_2 = getAttrByName(diceObj.vars.characterID, attrArray[1]);
+        attr_1 = getAttrByName(diceObj.vars.characterID, attrArray[0]);
+        attr_2 = getAttrByName(diceObj.vars.characterID, attrArray[1]);
 
         if (eote.defaults.globalVars.debugScript) {
             sendChat("Alert", "attr_1 = " + attr_1);
             sendChat("Alert", "attr_2 = " + attr_2);
         }
 
+        var cmdSkill;
         if(!isNaN((parseFloat(attr_1)) && isFinite(attr_1))) { // is numeric
-            var cmdSkill = ['skill(' + attr_1 + '|' + attr_2 + ')']; //['skill(0|2)']
+            cmdSkill = ['skill(' + attr_1 + '|' + attr_2 + ')']; //['skill(0|2)']
         } else {
             var attr_3 =  getAttrByName(diceObj.vars.characterID, attr_1.substr(2,attr_1.length-3));
-            var cmdSkill = ['skill(' + attr_3 + '|' + attr_2 + ')']; //['skill(0|2)']
+            cmdSkill = ['skill(' + attr_3 + '|' + attr_2 + ')']; //['skill(0|2)']
         }
 
         diceObj = eote.process.skill(cmdSkill, diceObj);
@@ -839,13 +1504,15 @@ eote.process.destiny = function (cmd, diceObj) {
     var lightSide = parseInt(currentLightSidePoints[0].get("current"));
 
     //noinspection FallThroughInSwitchStatementJS
+    var displayPool = '';
+    //noinspection FallThroughInSwitchStatementJS
     switch (cmd[1]) {
         case "useDark":
             if (darkSide > 0) {
                 darkSide = darkSide - 1;
                 lightSide = lightSide + 1;
 
-                var displayPool = '/direct &{template:base} {{title=' + 'The GM flips a Dark Side Destiny Point' + '}}';
+                displayPool = '/direct &{template:base} {{title=' + 'The GM flips a Dark Side Destiny Point' + '}}';
                 displayPool = displayPool + '{{Dark Side points remaining=' + darkSide + '}}';
                 displayPool = displayPool + '{{New Light Side total=' + lightSide + '}}';
 
@@ -861,7 +1528,7 @@ eote.process.destiny = function (cmd, diceObj) {
                 lightSide = lightSide - 1;
                 darkSide = darkSide + 1;
 
-                var displayPool = '/direct &{template:base} {{title=' + diceObj.vars.characterName + ' flips a Light Side Destiny Point' + '}}';
+                displayPool = '/direct &{template:base} {{title=' + diceObj.vars.characterName + ' flips a Light Side Destiny Point' + '}}';
                 displayPool = displayPool + '{{New Dark Side total=' + darkSide + '}}';
                 displayPool = displayPool + '{{Light Side points remaining=' + lightSide + '}}';
 
@@ -875,6 +1542,7 @@ eote.process.destiny = function (cmd, diceObj) {
         case "doRoll":
             sendChat(diceObj.vars.characterName, '/direct Rolling a Destiny Point.');
             doRoll = true;
+            // falls through on purpose (I think) to sync automatically when destiny point is rolled
         case "registerPlayer":
             if (!doRoll) {
                 sendChat("Dice System", "/w " + diceObj.vars.characterName + '&{template:base} {{title=Syncing your Destiny Pool to the GM\'s}}')
@@ -1855,11 +2523,20 @@ eote.process.skill = function (cmd, diceObj) {
     eote.process.logger("eote.process.skill", cmd);
 
     _.each(cmd, function (skill) {
-
-        var diceArray = (result = skill.match(/\((.*?)\|(.*?)\|(.*?)\|(.*?)\)/)) != null ? result : skill.match(/\((.*?)\|(.*?)\)/);
+        var matchers = {
+            matchNPCGroupWSkillName: /\((.*?)\|(.*?)\|(.*?)\|(.*?)\|(.*?)\)/,
+            matchNPCGroupWOSkillName: /\((.*?)\|(.*?)\|(.*?)\|(.*?)\)/,
+            matchRegSkillWSkillName: /\((.*?)\|(.*?)\|(.*?)\)/,
+            matchRegSkillWOSkillName: /\((.*?)\|(.*?)\)/
+        };
+        var diceArray = null;
+        Object.keys(matchers).some(function(key) {
+           if ((diceArray = skill.match(matchers[key])) != null) {
+               return true;
+           }
+        });
 
         if (diceArray && diceArray[1] && diceArray[2]) {
-
             var num1 = eote.process.math(diceArray[1]);
             if (diceArray[3] && diceArray[4] && diceArray[4] === "1") {
                 num1 += (eote.process.math(diceArray[3]) - 1);
@@ -1873,9 +2550,25 @@ eote.process.skill = function (cmd, diceObj) {
             diceObj.count.ability = abilityDice + totalAbil;
             diceObj.count.proficiency = proficiencyDice + totalProf;
 
+            // check for skill name
+            if (diceArray[5] || diceArray[3] && !diceArray[4]) {
+                var name = (diceArray[5] ? diceArray[5] : diceArray[3]);
+
+                /*  remove all non-letter characters to bring the name in line with the JSON properties
+                 *  in order to have the closest chance in getting a match.
+                 *  still does not guarantee a match.
+                 */
+                name = name.replace(/[^A-Za-z]/g, "");
+
+                diceObj.vars.skillName = name;
+            } else {
+                diceObj.vars.skillName = null;
+            }
+
             eote.process.logger("eote.process.skill.abilityTotal", diceObj.count.ability + "g");
             eote.process.logger("eote.process.skill.proficiencyTotal", diceObj.count.proficiency + "y");
         }
+
     });
     return diceObj;
 };
@@ -2348,7 +3041,6 @@ eote.process.rollDice = function (diceObj) {
     }
     //finds the sum of each dice attribute
     diceObj.totals = eote.process.totalDiceValues(diceObj.totals);
-
     return diceObj;
 };
 
@@ -2367,7 +3059,6 @@ eote.process.diceOutput = function (diceObj, playerName, playerID) {
     var diceTextResults = "";
 
     diceTextResults = "[";
-
     if (diceObj.totals.success > 0) {
         diceTextResults = diceTextResults + " Success:" + diceObj.totals.success;
         for (i = 1; i <= diceObj.totals.success; i++) {
@@ -2426,6 +3117,8 @@ eote.process.diceOutput = function (diceObj, playerName, playerID) {
     } else {
         characterPlayer = playerName;
     }
+    /*TODO change /direct to /w "@{characterName}" or /w gm to change to whisper rolls*/
+    /*Dice roll images work just fine when whispered*/
     if (eote.defaults.globalVars.diceTestEnabled === true) {
         chatGlobal = "/direct <br>6b 8g 12y 6blk 8p 12r 12w <br>";
     } else if (diceObj.vars.label) {
@@ -2492,8 +3185,8 @@ eote.process.diceOutput = function (diceObj, playerName, playerID) {
             }
         }
     }
+    /*TODO where things are sent to the game*/
     if (eote.defaults.globalVars.diceGraphicsChat === true) {
-
         chatGlobal = chatGlobal + '{{results=' + diceGraphicsResults + '}}';
         sendChat(characterPlayer, chatGlobal);
     } else {
