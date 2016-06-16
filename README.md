@@ -1,6 +1,17 @@
 # Roll20 FFG Star Wars Character Sheet
 
 ## Change log
+* 6.1.0
+  * Debut of the new suggestions feature. Upon rolling a general skill, or custom skill whose name matches a general skill name, the system will now prompt you for ways to spend the results of your roll.
+    * Beneficial results like success, advantage and triumph suggestions will be whispered to both the GM and any players controlling the rolling character.
+    * Harmful results like failure (if applicable), threat and despair suggestions will only be whispered to the GM to help cut down on player meta gaming.
+  * Added new species and specializations
+  * Collapsing sections now respect last state.
+  * Fixed bugs in NPC force skills
+  * Fixed armor section in stat block for both starships and planetary vehicles
+  * Added the skills Survival and Athletics to the Riding Beasts skill list
+  * Fixed the version number for the js and css files
+  * Fixed some HTML bugs
 * 5.7.2
   * Changed to use the Semantic versioning way of doing the versioning labels.
     * For more information on what this means please visit: http://semver.org/
@@ -53,13 +64,13 @@
   * Dice pool and destiny section can also be collapsed on the Character, NPC and GM pages.
 * 5.0.2.0
   * NPC sections headers are now collapsible when there is more than one section header on a page.
-* 5.0.0.1
-  * Fixed npc sheet's collapse sections.
-  * Added expense field to group resources.
 * 5.0.1.0
   * All section headers on the -DiceRoller sheet are now collapsible by clicking on their name.
   * Force powers should be working and pulling from the right sources.
   * Expanded the companion skills to a full skill section.
+* 5.0.0.1
+  * Fixed npc sheet's collapse sections.
+  * Added expense field to group resources.
 * 5.0.0.0
   * New NPC sheet for gm's to use in order to make creating npcs easier.
   * Fixed companion initiative.
