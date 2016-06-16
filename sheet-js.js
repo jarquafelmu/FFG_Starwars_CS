@@ -1,5 +1,5 @@
 /*
- Current Version: 5.0.0.0
+ Current Version: 6.1.0
  Last updated: 05.15.2016
  Character Sheet and Script Maintained by: Samuel T.
  Older Verions: https://github.com/dayst/StarWarsEdgeOfTheEmpire_Dice
@@ -1225,6 +1225,8 @@ eote.process.setup = function (cmd, playerName, playerID) {
     /* Display dice output in chat window 
      * ------------------------------------------------------------- */
     eote.process.diceOutput(diceObj, playerName, playerID);
+
+    //sendChat("debug", "<ul style=\"list-style-image: url('http://imgsrv.roll20.net/?src=galacticcampaigns.com/images/EotE/Symbols/A.png');\"><li>: testing</li></ul>");
 
     // process and display skill suggestions
     if (diceObj.vars.skillName != null) {
