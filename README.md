@@ -1,6 +1,8 @@
 # Roll20 FFG Star Wars Character Sheet
 
 ## Change log
+* 6.2.0
+  * Refined the skill suggestions output more.
 * 6.1.0
   * Debut of the new suggestions feature. Upon rolling a general skill, or custom skill whose name matches a general skill name, the system will now prompt you for ways to spend the results of your roll.
     * Beneficial results like success, advantage and triumph suggestions will be whispered to both the GM and any players controlling the rolling character.

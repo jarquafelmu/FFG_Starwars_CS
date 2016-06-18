@@ -10,7 +10,7 @@
             <tr>
                 <td><label>Version</label></td>
                 <td>
-                    6.1.0
+                    6.2.0
                 </td>
                 <td style="width: 28%;"><label>For more information on this version visit:</label></td>
                 <td><input disabled value="https://github.com/jarquafelmu/FFG_Starwars_CS" type="text"/></td>
@@ -14612,10 +14612,31 @@
         <tr><td colspan="2"><span class="tcat">Results</span></td></tr>
         <tr><td colspan="2">{{results}}</td></tr>
         {{/results}}
+        {{#is_suggestions}}
+        <tr><td colspan="2"><span class="tcat">Spending Suggestions</span></td></tr>
+        {{/is_suggestions}}
+        {{#success}}
+        <tr><td><span class="sheet-tcat">Success</span></td><td>{{success}}</td></tr>
+        {{/success}}
+        {{#advantage}}
+        <tr><td><span class="sheet-tcat">Advantage</span></td><td>{{advantage}}</td></tr>
+        {{/advantage}}
+        {{#triumph}}
+        <tr><td><span class="sheet-tcat">Triumph</span></td><td>{{triumph}}</td></tr>
+        {{/triumph}}
+        {{#failure}}
+        <tr><td><span class="sheet-tcat">Failure</span></td><td>{{failure}}</td></tr>
+        {{/failure}}
+        {{#threat}}
+        <tr><td><span class="sheet-tcat">Threat</span></td><td>{{threat}}</td></tr>
+        {{/threat}}
+        {{#despair}}
+        <tr><td><span class="sheet-tcat">despair</span></td><td>{{despair}}</td></tr>
+        {{/despair}}
     </table>
 </rolltemplate><!-- Roll Template-Base -->
 
-<!--<rolltemplate class="sheet-rolltemplate-suggestions">
+<rolltemplate class="sheet-rolltemplate-suggestion">
     <table>
         <tr><th colspan="2">{{title}} {{#subtitle}}<br /><span class="subheader">{{subtitle}}</span>{{/subtitle}}</th></tr>
         {{#flavor}}
@@ -14627,8 +14648,52 @@
         {{#header}}
         <tr><td class="tcat-header"><span>{{header}}</span></td><td class="tcat-header"><span>{{item}}</span></td></tr>
         {{/header}}
-        {{#allprops() title flavor wide roll results subtitle header item prewide wide2 wide3 wide4 wide5}}
+        {{#allprops() title flavor roll results subtitle header item is_suggestions success advantage triumph failure threat despair}}
         <tr><td><span class="sheet-tcat">{{key}}</span></td><td>{{value}}</td></tr>
-        {{/allprops() title flavor wide roll results subtitle header item prewide wide2 wide3 wide4 wide5}
+        {{/allprops() title flavor roll results subtitle header item is_suggestions success advantage triumph failure threat despair}}
+        {{#wide}}
+        <tr><td colspan="2">{{wide}}</td></tr>
+        {{/wide}}
+        {{#wide2}}
+        <tr><td colspan="2">{{wide2}}</td></tr>
+        {{/wide2}}
+        {{#wide3}}
+        <tr><td colspan="2">{{wide3}}</td></tr>
+        {{/wide3}}
+        {{#wide4}}
+        <tr><td colspan="2">{{wide4}}</td></tr>
+        {{/wide4}}
+        {{#wide5}}
+        <tr><td colspan="2">{{wide5}}</td></tr>
+        {{/wide5}}
+        {{#roll}}
+        <tr><td colspan="2"><span class="tcat">Dice Roll</span></td></tr>
+        <tr><td colspan="2">{{roll}}</td></tr>
+        {{/roll}}
+        {{#results}}
+        <tr><td colspan="2"><span class="tcat">Results</span></td></tr>
+        <tr><td colspan="2">{{results}}</td></tr>
+        {{/results}}
+        {{#is_suggestions}}
+        <tr><td colspan="2"><span class="tcat">Spending Suggestions</span></td></tr>
+        {{/is_suggestions}}
+        {{#success}}
+        <tr><td><span class="sheet-tcat">Success</span></td><td>{{success}}</td></tr>
+        {{/success}}
+        {{#advantage}}
+        <tr><td><span class="sheet-tcat">Advantage</span></td><td>{{advantage}}</td></tr>
+        {{/advantage}}
+        {{#triumph}}
+        <tr><td><span class="sheet-tcat">Triumph</span></td><td>{{triumph}}</td></tr>
+        {{/triumph}}
+        {{#failure}}
+        <tr><td><span class="sheet-tcat">Failure</span></td><td>{{failure}}</td></tr>
+        {{/failure}}
+        {{#threat}}
+        <tr><td><span class="sheet-tcat">Threat</span></td><td>{{threat}}</td></tr>
+        {{/threat}}
+        {{#despair}}
+        <tr><td><span class="sheet-tcat">despair</span></td><td>{{despair}}</td></tr>
+        {{/despair}}
     </table>
-</rolltemplate>--><!-- Roll Template-Suggestion -->
+</rolltemplate><!-- Roll Template-Suggestions -->

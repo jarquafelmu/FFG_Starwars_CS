@@ -1,6 +1,6 @@
 /*
 Version Info:
-Version 6.1.0
+Version 6.2.0
 */
 .sheet-clear {
     clear: both
@@ -605,7 +605,7 @@ input.sheet-tab-gm-adversaries:checked ~ div.sheet-tab-gm-adversaries /* Current
 
 /* Roll Template Formatting */
 
-.sheet-rolltemplate-base table {
+.sheet-rolltemplate-base table, .sheet-rolltemplate-suggestion table {
     width: 100%;
     border: 1px solid;
     color: black;
@@ -613,7 +613,7 @@ input.sheet-tab-gm-adversaries:checked ~ div.sheet-tab-gm-adversaries /* Current
     font-family: "Helvetica Neue", Helvetica, sans-serif;
 }
 
-.sheet-rolltemplate-base th {
+.sheet-rolltemplate-base th, .sheet-rolltemplate-suggestion th {
     border-radius: 3px;
     /* background: url(http://i.imgur.com/H8YkiDQ.jpg); */
     /* Starfield */
@@ -629,12 +629,12 @@ input.sheet-tab-gm-adversaries:checked ~ div.sheet-tab-gm-adversaries /* Current
     font-size: 1.2em;
 }
 
-.sheet-rolltemplate-base .sheet-subheader {
+.sheet-rolltemplate-base .sheet-subheader, .sheet-rolltemplate-suggestion .sheet-subheader {
     font-size: 0.8em;
     padding: 2px;
 }
 
-.sheet-rolltemplate-base .sheet-tcat-header {
+.sheet-rolltemplate-base .sheet-tcat-header, .sheet-rolltemplate-suggestion .sheet-tcat-header {
     /* background: url(http://i.imgur.com/H8YkiDQ.jpg); */
     /* Starfield */
     background-image: -webkit-linear-gradient(top, #485a6d, #2c3947);
@@ -649,26 +649,26 @@ input.sheet-tab-gm-adversaries:checked ~ div.sheet-tab-gm-adversaries /* Current
     font-size: 0.8em;
 }
 
-.sheet-rolltemplate-base td {
+.sheet-rolltemplate-base td, .sheet-rolltemplate-suggestion td {
     padding: 2px;
 }
 
-.sheet-rolltemplate-base .sheet-tcat {
+.sheet-rolltemplate-base .sheet-tcat, .sheet-rolltemplate-suggestion .sheet-tcat {
     font-weight: bold;
     padding: 2px;
 }
 
-.sheet-rolltemplate-base .sheet-flavor {
+.sheet-rolltemplate-base .sheet-flavor, .sheet-rolltemplate-suggestion .sheet-flavor {
     font-style: italic;
     padding: 2px;
 }
 
-.sheet-rolltemplate-base tr:nth-child(odd) {
+.sheet-rolltemplate-base tr:nth-child(odd), .sheet-rolltemplate-suggestion tr:nth-child(odd) {
     background-color: rgba(217, 217, 214, 1);
     padding: 2px;
 }
 
-.sheet-rolltemplate-base tr:nth-child(even) {
+.sheet-rolltemplate-base tr:nth-child(even), .sheet-rolltemplate-suggestion tr:nth-child(even) {
     background-color: rgba(233, 233, 233, 1);
     padding: 2px;
 }
@@ -2004,7 +2004,7 @@ input.sheet-force-toggle-small:checked ~ div.sheet-force-toggle-small,
 
 input.sheet-toggle.sheet-initiative-toggle-small:checked ~ div.sheet-initiative-toggle-small,
 
-/* Repeating Section Toggles */
+    /* Repeating Section Toggles */
 input.sheet-assignment-toggle:checked ~ div.sheet-assignment,
 input.sheet-mission-toggle:checked ~ div.sheet-mission,
 input.sheet-geninfo-toggle:checked ~ div.sheet-geninfo,
@@ -2014,7 +2014,7 @@ input.sheet-details-toggle:checked ~ div.sheet-details,
 input.sheet-list-toggle:checked ~ div.sheet-list,
 input.sheet-weapon-toggle:checked ~ div.sheet-weapon,
 
-/* footer */
+    /* footer */
 input.sheet-footer-toggle:checked ~ div.sheet-footer {
     display: block;
 }
@@ -2091,7 +2091,7 @@ input.sheet-talents-toggle-small ~ div.sheet-talents-toggle-small,
 input.sheet-equipment-toggle-small ~ div.sheet-equipment-toggle-small,
 input.sheet-force-toggle-small ~ div.sheet-force-toggle-small,
 
-/* Repeating Section Toggles */
+    /* Repeating Section Toggles */
 input.sheet-assignment-toggle ~ div.sheet-assignment,
 input.sheet-mission-toggle ~ div.sheet-mission,
 input.sheet-geninfo-toggle ~ div.sheet-geninfo,
@@ -2101,7 +2101,7 @@ input.sheet-details-toggle ~ div.sheet-details,
 input.sheet-list-toggle ~ div.sheet-list,
 input.sheet-weapon-toggle ~ div.sheet-weapon,
 
-/* footer */
+    /* footer */
 input.sheet-footer-toggle ~ div.sheet-footer {
     display: none;
 }

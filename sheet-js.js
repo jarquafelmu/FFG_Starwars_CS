@@ -1,6 +1,6 @@
 /*
- Current Version: 6.1.0
- Last updated: 05.15.2016
+ Current Version: 6.2.0
+ Last updated: 06.17.2016
  Character Sheet and Script Maintained by: Samuel T.
  Older Verions: https://github.com/dayst/StarWarsEdgeOfTheEmpire_Dice
 
@@ -30,7 +30,7 @@
  Roll Templates integrated with all Rolls
  Overencumbrance roll notification
  Work done by Samuel T.
-
+ Versions 4.0.10.0 - Current
 
  API Chat Commands
  Settings:
@@ -153,6 +153,8 @@ eote.init = function () {
     eote.setCharacterDefaults();
     eote.createGMDicePool();
     eote.events();
+    convertTokensToTags();
+    log("Finished converting tokens to tags");
 };
 
 eote.skillSuggestions = {
@@ -200,7 +202,7 @@ eote.skillSuggestions = {
             advantage: [
                 {text: "Generate bonus on other physical checks performed later or by allies that turn.", required: 1},
                 {
-                    text: "Spend 2 advantage to grant additional maneuver during turn to move or perform physical activity.",
+                    text: "Spend $ADVANTAGE$$ADVANTAGE$ to grant additional maneuver during turn to move or perform physical activity.",
                     required: 2
                 }
             ],
@@ -572,7 +574,7 @@ eote.skillSuggestions = {
             ],
             threat: [
                 {
-                    text: "Spend two threat to give opponents a boost die on checks against character and vehicle due to momentary malfunction in system.",
+                    text: "Spend $THREAT$$THREAT$ to give opponents a boost die on checks against character and vehicle due to momentary malfunction in system.",
                     required: 2
                 }
             ],
@@ -599,7 +601,7 @@ eote.skillSuggestions = {
             ],
             threat: [
                 {
-                    text: "Spend two threat to give opponents a boost die on checks against character and vehicle due to momentary malfunction in system.",
+                    text: "Spend $THREAT$$THREAT$ to give opponents a boost die on checks against character and vehicle due to momentary malfunction in system.",
                     required: 2
                 }
             ],
@@ -827,7 +829,8 @@ eote.defaults = {
             DESPAIR: "http://galacticcampaigns.com/images/EotE/Symbols/Despair.png",
             L: "http://galacticcampaigns.com/images/EotE/Symbols/L.png",
             D: "http://galacticcampaigns.com/images/EotE/Symbols/D.png"
-        }
+        },
+        SymbolicReplacement: {}
     },
     regex: {
         cmd: /!eed/,
@@ -853,7 +856,14 @@ eote.defaults = {
         destiny: /destiny (useDark|useLight|registerPlayer|sendUpdate|doRoll|clearPool)/
     },
     destinyListeners: []
-};;
+};
+
+eote.defaults.graphics.SymbolicReplacement.success = {matcher:/\$SUCCESS\$/g, replacer:"<img src=\"" + eote.defaults.graphics.SYMBOLS.S + "\" title=\"success\" height=\"" + eote.defaults.graphics.SIZE.SMALL + "\" width=\"" + eote.defaults.graphics.SIZE.SMALL + "\"/>"};
+eote.defaults.graphics.SymbolicReplacement.advantage = {matcher:/\$ADVANTAGE\$/g, replacer:"<img src=\"" + eote.defaults.graphics.SYMBOLS.A + "\" title=\"advantage\" height=\"" + eote.defaults.graphics.SIZE.SMALL + "\" width=\"" + eote.defaults.graphics.SIZE.SMALL + "\"/>"};
+eote.defaults.graphics.SymbolicReplacement.triumph = {matcher:/\$TRIUMPH\$/g, replacer:"<img src=\"" + eote.defaults.graphics.SYMBOLS.TRIUMPH + "\" title=\"triumph\" height=\"" + eote.defaults.graphics.SIZE.SMALL + "\" width=\"" + eote.defaults.graphics.SIZE.SMALL + "\"/>"};
+eote.defaults.graphics.SymbolicReplacement.failure = {matcher:/\$FAILURE\$/g, replacer:"<img src=\"" + eote.defaults.graphics.SYMBOLS.F + "\" title=\"failure\" height=\"" + eote.defaults.graphics.SIZE.SMALL + "\" width=\"" + eote.defaults.graphics.SIZE.SMALL + "\"/>"};
+eote.defaults.graphics.SymbolicReplacement.threat = {matcher:/\$THREAT\$/g, replacer:"<img src=\"" + eote.defaults.graphics.SYMBOLS.T + "\" title=\"threat\" height=\"" + eote.defaults.graphics.SIZE.SMALL + "\" width=\"" + eote.defaults.graphics.SIZE.SMALL + "\"/>"};
+eote.defaults.graphics.SymbolicReplacement.despair = {matcher:/\$DESPAIR\$/g, replacer:"<img src=\"" + eote.defaults.graphics.SYMBOLS.DESPAIR + "\" title=\"despair\" height=\"" + eote.defaults.graphics.SIZE.SMALL + "\" width=\"" + eote.defaults.graphics.SIZE.SMALL + "\"/>"};
 
 eote.createGMDicePool = function () {
 
@@ -1157,7 +1167,6 @@ eote.process.setup = function (cmd, playerName, playerID) {
     var skillMatch = cmd.match(eote.defaults.regex.skill);
 
     if (skillMatch) {
-        /*TODO skills are processed here for the dice roller*/
         diceObj = eote.process.skill(skillMatch, diceObj);
     }
     var opposedMatch = cmd.match(eote.defaults.regex.opposed);
@@ -1182,8 +1191,12 @@ eote.process.setup = function (cmd, playerName, playerID) {
     }
     /* Roll dice and update success / fail 
      * ------------------------------------------------------------- */
-    /*TODO this is where dice are rolled*/
     diceObj = eote.process.rollDice(diceObj);
+
+    // process and display skill suggestions
+    if (diceObj.vars.skillName != null) {
+        diceObj = eote.process.skillSpending.processSuggestions(diceObj);
+    }
 
     /* Custom rolls
      * Description: Custom dice components have their own message, results and
@@ -1224,20 +1237,13 @@ eote.process.setup = function (cmd, playerName, playerID) {
     }
     /* Display dice output in chat window 
      * ------------------------------------------------------------- */
-    eote.process.diceOutput(diceObj, playerName, playerID);
-
-    //sendChat("debug", "<ul style=\"list-style-image: url('http://imgsrv.roll20.net/?src=galacticcampaigns.com/images/EotE/Symbols/A.png');\"><li>: testing</li></ul>");
-
-    // process and display skill suggestions
-    if (diceObj.vars.skillName != null) {
-        diceObj = eote.process.skillSpending.processSuggestions(diceObj);
-        eote.process.skillSpending.display(diceObj);
-    }
+     eote.process.diceOutput(diceObj, playerName, playerID);
 };
 
 /* DICE PROCESS FUNCTION
  * 
  * ---------------------------------------------------------------- */
+
 
 eote.process.skillSpending.processSuggestions = function(diceObj) {
     diceObj.vars.spendingSuggestions = {
@@ -1258,6 +1264,7 @@ eote.process.skillSpending.processSuggestions = function(diceObj) {
             diceObj = skillSpending(diceObj, key, value, 0);
         }
     });
+
     return diceObj;
 };
 
@@ -1286,31 +1293,20 @@ eote.process.skillSpending.getSkillSuggestion = function(diceObj, key, value, sk
     return diceObj;
 };
 
-eote.process.skillSpending.display = function (diceObj) {
+/*TODO buildSuggestions*/
+eote.process.skillSpending.buildSuggestions = function (diceObj) {
     var suggestions = diceObj.vars.spendingSuggestions;
-    var displayResults = eote.process.skillSpending.displayResult;
+    var msg = "";
 
-    // if there are suggestions to be suggested, whisper them to the player and GM where needed
-    if (diceObj.vars.spendingSuggestions.isSuggestions) {
-        // display results shown to character owners and GM
-        Object.keys(diceObj.vars.spendingSuggestions).forEach(function (key) {
-            property = suggestions[key];
-            if (property != "" && key != "isSuggestions") {
-                if (key == "success" || key == "advantage" || key == "triumph") {
-                    displayResults("gm", key, property);
-                    displayResults("\"" + diceObj.vars.characterName + "\"", key, property);
-                } else if (key == "failure" || key == "threat" || key == "despair") {
-                    displayResults("gm", key, property);
-                }
-            }
-        });
-    }
-};
-
-/* Whispers the recipient a suggestion for how to spend a skill's result*/
-eote.process.skillSpending.displayResult = function (recipient, key, property) {
-    var results = "/w " + recipient + " Suggestions for spending " + key + "<br><ul>" + property + "</ul>";
-    sendChat("System", results);
+    // display results shown to character owners and GM
+    Object.keys(suggestions).forEach(function (key) {
+        property = suggestions[key];
+        if (property != "" && key != "isSuggestions") {
+            msg += "{{" + key + "=<ul>" + property + "</ul>}}";
+        }
+    });
+    msg = "{{is_suggestions=true}} " + msg;
+    return msg;
 };
 
 eote.process.log = function (cmd) {
@@ -1483,7 +1479,7 @@ eote.process.destiny = function (cmd, diceObj) {
     var doRoll = false;
 
     if (!charObj_DicePool) {
-        sendChat("GM", "/w " + "gm The DicePool character sheet could not be found! Resave this script and it should be recreated. In the future do not rename the -DicePool Character Sheet.");
+        sendChat("GM", "/w " + "gm The DicePool character sheet could not be found! Re-save this script and it should be recreated. In the future do not rename the -DicePool Character Sheet.");
         return doRoll;
     }
     //GM's Destiny Point Pool
@@ -1505,7 +1501,6 @@ eote.process.destiny = function (cmd, diceObj) {
     var darkSide = parseInt(currentDarkSidePoints[0].get("current"));
     var lightSide = parseInt(currentLightSidePoints[0].get("current"));
 
-    //noinspection FallThroughInSwitchStatementJS
     var displayPool = '';
     //noinspection FallThroughInSwitchStatementJS
     switch (cmd[1]) {
@@ -2100,7 +2095,6 @@ eote.process.crit = function (cmd, diceObj) {
                     }
                 ];
                 eote.updateAddAttribute(characterObj, critAttrs);
-
                 var chat = '/direct &{template:base} {{title=' + diceObj.vars.characterName + '}}';
                 chat = chat + '{{subtitle=Critical Injury}}';
                 chat = chat + '{{Previous Criticals=' + totalcrits + ' x 10}}';
@@ -3119,14 +3113,16 @@ eote.process.diceOutput = function (diceObj, playerName, playerID) {
     } else {
         characterPlayer = playerName;
     }
-    /*TODO change /direct to /w "@{characterName}" or /w gm to change to whisper rolls*/
+
+    var templateName = (diceObj.vars.spendingSuggestions.isSuggestions ? "suggestion" : "base");
+
     /*Dice roll images work just fine when whispered*/
     if (eote.defaults.globalVars.diceTestEnabled === true) {
         chatGlobal = "/direct <br>6b 8g 12y 6blk 8p 12r 12w <br>";
     } else if (diceObj.vars.label) {
-        chatGlobal = "/direct &{template:base} {{title=" + diceObj.vars.label + "}} {{subtitle=" + characterPlayer + "}}";
+        chatGlobal = "/direct &{template:" + templateName +"} {{title=" + diceObj.vars.label + "}} {{subtitle=" + characterPlayer + "}}";
     } else {
-        chatGlobal = "/direct &{template:base} {{title=" + characterPlayer + "}}";
+        chatGlobal = "/direct &{template:" + templateName +"} {{title=" + characterPlayer + "}}";
     }
     //------------------------------------>
     if (eote.defaults.globalVars.diceLogChat === true) {
@@ -3190,6 +3186,9 @@ eote.process.diceOutput = function (diceObj, playerName, playerID) {
     /*TODO where things are sent to the game*/
     if (eote.defaults.globalVars.diceGraphicsChat === true) {
         chatGlobal = chatGlobal + '{{results=' + diceGraphicsResults + '}}';
+        if (diceObj.vars.spendingSuggestions.isSuggestions)
+            chatGlobal += " " + eote.process.skillSpending.buildSuggestions(diceObj);
+        log(chatGlobal);
         sendChat(characterPlayer, chatGlobal);
     } else {
         sendChat("Roll", diceTextResults);
@@ -4000,6 +3999,27 @@ eote.events = function () {
     });
 };
 
-on('ready', function () {
+// this only runs once per initialization of the script in order to prevent this process from running too frequently
+function convertTokensToTags() {
+    var generalSkills = eote.skillSuggestions.general;
+    // iterate over the general skill names in the skill suggestion json
+    Object.keys(generalSkills).forEach(function(generalSkillsKey) {
+        var skill = generalSkills[generalSkillsKey];
+
+        // iterate over each skill's symbols keys: success, advantage, etc...
+        Object.keys(skill).forEach(function(symbolKey) {
+            // for each item in the json array, replace it's tokens with image urls
+            var skillSymbolJArray = skill[symbolKey];
+            var symReplace = eote.defaults.graphics.SymbolicReplacement[symbolKey];
+            var item = {};
+            for (var i = 0; i < skillSymbolJArray.length; i++) {
+                item = skillSymbolJArray[i];
+                item.text = item.text.replace(symReplace.matcher, symReplace.replacer);
+            }
+        });
+    });
+}
+
+on('ready', function() {
     eote.init();
 });
