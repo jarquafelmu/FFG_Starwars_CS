@@ -3188,7 +3188,6 @@ eote.process.diceOutput = function (diceObj, playerName, playerID) {
         chatGlobal = chatGlobal + '{{results=' + diceGraphicsResults + '}}';
         if (diceObj.vars.spendingSuggestions.isSuggestions)
             chatGlobal += " " + eote.process.skillSpending.buildSuggestions(diceObj);
-        log(chatGlobal);
         sendChat(characterPlayer, chatGlobal);
     } else {
         sendChat("Roll", diceTextResults);
