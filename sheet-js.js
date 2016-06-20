@@ -4062,5 +4062,5 @@ function convertTokensToTags() {
 on('ready', function() {
     eote.init();
     // example on how to use the suggestionsStatus flag
-    eote.defaults.globalVars.suggestionsFlag = eote.defaults.suggestionsStatus.whisper;
+    // eote.defaults.globalVars.suggestionsFlag = eote.defaults.suggestionsStatus.always;
 });
