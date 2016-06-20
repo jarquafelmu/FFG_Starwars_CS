@@ -746,7 +746,8 @@ eote.defaults = {
         diceGraphicResultLog: "",
         diceTestEnabled: false,
         diceLogRolledOnOneLine: true,
-        scriptDebug: false
+        scriptDebug: false,
+        suggestionsFlag: -1
     },
     '-DicePoolID': '',
     character: {
@@ -855,8 +856,16 @@ eote.defaults = {
         unusable: /unusableWeapon/,
         destiny: /destiny (useDark|useLight|registerPlayer|sendUpdate|doRoll|clearPool)/
     },
-    destinyListeners: []
+    destinyListeners: [],
+    suggestionsStatus: {
+        none: 0, // No skill suggestions will be made
+        whisper: 1, // Player will be whispered beneficial results, GM will be whispered negative results. (This will incur the issues previous highlighted in this thread).
+        //button: 2, // There will be a button provided with the skills to allow suggestions to happen when they are wanted only. (This option will be enabled once I figure out how it needs to work.)
+        always: 3 // Suggestions will be included in the skill roll template as they are now.
+    }
 };
+
+eote.defaults.globalVars.suggestionsFlag = eote.defaults.suggestionsStatus.always;
 
 eote.defaults.graphics.SymbolicReplacement.success = {matcher:/\$SUCCESS\$/g, replacer:"<img src=\"" + eote.defaults.graphics.SYMBOLS.S + "\" title=\"success\" height=\"" + eote.defaults.graphics.SIZE.SMALL + "\" width=\"" + eote.defaults.graphics.SIZE.SMALL + "\"/>"};
 eote.defaults.graphics.SymbolicReplacement.advantage = {matcher:/\$ADVANTAGE\$/g, replacer:"<img src=\"" + eote.defaults.graphics.SYMBOLS.A + "\" title=\"advantage\" height=\"" + eote.defaults.graphics.SIZE.SMALL + "\" width=\"" + eote.defaults.graphics.SIZE.SMALL + "\"/>"};
@@ -1305,7 +1314,6 @@ eote.process.skillSpending.buildSuggestions = function (diceObj) {
             msg += "{{" + key + "=<ul>" + property + "</ul>}}";
         }
     });
-    msg = "{{is_suggestions=true}} " + msg;
     return msg;
 };
 
@@ -3114,7 +3122,8 @@ eote.process.diceOutput = function (diceObj, playerName, playerID) {
         characterPlayer = playerName;
     }
 
-    var templateName = (diceObj.vars.spendingSuggestions.isSuggestions ? "suggestion" : "base");
+    var templateName = (diceObj.vars.spendingSuggestions.isSuggestions
+                        && eote.defaults.globalVars.suggestionsFlag == eote.defaults.suggestionsStatus.always ? "suggestion" : "base");
 
     /*Dice roll images work just fine when whispered*/
     if (eote.defaults.globalVars.diceTestEnabled === true) {
@@ -3183,14 +3192,45 @@ eote.process.diceOutput = function (diceObj, playerName, playerID) {
             }
         }
     }
+
+    var suggestions = null;
+    suggestions = eote.process.skillSpending.buildSuggestions(diceObj);
+    var suggestionStatus = eote.defaults.suggestionsStatus;
+    var suggestionsFlag = eote.defaults.globalVars.suggestionsFlag;
+    var isSuggestions = diceObj.vars.spendingSuggestions.isSuggestions;
+
+    if (isSuggestions) {
+        //noinspection FallThroughInSwitchStatementJS
+        switch (suggestionsFlag) {
+            case suggestionStatus.none:
+                // not really needed since the other checks won't allow a status of none to do anything
+                // but this prevents the default from yelling at you.
+                suggestions = null;
+                break;
+            case suggestionStatus.whisper:
+                suggestions = "&{template:base} {{title=Skill Suggestions}} " + suggestions;
+                break;
+            case suggestionStatus.always:
+                suggestions = " {{is_suggestions=true}} " + suggestions;
+                break;
+            default:
+                // this should never be entered
+                log("ERROR! A suggestionFlag was set that is not handled!")
+        }
+    }
+
     /*TODO where things are sent to the game*/
     if (eote.defaults.globalVars.diceGraphicsChat === true) {
         chatGlobal = chatGlobal + '{{results=' + diceGraphicsResults + '}}';
-        if (diceObj.vars.spendingSuggestions.isSuggestions)
-            chatGlobal += " " + eote.process.skillSpending.buildSuggestions(diceObj);
+        if (isSuggestions && suggestionsFlag == suggestionStatus.always)
+            chatGlobal += " " + suggestions;
         sendChat(characterPlayer, chatGlobal);
     } else {
         sendChat("Roll", diceTextResults);
+    }
+
+    if (isSuggestions && suggestionsFlag == suggestionStatus.whisper) {
+        sendChat("System", "/w gm " + suggestions);
     }
     eote.process.logger("eote.process.rollResult", diceTextResults);
 };
@@ -4021,4 +4061,6 @@ function convertTokensToTags() {
 
 on('ready', function() {
     eote.init();
+    // example on how to use the suggestionsStatus flag
+    eote.defaults.globalVars.suggestionsFlag = eote.defaults.suggestionsStatus.whisper;
 });
