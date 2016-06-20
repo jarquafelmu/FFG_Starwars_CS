@@ -1,6 +1,14 @@
 # Roll20 FFG Star Wars Character Sheet
 
 ## Change log
+* 6.3.0b1
+  * Added the ability to determine the level of suggestion output for your campaign
+    * none: no suggestions.
+      * Once 6.3.0 is officially released out of beta this will mean that the suggestions on the character sheet will also be removed. You will have to look for spending suggestions outside of the character sheet like if you were playing the game in person.
+    * whisper: suggestions will only be whispered to the gm.
+      * Currently there is a bug where if a sheet has no owner then everyone gets whispered. This results in the GM getting two messages instead of only one as intended. Until this problem can be fixed only the GM will be messaged.
+    * always: suggestions will be integrated directly into the roll result.
+      * This is the recommended setting. In some cases it will result in a larger than used to be output but this will also allow everyone to see the suggestions and to make comments on them.
 * 6.2.0
   * Refined the skill suggestions output more.
 * 6.1.0
