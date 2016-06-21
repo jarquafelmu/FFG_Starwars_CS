@@ -1,5 +1,5 @@
 /*
- Current Version: 6.2.0
+ Current Version: 6.3.0b1
  Last updated: 06.17.2016
  Character Sheet and Script Maintained by: Samuel T.
  Older Verions: https://github.com/dayst/StarWarsEdgeOfTheEmpire_Dice
@@ -276,17 +276,18 @@ eote.skillSuggestions = {
             ],
             threat: [
                 {
-                    text: "The character does a poor job of concealing his presence in the system. Security systems are alerted, and add a boost die to the check of any NPC attempting to discover evidence of his actions.",
+                    text: "The character does a poor job of concealing his presence in the system. Security systems are alerted, and add $BOOST$ to the check of any NPC attempting to discover evidence of his actions.",
                     required: 1
                 }
             ],
             despair: [
                 {
-                    text: "Leave behind trace information of your own system in the system being sliced. Add a boost die to the check of any NPC using the target system to slice the character's system.",
+                    text: "Leave behind trace information of your own system in the system being sliced. Add $BOOST$ to the check of any NPC using the target system to slice the character's system.",
                     required: 1
                 }
             ]
         },
+        /*TODO Cool*/
         Cool: {
             success: [
                 {
@@ -295,9 +296,9 @@ eote.skillSuggestions = {
                 }],
             advantage: [
                 {text: "Gain an additional insight into the situation at hand.", required: 1},
-                {text: "If fear check: Gain a boost die on the character's first check.", required: 1},
+                {text: "If fear check: Gain $BOOST$ on the character's first check.", required: 1},
                 {
-                    text: "If fear check: If spending multiple advantage, grant a boost die to an additional player's first check.",
+                    text: "If fear check: If spending multiple $ADVANTAGE$, grant $BOOST$ to an additional player's first check.",
                     required: 2
                 }
             ],
@@ -314,14 +315,14 @@ eote.skillSuggestions = {
             ],
             failure: [
                 {
-                    text: "If fear check: The character adds a setback die to each action he takes during the encounter.",
+                    text: "If fear check: The character adds $SETBACK$ to each action he takes during the encounter.",
                     required: 1
                 }
             ],
             threat: [
                 {text: "Miss a vital detail or event.", required: 1},
                 {
-                    text: "If fear check: The character suffers a number of strain equal to the number of Failures.",
+                    text: "If fear check: The character suffers a number of strain equal to the number of $FAILURE$.",
                     required: 1
                 },
                 {
@@ -343,7 +344,7 @@ eote.skillSuggestions = {
                 {text: "Increase distance travelled by 25%, (maximum 100% increase).", required: 1}
             ],
             advantage: [
-                {text: "Spend 2 advantage to grant additional maneuver during turn.", required: 2}
+                {text: "Spend $ADVANTAGE$$ADVANTAGE$ to grant additional maneuver during turn.", required: 2}
             ],
             triumph: [
                 {text: "Perform the check with truly impressive results.", required: 1}
@@ -389,15 +390,15 @@ eote.skillSuggestions = {
             ],
             advantage: [
                 {text: "Gain an additional insight into the situation at hand.", required: 1},
-                {text: "If fear check: Gain a boost die on the character's first check.", required: 1},
+                {text: "If fear check: Gain $BOOST$ on the character's first check.", required: 1},
                 {
-                    text: "If fear check: If spending multiple advantage, grant a boost die to an additional player's first check.",
+                    text: "If fear check: If spending multiple $ADVANTAGE$, grant $BOOST$ to an additional player's first check.",
                     required: 2
                 }
             ],
             triumph: [
                 {
-                    text: "Add a boost die to any Discipline checks made by allies during the following round.",
+                    text: "Add $BOOST$ to any Discipline checks made by allies during the following round.",
                     required: 1
                 },
                 {
@@ -421,11 +422,11 @@ eote.skillSuggestions = {
                     required: 1
                 },
                 {
-                    text: "If fear check: The character suffers a number of strain equal to the number of Failures.",
+                    text: "If fear check: The character suffers a number of strain equal to the number of $FAILURE$.",
                     required: 1
                 },
                 {
-                    text: "If fear check: If the check generates three threat or more, the character can be staggered for his first turn, instead.",
+                    text: "If fear check: If the check generates three $THREAT$ or more, the character can be staggered for his first turn, instead.",
                     required: 3
                 }
             ],
@@ -466,7 +467,7 @@ eote.skillSuggestions = {
                     required: 1
                 },
                 {
-                    text: "With multiple despair the target may become a recurring thorn in the character's side,refusing future orders or turning others against the character.",
+                    text: "With multiple $DESPAIR$ the target may become a recurring thorn in the character's side,refusing future orders or turning others against the character.",
                     required: 2
                 }
             ]
@@ -477,7 +478,7 @@ eote.skillSuggestions = {
             ],
             advantage: [
                 {
-                    text: "Grant a boost die on checks when using repaired item, or even the Superior quality, for a session.",
+                    text: "Grant $BOOST$ on checks when using repaired item, or even the Superior quality, for a session.",
                     required: 1
                 }
             ],
@@ -486,7 +487,7 @@ eote.skillSuggestions = {
             ],
             threat: [
                 {
-                    text: "Particularly shoddy repairs or temporary measures, the GM may spend threat to cause the target object or system to malfunction shortly after check completed.",
+                    text: "Particularly shoddy repairs or temporary measures, the GM may spend $THREAT$ to cause the target object or system to malfunction shortly after check completed.",
                     required: 1
                 }
             ],
@@ -547,7 +548,7 @@ eote.skillSuggestions = {
             ],
             triumph: [
                 {
-                    text: "Notice details that can be useful later to gain a boost die on future interactions with noticed object.",
+                    text: "Notice details that can be useful later to gain $BOOST$ on future interactions with noticed object.",
                     required: 1
                 }
             ],
@@ -574,7 +575,7 @@ eote.skillSuggestions = {
             ],
             threat: [
                 {
-                    text: "Spend $THREAT$$THREAT$ to give opponents a boost die on checks against character and vehicle due to momentary malfunction in system.",
+                    text: "Spend $THREAT$$THREAT$ to give opponents $BOOST$ on checks against character and vehicle due to momentary malfunction in system.",
                     required: 2
                 }
             ],
@@ -601,7 +602,7 @@ eote.skillSuggestions = {
             ],
             threat: [
                 {
-                    text: "Spend $THREAT$$THREAT$ to give opponents a boost die on checks against character and vehicle due to momentary malfunction in system.",
+                    text: "Spend $THREAT$$THREAT$ to give opponents $BOOST$ on checks against character and vehicle due to momentary malfunction in system.",
                     required: 2
                 }
             ],
@@ -644,7 +645,7 @@ eote.skillSuggestions = {
             ],
             threat: [
                 {
-                    text: "Opportunity to catch character immediately after act, number of threats determine immediacy of discovery and ensuing danger.",
+                    text: "Opportunity to catch character immediately after act, number of $THREAT$ determine immediacy of discovery and ensuing danger.",
                     required: 1
                 }
             ],
@@ -867,12 +868,26 @@ eote.defaults = {
 
 eote.defaults.globalVars.suggestionsFlag = eote.defaults.suggestionsStatus.always;
 
-eote.defaults.graphics.SymbolicReplacement.success = {matcher:/\$SUCCESS\$/g, replacer:"<img src=\"" + eote.defaults.graphics.SYMBOLS.S + "\" title=\"success\" height=\"" + eote.defaults.graphics.SIZE.SMALL + "\" width=\"" + eote.defaults.graphics.SIZE.SMALL + "\"/>"};
-eote.defaults.graphics.SymbolicReplacement.advantage = {matcher:/\$ADVANTAGE\$/g, replacer:"<img src=\"" + eote.defaults.graphics.SYMBOLS.A + "\" title=\"advantage\" height=\"" + eote.defaults.graphics.SIZE.SMALL + "\" width=\"" + eote.defaults.graphics.SIZE.SMALL + "\"/>"};
-eote.defaults.graphics.SymbolicReplacement.triumph = {matcher:/\$TRIUMPH\$/g, replacer:"<img src=\"" + eote.defaults.graphics.SYMBOLS.TRIUMPH + "\" title=\"triumph\" height=\"" + eote.defaults.graphics.SIZE.SMALL + "\" width=\"" + eote.defaults.graphics.SIZE.SMALL + "\"/>"};
-eote.defaults.graphics.SymbolicReplacement.failure = {matcher:/\$FAILURE\$/g, replacer:"<img src=\"" + eote.defaults.graphics.SYMBOLS.F + "\" title=\"failure\" height=\"" + eote.defaults.graphics.SIZE.SMALL + "\" width=\"" + eote.defaults.graphics.SIZE.SMALL + "\"/>"};
-eote.defaults.graphics.SymbolicReplacement.threat = {matcher:/\$THREAT\$/g, replacer:"<img src=\"" + eote.defaults.graphics.SYMBOLS.T + "\" title=\"threat\" height=\"" + eote.defaults.graphics.SIZE.SMALL + "\" width=\"" + eote.defaults.graphics.SIZE.SMALL + "\"/>"};
-eote.defaults.graphics.SymbolicReplacement.despair = {matcher:/\$DESPAIR\$/g, replacer:"<img src=\"" + eote.defaults.graphics.SYMBOLS.DESPAIR + "\" title=\"despair\" height=\"" + eote.defaults.graphics.SIZE.SMALL + "\" width=\"" + eote.defaults.graphics.SIZE.SMALL + "\"/>"};
+function buildReplacementObject (title, src, size) {
+    return {matcher: new RegExp("\\$" + title.toUpperCase() + "\\$","g"), replacer: '<img src="' + src + '" title="' + title + '" height="' + size + '" width="' + size + '"/>'};
+}
+
+// dice symbols
+eote.defaults.graphics.SymbolicReplacement.success = buildReplacementObject("success", eote.defaults.graphics.SYMBOLS.S, eote.defaults.graphics.SIZE.SMALL);
+eote.defaults.graphics.SymbolicReplacement.advantage = buildReplacementObject("advantage", eote.defaults.graphics.SYMBOLS.A, eote.defaults.graphics.SIZE.SMALL);
+eote.defaults.graphics.SymbolicReplacement.triumph = buildReplacementObject("triumph", eote.defaults.graphics.SYMBOLS.TRIUMPH, eote.defaults.graphics.SIZE.SMALL);
+eote.defaults.graphics.SymbolicReplacement.failure = buildReplacementObject("failure", eote.defaults.graphics.SYMBOLS.F, eote.defaults.graphics.SIZE.SMALL);
+eote.defaults.graphics.SymbolicReplacement.threat = buildReplacementObject("threat", eote.defaults.graphics.SYMBOLS.T, eote.defaults.graphics.SIZE.SMALL);
+eote.defaults.graphics.SymbolicReplacement.despair = buildReplacementObject("despair", eote.defaults.graphics.SYMBOLS.DESPAIR, eote.defaults.graphics.SIZE.SMALL);
+
+// dice icons
+/*TODO builder*/
+eote.defaults.graphics.SymbolicReplacement.ability = buildReplacementObject("ability", eote.defaults.graphics.ABILITY.BLANK, eote.defaults.graphics.SIZE.SMALL);
+eote.defaults.graphics.SymbolicReplacement.boost = buildReplacementObject("boost", eote.defaults.graphics.BOOST.BLANK, eote.defaults.graphics.SIZE.SMALL);
+eote.defaults.graphics.SymbolicReplacement.proficiency = buildReplacementObject("proficiency", eote.defaults.graphics.PROFICIENCY.BLANK, eote.defaults.graphics.SIZE.SMALL);
+eote.defaults.graphics.SymbolicReplacement.difficulty = buildReplacementObject("difficulty", eote.defaults.graphics.DIFFICULTY.BLANK, eote.defaults.graphics.SIZE.SMALL);
+eote.defaults.graphics.SymbolicReplacement.setback = buildReplacementObject("setback", eote.defaults.graphics.SETBACK.BLANK, eote.defaults.graphics.SIZE.SMALL);
+eote.defaults.graphics.SymbolicReplacement.challenge = buildReplacementObject("challenge", eote.defaults.graphics.CHALLENGE.BLANK, eote.defaults.graphics.SIZE.SMALL);
 
 eote.createGMDicePool = function () {
 
@@ -4039,8 +4054,11 @@ eote.events = function () {
 };
 
 // this only runs once per initialization of the script in order to prevent this process from running too frequently
+/*TODO tokens to tags*/
 function convertTokensToTags() {
     var generalSkills = eote.skillSuggestions.general;
+    var symReplace = eote.defaults.graphics.SymbolicReplacement;
+
     // iterate over the general skill names in the skill suggestion json
     Object.keys(generalSkills).forEach(function(generalSkillsKey) {
         var skill = generalSkills[generalSkillsKey];
@@ -4049,16 +4067,18 @@ function convertTokensToTags() {
         Object.keys(skill).forEach(function(symbolKey) {
             // for each item in the json array, replace it's tokens with image urls
             var skillSymbolJArray = skill[symbolKey];
-            var symReplace = eote.defaults.graphics.SymbolicReplacement[symbolKey];
-            var item = {};
-            for (var i = 0; i < skillSymbolJArray.length; i++) {
-                item = skillSymbolJArray[i];
-                item.text = item.text.replace(symReplace.matcher, symReplace.replacer);
-            }
+            Object.keys(symReplace).forEach(function(replaceKey) {
+                var item = {};
+                for (var i = 0; i < skillSymbolJArray.length; i++) {
+                    item = skillSymbolJArray[i];
+                    item.text = item.text.replace(symReplace[replaceKey].matcher, symReplace[replaceKey].replacer);
+                }
+            });
         });
     });
 }
 
+/*TODO initilize*/
 on('ready', function() {
     eote.init();
     // example on how to use the suggestionsStatus flag
