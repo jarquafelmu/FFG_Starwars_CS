@@ -1,6 +1,6 @@
 /*
- Current Version: 6.3.0b1
- Last updated: 06.17.2016
+ Current Version: 6.3.0b2
+ Last updated: 06.26.2016
  Character Sheet and Script Maintained by: Samuel T.
  Older Verions: https://github.com/dayst/StarWarsEdgeOfTheEmpire_Dice
 
@@ -51,9 +51,18 @@
  Debug
  * default: 'off'
  * DescriptionL Sets the logging level of the script in the API console.  If you are having issues with the
- * script rolling incorrectt dice, turn on debug logging and post the result in the forums. No need to restart the
+ * script rolling incorrect dice, turn on debug logging and post the result in the forums. No need to restart the
  * script with this command.
  * Command: !eed debug on|off
+
+ GM Sheet Settings:
+ SuggestionDisplay
+ * Description: Sets the state of the skill_suggestion_setting_display status on the DicePool
+ * Command: !eed suggestDisplay none|whisper|always
+
+ Fear
+ * Description: Sets the state of the Fear check status on the DicePool
+ * Command: !eed fear on|off
 
  Roll:
  Label
@@ -153,11 +162,64 @@ eote.init = function () {
     eote.setCharacterDefaults();
     eote.createGMDicePool();
     eote.events();
-    convertTokensToTags();
+    convertTokensToTags(eote.skillSuggestions, eote.defaults.graphics.SymbolicReplacement);
     log("Finished converting tokens to tags");
 };
 
 eote.skillSuggestions = {
+    special: {
+        fear: {
+            allowedSkills: [
+                "Cool",
+                "Discipline"
+            ],
+            success: [
+                {
+                    text: "The character avoids any fear effects, except those triggered by threats",
+                    required: 1, fear: true
+                }
+            ],
+            advantage: [
+                {text: "Gain $BOOST$ on the character's first check.", required: 1, fear: true},
+                {
+                    text: "If spending multiple $ADVANTAGE$, grant $BOOST$ to an additional player's first check.",
+                    required: 2, fear: true
+                }
+            ],
+            triumph: [
+                {
+                    text: "Can be spent to cancel all previous penalties from fear checks, or",
+                    required: 1, fear: true
+                },
+                {
+                    text: "Spent to ensure the character need not make any additional fear checks during the encounter, no matter the source.",
+                    required: 1, fear: true
+                }
+            ],
+            failure: [
+                {
+                    text: "The character adds $SETBACK$ to each action he takes during the encounter.",
+                    required: 1, fear: true
+                }
+            ],
+            threat: [
+                {
+                    text: "The character suffers a number of strain equal to the number of $FAILURE$.",
+                    required: 1, fear: true
+                },
+                {
+                    text: "If the check generates $THREAT$$THREAT$$THREAT$+, the character can be staggered for his first turn, instead.",
+                    required: 3, fear: true
+                }
+            ],
+            despair: [
+                {
+                    text: "The character is incredibly frightened and increases the difficulty of all checks until the end of the encounter by one.",
+                    required: 1, fear: true
+                }
+            ]
+        }
+    },
     general: {
         Astrogation: {
             success: [
@@ -289,53 +351,17 @@ eote.skillSuggestions = {
         },
         /*TODO Cool*/
         Cool: {
-            success: [
-                {
-                    text: "If fear check: The character avoids any fear effects, except those triggered by threats",
-                    required: 1
-                }],
             advantage: [
-                {text: "Gain an additional insight into the situation at hand.", required: 1},
-                {text: "If fear check: Gain $BOOST$ on the character's first check.", required: 1},
-                {
-                    text: "If fear check: If spending multiple $ADVANTAGE$, grant $BOOST$ to an additional player's first check.",
-                    required: 2
-                }
+                {text: "Gain an additional insight into the situation at hand.", required: 1}
             ],
             triumph: [
-                {text: "Heal 3 strain.", required: 1},
-                {
-                    text: "If fear check: Can be spent to cancel all previous penalties from fear checks, or",
-                    required: 1
-                },
-                {
-                    text: "If fear check: Spent to ensure the character need not make any additional fear checks during the encounter, no matter the source.",
-                    required: 1
-                }
-            ],
-            failure: [
-                {
-                    text: "If fear check: The character adds $SETBACK$ to each action he takes during the encounter.",
-                    required: 1
-                }
+                {text: "Heal 3 strain.", required: 1}
             ],
             threat: [
-                {text: "Miss a vital detail or event.", required: 1},
-                {
-                    text: "If fear check: The character suffers a number of strain equal to the number of $FAILURE$.",
-                    required: 1
-                },
-                {
-                    text: "If fear check: If the check generates three threat or more, the character can be staggered for his first turn, instead.",
-                    required: 3
-                }
+                {text: "Miss a vital detail or event.", required: 1}
             ],
             despair: [
-                {text: "The character is overwhelmed by the chaos and is stunned for one round.", required: 1},
-                {
-                    text: "If fear check: The character is incredibly frightened and increases the difficulty of all checks until the end of the encounter by one.",
-                    required: 1
-                }
+                {text: "The character is overwhelmed by the chaos and is stunned for one round.", required: 1}
             ]
         },
         Coordination: {
@@ -382,37 +408,14 @@ eote.skillSuggestions = {
         },
         Discipline: {
             success: [
-                {text: "Downgrade difficulty of the dice pool for next action (max. 1).", required: 1},
-                {
-                    text: "If fear check: The character avoids any fear effects, except those triggered by threats",
-                    required: 1
-                }
+                {text: "Downgrade difficulty of the dice pool for next action (max. 1).", required: 1}
             ],
             advantage: [
-                {text: "Gain an additional insight into the situation at hand.", required: 1},
-                {text: "If fear check: Gain $BOOST$ on the character's first check.", required: 1},
-                {
-                    text: "If fear check: If spending multiple $ADVANTAGE$, grant $BOOST$ to an additional player's first check.",
-                    required: 2
-                }
+                {text: "Gain an additional insight into the situation at hand.", required: 1}
             ],
             triumph: [
                 {
                     text: "Add $BOOST$ to any Discipline checks made by allies during the following round.",
-                    required: 1
-                },
-                {
-                    text: "If fear check: Can be spent to cancel all previous penalties from fear checks, or",
-                    required: 1
-                },
-                {
-                    text: "If fear check: Spent to ensure the character need not make any additional fear checks during the encounter, no matter the source.",
-                    required: 1
-                }
-            ],
-            failure: [
-                {
-                    text: "If fear check: The character adds a setback die to each action he takes during the encounter.",
                     required: 1
                 }
             ],
@@ -420,23 +423,11 @@ eote.skillSuggestions = {
                 {
                     text: "Undermine the characters resolve, perhaps inflicting a penalty on further actions in distressing circumstances.",
                     required: 1
-                },
-                {
-                    text: "If fear check: The character suffers a number of strain equal to the number of $FAILURE$.",
-                    required: 1
-                },
-                {
-                    text: "If fear check: If the check generates three $THREAT$ or more, the character can be staggered for his first turn, instead.",
-                    required: 3
                 }
             ],
             despair: [
                 {
                     text: "The character is overwhelmed entirely and is unable to perform more than one maneuver next round.",
-                    required: 1
-                },
-                {
-                    text: "If fear check: The character is incredibly frightened and increases the difficulty of all checks until the end of the encounter by one.",
                     required: 1
                 }
             ]
@@ -846,6 +837,8 @@ eote.defaults = {
         rollPlayer: /rollPlayer(\(.*?\))/,
         label: /label\((.*?)\)/,
         skill: /skill\((.*?)\)/g,
+        fear: /fear (on|off)/,
+        suggestionDisplay: /suggestionDisplay (none|whisper|always)/,
         opposed: /opposed\((.*?)\)/g,
         upgrade: /upgrade\((.*?)\)/g,
         downgrade: /downgrade\((.*?)\)/g,
@@ -1036,7 +1029,8 @@ eote.defaults.dice = function () {
         playerID: '',
         label: '',
         spendingSuggestions: {},
-        skillName: ''
+        skillName: '',
+        isFearCheck: false
     };
     this.totals = {
         success: 0,
@@ -1098,6 +1092,7 @@ eote.process.logger = function (functionName, cmd) {
     }
 };
 
+/*TODO setup*/
 eote.process.setup = function (cmd, playerName, playerID) {
 
     if (!cmd.match(eote.defaults.regex.cmd)) { //check for api cmd !eed
@@ -1106,6 +1101,16 @@ eote.process.setup = function (cmd, playerName, playerID) {
     var debugMatch = cmd.match(eote.defaults.regex.debug);
     if (debugMatch) {
         eote.process.debug(debugMatch);
+        return false;
+    }
+    var fearMatch = cmd.match(eote.defaults.regex.fear);
+    if (fearMatch) {
+        eote.process.fear(fearMatch);
+        return false;
+    }
+    var suggestionDisplayMatch = cmd.match(eote.defaults.regex.suggestionDisplay);
+    if (suggestionDisplayMatch) {
+        eote.process.suggestionDisplay(suggestionDisplayMatch);
         return false;
     }
     eote.process.logger("eote.process.setup", "NEW ROLL");
@@ -1191,6 +1196,9 @@ eote.process.setup = function (cmd, playerName, playerID) {
     var skillMatch = cmd.match(eote.defaults.regex.skill);
 
     if (skillMatch) {
+        var suggestionSettingsFear = getAttrByName(eote.defaults['-DicePoolID'], "skill_suggestion_setting_fear");
+        diceObj.vars.isFearCheck = suggestionSettingsFear === "1";
+
         diceObj = eote.process.skill(skillMatch, diceObj);
     }
     var opposedMatch = cmd.match(eote.defaults.regex.opposed);
@@ -1203,6 +1211,7 @@ eote.process.setup = function (cmd, playerName, playerID) {
     if (diceMatch) {
         diceObj = eote.process.setDice(diceMatch, diceObj);
     }
+
     var upgradeMatch = cmd.match(eote.defaults.regex.upgrade);
 
     if (upgradeMatch) {
@@ -1261,7 +1270,7 @@ eote.process.setup = function (cmd, playerName, playerID) {
     }
     /* Display dice output in chat window 
      * ------------------------------------------------------------- */
-     eote.process.diceOutput(diceObj, playerName, playerID);
+    eote.process.diceOutput(diceObj, playerName, playerID);
 };
 
 /* DICE PROCESS FUNCTION
@@ -1292,27 +1301,42 @@ eote.process.skillSpending.processSuggestions = function(diceObj) {
     return diceObj;
 };
 
+function addSkillSuggestionsFromArray(diceObj, array, key, value) {
+    for (var i = 0; i < array.length; i++) {
+        if (array[i].required <= value) {
+            diceObj.vars.spendingSuggestions[key] += "<li>" + array[i].text + "</li>";
+            diceObj.vars.spendingSuggestions.isSuggestions = true;
+        }
+    }
+    return diceObj;
+}
+
+/* Returns true if the skill exists inside the array of allowed skills */
+function isAllowedSkill (allowedSkills, skillName) {
+    return allowedSkills.some(function (element) {
+        return element === skillName;
+    });
+}
+
 eote.process.skillSpending.getSkillSuggestion = function(diceObj, key, value, skillType) {
     var skillName = diceObj.vars.skillName;
+    var fearJSON = (diceObj.vars.isFearCheck ? eote.skillSuggestions.special.fear : null);
     switch (skillType) {
         case 0:
             var generalSkills = eote.skillSuggestions.general;
             if (generalSkills.hasOwnProperty(skillName)) {
                 var skill = generalSkills[skillName];
                 if (skill.hasOwnProperty(key)) {
-                    var skillJSON = skill[key];
-                    for (var i = 0; i < skillJSON.length; i++) {
-                        if (skillJSON[i].required <= value) {
-                            diceObj.vars.spendingSuggestions[key] += "<li>" + skillJSON[i].text + "</li>";
-                            diceObj.vars.spendingSuggestions.isSuggestions = true;
-                        }
-                    }
+                    diceObj = addSkillSuggestionsFromArray(diceObj, skill[key], key, value);
+                }
+                if (fearJSON != null && isAllowedSkill(fearJSON.allowedSkills, skillName)) {
+                    diceObj = addSkillSuggestionsFromArray(diceObj, fearJSON[key], key, value);
                 }
             }
             break;
         default:
             // this should never be entered
-            sendChat("System", "No skill group associated with skill: " + skillName);
+            log("error: No skill group associated with skill: " + skillName);
     }
     return diceObj;
 };
@@ -1320,7 +1344,7 @@ eote.process.skillSpending.getSkillSuggestion = function(diceObj, key, value, sk
 /*TODO buildSuggestions*/
 eote.process.skillSpending.buildSuggestions = function (diceObj) {
     var suggestions = diceObj.vars.spendingSuggestions;
-    var msg = "";
+    var msg = "", property = "";
 
     // display results shown to character owners and GM
     Object.keys(suggestions).forEach(function (key) {
@@ -1340,8 +1364,7 @@ eote.process.log = function (cmd) {
      * Command: !eed log on|off|multi|single
      * ---------------------------------------------------------------- */
 
-    //log(cmd[1]);
-    switch (cmd[1]) {
+     switch (cmd[1]) {
         case "on": //if 'on' outputs dice to chat window
             eote.defaults.globalVars.diceLogChat = true;
             sendChat("Dice System", 'Output rolled dice to chat window "On"');
@@ -1372,6 +1395,72 @@ eote.process.debug = function (cmd) {
             sendChat("Dice System", 'Debug Script "Off"');
             break;
     }
+};
+
+function updateAttributeValue (attribute, name, value, id) {
+    if (attribute) attribute.remove();
+    createObj("attribute", {
+        name: name,
+        current: value,
+        characterid: id
+    });
+}
+
+function getAttributeObj(id, name) {
+    return findObjs({
+        type: "attribute",
+        characterid: id,
+        name: name
+    })[0];
+}
+
+eote.process.fear = function (cmd) {
+
+    /* Fear
+     * Description: Sets the state of the Fear check status on the DicePool
+     * Command: !eed fear on|off
+     * ---------------------------------------------------------------- */
+
+    var attribute = getAttributeObj(eote.defaults['-DicePoolID'], "skill_suggestion_setting_fear");
+
+    var value = null;
+    switch (cmd[1]) {
+        case "off":
+            value = 0;
+            break;
+        case "on":
+            value = 1;
+            break;
+    }
+
+    if (value != null)
+        updateAttributeValue(attribute, "skill_suggestion_setting_fear", value, eote.defaults['-DicePoolID']);
+};
+
+eote.process.suggestionDisplay = function (cmd) {
+
+    /* SuggestionDisplay
+     * Description: Sets the state of the skill_suggestion_setting_display check status on the DicePool
+     * Command: !eed suggestDisplay none|whisper|always
+     * ---------------------------------------------------------------- */
+
+    var attribute = getAttributeObj(eote.defaults['-DicePoolID'], "skill_suggestion_setting_display");
+
+    var value = null;
+    switch (cmd[1]) {
+        case "none":
+            value = 0;
+            break;
+        case "whisper":
+            value = 1;
+            break;
+        case "always":
+            value = 2;
+            break;
+    }
+
+    if (value != null)
+        updateAttributeValue(attribute, "skill_suggestion_setting_display", value, eote.defaults['-DicePoolID']);
 };
 
 eote.process.graphics = function (cmd) {
@@ -1562,7 +1651,7 @@ eote.process.destiny = function (cmd, diceObj) {
         case "doRoll":
             sendChat(diceObj.vars.characterName, '/direct Rolling a Destiny Point.');
             doRoll = true;
-            // falls through on purpose (I think) to sync automatically when destiny point is rolled
+        // falls through on purpose (I think) to sync automatically when destiny point is rolled
         case "registerPlayer":
             if (!doRoll) {
                 sendChat("Dice System", "/w " + diceObj.vars.characterName + '&{template:base} {{title=Syncing your Destiny Pool to the GM\'s}}')
@@ -2550,9 +2639,9 @@ eote.process.skill = function (cmd, diceObj) {
         };
         var diceArray = null;
         Object.keys(matchers).some(function(key) {
-           if ((diceArray = skill.match(matchers[key])) != null) {
-               return true;
-           }
+            if ((diceArray = skill.match(matchers[key])) != null) {
+                return true;
+            }
         });
 
         if (diceArray && diceArray[1] && diceArray[2]) {
@@ -2575,7 +2664,8 @@ eote.process.skill = function (cmd, diceObj) {
 
                 /*  remove all non-letter characters to bring the name in line with the JSON properties
                  *  in order to have the closest chance in getting a match.
-                 *  still does not guarantee a match.
+                 *
+                 *  does not guarantee a match.
                  */
                 name = name.replace(/[^A-Za-z]/g, "");
 
@@ -3138,7 +3228,7 @@ eote.process.diceOutput = function (diceObj, playerName, playerID) {
     }
 
     var templateName = (diceObj.vars.spendingSuggestions.isSuggestions
-                        && eote.defaults.globalVars.suggestionsFlag == eote.defaults.suggestionsStatus.always ? "suggestion" : "base");
+    && eote.defaults.globalVars.suggestionsFlag == eote.defaults.suggestionsStatus.always ? "suggestion" : "base");
 
     /*Dice roll images work just fine when whispered*/
     if (eote.defaults.globalVars.diceTestEnabled === true) {
@@ -4054,33 +4144,32 @@ eote.events = function () {
 };
 
 // this only runs once per initialization of the script in order to prevent this process from running too frequently
-/*TODO tokens to tags*/
-function convertTokensToTags() {
-    var generalSkills = eote.skillSuggestions.general;
-    var symReplace = eote.defaults.graphics.SymbolicReplacement;
-
-    // iterate over the general skill names in the skill suggestion json
-    Object.keys(generalSkills).forEach(function(generalSkillsKey) {
-        var skill = generalSkills[generalSkillsKey];
-
-        // iterate over each skill's symbols keys: success, advantage, etc...
-        Object.keys(skill).forEach(function(symbolKey) {
-            // for each item in the json array, replace it's tokens with image urls
-            var skillSymbolJArray = skill[symbolKey];
-            Object.keys(symReplace).forEach(function(replaceKey) {
-                var item = {};
-                for (var i = 0; i < skillSymbolJArray.length; i++) {
-                    item = skillSymbolJArray[i];
-                    item.text = item.text.replace(symReplace[replaceKey].matcher, symReplace[replaceKey].replacer);
+/*TODO finish convertTokensToTags*/
+function convertTokensToTags(skillSuggestions, symReplace) {
+    Object.keys(skillSuggestions).forEach(function(categoryKey) {
+        var category = skillSuggestions[categoryKey];
+        Object.keys(category).forEach(function(categoryElemKey) {
+            var categoryElem = category[categoryElemKey];
+            Object.keys(categoryElem).forEach(function(symbolKey) {
+                var item = categoryElem[symbolKey];
+                for (var i = 0; i < item.length; i++)
+                {
+                    var itemElem = item[i];
+                    if (typeof itemElem == "object") {
+                        if (itemElem.text.indexOf("$") > 0) {
+                            Object.keys(symReplace).forEach(function (symReplaceKey) {
+                                itemElem.text = itemElem.text.replace(symReplace[symReplaceKey].matcher, symReplace[symReplaceKey].replacer);
+                            });
+                        }
+                    }
                 }
             });
         });
     });
 }
 
-/*TODO initilize*/
+/*TODO initialize*/
 on('ready', function() {
     eote.init();
-    // example on how to use the suggestionsStatus flag
-    // eote.defaults.globalVars.suggestionsFlag = eote.defaults.suggestionsStatus.always;
+    //testing();
 });
