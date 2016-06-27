@@ -349,7 +349,6 @@ eote.skillSuggestions = {
                 }
             ]
         },
-        /*TODO Cool*/
         Cool: {
             advantage: [
                 {text: "Gain an additional insight into the situation at hand.", required: 1}
@@ -739,7 +738,8 @@ eote.defaults = {
         diceTestEnabled: false,
         diceLogRolledOnOneLine: true,
         scriptDebug: false,
-        suggestionsFlag: -1
+        suggestionsFlag: -1,
+        GMObj: null
     },
     '-DicePoolID': '',
     character: {
@@ -874,7 +874,6 @@ eote.defaults.graphics.SymbolicReplacement.threat = buildReplacementObject("thre
 eote.defaults.graphics.SymbolicReplacement.despair = buildReplacementObject("despair", eote.defaults.graphics.SYMBOLS.DESPAIR, eote.defaults.graphics.SIZE.SMALL);
 
 // dice icons
-/*TODO builder*/
 eote.defaults.graphics.SymbolicReplacement.ability = buildReplacementObject("ability", eote.defaults.graphics.ABILITY.BLANK, eote.defaults.graphics.SIZE.SMALL);
 eote.defaults.graphics.SymbolicReplacement.boost = buildReplacementObject("boost", eote.defaults.graphics.BOOST.BLANK, eote.defaults.graphics.SIZE.SMALL);
 eote.defaults.graphics.SymbolicReplacement.proficiency = buildReplacementObject("proficiency", eote.defaults.graphics.PROFICIENCY.BLANK, eote.defaults.graphics.SIZE.SMALL);
@@ -961,9 +960,11 @@ eote.updateListeners = function (attributes) {
         _type: "character",
         _id: eote.defaults['-DicePoolID']
     });
+    eote.defaults.globalVars.GMObj = eote.defaults.globalVars.GMObj || GMObj;
     eote.updateAddAttribute(GMObj, attributes);
 };
 
+/*TODO updateAddAttribute*/
 eote.updateAddAttribute = function (charactersObj, updateAddAttributesObj) { // charactersObj = object or array objects, updateAddAttributesObj = object or array objects
 
     //check if object or array
@@ -1027,6 +1028,7 @@ eote.defaults.dice = function () {
         characterID: '',
         playerName: '',
         playerID: '',
+        GMObj: null,
         label: '',
         spendingSuggestions: {},
         skillName: '',
@@ -1397,31 +1399,12 @@ eote.process.debug = function (cmd) {
     }
 };
 
-function updateAttributeValue (attribute, name, value, id) {
-    if (attribute) attribute.remove();
-    createObj("attribute", {
-        name: name,
-        current: value,
-        characterid: id
-    });
-}
-
-function getAttributeObj(id, name) {
-    return findObjs({
-        type: "attribute",
-        characterid: id,
-        name: name
-    })[0];
-}
-
 eote.process.fear = function (cmd) {
 
     /* Fear
      * Description: Sets the state of the Fear check status on the DicePool
      * Command: !eed fear on|off
      * ---------------------------------------------------------------- */
-
-    var attribute = getAttributeObj(eote.defaults['-DicePoolID'], "skill_suggestion_setting_fear");
 
     var value = null;
     switch (cmd[1]) {
@@ -1433,8 +1416,13 @@ eote.process.fear = function (cmd) {
             break;
     }
 
-    if (value != null)
-        updateAttributeValue(attribute, "skill_suggestion_setting_fear", value, eote.defaults['-DicePoolID']);
+    if (value != null) {
+        eote.updateAddAttribute(eote.defaults.globalVars.GMObj, {
+            name: "skill_suggestion_setting_fear",
+            current: value,
+            update: true
+        });
+    }
 };
 
 eote.process.suggestionDisplay = function (cmd) {
@@ -1443,8 +1431,6 @@ eote.process.suggestionDisplay = function (cmd) {
      * Description: Sets the state of the skill_suggestion_setting_display check status on the DicePool
      * Command: !eed suggestDisplay none|whisper|always
      * ---------------------------------------------------------------- */
-
-    var attribute = getAttributeObj(eote.defaults['-DicePoolID'], "skill_suggestion_setting_display");
 
     var value = null;
     switch (cmd[1]) {
@@ -1459,8 +1445,13 @@ eote.process.suggestionDisplay = function (cmd) {
             break;
     }
 
-    if (value != null)
-        updateAttributeValue(attribute, "skill_suggestion_setting_display", value, eote.defaults['-DicePoolID']);
+    if (value != null) {
+        eote.updateAddAttribute(eote.defaults.globalVars.GMObj, {
+            name: "skill_suggestion_setting_display",
+            current: value,
+            update: true
+        });
+    }
 };
 
 eote.process.graphics = function (cmd) {
@@ -3324,7 +3315,6 @@ eote.process.diceOutput = function (diceObj, playerName, playerID) {
         }
     }
 
-    /*TODO where things are sent to the game*/
     if (eote.defaults.globalVars.diceGraphicsChat === true) {
         chatGlobal = chatGlobal + '{{results=' + diceGraphicsResults + '}}';
         if (isSuggestions && suggestionsFlag == suggestionStatus.always)
@@ -4144,7 +4134,6 @@ eote.events = function () {
 };
 
 // this only runs once per initialization of the script in order to prevent this process from running too frequently
-/*TODO finish convertTokensToTags*/
 function convertTokensToTags(skillSuggestions, symReplace) {
     Object.keys(skillSuggestions).forEach(function(categoryKey) {
         var category = skillSuggestions[categoryKey];
@@ -4168,8 +4157,6 @@ function convertTokensToTags(skillSuggestions, symReplace) {
     });
 }
 
-/*TODO initialize*/
 on('ready', function() {
     eote.init();
-    //testing();
 });
