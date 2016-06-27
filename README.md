@@ -1,7 +1,7 @@
 # Roll20 FFG Star Wars Character Sheet
 
 ## Change log
-* 6.3.0b2
+* 6.3.0b3
   * **NOTE**: This update requires you to register your -DicePool again.
     * To do so just put 1 in both the light and dark sides of the Destiny Pool and then hit "Clear Pool".
   * Added a settings tab to the GM Sheet on the -DicePool to allow for changing the display status for the suggestions system while in game. The settings tab also contains the ability to set the Fear Check flag. This is used for skills that can be rolled during fear checks to include suggestions on handling fear results.
