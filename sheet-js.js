@@ -58,7 +58,7 @@
  GM Sheet Settings:
  SuggestionDisplay
  * Description: Sets the state of the skill_suggestion_setting_display status on the DicePool
- * Command: !eed suggestDisplay none|whisper|always
+ * Command: !eed suggestionDisplay none|whisper|always
 
  Fear
  * Description: Sets the state of the Fear check status on the DicePool
@@ -163,7 +163,7 @@ eote.init = function () {
     eote.createGMDicePool();
     eote.events();
     convertTokensToTags(eote.skillSuggestions, eote.defaults.graphics.SymbolicReplacement);
-    log("Finished converting tokens to tags");
+    attemptRegisterGMObj();
 };
 
 eote.skillSuggestions = {
@@ -176,46 +176,46 @@ eote.skillSuggestions = {
             success: [
                 {
                     text: "The character avoids any fear effects, except those triggered by threats",
-                    required: 1, fear: true
+                    required: 1
                 }
             ],
             advantage: [
-                {text: "Gain $BOOST$ on the character's first check.", required: 1, fear: true},
+                {text: "Gain $BOOST$ on the character's first check.", required: 1},
                 {
                     text: "If spending multiple $ADVANTAGE$, grant $BOOST$ to an additional player's first check.",
-                    required: 2, fear: true
+                    required: 2
                 }
             ],
             triumph: [
                 {
                     text: "Can be spent to cancel all previous penalties from fear checks, or",
-                    required: 1, fear: true
+                    required: 1
                 },
                 {
                     text: "Spent to ensure the character need not make any additional fear checks during the encounter, no matter the source.",
-                    required: 1, fear: true
+                    required: 1
                 }
             ],
             failure: [
                 {
                     text: "The character adds $SETBACK$ to each action he takes during the encounter.",
-                    required: 1, fear: true
+                    required: 1
                 }
             ],
             threat: [
                 {
                     text: "The character suffers a number of strain equal to the number of $FAILURE$.",
-                    required: 1, fear: true
+                    required: 1
                 },
                 {
                     text: "If the check generates $THREAT$$THREAT$$THREAT$+, the character can be staggered for his first turn, instead.",
-                    required: 3, fear: true
+                    required: 3
                 }
             ],
             despair: [
                 {
                     text: "The character is incredibly frightened and increases the difficulty of all checks until the end of the encounter by one.",
-                    required: 1, fear: true
+                    required: 1
                 }
             ]
         }
@@ -723,7 +723,90 @@ eote.skillSuggestions = {
                 }
             ]
         }
+    },
+    combat: {
+        personal: {
+            defaultAllowedSkills: [
+                "RangedLight",
+                "RangedHeavy"
+            ],
+            positives: [
+                {text:"Recover 1 strain", advantage:1, triumph:1},
+                {text:"Add $BOOST$ to the next allied active character's next check.", advantage:1, triumph:1},
+                {text:"Notice a single important point in the ongoing conflict.", advantage:1, triumph:1},
+                {text:"Inflict a Critical Injury with a successful attack that deals damage past soak. (Advantage cost may vary)", advantage:1, triumph:1, crit:true},
+                {text:"Activate a weapon quality (Advantage cost may vary)", advantage:2, triumph:1},
+                {text:"Perform an immediate free maneuver that does not exceed the two maneuver per turn limit", advantage:2, triumph:1},
+                {text:"Add $SETBACK$ to the targeted character's next check.", advantage:2, triumph:1},
+                {text:"Add $BOOST$ to any allied character's next check, including that of the active character.", advantage:2, triumph:1},
+                {text:"Negate the targeted enemy's defensive bonuses until the end of turn", advantage:3, triumph:1},
+                {text:"Ignore penalizing environmental effects until the end of the active character's next turn.", advantage:3, triumph:1},
+                {text:"When dealing damage to a target, have the attack disable the opponent or one piece of gear rather than dealing wounds or strain.", advantage:3, triumph:1},
+                {text:"Gain +1 melee or ranged defense until the end of the active character's next turn", advantage:3, triumph:1},
+                {text:"Force the target to drop a melee or ranged weapon they are wielding.", advantage:3, triumph:1},
+                {text:"Upgrade the difficulty of the targeted chraacter's next check.", triumph:1},
+                {text:"Upgrade any allied character's next check, including that of the current active character.", triumph:1},
+                {text:"Do something vital, such as shooting the controls to the nearby blast doors.", triumph:1},
+                {text:"When dealing damage to a target, had the attack destroyed a piece of equipment the target is using.", triumph:2}
+            ],
+            negatives: [
+                {text:"The active character suffers 1 strain", threat:1, despair:1},
+                {text:"The active character looses the benefits of a prior maneuver", threat:1, despair:1},
+                {text:"An opponent may immediately perform one free maneuver.", threat:2, despair:1},
+                {text:"Add $BOOST$ to the targeted character's next check", threat:2, despair:1},
+                {text:"The active character or an allied character suffers a $SETBACK$ on their next action.", threat:2, despair:1},
+                {text:"The active character falls prone.", threat:3, despair:1},
+                {text:"The active character grants the enemy a significant advantage in the ongoing encounter.", threat:3, despair:1},
+                {text:"The character's ranged weapon immediately runs out of ammunition.", despair:1},
+                {text:"Upgrade the difficulty of an allied character's next check, including the active character.", despair:1},
+                {text:"TThe tool or melee weapon the character is using becomes damaged.", despair:1}
+            ]
+        },
+        vehicle: {
+            defaultAllowedSkills: [
+                "RangedHeavy",
+                "Gunnery",
+                "PilotingSpace",
+                "PilotingPlanetary"
+            ],
+            positives: [
+                {text:"Add $BOOST$ to the next allied active character's Piloting, Gunnery, Computers, or Mechanics check.", advantage:1, triumph:1},
+                {text:"Notice a single important point in the ongoing conflict.", advantage:1, triumph:1},
+                {text:"Inflict a Critical Hit with successful attack that deals damage past armor (Advantage cost may vary)", advantage:1, triumph:1, crit:true},
+                {text:"Activate a weapon quality (Advantage cost may vary", advantage:2, triumph:1},
+                {text:"Perform an immediate free maneuver, provided the active character has not already performed two maneuvers in that turn.", advantage:2, triumph:1},
+                {text:"Add $SETBACK$ to the targeted character's next Piloting or Gunnery check.", advantage:2, triumph:1},
+                {text:"Add $BOOST to any allied character's next Piloting, Gunnery, Computers or Mechanics check, including the active character,", advantage:2, triumph:1},
+                {text:"When dealing damage to an opposing vehicle or ship, have the shot temporarily damage a component of the attacker's choice rather than deal hull damage or system strain.", advantage:3, triumph:1},
+                {text:"Ignore penalizing terrain or stellar phenomena until the end of the active character's next turn.", advantage:3, triumph:1},
+                {text:"If piloting the ship, perform one free Pilot Only maneuver (provided it does not break the limit of maximum number of Pilot Only maneuvers in a turn).", advantage:3, triumph:1},
+                {text:"Force the target ship or vehicle to veer off, breaking any Aim or Stay on Target maneuvers.", advantage:3, triumph:1},
+                {text:"Upgrade the difficulty of the targeted character's next Piloting or Gunnery check.", triumph:1},
+                {text:"Upgrade any allied character's next Piloting, Gunnery, Computers or Mechanics check.", triumph:1},
+                {text:"Destroy an important component when dealing damage.", triumph:2}
+            ],
+            negatives: [
+                {text:"If piloting a ship, sudden maneuvers force the ship to slow down by 1 point of speed.", threat:1, despair:1},
+                {text:"The active character looses the benefits of a prior maneuver.", threat:1, despair:1},
+                {text:"The character's active ship suffers 1 system strain. (This option may be selected multiple times)", threat:1, despair:1},
+                {text:"An opponent may immediately perform one free maneuver.", threat:2, despair:1},
+                {text:"Add $BOOST$ to the targeted character's next Piloting or Gunnery Check", threat:2, despair:1},
+                {text:"The active character or allied character suffers $SETBACK$ on their next action.", threat:2, despair:1},
+                {text:"The initiative currently being used drops below the last slot in the round.", threat:3, despair:1},
+                {text:"The enemy gains a significant advantage in the ongoing encounter.", threat:3, despair:1},
+                {text:"The primary weapon system of the active character's ship (or weapon the character is manning if acting as a gunner) suffers a Component Critical Hit.", despair:1},
+                {text:"Upgrade the difficulty of an allied character's next Gunnery, Piloting, computers or Mechanics check.", despair:1},
+                {text:"The active character's ship suffers a minor collision either with one of their opponents within close range or with the terrain around them.", despair:1},
+                {text:"The active character's ship suffers a major collision either with one of their opponents within close range or with the terrain around them.", despair:1, failed:true}
+            ]
+        }
     }
+};
+
+eote.suggestionTypes = {
+    GENERAL: "general only",
+    COMBAT: "combat only",
+    BOTH: "both combat and general"
 };
 
 eote.defaults = {
@@ -738,10 +821,10 @@ eote.defaults = {
         diceTestEnabled: false,
         diceLogRolledOnOneLine: true,
         scriptDebug: false,
-        suggestionsFlag: -1,
-        GMObj: null
+        suggestionsFlag: -1
     },
     '-DicePoolID': '',
+    GMObj: null,
     character: {
         attributes: [
             /* Don't need to update characterID
@@ -854,9 +937,42 @@ eote.defaults = {
     suggestionsStatus: {
         none: 0, // No skill suggestions will be made
         whisper: 1, // Player will be whispered beneficial results, GM will be whispered negative results. (This will incur the issues previous highlighted in this thread).
-        //button: 2, // There will be a button provided with the skills to allow suggestions to happen when they are wanted only. (This option will be enabled once I figure out how it needs to work.)
-        always: 3 // Suggestions will be included in the skill roll template as they are now.
+        always: 2 // Suggestions will be included in the skill roll template as they are now.
     }
+};
+
+eote.defaults.suggestionsStatus.mapTextToNumber = function (input) {
+    var retVal = null;
+    var json = eote.defaults.suggestionsStatus;
+    switch (input) {
+        case "none":
+            retVal = json.none;
+            break;
+        case "whisper":
+            retVal = json.whisper;
+            break;
+        case "always":
+            retVal = json.always;
+            break;
+    }
+    return retVal;
+};
+
+eote.defaults.suggestionsStatus.mapNumberToText = function (input) {
+    var retVal = null;
+    var json = eote.defaults.suggestionsStatus;
+    switch (input) {
+        case json.none:
+            retVal = "none";
+            break;
+        case json.whisper:
+            retVal = "whisper";
+            break;
+        case json.always:
+            retVal = "always";
+            break;
+    }
+    return retVal;
 };
 
 eote.defaults.globalVars.suggestionsFlag = eote.defaults.suggestionsStatus.always;
@@ -880,6 +996,27 @@ eote.defaults.graphics.SymbolicReplacement.proficiency = buildReplacementObject(
 eote.defaults.graphics.SymbolicReplacement.difficulty = buildReplacementObject("difficulty", eote.defaults.graphics.DIFFICULTY.BLANK, eote.defaults.graphics.SIZE.SMALL);
 eote.defaults.graphics.SymbolicReplacement.setback = buildReplacementObject("setback", eote.defaults.graphics.SETBACK.BLANK, eote.defaults.graphics.SIZE.SMALL);
 eote.defaults.graphics.SymbolicReplacement.challenge = buildReplacementObject("challenge", eote.defaults.graphics.CHALLENGE.BLANK, eote.defaults.graphics.SIZE.SMALL);
+
+function attemptRegisterGMObj() {
+    var GMObj = eote.defaults.GMObj;
+
+    // if the GMObj is null then it means that this is the first time this version of the script is being run on this campaign.
+    if (GMObj == null) {
+        GMObj = findObjs({
+            _type: "character",
+            _id: eote.defaults['-DicePoolID']
+        });
+        if (GMObj.length > 0) {
+            eote.defaults.GMObj = GMObj[0];
+            log("Registering of GMObj successful");
+        }
+        else {
+            log("warning: -DicePool not found. Will attempt to create it now.");
+        }
+    } else {
+        log("GMObj previously registered.");
+    }
+}
 
 eote.createGMDicePool = function () {
 
@@ -949,7 +1086,7 @@ eote.updateListeners = function (attributes) {
             _type: "character",
             _id: charID
         });
-        //add/update characterID feild
+        //add/update characterID field
         _.each(charObj, function (charObj) {
             //Attributes
             eote.updateAddAttribute(charObj, attributes); //Update Add Attribute defaults
@@ -960,12 +1097,15 @@ eote.updateListeners = function (attributes) {
         _type: "character",
         _id: eote.defaults['-DicePoolID']
     });
-    eote.defaults.globalVars.GMObj = eote.defaults.globalVars.GMObj || GMObj;
+    eote.defaults.GMObj = eote.defaults.GMObj || GMObj;
     eote.updateAddAttribute(GMObj, attributes);
 };
 
-/*TODO updateAddAttribute*/
 eote.updateAddAttribute = function (charactersObj, updateAddAttributesObj) { // charactersObj = object or array objects, updateAddAttributesObj = object or array objects
+    if (!charactersObj) {
+        log("error: charactersObj in eote.updateAddAttribute is not set");
+        return;
+    }
 
     //check if object or array
     if (!_.isArray(charactersObj)) {
@@ -1094,7 +1234,6 @@ eote.process.logger = function (functionName, cmd) {
     }
 };
 
-/*TODO setup*/
 eote.process.setup = function (cmd, playerName, playerID) {
 
     if (!cmd.match(eote.defaults.regex.cmd)) { //check for api cmd !eed
@@ -1110,11 +1249,13 @@ eote.process.setup = function (cmd, playerName, playerID) {
         eote.process.fear(fearMatch);
         return false;
     }
+
     var suggestionDisplayMatch = cmd.match(eote.defaults.regex.suggestionDisplay);
     if (suggestionDisplayMatch) {
-        eote.process.suggestionDisplay(suggestionDisplayMatch);
+        eote.process.suggestionDisplay(suggestionDisplayMatch, eote.defaults.suggestionsStatus);
         return false;
     }
+
     eote.process.logger("eote.process.setup", "NEW ROLL");
     eote.process.logger("eote.process.setup", "Original Command: " + cmd);
 
@@ -1195,35 +1336,36 @@ eote.process.setup = function (cmd, playerName, playerID) {
         diceObj = eote.process.encum(encumMatch, diceObj);
         //eote.process.logger("eote.process.setup.encumMatch","New dice:" + diceObj);
     }
-    var skillMatch = cmd.match(eote.defaults.regex.skill);
 
+    var skillMatch = cmd.match(eote.defaults.regex.skill);
     if (skillMatch) {
-        var suggestionSettingsFear = getAttrByName(eote.defaults['-DicePoolID'], "skill_suggestion_setting_fear");
+        var suggestionSettingsFear = getAttrByName(eote.defaults.GMObj.id, "skill_suggestion_setting_fear");
         diceObj.vars.isFearCheck = suggestionSettingsFear === "1";
 
+        eote.defaults.globalVars.suggestionsFlag = eote.defaults.suggestionsStatus.mapTextToNumber(getAttrByName(eote.defaults.GMObj.id, "skill_suggestion_setting_display"));
         diceObj = eote.process.skill(skillMatch, diceObj);
     }
-    var opposedMatch = cmd.match(eote.defaults.regex.opposed);
 
+    var opposedMatch = cmd.match(eote.defaults.regex.opposed);
     if (opposedMatch) {
         diceObj = eote.process.opposed(opposedMatch, diceObj);
     }
-    var diceMatch = cmd.match(eote.defaults.regex.dice);
 
+    var diceMatch = cmd.match(eote.defaults.regex.dice);
     if (diceMatch) {
         diceObj = eote.process.setDice(diceMatch, diceObj);
     }
 
     var upgradeMatch = cmd.match(eote.defaults.regex.upgrade);
-
     if (upgradeMatch) {
         diceObj = eote.process.upgrade(upgradeMatch, diceObj);
     }
-    var downgradeMatch = cmd.match(eote.defaults.regex.downgrade);
 
+    var downgradeMatch = cmd.match(eote.defaults.regex.downgrade);
     if (downgradeMatch) {
         diceObj = eote.process.downgrade(downgradeMatch, diceObj);
     }
+
     /* Roll dice and update success / fail 
      * ------------------------------------------------------------- */
     diceObj = eote.process.rollDice(diceObj);
@@ -1252,7 +1394,7 @@ eote.process.setup = function (cmd, playerName, playerID) {
     var destinyMatch = cmd.match(eote.defaults.regex.destiny);
 
     if (destinyMatch) {
-        eote.process.logger("etoe.process.setup.destiny", "Destiny Point Command");
+        eote.process.logger("eote.process.setup.destiny", "Destiny Point Command");
         var doRoll = eote.process.destiny(destinyMatch, diceObj);
         if (!doRoll) {
             return false;
@@ -1270,6 +1412,7 @@ eote.process.setup = function (cmd, playerName, playerID) {
         eote.process.critShip(critShipMatch, diceObj);
         return false;
     }
+
     /* Display dice output in chat window 
      * ------------------------------------------------------------- */
     eote.process.diceOutput(diceObj, playerName, playerID);
@@ -1278,7 +1421,6 @@ eote.process.setup = function (cmd, playerName, playerID) {
 /* DICE PROCESS FUNCTION
  * 
  * ---------------------------------------------------------------- */
-
 
 eote.process.skillSpending.processSuggestions = function(diceObj) {
     diceObj.vars.spendingSuggestions = {
@@ -1343,7 +1485,6 @@ eote.process.skillSpending.getSkillSuggestion = function(diceObj, key, value, sk
     return diceObj;
 };
 
-/*TODO buildSuggestions*/
 eote.process.skillSpending.buildSuggestions = function (diceObj) {
     var suggestions = diceObj.vars.spendingSuggestions;
     var msg = "", property = "";
@@ -1417,7 +1558,7 @@ eote.process.fear = function (cmd) {
     }
 
     if (value != null) {
-        eote.updateAddAttribute(eote.defaults.globalVars.GMObj, {
+        eote.updateAddAttribute(eote.defaults.GMObj, {
             name: "skill_suggestion_setting_fear",
             current: value,
             update: true
@@ -1429,28 +1570,20 @@ eote.process.suggestionDisplay = function (cmd) {
 
     /* SuggestionDisplay
      * Description: Sets the state of the skill_suggestion_setting_display check status on the DicePool
-     * Command: !eed suggestDisplay none|whisper|always
+     * Command: !eed suggestionDisplay none|whisper|always
      * ---------------------------------------------------------------- */
 
-    var value = null;
-    switch (cmd[1]) {
-        case "none":
-            value = 0;
-            break;
-        case "whisper":
-            value = 1;
-            break;
-        case "always":
-            value = 2;
-            break;
-    }
+    /*TODO fix why suggestionDisplay is no longer working*/
+    var value = (eote.defaults.suggestionsStatus.hasOwnProperty(cmd[1]) ? cmd[1] : null);
 
     if (value != null) {
-        eote.updateAddAttribute(eote.defaults.globalVars.GMObj, {
+        eote.updateAddAttribute(eote.defaults.GMObj, {
             name: "skill_suggestion_setting_display",
             current: value,
             update: true
         });
+    } else {
+        sendChat("Error", "/w gm " + cmd[1] + " is not a valid argument for suggestionDisplay.");
     }
 };
 
@@ -1722,19 +1855,18 @@ eote.process.label = function (cmd, diceObj) {
             var labelArray = labelVal.split(':');
             var label = labelArray[0];
             var message = labelArray[1];
+            var labelTest = label.toLowerCase();
 
-            if (label == "Weapon") {
-                labelStr = labelStr + message + '}}';
+            switch (labelTest) {
+                case 'skill':
+                case 'dice':
+                case 'weapon':
+                    labelStr = labelStr + message + '}}';
+                    break;
+                default:
+                    labelStr = labelStr + '{{' + label + '=' + message + '}}';
             }
-            else if (label == "skill") {
-                labelStr = labelStr + message + '}}';
-            }
-            else if (label == "Dice") {
-                labelStr = labelStr + message + '}}';
-            }
-            else {
-                labelStr = labelStr + '{{' + label + '=' + message + '}}';
-            }
+
         });
         diceObj.vars.label = labelStr;
     }
@@ -1745,9 +1877,10 @@ eote.process.resetdice = function (cmd, diceObj) {
 
     var characterObj = [{ name: diceObj.vars.characterName, id: diceObj.vars.characterID }];
     eote.process.logger("eote.process.resetdice", cmd);
+    var resetdice = [];
 
     if (cmd[1] == 'resetdice') {
-        var resetdice = [
+        resetdice = [
             {
                 name: "b",
                 current: 0,
@@ -1807,7 +1940,7 @@ eote.process.resetdice = function (cmd, diceObj) {
     }
 
     if (cmd[1] == 'resetgmdice') {
-        var resetdice = [
+        resetdice = [
             {
                 name: "bgm",
                 current: 0,
@@ -3225,7 +3358,7 @@ eote.process.diceOutput = function (diceObj, playerName, playerID) {
     if (eote.defaults.globalVars.diceTestEnabled === true) {
         chatGlobal = "/direct <br>6b 8g 12y 6blk 8p 12r 12w <br>";
     } else if (diceObj.vars.label) {
-        chatGlobal = "/direct &{template:" + templateName +"} {{title=" + diceObj.vars.label + "}} {{subtitle=" + characterPlayer + "}}";
+        chatGlobal = "/direct &{template:" + templateName +"} {{title=" + diceObj.vars.label + " {{subtitle=" + characterPlayer + "}}";
     } else {
         chatGlobal = "/direct &{template:" + templateName +"} {{title=" + characterPlayer + "}}";
     }
@@ -3296,7 +3429,6 @@ eote.process.diceOutput = function (diceObj, playerName, playerID) {
     var isSuggestions = diceObj.vars.spendingSuggestions.isSuggestions;
 
     if (isSuggestions) {
-        //noinspection FallThroughInSwitchStatementJS
         switch (suggestionsFlag) {
             case suggestionStatus.none:
                 // not really needed since the other checks won't allow a status of none to do anything
@@ -3311,14 +3443,17 @@ eote.process.diceOutput = function (diceObj, playerName, playerID) {
                 break;
             default:
                 // this should never be entered
-                log("ERROR! A suggestionFlag was set that is not handled!")
+                log("Report Me! A suggestionFlag of '"+ suggestionsFlag +"' is not handled properly!");
         }
     }
+
+
 
     if (eote.defaults.globalVars.diceGraphicsChat === true) {
         chatGlobal = chatGlobal + '{{results=' + diceGraphicsResults + '}}';
         if (isSuggestions && suggestionsFlag == suggestionStatus.always)
             chatGlobal += " " + suggestions;
+        log(chatGlobal);
         sendChat(characterPlayer, chatGlobal);
     } else {
         sendChat("Roll", diceTextResults);
@@ -4134,6 +4269,7 @@ eote.events = function () {
 };
 
 // this only runs once per initialization of the script in order to prevent this process from running too frequently
+// this converts any $\w$ token that matches a defined list of tokens into a html image tag.
 function convertTokensToTags(skillSuggestions, symReplace) {
     Object.keys(skillSuggestions).forEach(function(categoryKey) {
         var category = skillSuggestions[categoryKey];
@@ -4155,8 +4291,10 @@ function convertTokensToTags(skillSuggestions, symReplace) {
             });
         });
     });
+    log("Finished converting tokens to tags");
 }
 
 on('ready', function() {
     eote.init();
+    log(eote.skillSuggestions.combat.personal.positives[1].text);
 });
