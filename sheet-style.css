@@ -1,6 +1,6 @@
 /*
 Version Info:
-Version 6.3.0b2
+Version 6.3.0 b5
 */
 .sheet-clear {
     clear: both
@@ -654,6 +654,10 @@ input.sheet-tab-gm-adversaries:checked ~ div.sheet-tab-gm-adversaries /* Current
 
 .sheet-rolltemplate-base td, .sheet-rolltemplate-suggestion td {
     padding: 2px;
+}
+
+.sheet-rolltemplate-suggestion td {
+    width: 71px;
 }
 
 .sheet-rolltemplate-base .sheet-tcat, .sheet-rolltemplate-suggestion .sheet-tcat {

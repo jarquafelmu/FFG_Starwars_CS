@@ -1,6 +1,6 @@
 /*
- Current Version: 6.3.0b2
- Last updated: 06.26.2016
+ Current Version: 6.3.0 b5
+ Last updated: 07.13.2016
  Character Sheet and Script Maintained by: Samuel T.
  Older Verions: https://github.com/dayst/StarWarsEdgeOfTheEmpire_Dice
 
@@ -29,8 +29,16 @@
  Roll Template Code Fixes
  Roll Templates integrated with all Rolls
  Overencumbrance roll notification
- Work done by Samuel T.
- Versions 4.0.10.0 - Current
+ Work done by Samuel T.:
+ Versions 4.0.10.0 - 6.3.0 b5
+ SuggestionEngine
+ NPC Sheet
+ Initiative fix
+ Label generation fix
+ Semantic Versioning
+ Consolidated the Dice Ppol and Destiny Sections
+ Collapsing sections
+ Optgroups for dropdowns
 
  API Chat Commands
  Settings:
@@ -112,6 +120,50 @@
  * Command: !charsheet
  */
 
+/* Define functions that may not always exist */
+if (!Array.prototype.includes) {
+    Array.prototype.includes = function(searchElement /*, fromIndex*/ ) {
+        'use strict';
+        var O = Object(this);
+        var len = parseInt(O.length, 10) || 0;
+        if (len === 0) {
+            return false;
+        }
+        var n = parseInt(arguments[1], 10) || 0;
+        var k;
+        if (n >= 0) {
+            k = n;
+        } else {
+            k = len + n;
+            if (k < 0) {k = 0;}
+        }
+        var currentElement;
+        while (k < len) {
+            currentElement = O[k];
+            if (searchElement === currentElement ||
+              (searchElement !== searchElement && currentElement !== currentElement)) { // NaN !== NaN
+                return true;
+            }
+            k++;
+        }
+        return false;
+    };
+}
+
+if(!log) {
+    log = function(input) {
+        console.log(input);
+    }
+}
+
+if (!sendChat) {
+    sendChat = function (sender, msg) {
+        log(sender + " says " + msg);
+    }
+}
+/* End special function definitions*/
+
+
 /* Begin Sheet Character Sheet Auto Creator */
 var Charsheet = Charsheet || {};
 
@@ -156,658 +208,1110 @@ if (!Date.now) {
 }
 /* End Sheet Character Sheet Auto Creator */
 
+function SuggestionEngine () {
+    var that = this;
+
+    var flags = {
+        displayOption: null,
+        generalSuggesting: true,
+        combatSuggesting: true,
+        combatType: null,
+        isFearCheck: false
+    };
+
+    function convertToBoolean (value) {
+        // will trap the following properly: false, true, "false", "true", 0, 1, "", and undefined
+        //noinspection RedundantConditionalExpressionJS
+        return !value || value == 1 || value === 'true'
+    }
+
+    this.suggestions = {
+        special: {
+            fear: {
+                allowedSkills: [
+                    "Cool",
+                    "Discipline"
+                ],
+                success: [
+                    {
+                        text: "The character avoids any fear effects, except those triggered by threats",
+                        required: 1
+                    }
+                ],
+                advantage: [
+                    {text: "Gain $BOOST$ on the character's first check.", required: 1},
+                    {
+                        text: "If spending multiple $ADVANTAGE$, grant $BOOST$ to an additional player's first check.",
+                        required: 2
+                    }
+                ],
+                triumph: [
+                    {
+                        text: "Can be spent to cancel all previous penalties from fear checks, or",
+                        required: 1
+                    },
+                    {
+                        text: "Spent to ensure the character need not make any additional fear checks during the encounter, no matter the source.",
+                        required: 1
+                    }
+                ],
+                failure: [
+                    {
+                        text: "The character adds $SETBACK$ to each action he takes during the encounter.",
+                        required: 1
+                    }
+                ],
+                threat: [
+                    {
+                        text: "The character suffers a number of strain equal to the number of $FAILURE$.",
+                        required: 1
+                    },
+                    {
+                        text: "If the check generates $THREAT$$THREAT$$THREAT$+, the character can be staggered for his first turn, instead.",
+                        required: 3
+                    }
+                ],
+                despair: [
+                    {
+                        text: "The character is incredibly frightened and increases the difficulty of all checks until the end of the encounter by one.",
+                        required: 1
+                    }
+                ]
+            }
+        },
+        general: {
+            Astrogation: {
+                success: [
+                    {
+                        text: "Better target for the destination, e.g.: place vessel directly into orbit around target planet.",
+                        required: 1
+                    },
+                    {text: "Reduce time spent calculating.", required: 1}
+                ],
+                advantage: [
+                    {text: "Reduce travel time.", required: 1},
+                    {text: "Identify convenient stopovers to resupply or conduct additional business.", required: 1}
+                ],
+                triumph: [
+                    {text: "Complete calculations in minimum time.", required: 1},
+                    {text: "Greatly reduce travel time.", required: 1},
+                    {text: "Reveal highly valuable but previously unknown information.", required: 1}
+                ],
+                threat: [
+                    {text: "Decrease accuracy of hyperspace jump.", required: 1},
+                    {text: "Increase travel time.", required: 1},
+                    {text: "Miss relevant details when analyzing hyperspace routes or galactic maps.", required: 1}
+                ],
+                despair: [
+                    {text: "Greatly decrease accuracy of hyperspace jump.", required: 1},
+                    {text: "Greatly increase travel time.", required: 1},
+                    {
+                        text: "Miss large amounts of relevant details when analyzing hyperspace routes or galactic maps.",
+                        required: 1
+                    },
+                    {
+                        text: "Trigger something truly awful happening, such as jumping out of hyperspace in the path of an asteroid.",
+                        required: 1
+                    }
+                ]
+            },
+            Athletics: {
+                success: [
+                    {text: "Reduce time required.", required: 1},
+                    {text: "Increase distance travelled.", required: 1}
+                ],
+                advantage: [
+                    {
+                        text: "Generate bonus on other physical checks performed later or by allies that turn.",
+                        required: 1
+                    },
+                    {
+                        text: "Spend $ADVANTAGE$$ADVANTAGE$ to grant additional maneuver during turn to move or perform physical activity.",
+                        required: 2
+                    }
+                ],
+                triumph: [
+                    {text: "Perform the check with truly impressive results.", required: 1}
+                ],
+                threat: [
+                    {text: "Small amounts cause strain.", required: 1},
+                    {
+                        text: "Larger amounts may cause character to fall prone, or even suffer a wound from sprains and bruises.",
+                        required: 1
+                    }
+                ],
+                despair: [
+                    {
+                        text: "Inflict a Critical Injury, which the GM can choose to be thematic or roll randomly.",
+                        required: 1
+                    }
+                ]
+            },
+            Charm: {
+                success: [
+                    {
+                        text: "Gain an extra scene in which target is willing to support you for each additional success.",
+                        required: 1
+                    }
+                ],
+                advantage: [
+                    {text: "Affect unexpected subjects beyond the original target.", required: 1}
+                ],
+                triumph: [
+                    {text: "Have target NPC become recurring character who remains predisposed to assist.", required: 1}
+                ],
+                threat: [
+                    {text: "Reduce the number of people able to influence", required: 1},
+                    {text: "Turn those affected negatively against character.", required: 1}
+                ],
+                despair: [
+                    {text: "Turn NPC against character and make into a minor recurring adversary.", required: 1}
+                ]
+            },
+            Coercion: {
+                success: [
+                    {text: "Spend 2 extra successes to inflict one strain on target. ", required: 2}
+                ],
+                advantage: [
+                    {text: "Affect unexpected subjects beyond the original target.", required: 1}
+                ],
+                triumph: [
+                    {text: "Shift allegiance of target.", required: 1}
+                ],
+                threat: [
+                    {text: "Target has building resentment towards character.", required: 1}
+                ],
+                despair: [
+                    {text: "Reveal something about goals and motivations to target.", required: 1}
+                ]
+            },
+            Computers: {
+                success: [
+                    {text: "Reduce time required.", required: 1}
+                ],
+                advantage: [
+                    {text: "Uncover additional information about the system.", required: 1}
+                ],
+                triumph: [
+                    {
+                        text: "Obfuscate actions taken, add a $CHALLENGE$ to any check to detect or identify the characters actions.",
+                        required: 1
+                    }
+                ],
+                threat: [
+                    {
+                        text: "The character does a poor job of concealing his presence in the system. Security systems are alerted, and add $BOOST$ to the check of any NPC attempting to discover evidence of his actions.",
+                        required: 1
+                    }
+                ],
+                despair: [
+                    {
+                        text: "Leave behind trace information of your own system in the system being sliced. Add $BOOST$ to the check of any NPC using the target system to slice the character's system.",
+                        required: 1
+                    }
+                ]
+            },
+            Cool: {
+                advantage: [
+                    {text: "Gain an additional insight into the situation at hand.", required: 1}
+                ],
+                triumph: [
+                    {text: "Heal 3 strain.", required: 1}
+                ],
+                threat: [
+                    {text: "Miss a vital detail or event.", required: 1}
+                ],
+                despair: [
+                    {text: "The character is overwhelmed by the chaos and is stunned for one round.", required: 1}
+                ]
+            },
+            Coordination: {
+                success: [
+                    {text: "Reduce time required.", required: 1},
+                    {text: "Increase distance travelled by 25%, (maximum 100% increase).", required: 1}
+                ],
+                advantage: [
+                    {text: "Spend $ADVANTAGE$$ADVANTAGE$ to grant additional maneuver during turn.", required: 2}
+                ],
+                triumph: [
+                    {text: "Perform the check with truly impressive results.", required: 1}
+                ],
+                threat: [
+                    {text: "Lose free maneuver for one round.", required: 1}
+                ],
+                despair: [
+                    {text: "Suffer a wound", required: 1},
+                    {text: "Lose a vital piece of equipment.", required: 1}
+                ]
+            },
+            Deception: {
+                success: [
+                    {text: "Extend duration of Deceit action.", required: 1}
+                ],
+                advantage: [
+                    {text: "Increase the value of any goods or services gained through the action.", required: 1}
+                ],
+                triumph: [
+                    {
+                        text: "Fool the target into believing the character is trustworthy - future Deceit checks against target do not require an opposed check.",
+                        required: 1
+                    }
+                ],
+                threat: [
+                    {text: "Give away a portion of the lie, making target suspicious.", required: 1}
+                ],
+                despair: [
+                    {
+                        text: "Target realises he has been lied to and spreads word of his deceit to harm his reputation or uses the situation to his advantage.",
+                        required: 1
+                    }
+                ]
+            },
+            Discipline: {
+                success: [
+                    {text: "Downgrade difficulty of the dice pool for next action (max. 1).", required: 1}
+                ],
+                advantage: [
+                    {text: "Gain an additional insight into the situation at hand.", required: 1}
+                ],
+                triumph: [
+                    {
+                        text: "Add $BOOST$ to any Discipline checks made by allies during the following round.",
+                        required: 1
+                    }
+                ],
+                threat: [
+                    {
+                        text: "Undermine the characters resolve, perhaps inflicting a penalty on further actions in distressing circumstances.",
+                        required: 1
+                    }
+                ],
+                despair: [
+                    {
+                        text: "The character is overwhelmed entirely and is unable to perform more than one maneuver next round.",
+                        required: 1
+                    }
+                ]
+            },
+            Leadership: {
+                success: [
+                    {text: "Extend target's support for additional scenes.", required: 1},
+                    {text: "Increase efficiency or effectiveness of target during ordered actions.", required: 1}
+                ],
+                advantage: [
+                    {text: "Affect bystanders in addition to target.", required: 1}
+                ],
+                triumph: [
+                    {
+                        text: "Have target NPC become recurring character who decides to faithfully follow the acting character.",
+                        required: 1
+                    }
+                ],
+                threat: [
+                    {
+                        text: "Decrease the efficiency of ordered actions, causing them to take longer or be done poorly.",
+                        required: 1
+                    }
+                ],
+                despair: [
+                    {
+                        text: "Undermine the character's authority, damaging the characters ability to command target or those who witnessed the attempt.",
+                        required: 1
+                    },
+                    {
+                        text: "With multiple $DESPAIR$ the target may become a recurring thorn in the character's side,refusing future orders or turning others against the character.",
+                        required: 2
+                    }
+                ]
+            },
+            Mechanics: {
+                success: [
+                    {text: "Reduce time required by 10-20%", required: 1}
+                ],
+                advantage: [
+                    {
+                        text: "Grant $BOOST$ on checks when using repaired item, or even the Superior quality, for a session.",
+                        required: 1
+                    }
+                ],
+                triumph: [
+                    {text: "Give device additional single use function.", required: 1}
+                ],
+                threat: [
+                    {
+                        text: "Particularly shoddy repairs or temporary measures, the GM may spend $THREAT$ to cause the target object or system to malfunction shortly after check completed.",
+                        required: 1
+                    }
+                ],
+                despair: [
+                    {text: "Cause further harm to target object or system.", required: 1},
+                    {text: "Cause other components of target to malfunction.", required: 1}
+                ]
+            },
+            Medicine: {
+                success: [
+                    {text: "Target recovers one additional wound.", required: 1},
+                    {text: "Reduce healing time by one hour.", required: 1}
+                ],
+                advantage: [
+                    {text: "Eliminate one strain from target.", required: 1}
+                ],
+                triumph: [
+                    {
+                        text: "Heal additional wounds while attempting to heal Critical Injury, or vice versa.",
+                        required: 1
+                    }
+                ],
+                threat: [
+                    {text: "Inflict strain on the target due to shock of procedure.", required: 1},
+                    {text: "Increase time procedure takes.", required: 1}
+                ],
+                despair: [
+                    {text: "A truly terrible accident, perhaps inflicting further wounds on target.", required: 1}
+                ]
+            },
+            Negotiation: {
+                success: [
+                    {text: "Increase acting character's profit by 5%.", required: 1},
+                    {text: "Modify scope of agreement.", required: 1}
+                ],
+                advantage: [
+                    {
+                        text: "Earn unrelated boons from target, concessions if failed or extra perks if passed.",
+                        required: 1
+                    }
+                ],
+                triumph: [
+                    {text: "Have target NPC become regular client or specialist vendor.", required: 1}
+                ],
+
+                threat: [
+                    {text: "Increase cost of goods purchased.", required: 1},
+                    {text: "Decrease value of goods sold.", required: 1},
+                    {text: "Shorten contracts negotiated.", required: 1}
+                ],
+                despair: [
+                    {
+                        text: "Seriously sabotage goals during the interaction, perhaps receive counterfeit goods or payment, or agree to terms entirely beyond scope of negotiation.",
+                        required: 1
+                    }
+                ]
+            },
+            Perception: {
+                success: [
+                    {text: "Reveal additional details.", required: 1}
+                ],
+                advantage: [
+                    {text: "Recall additional information associated with object noticed.", required: 1}
+                ],
+                triumph: [
+                    {
+                        text: "Notice details that can be useful later to gain $BOOST$ on future interactions with noticed object.",
+                        required: 1
+                    }
+                ],
+                threat: [
+                    {text: "Conceal a vital detail about situation or environment.", required: 1}
+                ],
+                despair: [
+                    {text: "Obtain false information about surroundings or target.", required: 1}
+                ]
+            },
+            PilotingPlanetary: {
+                success: [
+                    {text: "Gain insights into situation.", required: 1},
+                    {text: "Deduce way to modify vehicle to make it more effective in future.", required: 1}
+                ],
+                advantage: [
+                    {
+                        text: "Reveal vulnerability in opponent's piloting style or vehicle, giving benefit in later rounds.",
+                        required: 1
+                    }
+                ],
+                triumph: [
+                    {text: "Grant additional maneuver while continuing to pilot vehicle.", required: 1}
+                ],
+                threat: [
+                    {
+                        text: "Spend $THREAT$$THREAT$ to give opponents $BOOST$ on checks against character and vehicle due to momentary malfunction in system.",
+                        required: 2
+                    }
+                ],
+                despair: [
+                    {
+                        text: "Deal damage to vehicle as character strains systems throughout vehicle during check.",
+                        required: 1
+                    }
+                ]
+            },
+            PilotingSpace: {
+                success: [
+                    {text: "Gain insights into situation.", required: 1},
+                    {text: "Deduce way to modify vehicle to make it more effective in future.", required: 1}
+                ],
+                advantage: [
+                    {
+                        text: "Reveal vulnerability in opponent's piloting style or vehicle, giving benefit in later rounds.",
+                        required: 1
+                    }
+                ],
+                triumph: [
+                    {text: "Grant additional maneuver while continuing to pilot vehicle.", required: 1}
+                ],
+                threat: [
+                    {
+                        text: "Spend $THREAT$$THREAT$ to give opponents $BOOST$ on checks against character and vehicle due to momentary malfunction in system.",
+                        required: 2
+                    }
+                ],
+                despair: [
+                    {
+                        text: "Deal damage to vehicle as character strains systems throughout vehicle during check.",
+                        required: 1
+                    }
+                ]
+            },
+            Resilience: {
+                success: [
+                    {text: "Extend effects of the success to increase time between checks.", required: 1}
+                ],
+                advantage: [
+                    {text: "Identify way to reduce difficulty of future checks against same threat.", required: 1}
+                ],
+                triumph: [
+                    {text: "Recover 3 strain.", required: 1}
+                ],
+                threat: [
+                    {text: "Overburden the character, inflicting penalties on subsequent checks.", required: 1}
+                ],
+                despair: [
+                    {
+                        text: "Inflict a wound or minor Critical Injury on character, as they succumb to harsh conditions.",
+                        required: 1
+                    }
+                ]
+            },
+            Skulduggery: {
+                success: [
+                    {text: "Gain additional insights about nature of opposition.", required: 1}
+                ],
+                advantage: [
+                    {text: "Identify additional potential target.", required: 1}
+                ],
+                triumph: [
+                    {text: "Earn an unexpected boon.", required: 1}
+                ],
+                threat: [
+                    {
+                        text: "Opportunity to catch character immediately after act, number of $THREAT$ determine immediacy of discovery and ensuing danger.",
+                        required: 1
+                    }
+                ],
+                despair: [
+                    {text: "Leave behind evidence of larceny.", required: 1}
+                ]
+            },
+            Stealth: {
+                success: [
+                    {text: "Assist allied character infiltrating at same time.", required: 1}
+                ],
+                advantage: [
+                    {text: "Decrease time taken to perform action while hidden.", required: 1}
+                ],
+                triumph: [
+                    {text: "Identify way to completely distract opponent for duration of scene.", required: 1}
+                ],
+                threat: [
+                    {text: "Increase time taken to perform action while hidden by 20%.", required: 1}
+                ],
+                despair: [
+                    {text: "Leave behind evidence of passing, concerning identity and possibly motive.", required: 1}
+                ]
+            },
+            Streetwise: {
+                success: [
+                    {text: "Reduce time or funds required to obtain item, information or service.", required: 1}
+                ],
+                advantage: [
+                    {text: "Reveal additional rumours or alternative sources.", required: 1}
+                ],
+                triumph: [
+                    {text: "Gain semi-permanent contact on street.", required: 1}
+                ],
+                threat: [
+                    {text: "Seed gathered information with minor falsehoods.", required: 1}
+                ],
+                despair: [
+                    {text: "Character lets slip details about self or information sought.", required: 1}
+                ]
+            },
+            Survival: {
+                success: [
+                    {text: "Assist other character in surviving.", required: 1},
+                    {text: "Stockpile goods to increase time between checks.", required: 1}
+                ],
+                advantage: [
+                    {text: "Gain insight into environment to make future checks simpler.", required: 1},
+                    {
+                        text: "When tracking, learn significant detail about target, such as number, species or how recently tracks were made.",
+                        required: 1
+                    }
+                ],
+                triumph: [
+                    {
+                        text: "When handling domesticated animal, predispose animal towards character earning loyal companion.",
+                        required: 1
+                    },
+                    {text: "When tracking, learn vital clue about target.", required: 1}
+                ],
+                threat: [
+                    {text: "Spend vital resources (food, fuel, etc.) during check.", required: 1}
+                ],
+                despair: [
+                    {text: "Inflict wounds, Critical Injuries or large amounts of strain on character.", required: 1}
+                ]
+            },
+            Vigilance: {
+                success: [
+                    {text: "Character is particularly well prepared.", required: 1}
+                ],
+                advantage: [
+                    {text: "Notice key environmental factor.", required: 1}
+                ],
+                triumph: [
+                    {text: "Gain extra maneuver during first round of combat.", required: 1}
+                ],
+                threat: [
+                    {text: "Miss key piece of information about situation or environment.", required: 1}
+                ],
+                despair: [
+                    {
+                        text: "The character is unable to perform more than one maneuver during first round of combat.",
+                        required: 1
+                    }
+                ]
+            }
+        },
+        combat: {
+            /*TODO continue working on the combat skill suggestions*/
+            personal: {
+                AllowedSkills: [
+                    "RangedLight",
+                    "RangedHeavy",
+                    "Melee",
+                    "Brawl",
+                    "Lightsaber",
+                    "Gunnery"
+                ],
+                '1advantage1triumph': [
+                    {text: "Recover 1 strain", advantage: 1, triumph: 1},
+                    {text: "Add $BOOST$ to the next allied active character's next check.", advantage: 1, triumph: 1},
+                    {text: "Notice a single important point in the ongoing conflict.", advantage: 1, triumph: 1},
+                    {
+                        text: "Inflict a Critical Injury with a successful attack that deals damage past soak. ($ADVANTAGE$ cost may vary)",
+                        advantage: 1,
+                        triumph: 1,
+                        crit: true
+                    }
+                ],
+                '2advantage1triumph': [
+                    {text: "Activate a weapon quality ($ADVANTAGE$ cost may vary)", advantage: 2, triumph: 1},
+                    {
+                        text: "Perform an immediate free maneuver that does not exceed the two maneuver per turn limit",
+                        advantage: 2,
+                        triumph: 1
+                    },
+                    {text: "Add $SETBACK$ to the targeted character's next check.", advantage: 2, triumph: 1},
+                    {
+                        text: "Add $BOOST$ to any allied character's next check, including that of the active character.",
+                        advantage: 2,
+                        triumph: 1
+                    }
+                ],
+                '3advantage1triumph': [
+                    {
+                        text: "Negate the targeted enemy's defensive bonuses until the end of turn",
+                        advantage: 3,
+                        triumph: 1
+                    },
+                    {
+                        text: "Ignore penalizing environmental effects until the end of the active character's next turn.",
+                        advantage: 3,
+                        triumph: 1
+                    },
+                    {
+                        text: "When dealing damage to a target, have the attack disable the opponent or one piece of gear rather than dealing wounds or strain.",
+                        advantage: 3,
+                        triumph: 1
+                    },
+                    {
+                        text: "Gain +1 melee or ranged defense until the end of the active character's next turn",
+                        advantage: 3,
+                        triumph: 1
+                    },
+                    {
+                        text: "Force the target to drop a melee or ranged weapon they are wielding.",
+                        advantage: 3,
+                        triumph: 1
+                    }
+                ],
+                '1triumph': [
+                    {text: "Upgrade the difficulty of the targeted character's next check.", triumph: 1},
+                    {
+                        text: "Upgrade any allied character's next check, including that of the current active character.",
+                        triumph: 1
+                    },
+                    {text: "Do something vital, such as shooting the controls to the nearby blast doors.", triumph: 1}
+                ],
+                '2triumph': [
+                    {
+                        text: "When dealing damage to a target, had the attack destroyed a piece of equipment the target is using.",
+                        triumph: 2
+                    }
+                ],
+                '1threat1despair': [
+                    {text: "The active character suffers 1 strain", threat: 1, despair: 1},
+                    {text: "The active character looses the benefits of a prior maneuver", threat: 1, despair: 1}
+                ],
+                '2threat1despair': [
+                    {text: "An opponent may immediately perform one free maneuver.", threat: 2, despair: 1},
+                    {text: "Add $BOOST$ to the targeted character's next check", threat: 2, despair: 1},
+                    {
+                        text: "The active character or an allied character suffers a $SETBACK$ on their next action.",
+                        threat: 2,
+                        despair: 1
+                    }
+                ],
+                '3threat1despair': [
+                    {text: "The active character falls prone.", threat: 3, despair: 1},
+                    {
+                        text: "The active character grants the enemy a significant advantage in the ongoing encounter.",
+                        threat: 3,
+                        despair: 1
+                    }
+                ],
+                '1despair': [
+                    {text: "The character's ranged weapon immediately runs out of ammunition.", despair: 1},
+                    {
+                        text: "Upgrade the difficulty of an allied character's next check, including the active character.",
+                        despair: 1
+                    },
+                    {text: "The tool or melee weapon the character is using becomes damaged.", despair: 1}
+                ]
+            },
+            vehicle: {
+                AllowedSkills: [
+                    "RangedHeavy",
+                    "Gunnery",
+                    "PilotingSpace",
+                    "PilotingPlanetary"
+
+                ],
+                '1advantage1triumph': [
+                    {
+                        text: "Add $BOOST$ to the next allied active character's Piloting, Gunnery, Computers, or Mechanics check.",
+                        advantage: 1,
+                        triumph: 1
+                    },
+                    {text: "Notice a single important point in the ongoing conflict.", advantage: 1, triumph: 1},
+                    {
+                        text: "Inflict a Critical Hit with successful attack that deals damage past armor ($ADVANTAGE$ cost may vary)",
+                        advantage: 1,
+                        triumph: 1,
+                        crit: true
+                    }
+                ],
+                '2advantage1triumph': [
+                    {text: "Activate a weapon quality ($ADVANTAGE$ cost may vary", advantage: 2, triumph: 1},
+                    {
+                        text: "Perform an immediate free maneuver, provided the active character has not already performed two maneuvers in that turn.",
+                        advantage: 2,
+                        triumph: 1
+                    },
+                    {
+                        text: "Add $SETBACK$ to the targeted character's next Piloting or Gunnery check.",
+                        advantage: 2,
+                        triumph: 1
+                    },
+                    {
+                        text: "Add $BOOST$ to any allied character's next Piloting, Gunnery, Computers or Mechanics check, including the active character,",
+                        advantage: 2,
+                        triumph: 1
+                    }
+                ],
+                '3advantage1triumph': [
+                    {
+                        text: "When dealing damage to an opposing vehicle or ship, have the shot temporarily damage a component of the attacker's choice rather than deal hull damage or system strain.",
+                        advantage: 3,
+                        triumph: 1
+                    },
+                    {
+                        text: "Ignore penalizing terrain or stellar phenomena until the end of the active character's next turn.",
+                        advantage: 3,
+                        triumph: 1
+                    },
+                    {
+                        text: "If piloting the ship, perform one free Pilot Only maneuver (provided it does not break the limit of maximum number of Pilot Only maneuvers in a turn).",
+                        advantage: 3,
+                        triumph: 1
+                    },
+                    {
+                        text: "Force the target ship or vehicle to veer off, breaking any Aim or Stay on Target maneuvers.",
+                        advantage: 3,
+                        triumph: 1
+                    }
+                ],
+                '1triumph': [
+                    {
+                        text: "Upgrade the difficulty of the targeted character's next Piloting or Gunnery check.",
+                        triumph: 1
+                    },
+                    {
+                        text: "Upgrade any allied character's next Piloting, Gunnery, Computers or Mechanics check.",
+                        triumph: 1
+                    }
+                ],
+                '2triumph': [
+                    {text: "Destroy an important component when dealing damage.", triumph: 2}
+                ],
+                '1threat1despair': [
+                    {
+                        text: "If piloting a ship, sudden maneuvers force the ship to slow down by 1 point of speed.",
+                        threat: 1,
+                        despair: 1
+                    },
+                    {text: "The active character looses the benefits of a prior maneuver.", threat: 1, despair: 1},
+                    {
+                        text: "The character's active ship suffers 1 system strain. (This option may be selected multiple times)",
+                        threat: 1,
+                        despair: 1
+                    }
+                ],
+                '2threat1despair': [
+                    {text: "An opponent may immediately perform one free maneuver.", threat: 2, despair: 1},
+                    {
+                        text: "Add $BOOST$ to the targeted character's next Piloting or Gunnery Check",
+                        threat: 2,
+                        despair: 1
+                    },
+                    {
+                        text: "The active character or allied character suffers $SETBACK$ on their next action.",
+                        threat: 2,
+                        despair: 1
+                    }
+                ],
+                '3threat1despair': [
+                    {
+                        text: "The initiative currently being used drops below the last slot in the round.",
+                        threat: 3,
+                        despair: 1
+                    },
+                    {text: "The enemy gains a significant advantage in the ongoing encounter.", threat: 3, despair: 1},
+                    {
+                        text: "The primary weapon system of the active character's ship (or weapon the character is manning if acting as a gunner) suffers a Component Critical Hit.",
+                        despair: 1
+                    }
+                ],
+                '1despair': [
+                    {
+                        text: "Upgrade the difficulty of an allied character's next Gunnery, Piloting, computers or Mechanics check.",
+                        despair: 1
+                    },
+                    {
+                        text: "The active character's ship suffers a minor collision either with one of their opponents within close range or with the terrain around them.",
+                        despair: 1
+                    },
+                    {
+                        text: "The active character's ship suffers a major collision either with one of their opponents within close range or with the terrain around them.",
+                        despair: 1,
+                        failed: true
+                    }
+                ]
+            }
+        }
+    };
+
+    this.enum = {
+        types: {
+            general: {number:0, text:"general"},
+            combat: {number:1, text:"combat"}
+        },
+        displayOptions: {
+            none: {number:0, text:"none"},          // Suggestions are not displayed
+            whisper: {number:1, text:"whisper"},    // Suggestions are whispered to the GM
+            always: {number:2, text:"always"}       // Suggestions are included in the dice roll result
+        },
+        combatType: {
+            personal: {number:0, text:"personal"},
+            vehicle: {number:1, text:"vehicle"}
+        }
+    };
+
+    this.setDisplayOption = function (input) {
+        if (input == null || input === "")
+            return;
+
+        var flag = null;
+        if (flag = that.enum.isValidInput(input, that.enum.displayOptions))
+            flags.displayOption = flag;
+    };
+
+    this.getDisplayOption = function () {
+        return flags.displayOption;
+    };
+
+    this.setGeneralSuggestions = function (input) {
+        if (input == null || input === "")
+            return;
+        log("input="+input);
+
+        flags.generalSuggesting = convertToBoolean(input);
+        log("flags.generalSuggesting="+flags.generalSuggesting);
+    };
+
+    this.getGeneralSuggesting = function () {
+        return flags.generalSuggesting;
+    };
+
+    this.setCombatSuggestions = function (input) {
+        if (input == null || input === "")
+            return;
+        log("input="+input);
+        flags.combatSuggesting = convertToBoolean(input);
+        log("flags.combatSuggesting="+flags.combatSuggesting);
+    };
+
+    this.getCombatSuggesting = function () {
+        return flags.combatSuggesting;
+    };
+
+    this.setIsFearCheck = function (input) {
+        if (input == null || input === "")
+            return;
+
+        flags.isFearCheck = convertToBoolean(input);
+    };
+
+    this.getIsFearCheck = function () {
+        return flags.isFearCheck;
+    };
+
+    this.setCombatType = function (input) {
+        if (input == null || input === "") {
+            flags.combatType = null;
+            return;
+        }
+
+        var flag = null;
+        if (flag = that.enum.isValidInput(input, that.enum.combatType))
+            flags.combatType = flag;
+    };
+
+    this.getCombatType = function () {
+        return flags.combatType;
+    };
+
+    this.enum.isValidInput = function (input, enumToUse) {
+        if (input == null || input === "" || !enumToUse)
+            return;
+
+        var retVal = null;
+
+        Object.keys(enumToUse).some(function(key) {
+            var object = enumToUse[key];
+
+            if (input == object || input === object.text || input === object.number) {
+                return retVal = object;
+            }
+        });
+
+        return retVal;
+    };
+
+    this.enum.mapTextToNumber = function (input, enumToUse) {
+        if (input == null || input === "")
+            return;
+
+        var flag = null;
+        if (flag = that.enum.isValidInput(input, enumToUse))
+            return flag.number;
+    };
+
+    this.enum.mapNumberToText = function (input, enumToUse) {
+        if (input == null || input === "")
+            return;
+
+        var flag = null;
+        if (flag = that.enum.isValidInput(input, enumToUse))
+            return flag.text;
+    };
+
+
+    /* Suggestion Handling */
+    function addSkillSuggestionsFromArray (diceObj, array, key, rollResultForSymbol, suggestionsType) {
+        for (var i = 0; i < array.length; i++) {
+            if (array[i].required <= rollResultForSymbol) {
+                suggestionsType[key] += "<li>" + array[i].text + "</li>";
+                diceObj.vars.suggestions.suggestionsExist = true;
+            }
+        }
+        return diceObj;
+    }
+
+    function buildSuggestionSet (suggestionSet, symbol, rollResultForSymbol, suggestionJSON) {
+        if (suggestionSet == null)
+            suggestionSet = new Set();
+
+        var item = {};
+        for (var i = 0; i < suggestionJSON.length; i++) {
+            item = suggestionJSON[i];
+            if (item.hasOwnProperty(symbol) && item[symbol] <= rollResultForSymbol) {
+                suggestionSet.add(item.text);
+            }
+        }
+
+        return suggestionSet;
+    }
+
+    function buildCombatSuggestions (diceObj, symbol, rollResultForSymbol, suggestionJSON) {
+        var suggestionSet = null;
+        var spendingSuggestions = diceObj.vars.suggestions;
+        Object.keys(suggestionJSON).forEach(function(property) {
+            if (property === "AllowedSkills")
+                return;
+
+            suggestionSet = spendingSuggestions.combat[property];
+            suggestionSet = buildSuggestionSet(suggestionSet, symbol, rollResultForSymbol, suggestionJSON[property]);
+
+            if (suggestionSet.size > 0) {
+                spendingSuggestions.suggestionsExist = true;
+                spendingSuggestions.combat[property] = suggestionSet;
+            }
+        });
+
+        return diceObj;
+    }
+
+    function buildRollTemplateItem (key, value) {
+        return "{{" + key + "=<ul>" + value + "</ul>}}";
+    }
+
+    function generateSuggestions (diceObj, symbol, rollResultForSymbol) {
+        var skillName = diceObj.vars.skillName;
+
+        var combatType = flags.combatType;
+        if (flags.combatSuggesting && combatType) {
+            var combatSkills = that.suggestions.combat;
+            var personal = that.enum.combatType.personal;
+            var vehicle = that.enum.combatType.vehicle;
+            if (combatType == personal)
+            {
+                diceObj = buildCombatSuggestions(diceObj, symbol, rollResultForSymbol, combatSkills.personal);
+            }
+            else if (combatType == vehicle)
+            {
+                diceObj = buildCombatSuggestions(diceObj, symbol, rollResultForSymbol, combatSkills.vehicle);
+            }
+        } else if (flags.generalSuggesting) {
+            var generalSkills = that.suggestions.general;
+            if (generalSkills.hasOwnProperty(skillName)) {
+                var skill = generalSkills[skillName];
+                var fearJSON = (diceObj.vars.isFearCheck ? that.suggestions.special.fear : null);
+
+                if (skill.hasOwnProperty(symbol)) {
+                    diceObj = addSkillSuggestionsFromArray(diceObj, skill[symbol], symbol, rollResultForSymbol, diceObj.vars.suggestions.general);
+                }
+
+                if (fearJSON && fearJSON.allowedSkills.includes(skillName)) {
+                    diceObj = addSkillSuggestionsFromArray(diceObj, fearJSON[symbol], symbol, rollResultForSymbol, diceObj.vars.suggestions.general);
+                }
+            }
+        }
+        return diceObj;
+    }
+
+    this.processSuggestions = function(diceObj) {
+        if (flags.displayOption === that.enum.displayOptions.none)
+            return;
+
+        diceObj.vars.suggestions = {
+            general: {
+                success: "",
+                advantage: "",
+                triumph: "",
+                failure: "",
+                threat: "",
+                despair: ""
+            },
+            combat: {
+                '1advantage1triumph': null,
+                '2advantage1triumph': null,
+                '3advantage1triumph': null,
+                '1triumph': null,
+                '2triumph': null,
+                '1threat1despair': null,
+                '2threat1despair': null,
+                '3threat1despair': null,
+                '1despair': null,
+                '2despair': null
+            },
+            suggestionsExist: false
+        };
+
+
+        var failedCheck = !diceObj.totals.success > 0;
+        Object.keys(diceObj.totals).forEach(function(key) {
+            var rollResultForSymbol = diceObj.totals[key];
+            if (rollResultForSymbol > 0) {
+                diceObj = generateSuggestions(diceObj, key, rollResultForSymbol, failedCheck);
+            }
+        });
+
+        return diceObj;
+    };
+
+    this.buildSuggestionsRollTemplate = function (diceObj) {
+        var suggestions = diceObj.vars.suggestions;
+        var suggestionsRollTemplate = "";
+
+        // display results shown to character owners and GM
+        Object.keys(suggestions).forEach(function (property) {
+            if (property === "suggestionsExist")
+                return;
+
+            var propertyObject = suggestions[property];
+            Object.keys(propertyObject).forEach(function(symbol) {
+                var object = propertyObject[symbol];
+
+                if (!object)
+                    return;
+
+                if (typeof object === "string")
+                    suggestionsRollTemplate += buildRollTemplateItem(symbol, object);
+                else if (object.size > 0) {
+                    var suggestionList = "";
+                    object.forEach(function (value) {
+                        suggestionList += "<li>" + value + "</li>";
+                    });
+                    suggestionsRollTemplate += buildRollTemplateItem(symbol, suggestionList);
+                }
+            });
+        });
+        return suggestionsRollTemplate;
+    }
+}
+
+/*TODO refactor eote to be swrpg*/
 var eote = {};
 
 eote.init = function () {
     eote.setCharacterDefaults();
     eote.createGMDicePool();
     eote.events();
-    convertTokensToTags(eote.skillSuggestions, eote.defaults.graphics.SymbolicReplacement);
+    convertTokensToTags(suggestionEngine.suggestions, eote.defaults.graphics.SymbolicReplacement);
     attemptRegisterGMObj();
 };
 
-eote.skillSuggestions = {
-    special: {
-        fear: {
-            allowedSkills: [
-                "Cool",
-                "Discipline"
-            ],
-            success: [
-                {
-                    text: "The character avoids any fear effects, except those triggered by threats",
-                    required: 1
-                }
-            ],
-            advantage: [
-                {text: "Gain $BOOST$ on the character's first check.", required: 1},
-                {
-                    text: "If spending multiple $ADVANTAGE$, grant $BOOST$ to an additional player's first check.",
-                    required: 2
-                }
-            ],
-            triumph: [
-                {
-                    text: "Can be spent to cancel all previous penalties from fear checks, or",
-                    required: 1
-                },
-                {
-                    text: "Spent to ensure the character need not make any additional fear checks during the encounter, no matter the source.",
-                    required: 1
-                }
-            ],
-            failure: [
-                {
-                    text: "The character adds $SETBACK$ to each action he takes during the encounter.",
-                    required: 1
-                }
-            ],
-            threat: [
-                {
-                    text: "The character suffers a number of strain equal to the number of $FAILURE$.",
-                    required: 1
-                },
-                {
-                    text: "If the check generates $THREAT$$THREAT$$THREAT$+, the character can be staggered for his first turn, instead.",
-                    required: 3
-                }
-            ],
-            despair: [
-                {
-                    text: "The character is incredibly frightened and increases the difficulty of all checks until the end of the encounter by one.",
-                    required: 1
-                }
-            ]
-        }
-    },
-    general: {
-        Astrogation: {
-            success: [
-                {
-                    text: "Better target for the destination, e.g.: place vessel directly into orbit around target planet.",
-                    required: 1
-                },
-                {text: "Reduce time spent calculating.", required: 1}
-            ],
-            advantage: [
-                {text: "Reduce travel time.", required: 1},
-                {text: "Identify convenient stopovers to resupply or conduct additional business.", required: 1}
-            ],
-            triumph: [
-                {text: "Complete calculations in minimum time.", required: 1},
-                {text: "Greatly reduce travel time.", required: 1},
-                {text: "Reveal highly valuable but previously unknown information.", required: 1}
-            ],
-            threat: [
-                {text: "Decrease accuracy of hyperspace jump.", required: 1},
-                {text: "Increase travel time.", required: 1},
-                {text: "Miss relevant details when analyzing hyperspace routes or galactic maps.", required: 1}
-            ],
-            despair: [
-                {text: "Greatly decrease accuracy of hyperspace jump.", required: 1},
-                {text: "Greatly increase travel time.", required: 1},
-                {
-                    text: "Miss large amounts of relevant details when analyzing hyperspace routes or galactic maps.",
-                    required: 1
-                },
-                {
-                    text: "Trigger something truly awful happening, such as jumping out of hyperspace in the path of an asteroid.",
-                    required: 1
-                }
-            ]
-        },
-        Athletics: {
-            success: [
-                {text: "Reduce time required.", required: 1},
-                {text: "Increase distance travelled.", required: 1}
-            ],
-            advantage: [
-                {text: "Generate bonus on other physical checks performed later or by allies that turn.", required: 1},
-                {
-                    text: "Spend $ADVANTAGE$$ADVANTAGE$ to grant additional maneuver during turn to move or perform physical activity.",
-                    required: 2
-                }
-            ],
-            triumph: [
-                {text: "Perform the check with truly impressive results.", required: 1}
-            ],
-            threat: [
-                {text: "Small amounts cause strain.", required: 1},
-                {
-                    text: "Larger amounts may cause character to fall prone, or even suffer a wound from sprains and bruises.",
-                    required: 1
-                }
-            ],
-            despair: [
-                {
-                    text: "Inflict a Critical Injury, which the GM can choose to be thematic or roll randomly.",
-                    required: 1
-                }
-            ]
-        },
-        Charm: {
-            success: [
-                {
-                    text: "Gain an extra scene in which target is willing to support you for each additional success.",
-                    required: 1
-                }
-            ],
-            advantage: [
-                {text: "Affect unexpected subjects beyond the original target.", required: 1}
-            ],
-            triumph: [
-                {text: "Have target NPC become recurring character who remains predisposed to assist.", required: 1}
-            ],
-            threat: [
-                {text: "Reduce the number of people able to influence", required: 1},
-                {text: "Turn those affected negatively against character.", required: 1}
-            ],
-            despair: [
-                {text: "Turn NPC against character and make into a minor recurring adversary.", required: 1}
-            ]
-        },
-        Coercion: {
-            success: [
-                {text: "Spend 2 extra successes to inflict one strain on target. ", required: 2}
-            ],
-            advantage: [
-                {text: "Affect unexpected subjects beyond the original target.", required: 1}
-            ],
-            triumph: [
-                {text: "Shift allegiance of target.", required: 1}
-            ],
-            threat: [
-                {text: "Target has building resentment towards character.", required: 1}
-            ],
-            despair: [
-                {text: "Reveal something about goals and motivations to target.", required: 1}
-            ]
-        },
-        Computers: {
-            success: [
-                {text: "Reduce time required.", required: 1}
-            ],
-            advantage: [
-                {text: "Uncover additional information about the system.", required: 1}
-            ],
-            triumph: [
-                {
-                    text: "Obfuscate actions taken add a challenge die to any check to detect or identify the characters actions.",
-                    required: 1
-                }
-            ],
-            threat: [
-                {
-                    text: "The character does a poor job of concealing his presence in the system. Security systems are alerted, and add $BOOST$ to the check of any NPC attempting to discover evidence of his actions.",
-                    required: 1
-                }
-            ],
-            despair: [
-                {
-                    text: "Leave behind trace information of your own system in the system being sliced. Add $BOOST$ to the check of any NPC using the target system to slice the character's system.",
-                    required: 1
-                }
-            ]
-        },
-        Cool: {
-            advantage: [
-                {text: "Gain an additional insight into the situation at hand.", required: 1}
-            ],
-            triumph: [
-                {text: "Heal 3 strain.", required: 1}
-            ],
-            threat: [
-                {text: "Miss a vital detail or event.", required: 1}
-            ],
-            despair: [
-                {text: "The character is overwhelmed by the chaos and is stunned for one round.", required: 1}
-            ]
-        },
-        Coordination: {
-            success: [
-                {text: "Reduce time required.", required: 1},
-                {text: "Increase distance travelled by 25%, (maximum 100% increase).", required: 1}
-            ],
-            advantage: [
-                {text: "Spend $ADVANTAGE$$ADVANTAGE$ to grant additional maneuver during turn.", required: 2}
-            ],
-            triumph: [
-                {text: "Perform the check with truly impressive results.", required: 1}
-            ],
-            threat: [
-                {text: "Lose free maneuver for one round.", required: 1}
-            ],
-            despair: [
-                {text: "Suffer a wound", required: 1},
-                {text: "Lose a vital piece of equipment.", required: 1}
-            ]
-        },
-        Deception: {
-            success: [
-                {text: "Extend duration of Deceit action.", required: 1}
-            ],
-            advantage: [
-                {text: "Increase the value of any goods or services gained through the action.", required: 1}
-            ],
-            triumph: [
-                {
-                    text: "Fool the target into believing the character is trustworthy - future Deceit checks against target do not require an opposed check.",
-                    required: 1
-                }
-            ],
-            threat: [
-                {text: "Give away a portion of the lie, making target suspicious.", required: 1}
-            ],
-            despair: [
-                {
-                    text: "Target realises he has been lied to and spreads word of his deceit to harm his reputation or uses the situation to his advantage.",
-                    required: 1
-                }
-            ]
-        },
-        Discipline: {
-            success: [
-                {text: "Downgrade difficulty of the dice pool for next action (max. 1).", required: 1}
-            ],
-            advantage: [
-                {text: "Gain an additional insight into the situation at hand.", required: 1}
-            ],
-            triumph: [
-                {
-                    text: "Add $BOOST$ to any Discipline checks made by allies during the following round.",
-                    required: 1
-                }
-            ],
-            threat: [
-                {
-                    text: "Undermine the characters resolve, perhaps inflicting a penalty on further actions in distressing circumstances.",
-                    required: 1
-                }
-            ],
-            despair: [
-                {
-                    text: "The character is overwhelmed entirely and is unable to perform more than one maneuver next round.",
-                    required: 1
-                }
-            ]
-        },
-        Leadership: {
-            success: [
-                {text: "Extend target's support for additional scenes.", required: 1},
-                {text: "Increase efficiency or effectiveness of target during ordered actions.", required: 1}
-            ],
-            advantage: [
-                {text: "Affect bystanders in addition to target.", required: 1}
-            ],
-            triumph: [
-                {
-                    text: "Have target NPC become recurring character who decides to faithfully follow the acting character.",
-                    required: 1
-                }
-            ],
-            threat: [
-                {
-                    text: "Decrease the efficiency of ordered actions, causing them to take longer or be done poorly.",
-                    required: 1
-                }
-            ],
-            despair: [
-                {
-                    text: "Undermine the character's authority, damaging the characters ability to command target or those who witnessed the attempt.",
-                    required: 1
-                },
-                {
-                    text: "With multiple $DESPAIR$ the target may become a recurring thorn in the character's side,refusing future orders or turning others against the character.",
-                    required: 2
-                }
-            ]
-        },
-        Mechanics: {
-            success: [
-                {text: "Reduce time required by 10-20%", required: 1}
-            ],
-            advantage: [
-                {
-                    text: "Grant $BOOST$ on checks when using repaired item, or even the Superior quality, for a session.",
-                    required: 1
-                }
-            ],
-            triumph: [
-                {text: "Give device additional single use function.", required: 1}
-            ],
-            threat: [
-                {
-                    text: "Particularly shoddy repairs or temporary measures, the GM may spend $THREAT$ to cause the target object or system to malfunction shortly after check completed.",
-                    required: 1
-                }
-            ],
-            despair: [
-                {text: "Cause further harm to target object or system.", required: 1},
-                {text: "Cause other components of target to malfunction.", required: 1}
-            ]
-        },
-        Medicine: {
-            success: [
-                {text: "Target recovers one additional wound.", required: 1},
-                {text: "Reduce healing time by one hour.", required: 1}
-            ],
-            advantage: [
-                {text: "Eliminate one strain from target.", required: 1}
-            ],
-            triumph: [
-                {text: "Heal additional wounds while attempting to heal Critical Injury, or vice versa.", required: 1}
-            ],
-            threat: [
-                {text: "Inflict strain on the target due to shock of procedure.", required: 1},
-                {text: "Increase time procedure takes.", required: 1}
-            ],
-            despair: [
-                {text: "A truly terrible accident, perhaps inflicting further wounds on target.", required: 1}
-            ]
-        },
-        Negotiation: {
-            success: [
-                {text: "Increase acting character's profit by 5%.", required: 1},
-                {text: "Modify scope of agreement.", required: 1}
-            ],
-            advantage: [
-                {text: "Earn unrelated boons from target, concessions if failed or extra perks if passed.", required: 1}
-            ],
-            triumph: [
-                {text: "Have target NPC become regular client or specialist vendor.", required: 1}
-            ],
-
-            threat: [
-                {text: "Increase cost of goods purchased.", required: 1},
-                {text: "Decrease value of goods sold.", required: 1},
-                {text: "Shorten contracts negotiated.", required: 1}
-            ],
-            despair: [
-                {
-                    text: "Seriously sabotage goals during the interaction, perhaps receive counterfeit goods or payment, or agree to terms entirely beyond scope of negotiation.",
-                    required: 1
-                }
-            ]
-        },
-        Perception: {
-            success: [
-                {text: "Reveal additional details.", required: 1}
-            ],
-            advantage: [
-                {text: "Recall additional information associated with object noticed.", required: 1}
-            ],
-            triumph: [
-                {
-                    text: "Notice details that can be useful later to gain $BOOST$ on future interactions with noticed object.",
-                    required: 1
-                }
-            ],
-            threat: [
-                {text: "Conceal a vital detail about situation or environment.", required: 1}
-            ],
-            despair: [
-                {text: "Obtain false information about surroundings or target.", required: 1}
-            ]
-        },
-        PilotingPlanetary: {
-            success: [
-                {text: "Gain insights into situation.", required: 1},
-                {text: "Deduce way to modify vehicle to make it more effective in future.", required: 1}
-            ],
-            advantage: [
-                {
-                    text: "Reveal vulnerability in opponent's piloting style or vehicle, giving benefit in later rounds.",
-                    required: 1
-                }
-            ],
-            triumph: [
-                {text: "Grant additional maneuver while continuing to pilot vehicle.", required: 1}
-            ],
-            threat: [
-                {
-                    text: "Spend $THREAT$$THREAT$ to give opponents $BOOST$ on checks against character and vehicle due to momentary malfunction in system.",
-                    required: 2
-                }
-            ],
-            despair: [
-                {
-                    text: "Deal damage to vehicle as character strains systems throughout vehicle during check.",
-                    required: 1
-                }
-            ]
-        },
-        PilotingSpace: {
-            success: [
-                {text: "Gain insights into situation.", required: 1},
-                {text: "Deduce way to modify vehicle to make it more effective in future.", required: 1}
-            ],
-            advantage: [
-                {
-                    text: "Reveal vulnerability in opponent's piloting style or vehicle, giving benefit in later rounds.",
-                    required: 1
-                }
-            ],
-            triumph: [
-                {text: "Grant additional maneuver while continuing to pilot vehicle.", required: 1}
-            ],
-            threat: [
-                {
-                    text: "Spend $THREAT$$THREAT$ to give opponents $BOOST$ on checks against character and vehicle due to momentary malfunction in system.",
-                    required: 2
-                }
-            ],
-            despair: [
-                {
-                    text: "Deal damage to vehicle as character strains systems throughout vehicle during check.",
-                    required: 1
-                }
-            ]
-        },
-        Resilience: {
-            success: [
-                {text: "Extend effects of the success to increase time between checks.", required: 1}
-            ],
-            advantage: [
-                {text: "Identify way to reduce difficulty of future checks against same threat.", required: 1}
-            ],
-            triumph: [
-                {text: "Recover 3 strain.", required: 1}
-            ],
-            threat: [
-                {text: "Overburden the character, inflicting penalties on subsequent checks.", required: 1}
-            ],
-            despair: [
-                {
-                    text: "Inflict a wound or minor Critical Injury on character, as they succumb to harsh conditions.",
-                    required: 1
-                }
-            ]
-        },
-        Skulduggery: {
-            success: [
-                {text: "Gain additional insights about nature of opposition.", required: 1}
-            ],
-            advantage: [
-                {text: "Identify additional potential target.", required: 1}
-            ],
-            triumph: [
-                {text: "Earn an unexpected boon.", required: 1}
-            ],
-            threat: [
-                {
-                    text: "Opportunity to catch character immediately after act, number of $THREAT$ determine immediacy of discovery and ensuing danger.",
-                    required: 1
-                }
-            ],
-            despair: [
-                {text: "Leave behind evidence of larceny.", required: 1}
-            ]
-        },
-        Stealth: {
-            success: [
-                {text: "Assist allied character infiltrating at same time.", required: 1}
-            ],
-            advantage: [
-                {text: "Decrease time taken to perform action while hidden.", required: 1}
-            ],
-            triumph: [
-                {text: "Identify way to completely distract opponent for duration of scene.", required: 1}
-            ],
-            threat: [
-                {text: "Increase time taken to perform action while hidden by 20%.", required: 1}
-            ],
-            despair: [
-                {text: "Leave behind evidence of passing, concerning identity and possibly motive.", required: 1}
-            ]
-        },
-        Streetwise: {
-            success: [
-                {text: "Reduce time or funds required to obtain item, information or service.", required: 1}
-            ],
-            advantage: [
-                {text: "Reveal additional rumours or alternative sources.", required: 1}
-            ],
-            triumph: [
-                {text: "Gain semi-permanent contact on street.", required: 1}
-            ],
-            threat: [
-                {text: "Seed gathered information with minor falsehoods.", required: 1}
-            ],
-            despair: [
-                {text: "Character lets slip details about self or information sought.", required: 1}
-            ]
-        },
-        Survival: {
-            success: [
-                {text: "Assist other character in surviving.", required: 1},
-                {text: "Stockpile goods to increase time between checks.", required: 1}
-            ],
-            advantage: [
-                {text: "Gain insight into environment to make future checks simpler.", required: 1},
-                {
-                    text: "When tracking, learn significant detail about target, such as number, species or how recently tracks were made.",
-                    required: 1
-                }
-            ],
-            triumph: [
-                {
-                    text: "When handling domesticated animal, predispose animal towards character earning loyal companion.",
-                    required: 1
-                },
-                {text: "When tracking, learn vital clue about target.", required: 1}
-            ],
-            threat: [
-                {text: "Spend vital resources (food, fuel, etc.) during check.", required: 1}
-            ],
-            despair: [
-                {text: "Inflict wounds, Critical Injuries or large amounts of strain on character.", required: 1}
-            ]
-        },
-        Vigilance: {
-            success: [
-                {text: "Character is particularly well prepared.", required: 1}
-            ],
-            advantage: [
-                {text: "Notice key environmental factor.", required: 1}
-            ],
-            triumph: [
-                {text: "Gain extra maneuver during first round of combat.", required: 1}
-            ],
-            threat: [
-                {text: "Miss key piece of information about situation or environment.", required: 1}
-            ],
-            despair: [
-                {
-                    text: "The character is unable to perform more than one maneuver during first round of combat.",
-                    required: 1
-                }
-            ]
-        }
-    },
-    combat: {
-        personal: {
-            defaultAllowedSkills: [
-                "RangedLight",
-                "RangedHeavy"
-            ],
-            positives: [
-                {text:"Recover 1 strain", advantage:1, triumph:1},
-                {text:"Add $BOOST$ to the next allied active character's next check.", advantage:1, triumph:1},
-                {text:"Notice a single important point in the ongoing conflict.", advantage:1, triumph:1},
-                {text:"Inflict a Critical Injury with a successful attack that deals damage past soak. (Advantage cost may vary)", advantage:1, triumph:1, crit:true},
-                {text:"Activate a weapon quality (Advantage cost may vary)", advantage:2, triumph:1},
-                {text:"Perform an immediate free maneuver that does not exceed the two maneuver per turn limit", advantage:2, triumph:1},
-                {text:"Add $SETBACK$ to the targeted character's next check.", advantage:2, triumph:1},
-                {text:"Add $BOOST$ to any allied character's next check, including that of the active character.", advantage:2, triumph:1},
-                {text:"Negate the targeted enemy's defensive bonuses until the end of turn", advantage:3, triumph:1},
-                {text:"Ignore penalizing environmental effects until the end of the active character's next turn.", advantage:3, triumph:1},
-                {text:"When dealing damage to a target, have the attack disable the opponent or one piece of gear rather than dealing wounds or strain.", advantage:3, triumph:1},
-                {text:"Gain +1 melee or ranged defense until the end of the active character's next turn", advantage:3, triumph:1},
-                {text:"Force the target to drop a melee or ranged weapon they are wielding.", advantage:3, triumph:1},
-                {text:"Upgrade the difficulty of the targeted chraacter's next check.", triumph:1},
-                {text:"Upgrade any allied character's next check, including that of the current active character.", triumph:1},
-                {text:"Do something vital, such as shooting the controls to the nearby blast doors.", triumph:1},
-                {text:"When dealing damage to a target, had the attack destroyed a piece of equipment the target is using.", triumph:2}
-            ],
-            negatives: [
-                {text:"The active character suffers 1 strain", threat:1, despair:1},
-                {text:"The active character looses the benefits of a prior maneuver", threat:1, despair:1},
-                {text:"An opponent may immediately perform one free maneuver.", threat:2, despair:1},
-                {text:"Add $BOOST$ to the targeted character's next check", threat:2, despair:1},
-                {text:"The active character or an allied character suffers a $SETBACK$ on their next action.", threat:2, despair:1},
-                {text:"The active character falls prone.", threat:3, despair:1},
-                {text:"The active character grants the enemy a significant advantage in the ongoing encounter.", threat:3, despair:1},
-                {text:"The character's ranged weapon immediately runs out of ammunition.", despair:1},
-                {text:"Upgrade the difficulty of an allied character's next check, including the active character.", despair:1},
-                {text:"TThe tool or melee weapon the character is using becomes damaged.", despair:1}
-            ]
-        },
-        vehicle: {
-            defaultAllowedSkills: [
-                "RangedHeavy",
-                "Gunnery",
-                "PilotingSpace",
-                "PilotingPlanetary"
-            ],
-            positives: [
-                {text:"Add $BOOST$ to the next allied active character's Piloting, Gunnery, Computers, or Mechanics check.", advantage:1, triumph:1},
-                {text:"Notice a single important point in the ongoing conflict.", advantage:1, triumph:1},
-                {text:"Inflict a Critical Hit with successful attack that deals damage past armor (Advantage cost may vary)", advantage:1, triumph:1, crit:true},
-                {text:"Activate a weapon quality (Advantage cost may vary", advantage:2, triumph:1},
-                {text:"Perform an immediate free maneuver, provided the active character has not already performed two maneuvers in that turn.", advantage:2, triumph:1},
-                {text:"Add $SETBACK$ to the targeted character's next Piloting or Gunnery check.", advantage:2, triumph:1},
-                {text:"Add $BOOST to any allied character's next Piloting, Gunnery, Computers or Mechanics check, including the active character,", advantage:2, triumph:1},
-                {text:"When dealing damage to an opposing vehicle or ship, have the shot temporarily damage a component of the attacker's choice rather than deal hull damage or system strain.", advantage:3, triumph:1},
-                {text:"Ignore penalizing terrain or stellar phenomena until the end of the active character's next turn.", advantage:3, triumph:1},
-                {text:"If piloting the ship, perform one free Pilot Only maneuver (provided it does not break the limit of maximum number of Pilot Only maneuvers in a turn).", advantage:3, triumph:1},
-                {text:"Force the target ship or vehicle to veer off, breaking any Aim or Stay on Target maneuvers.", advantage:3, triumph:1},
-                {text:"Upgrade the difficulty of the targeted character's next Piloting or Gunnery check.", triumph:1},
-                {text:"Upgrade any allied character's next Piloting, Gunnery, Computers or Mechanics check.", triumph:1},
-                {text:"Destroy an important component when dealing damage.", triumph:2}
-            ],
-            negatives: [
-                {text:"If piloting a ship, sudden maneuvers force the ship to slow down by 1 point of speed.", threat:1, despair:1},
-                {text:"The active character looses the benefits of a prior maneuver.", threat:1, despair:1},
-                {text:"The character's active ship suffers 1 system strain. (This option may be selected multiple times)", threat:1, despair:1},
-                {text:"An opponent may immediately perform one free maneuver.", threat:2, despair:1},
-                {text:"Add $BOOST$ to the targeted character's next Piloting or Gunnery Check", threat:2, despair:1},
-                {text:"The active character or allied character suffers $SETBACK$ on their next action.", threat:2, despair:1},
-                {text:"The initiative currently being used drops below the last slot in the round.", threat:3, despair:1},
-                {text:"The enemy gains a significant advantage in the ongoing encounter.", threat:3, despair:1},
-                {text:"The primary weapon system of the active character's ship (or weapon the character is manning if acting as a gunner) suffers a Component Critical Hit.", despair:1},
-                {text:"Upgrade the difficulty of an allied character's next Gunnery, Piloting, computers or Mechanics check.", despair:1},
-                {text:"The active character's ship suffers a minor collision either with one of their opponents within close range or with the terrain around them.", despair:1},
-                {text:"The active character's ship suffers a major collision either with one of their opponents within close range or with the terrain around them.", despair:1, failed:true}
-            ]
-        }
-    }
-};
-
-eote.suggestionTypes = {
-    GENERAL: "general only",
-    COMBAT: "combat only",
-    BOTH: "both combat and general"
-};
 
 eote.defaults = {
     globalVars: {
@@ -820,11 +1324,13 @@ eote.defaults = {
         diceGraphicResultLog: "",
         diceTestEnabled: false,
         diceLogRolledOnOneLine: true,
-        scriptDebug: false,
-        suggestionsFlag: -1
+        scriptDebug: false
     },
     '-DicePoolID': '',
-    GMObj: null,
+    GMSheet: {
+        obj: null,
+        name: "-DicePool"
+    },
     character: {
         attributes: [
             /* Don't need to update characterID
@@ -931,51 +1437,14 @@ eote.defaults = {
         crit: /crit\((.*?)\)/,
         critShip: /critship\((.*?)\)/,
         unusable: /unusableWeapon/,
-        destiny: /destiny (useDark|useLight|registerPlayer|sendUpdate|doRoll|clearPool)/
+        destiny: /destiny (useDark|useLight|registerPlayer|sendUpdate|doRoll|clearPool)/,
+        combat: /combat\(personal|vehicle\)/
     },
-    destinyListeners: [],
-    suggestionsStatus: {
-        none: 0, // No skill suggestions will be made
-        whisper: 1, // Player will be whispered beneficial results, GM will be whispered negative results. (This will incur the issues previous highlighted in this thread).
-        always: 2 // Suggestions will be included in the skill roll template as they are now.
-    }
+    destinyListeners: []
 };
 
-eote.defaults.suggestionsStatus.mapTextToNumber = function (input) {
-    var retVal = null;
-    var json = eote.defaults.suggestionsStatus;
-    switch (input) {
-        case "none":
-            retVal = json.none;
-            break;
-        case "whisper":
-            retVal = json.whisper;
-            break;
-        case "always":
-            retVal = json.always;
-            break;
-    }
-    return retVal;
-};
-
-eote.defaults.suggestionsStatus.mapNumberToText = function (input) {
-    var retVal = null;
-    var json = eote.defaults.suggestionsStatus;
-    switch (input) {
-        case json.none:
-            retVal = "none";
-            break;
-        case json.whisper:
-            retVal = "whisper";
-            break;
-        case json.always:
-            retVal = "always";
-            break;
-    }
-    return retVal;
-};
-
-eote.defaults.globalVars.suggestionsFlag = eote.defaults.suggestionsStatus.always;
+var GMSheet = eote.defaults.GMSheet;
+var suggestionEngine = new SuggestionEngine();
 
 function buildReplacementObject (title, src, size) {
     return {matcher: new RegExp("\\$" + title.toUpperCase() + "\\$","g"), replacer: '<img src="' + src + '" title="' + title + '" height="' + size + '" width="' + size + '"/>'};
@@ -998,23 +1467,25 @@ eote.defaults.graphics.SymbolicReplacement.setback = buildReplacementObject("set
 eote.defaults.graphics.SymbolicReplacement.challenge = buildReplacementObject("challenge", eote.defaults.graphics.CHALLENGE.BLANK, eote.defaults.graphics.SIZE.SMALL);
 
 function attemptRegisterGMObj() {
-    var GMObj = eote.defaults.GMObj;
+    var GMObj = GMSheet.obj;
 
     // if the GMObj is null then it means that this is the first time this version of the script is being run on this campaign.
-    if (GMObj == null) {
+    if (!GMObj) {
         GMObj = findObjs({
             _type: "character",
-            _id: eote.defaults['-DicePoolID']
+            name: GMSheet.name
         });
         if (GMObj.length > 0) {
-            eote.defaults.GMObj = GMObj[0];
-            log("Registering of GMObj successful");
+            GMSheet.obj = GMObj[0];
+            eote.process.logger("attemptRegisterGMObj", "Registering of GMObj successful");
         }
         else {
-            log("warning: -DicePool not found. Will attempt to create it now.");
+            var msg = "The character sheet called " + GMSheet.name + " was not found in your campaign.";
+            eote.process.logger("attemptRegisterGMObj", msg);
+            sendChat("System", "/w gm " + msg);
         }
     } else {
-        log("GMObj previously registered.");
+        eote.process.logger("attemptRegisterGMObj", "GMObj previously registered.");
     }
 }
 
@@ -1038,11 +1509,12 @@ eote.createGMDicePool = function () {
     //create character -DicePool
     if (!charObj_DicePool) {
         charObj_DicePool = createObj("character", {
-            name: "-DicePool",
+            name: GMSheet.name,
             bio: "GM Dice Pool"
         });
     }
     eote.defaults['-DicePoolID'] = charObj_DicePool.id;
+    GMSheet.obj = charObj_DicePool;
     eote.updateAddAttribute(charObj_DicePool, attrObj_DicePool);
 };
 
@@ -1095,15 +1567,15 @@ eote.updateListeners = function (attributes) {
     //Update GM
     var GMObj = findObjs({
         _type: "character",
-        _id: eote.defaults['-DicePoolID']
+        name: GMSheet.name
     });
-    eote.defaults.GMObj = eote.defaults.GMObj || GMObj;
+    GMSheet.obj = GMSheet.obj || GMObj;
     eote.updateAddAttribute(GMObj, attributes);
 };
 
 eote.updateAddAttribute = function (charactersObj, updateAddAttributesObj) { // charactersObj = object or array objects, updateAddAttributesObj = object or array objects
     if (!charactersObj) {
-        log("error: charactersObj in eote.updateAddAttribute is not set");
+        log("error: charactersObj passed into eote.updateAddAttribute is not set");
         return;
     }
 
@@ -1168,11 +1640,11 @@ eote.defaults.dice = function () {
         characterID: '',
         playerName: '',
         playerID: '',
-        GMObj: null,
         label: '',
-        spendingSuggestions: {},
+        suggestions: {},
         skillName: '',
-        isFearCheck: false
+        isFearCheck: false,
+        combatCheck: false
     };
     this.totals = {
         success: 0,
@@ -1226,7 +1698,6 @@ eote.defaults.dice = function () {
 };
 
 eote.process = {};
-eote.process.skillSpending = {};
 
 eote.process.logger = function (functionName, cmd) {
     if (eote.defaults.globalVars.debugScript) {
@@ -1252,7 +1723,7 @@ eote.process.setup = function (cmd, playerName, playerID) {
 
     var suggestionDisplayMatch = cmd.match(eote.defaults.regex.suggestionDisplay);
     if (suggestionDisplayMatch) {
-        eote.process.suggestionDisplay(suggestionDisplayMatch, eote.defaults.suggestionsStatus);
+        eote.process.suggestionDisplay(suggestionDisplayMatch);
         return false;
     }
 
@@ -1337,12 +1808,25 @@ eote.process.setup = function (cmd, playerName, playerID) {
         //eote.process.logger("eote.process.setup.encumMatch","New dice:" + diceObj);
     }
 
+    var combatMatch = cmd.match(eote.defaults.regex.combat);
+    if (combatMatch) {
+        suggestionEngine.setCombatType(cmd[1]);
+    } else {
+        suggestionEngine.setCombatType(null);
+    }
+
     var skillMatch = cmd.match(eote.defaults.regex.skill);
     if (skillMatch) {
-        var suggestionSettingsFear = getAttrByName(eote.defaults.GMObj.id, "skill_suggestion_setting_fear");
-        diceObj.vars.isFearCheck = suggestionSettingsFear === "1";
+        suggestionEngine.setIsFearCheck(getAttrByName(GMSheet.obj.id, "skill_suggestion_setting_fear"));
+        var CombatSuggestions = getAttrByName(GMSheet.obj.id, "skill_suggestion_setting_combat");
+        log("CombatSuggestions="+CombatSuggestions);
+        suggestionEngine.setCombatSuggestions(getAttrByName(GMSheet.obj.id, "skill_suggestion_setting_combat"));
+        var generalSuggestions = getAttrByName(GMSheet.obj.id, "skill_suggestion_setting_general");
+        log("generalSuggestions="+generalSuggestions);
+        suggestionEngine.setGeneralSuggestions(generalSuggestions);
+        suggestionEngine.setIsFearCheck(getAttrByName(GMSheet.obj.id, "skill_suggestion_setting_fear"));
 
-        eote.defaults.globalVars.suggestionsFlag = eote.defaults.suggestionsStatus.mapTextToNumber(getAttrByName(eote.defaults.GMObj.id, "skill_suggestion_setting_display"));
+        suggestionEngine.setDisplayOption(getAttrByName(GMSheet.obj.id, "skill_suggestion_setting_display"));
         diceObj = eote.process.skill(skillMatch, diceObj);
     }
 
@@ -1371,8 +1855,8 @@ eote.process.setup = function (cmd, playerName, playerID) {
     diceObj = eote.process.rollDice(diceObj);
 
     // process and display skill suggestions
-    if (diceObj.vars.skillName != null) {
-        diceObj = eote.process.skillSpending.processSuggestions(diceObj);
+    if (diceObj.vars.skillName != null || suggestionEngine.getCombatType() != null) {
+        diceObj = suggestionEngine.processSuggestions(diceObj);
     }
 
     /* Custom rolls
@@ -1422,82 +1906,7 @@ eote.process.setup = function (cmd, playerName, playerID) {
  * 
  * ---------------------------------------------------------------- */
 
-eote.process.skillSpending.processSuggestions = function(diceObj) {
-    diceObj.vars.spendingSuggestions = {
-        success: "",
-        advantage: "",
-        triumph: "",
-        failure: "",
-        threat: "",
-        despair: "",
-        isSuggestions: false
-    };
 
-    var skillSpending = eote.process.skillSpending.getSkillSuggestion;
-    var spendingSuggestions = diceObj.vars.spendingSuggestions;
-    Object.keys(diceObj.totals).forEach(function(key) {
-        var value = diceObj.totals[key];
-        if (value > 0) {
-            diceObj = skillSpending(diceObj, key, value, 0);
-        }
-    });
-
-    return diceObj;
-};
-
-function addSkillSuggestionsFromArray(diceObj, array, key, value) {
-    for (var i = 0; i < array.length; i++) {
-        if (array[i].required <= value) {
-            diceObj.vars.spendingSuggestions[key] += "<li>" + array[i].text + "</li>";
-            diceObj.vars.spendingSuggestions.isSuggestions = true;
-        }
-    }
-    return diceObj;
-}
-
-/* Returns true if the skill exists inside the array of allowed skills */
-function isAllowedSkill (allowedSkills, skillName) {
-    return allowedSkills.some(function (element) {
-        return element === skillName;
-    });
-}
-
-eote.process.skillSpending.getSkillSuggestion = function(diceObj, key, value, skillType) {
-    var skillName = diceObj.vars.skillName;
-    var fearJSON = (diceObj.vars.isFearCheck ? eote.skillSuggestions.special.fear : null);
-    switch (skillType) {
-        case 0:
-            var generalSkills = eote.skillSuggestions.general;
-            if (generalSkills.hasOwnProperty(skillName)) {
-                var skill = generalSkills[skillName];
-                if (skill.hasOwnProperty(key)) {
-                    diceObj = addSkillSuggestionsFromArray(diceObj, skill[key], key, value);
-                }
-                if (fearJSON != null && isAllowedSkill(fearJSON.allowedSkills, skillName)) {
-                    diceObj = addSkillSuggestionsFromArray(diceObj, fearJSON[key], key, value);
-                }
-            }
-            break;
-        default:
-            // this should never be entered
-            log("error: No skill group associated with skill: " + skillName);
-    }
-    return diceObj;
-};
-
-eote.process.skillSpending.buildSuggestions = function (diceObj) {
-    var suggestions = diceObj.vars.spendingSuggestions;
-    var msg = "", property = "";
-
-    // display results shown to character owners and GM
-    Object.keys(suggestions).forEach(function (key) {
-        property = suggestions[key];
-        if (property != "" && key != "isSuggestions") {
-            msg += "{{" + key + "=<ul>" + property + "</ul>}}";
-        }
-    });
-    return msg;
-};
 
 eote.process.log = function (cmd) {
 
@@ -1558,7 +1967,7 @@ eote.process.fear = function (cmd) {
     }
 
     if (value != null) {
-        eote.updateAddAttribute(eote.defaults.GMObj, {
+        eote.updateAddAttribute(GMSheet.obj, {
             name: "skill_suggestion_setting_fear",
             current: value,
             update: true
@@ -1574,10 +1983,10 @@ eote.process.suggestionDisplay = function (cmd) {
      * ---------------------------------------------------------------- */
 
     /*TODO fix why suggestionDisplay is no longer working*/
-    var value = (eote.defaults.suggestionsStatus.hasOwnProperty(cmd[1]) ? cmd[1] : null);
+    var value = (suggestionEngine.enum.displayOptions.hasOwnProperty(cmd[1]) ? cmd[1] : null);
 
     if (value != null) {
-        eote.updateAddAttribute(eote.defaults.GMObj, {
+        eote.updateAddAttribute(GMSheet.obj, {
             name: "skill_suggestion_setting_display",
             current: value,
             update: true
@@ -2291,10 +2700,18 @@ eote.process.crit = function (cmd, diceObj) {
         }
         //find crit in critical table
         for (var key in critTable) {
+            /*TODO error on split*/
+            var percent = critTable[key].percent;
+            var low = percent;
+            var high = 1000;
 
-            var percent = critTable[key].percent.split(' to ');
-            var low = parseInt(percent[0]);
-            var high = percent[1] ? parseInt(percent[1]) : 1000;
+            if (percent.indexOf(" to ") > 0) {
+                percent = percent.split(' to ');
+                low = parseInt(percent[0]);
+                high = parseInt(percent[1]);
+            } else {
+                low = parseInt(low);
+            }
 
             if ((rollTotal >= low) && (rollTotal <= high)) {
 
@@ -3351,13 +3768,17 @@ eote.process.diceOutput = function (diceObj, playerName, playerID) {
         characterPlayer = playerName;
     }
 
-    var templateName = (diceObj.vars.spendingSuggestions.isSuggestions
-    && eote.defaults.globalVars.suggestionsFlag == eote.defaults.suggestionsStatus.always ? "suggestion" : "base");
+    var templateName = (diceObj.vars.suggestions.suggestionsExist
+    && suggestionEngine.getDisplayOption() == suggestionEngine.enum.displayOptions.always ? "suggestion" : "base");
 
     /*Dice roll images work just fine when whispered*/
+    var label = diceObj.vars.label;
     if (eote.defaults.globalVars.diceTestEnabled === true) {
         chatGlobal = "/direct <br>6b 8g 12y 6blk 8p 12r 12w <br>";
-    } else if (diceObj.vars.label) {
+    } else if (label) {
+        if (!label.trim().endsWith('}}'))
+            label += '}}';
+
         chatGlobal = "/direct &{template:" + templateName +"} {{title=" + diceObj.vars.label + " {{subtitle=" + characterPlayer + "}}";
     } else {
         chatGlobal = "/direct &{template:" + templateName +"} {{title=" + characterPlayer + "}}";
@@ -3422,13 +3843,12 @@ eote.process.diceOutput = function (diceObj, playerName, playerID) {
         }
     }
 
-    var suggestions = null;
-    suggestions = eote.process.skillSpending.buildSuggestions(diceObj);
-    var suggestionStatus = eote.defaults.suggestionsStatus;
-    var suggestionsFlag = eote.defaults.globalVars.suggestionsFlag;
-    var isSuggestions = diceObj.vars.spendingSuggestions.isSuggestions;
+    var suggestions = suggestionEngine.buildSuggestionsRollTemplate(diceObj);
+    var suggestionStatus = suggestionEngine.enum.displayOptions;
+    var suggestionsFlag = suggestionEngine.getDisplayOption();
+    var suggestionsExist = diceObj.vars.suggestions.suggestionsExist;
 
-    if (isSuggestions) {
+    if (suggestionsExist) {
         switch (suggestionsFlag) {
             case suggestionStatus.none:
                 // not really needed since the other checks won't allow a status of none to do anything
@@ -3439,27 +3859,29 @@ eote.process.diceOutput = function (diceObj, playerName, playerID) {
                 suggestions = "&{template:base} {{title=Skill Suggestions}} " + suggestions;
                 break;
             case suggestionStatus.always:
-                suggestions = " {{is_suggestions=true}} " + suggestions;
+                suggestions = " {{suggestionsExist=true}} " + suggestions;
                 break;
+            case null:
+              var msg = "No display option determined! Please set the display option on the " + eote.defaults.GMSheet.name;
+              log(msg);
+              sendChat("System", "/w gm " + msg);
+            break;
             default:
                 // this should never be entered
                 log("Report Me! A suggestionFlag of '"+ suggestionsFlag +"' is not handled properly!");
         }
     }
 
-
-
     if (eote.defaults.globalVars.diceGraphicsChat === true) {
         chatGlobal = chatGlobal + '{{results=' + diceGraphicsResults + '}}';
-        if (isSuggestions && suggestionsFlag == suggestionStatus.always)
+        if (suggestions && suggestionsFlag == suggestionStatus.always)
             chatGlobal += " " + suggestions;
-        log(chatGlobal);
         sendChat(characterPlayer, chatGlobal);
     } else {
         sendChat("Roll", diceTextResults);
     }
 
-    if (isSuggestions && suggestionsFlag == suggestionStatus.whisper) {
+    if (suggestions && suggestionsFlag == suggestionStatus.whisper) {
         sendChat("System", "/w gm " + suggestions);
     }
     eote.process.logger("eote.process.rollResult", diceTextResults);
@@ -4296,5 +4718,4 @@ function convertTokensToTags(skillSuggestions, symReplace) {
 
 on('ready', function() {
     eote.init();
-    log(eote.skillSuggestions.combat.personal.positives[1].text);
 });

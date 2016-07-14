@@ -10,7 +10,7 @@
             <tr>
                 <td><label>Version</label></td>
                 <td>
-                    6.3.0b2
+                    6.3.0 b5
                 </td>
                 <td style="width: 28%;"><label>For more information on this version visit:</label></td>
                 <td><input disabled value="https://github.com/jarquafelmu/FFG_Starwars_CS" type="text"/></td>
@@ -2154,7 +2154,7 @@
                                             <label>Critical</label>
                                             <input name='attr_critical' type="text" value="0" />
                                         </td>
-                                        <td><button type='roll' name='roll_weapon' value='!eed characterID(@{character_id}) label(Weapon:@{weaponmake}|Damage:@{damage}|Critical:@{critical}|Range:@{weaponrange}|Qualities:@{weaponspecial}) @{weapondice} encum(@{encumbrancemax}|@{encumbrance}) @{weaponskill} @{weaponcondition} @{dicePool} (gmdice)'></button></td>
+                                        <td><button type='roll' name='roll_weapon' value='!eed characterID(@{character_id}) label(Weapon:@{weaponmake}|Damage:@{damage}|Critical:@{critical}|Range:@{weaponrange}|Qualities:@{weaponspecial}) @{weapondice} combat(personal) encum(@{encumbrancemax}|@{encumbrance}) @{weaponskill} @{weaponcondition} @{dicePool} (gmdice)'></button></td>
                                         <td>
                                             <label>Encum</label>
                                             <input name='attr_weapon-encum' type="text" value="0" />
@@ -3563,36 +3563,36 @@
                                         <select name='attr_spaceRoleSkill'>
                                             <!--brawn agility intellect cunning willpower presence -->
                                             <optgroup label="General Skills">
-                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:intellect,rankAstrogation) label(skill:Astrogation|Vehicle:@{transport-space-name}|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) @{spaceRoleDice} @{dicePool} (gmdice)">Astrogation</option>
-                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:brawn,rankAthletics) label(skill:Athletics|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) @{spaceRoleDice} @{dicePool} (gmdice)">Athletics</option>
-                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:presence,rankCharm) label(skill:Charm|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) @{spaceRoleDice} @{dicePool} (gmdice)">Charm</option>
-                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:presence,rankCoercion) label(skill:Coercion|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) @{spaceRoleDice} @{dicePool} (gmdice)">Coercion</option>
-                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:intellect,rankComputers) label(skill:Computers|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) @{spaceRoleDice} @{dicePool} (gmdice)">Computers</option>
-                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:presence,rankCool) label(skill:Cool|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) @{spaceRoleDice} @{dicePool} (gmdice)">Cool</option>
-                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|encum|skill:agility,rankCoordination) label(skill:Coordination|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) @{spaceRoleDice} @{dicePool} (gmdice)">Coordination</option>
-                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:cunning,rankDeception) label(skill:Deception|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) @{spaceRoleDice} @{dicePool} (gmdice)">Deception</option>
-                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:willpower,rankDiscipline) label(skill:Discipline|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) @{spaceRoleDice} @{dicePool} (gmdice)">Discipline</option>
-                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:presence,rankLeadership) label(skill:Leadership|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) @{spaceRoleDice} @{dicePool} (gmdice)">Leadership</option>
-                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:intellect,rankMechanics) label(skill:Mechanics|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) @{spaceRoleDice} @{dicePool} (gmdice)">Mechanics</option>
-                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:intellect,rankMedicine) label(skill:Medicine|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) @{spaceRoleDice} @{dicePool} (gmdice)">Medicine</option>
-                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:presence,rankNegotiation) label(skill:Negotiation|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) @{spaceRoleDice} @{dicePool} (gmdice)">Negotiation</option>
-                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:cunning,rankPerception) label(skill:Perception|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) @{spaceRoleDice} @{dicePool} (gmdice)">Perception</option>
-                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|encum|skill:agility,rankPlanetary) label(skill:Piloting-Planetary|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) @{spaceRoleDice} @{dicePool} (gmdice)">Piloting (Planetary)</option>
-                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|encum|skill:agility,rankSpace) label(skill:Piloting-Space|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) @{spaceRoleDice} @{dicePool} (gmdice)">Piloting (Space)</option>
-                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:brawn,rankResilience) label(skill:Resilience|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) @{spaceRoleDice} @{dicePool} (gmdice)">Resilience</option>
-                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:cunning,rankSkulduggery) label(skill:Skulduggery|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) @{spaceRoleDice} @{dicePool} (gmdice)">Skulduggery</option>
-                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|encum|skill:agility,rankStealth) label(skill:Stealth|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) @{spaceRoleDice} @{dicePool} (gmdice)">Stealth</option>
-                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:cunning,rankStreetwise) label(skill:Streetwise|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) @{spaceRoleDice} @{dicePool} (gmdice)">Streetwise</option>
-                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:cunning,rankSurvival) label(skill:Survival|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) @{spaceRoleDice} @{dicePool} (gmdice)">Survival</option>
-                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:willpower,rankVigilance) label(skill:Vigilance|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) @{spaceRoleDice} @{dicePool} (gmdice)">Vigilance</option>
+                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:intellect,rankAstrogation) label(skill:Astrogation|Vehicle:@{transport-space-name}|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) combat(vehicle) @{spaceRoleDice} @{dicePool} (gmdice)">Astrogation</option>
+                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:brawn,rankAthletics) label(skill:Athletics|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) combat(vehicle) @{spaceRoleDice} @{dicePool} (gmdice)">Athletics</option>
+                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:presence,rankCharm) label(skill:Charm|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) combat(vehicle) @{spaceRoleDice} @{dicePool} (gmdice)">Charm</option>
+                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:presence,rankCoercion) label(skill:Coercion|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) combat(vehicle) @{spaceRoleDice} @{dicePool} (gmdice)">Coercion</option>
+                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:intellect,rankComputers) label(skill:Computers|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) combat(vehicle) @{spaceRoleDice} @{dicePool} (gmdice)">Computers</option>
+                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:presence,rankCool) label(skill:Cool|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) combat(vehicle) @{spaceRoleDice} @{dicePool} (gmdice)">Cool</option>
+                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|encum|skill:agility,rankCoordination) label(skill:Coordination|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) combat(vehicle) @{spaceRoleDice} @{dicePool} (gmdice)">Coordination</option>
+                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:cunning,rankDeception) label(skill:Deception|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) combat(vehicle) @{spaceRoleDice} @{dicePool} (gmdice)">Deception</option>
+                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:willpower,rankDiscipline) label(skill:Discipline|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) combat(vehicle) @{spaceRoleDice} @{dicePool} (gmdice)">Discipline</option>
+                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:presence,rankLeadership) label(skill:Leadership|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) combat(vehicle) @{spaceRoleDice} @{dicePool} (gmdice)">Leadership</option>
+                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:intellect,rankMechanics) label(skill:Mechanics|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) combat(vehicle) @{spaceRoleDice} @{dicePool} (gmdice)">Mechanics</option>
+                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:intellect,rankMedicine) label(skill:Medicine|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) combat(vehicle) @{spaceRoleDice} @{dicePool} (gmdice)">Medicine</option>
+                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:presence,rankNegotiation) label(skill:Negotiation|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) combat(vehicle) @{spaceRoleDice} @{dicePool} (gmdice)">Negotiation</option>
+                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:cunning,rankPerception) label(skill:Perception|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) combat(vehicle) @{spaceRoleDice} @{dicePool} (gmdice)">Perception</option>
+                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|encum|skill:agility,rankPlanetary) label(skill:Piloting-Planetary|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) combat(vehicle) @{spaceRoleDice} @{dicePool} (gmdice)">Piloting (Planetary)</option>
+                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|encum|skill:agility,rankSpace) label(skill:Piloting-Space|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) combat(vehicle) @{spaceRoleDice} @{dicePool} (gmdice)">Piloting (Space)</option>
+                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:brawn,rankResilience) label(skill:Resilience|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) combat(vehicle) @{spaceRoleDice} @{dicePool} (gmdice)">Resilience</option>
+                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:cunning,rankSkulduggery) label(skill:Skulduggery|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) combat(vehicle) @{spaceRoleDice} @{dicePool} (gmdice)">Skulduggery</option>
+                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|encum|skill:agility,rankStealth) label(skill:Stealth|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) combat(vehicle) @{spaceRoleDice} @{dicePool} (gmdice)">Stealth</option>
+                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:cunning,rankStreetwise) label(skill:Streetwise|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) combat(vehicle) @{spaceRoleDice} @{dicePool} (gmdice)">Streetwise</option>
+                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:cunning,rankSurvival) label(skill:Survival|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) combat(vehicle) @{spaceRoleDice} @{dicePool} (gmdice)">Survival</option>
+                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:willpower,rankVigilance) label(skill:Vigilance|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) combat(vehicle) @{spaceRoleDice} @{dicePool} (gmdice)">Vigilance</option>
                                             </optgroup>
                                             <optgroup label="Combat Skills">
-                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:brawn,rankBrawl) label(skill:Brawl|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) @{spaceRoleDice} @{dicePool} (gmdice)">Brawl</option>
-                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|encum|skill:agility,rankGunnery) label(skill:Gunnery|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) @{spaceRoleDice} @{dicePool} (gmdice)">Gunnery</option>
-                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:brawn,rankMelee) label(skill:Melee|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) @{spaceRoleDice} @{dicePool} (gmdice)">Melee</option>
-                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:charLightsaber,rankLightsaber) label(skill:Lightsaber|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) @{spaceRoleDice} @{dicePool} (gmdice)">Lightsaber</option>
-                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|encum|skill:agility,rankLight) label(skill:Ranged-Light|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) @{spaceRoleDice} @{dicePool} (gmdice)">Ranged (Light)</option>
-                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|encum|skill:agility,rankHeavy) label(skill:Ranged-Heavy|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) @{spaceRoleDice} @{dicePool} (gmdice)">Ranged (Heavy)</option>
+                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:brawn,rankBrawl) label(skill:Brawl|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) combat(vehicle) @{spaceRoleDice} @{dicePool} (gmdice)">Brawl</option>
+                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|encum|skill:agility,rankGunnery) label(skill:Gunnery|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) combat(vehicle) @{spaceRoleDice} @{dicePool} (gmdice)">Gunnery</option>
+                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:brawn,rankMelee) label(skill:Melee|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) combat(vehicle) @{spaceRoleDice} @{dicePool} (gmdice)">Melee</option>
+                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:charLightsaber,rankLightsaber) label(skill:Lightsaber|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) combat(vehicle) @{spaceRoleDice} @{dicePool} (gmdice)">Lightsaber</option>
+                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|encum|skill:agility,rankLight) label(skill:Ranged-Light|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) combat(vehicle) @{spaceRoleDice} @{dicePool} (gmdice)">Ranged (Light)</option>
+                                                <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|encum|skill:agility,rankHeavy) label(skill:Ranged-Heavy|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) combat(vehicle) @{spaceRoleDice} @{dicePool} (gmdice)">Ranged (Heavy)</option>
                                             </optgroup>
                                             <optgroup label="Knowledge Skills">
                                                 <option value="!eed rollPlayer(character:@{spaceRoleCharacterName}|skill:intellect,rankCore) label(skill:Core Worlds|Vehicle:@{transport-space-name}|Role:@{spaceRoleName}) @{spaceRoleDice} @{dicePool} (gmdice)">Core Worlds</option>
@@ -3669,7 +3669,7 @@
                                             <option value="skill:agility,rankHeavy">Ranged - Heavy</option>
                                         </select>
                                     </td>
-                                    <td><button type='roll' name='roll_space-shipWeapon' value='!eed rollPlayer(character:@{spaceWeaponCharacterName}|encum|@{spaceWeaponSkill}) label(Weapon:@{spaceWeaponName}|Vehicle:@{transport-space-name}|Damage:@{spaceWeaponDmg}|Critical:@{spaceWeaponCrit}|Range:@{spaceweaponrange}|Qualities:@{spaceWeaponSpecial}) @{spaceWeaponDice} @{dicePool} (gmdice)'></button></td>
+                                    <td><button type='roll' name='roll_space-shipWeapon' value='!eed rollPlayer(character:@{spaceWeaponCharacterName}|encum|@{spaceWeaponSkill}) label(Weapon:@{spaceWeaponName}|Vehicle:@{transport-space-name}|Damage:@{spaceWeaponDmg}|Critical:@{spaceWeaponCrit}|Range:@{spaceweaponrange}|Qualities:@{spaceWeaponSpecial}) combat(vehicle) @{spaceWeaponDice} @{dicePool} (gmdice)'></button></td>
                                 </tr>
                                 <tr>
                                     <td><label>Book &amp; Page:</label></td>
@@ -7354,6 +7354,7 @@
         <div class="sheet-clear"></div>
         <div class="sheet-section-spacer sheet-characteristic-toggle-small"></div>
 
+        <!--TODO fix companion name no longer showing up in skill rolls by adding |Companion Name:@{companion-name} to the label-->
         <b>Skills</b><input name="attr_companion-Skills" value="1" checked="checked" style="width:78px;margin:-13px -20px 0 -62px" class="sheet-toggle sheet-skills-toggle-small" type="checkbox"/><span></span>
         <div class="sheet-skills-toggle-small">
             <div class="sheet-row">
@@ -13278,13 +13279,30 @@
                                 <td class="sheet-helper" title="Change the handling for skill suggestions">
                                     Skill Suggestions Display</td>
                                 <td><select name="attr_skill_suggestion_setting_display">
-                                    <option value="0">None</option>
-                                    <option value="1">Whisper GM</option>
-                                    <option value="2" selected>Display in Skill</option>
+                                    <option value="none">None</option>
+                                    <option value="whisper">Whisper GM</option>
+                                    <option value="button">Show Suggestions Button</option>
+                                    <option value="always" selected>Display in Skill</option>
                                 </select></td>
                             </tr>
                             <tr>
-                                <td class="sheet-helper" title="Allows Dicsipline and Cool skill checks to pull suggeestions from the fear suggestion list.">
+                                <td class="sheet-helper" title="Enable suggestions for rolls made from the weapon combat section or vehicle sheet">
+                                    Enable Combat Suggestions?</td>
+                                <td><select name="attr_skill_suggestion_setting_combat">
+                                    <option value="1">Yes</option>
+                                    <option value="0" selected>No</option>
+                                </select></td>
+                            </tr>
+                            <tr>
+                                <td class="sheet-helper" title="Enable suggestions for rolls made from the general skill list">
+                                    Enable General Suggestions?</td>
+                                <td><select name="attr_skill_suggestion_setting_general">
+                                    <option value="1">Yes</option>
+                                    <option value="0" selected>No</option>
+                                </select></td>
+                            </tr>
+                            <tr>
+                                <td class="sheet-helper" title="Allows Discipline and Cool skill checks to pull suggestions from the fear suggestion list.">
                                     Fear Check?</td>
                                 <td><select name="attr_skill_suggestion_setting_fear">
                                     <option value="0" selected>No</option>
@@ -13365,9 +13383,9 @@
         {{#header}}
         <tr><td class="tcat-header"><span>{{header}}</span></td><td class="tcat-header"><span>{{item}}</span></td></tr>
         {{/header}}
-        {{#allprops() title flavor roll results subtitle header item is_suggestions success advantage triumph failure threat despair}}
+        {{#allprops() title flavor roll results subtitle header item suggestionsExist success advantage triumph failure threat despair 1advantage1triumph 2advantage1triumph 3advantage1triumph 1triumph 2triumph 1threat1despair 2threat1despair 3threat1despair 1despair 2despair}}
         <tr><td><span class="sheet-tcat">{{key}}</span></td><td>{{value}}</td></tr>
-        {{/allprops() title flavor roll results subtitle header item is_suggestions success advantage triumph failure threat despair}}
+        {{/allprops() title flavor roll results subtitle header item suggestionsExist success advantage triumph failure threat despair 1advantage1triumph 2advantage1triumph 3advantage1triumph 1triumph 2triumph 1threat1despair 2threat1despair 3threat1despair 1despair 2despair}}
         {{#wide}}
         <tr><td colspan="2">{{wide}}</td></tr>
         {{/wide}}
@@ -13391,9 +13409,9 @@
         <tr><td colspan="2"><span class="tcat">Results</span></td></tr>
         <tr><td colspan="2">{{results}}</td></tr>
         {{/results}}
-        {{#is_suggestions}}
+        {{#suggestionsExist}}
         <tr><td colspan="2"><span class="tcat">Spending Suggestions</span></td></tr>
-        {{/is_suggestions}}
+        {{/suggestionsExist}}
         {{#success}}
         <tr><td><span class="sheet-tcat">Success</span></td><td>{{success}}</td></tr>
         {{/success}}
@@ -13412,5 +13430,35 @@
         {{#despair}}
         <tr><td><span class="sheet-tcat">Despair</span></td><td>{{despair}}</td></tr>
         {{/despair}}
+        {{#1advantage1triumph}}
+        <tr><td><img src="http://galacticcampaigns.com/images/EotE/Symbols/A.png" title="advantage" height="20" width="20"/> or <img src="http://galacticcampaigns.com/images/EotE/Symbols/Triumph.png" title="triumph" height="20" width="20"/></td><td>{{1advantage1triumph}}</td></tr>
+        {{/1advantage1triumph}}
+        {{#2advantage1triumph}}
+        <tr><td><img src="http://galacticcampaigns.com/images/EotE/Symbols/A.png" title="advantage" height="20" width="20"/><img src="http://galacticcampaigns.com/images/EotE/Symbols/A.png" title="advantage" height="20" width="20"/> or <img src="http://galacticcampaigns.com/images/EotE/Symbols/Triumph.png" title="triumph" height="20" width="20"/></td><td>{{2advantage1triumph}}</td></tr>
+        {{/2advantage1triumph}}
+        {{#3advantage1triumph}}
+        <tr><td><img src="http://galacticcampaigns.com/images/EotE/Symbols/A.png" title="advantage" height="20" width="20"/><img src="http://galacticcampaigns.com/images/EotE/Symbols/A.png" title="advantage" height="20" width="20"/><img src="http://galacticcampaigns.com/images/EotE/Symbols/A.png" title="advantage" height="20" width="20"/> or <img src="http://galacticcampaigns.com/images/EotE/Symbols/Triumph.png" title="triumph" height="20" width="20"/></td><td>{{3advantage1triumph}}</td></tr>
+        {{/3advantage1triumph}}
+        {{#1triumph}}
+        <tr><td><img src="http://galacticcampaigns.com/images/EotE/Symbols/Triumph.png" title="triumph" height="20" width="20"/></td><td>{{1triumph}}</td></tr>
+        {{/1triumph}}
+        {{#2triumph}}
+        <tr><td><img src="http://galacticcampaigns.com/images/EotE/Symbols/Triumph.png" title="triumph" height="20" width="20"/><img src="http://galacticcampaigns.com/images/EotE/Symbols/Triumph.png" title="triumph" height="20" width="20"/></td><td>{{2triumph}}</td></tr>
+        {{/2triumph}}
+        {{#1threat1despair}}
+        <tr><td><img src="http://galacticcampaigns.com/images/EotE/Symbols/T.png" title="threat" height="20" width="20"/> or <img src="http://galacticcampaigns.com/images/EotE/Symbols/Despair.png" title="despair" height="20" width="20"/></td><td>{{1threat1despair}}</td></tr>
+        {{/1threat1despair}}
+        {{#2threat1despair}}
+        <tr><td><img src="http://galacticcampaigns.com/images/EotE/Symbols/T.png" title="threat" height="20" width="20"/><img src="http://galacticcampaigns.com/images/EotE/Symbols/T.png" title="threat" height="20" width="20"/> or <img src="http://galacticcampaigns.com/images/EotE/Symbols/Despair.png" title="despair" height="20" width="20"/></td><td>{{2threat1despair}}</td></tr>
+        {{/2threat1despair}}
+        {{#3threat1despair}}
+        <tr><td><img src="http://galacticcampaigns.com/images/EotE/Symbols/T.png" title="threat" height="20" width="20"/><img src="http://galacticcampaigns.com/images/EotE/Symbols/T.png" title="threat" height="20" width="20"/><img src="http://galacticcampaigns.com/images/EotE/Symbols/T.png" title="threat" height="20" width="20"/> or <img src="http://galacticcampaigns.com/images/EotE/Symbols/Despair.png" title="despair" height="20" width="20"/></td><td>{{3threat1despair}}</td></tr>
+        {{/3threat1despair}}
+        {{#1despair}}
+        <tr><td><img src="http://galacticcampaigns.com/images/EotE/Symbols/Despair.png" title="despair" height="20" width="20"/></td><td>{{1despair}}</td></tr>
+        {{/1despair}}
+        {{#2despair}}
+        <tr><td><img src="http://galacticcampaigns.com/images/EotE/Symbols/Despair.png" title="despair" height="20" width="20"/><img src="http://galacticcampaigns.com/images/EotE/Symbols/Despair.png" title="despair" height="20" width="20"/></td><td>{{2despair}}</td></tr>
+        {{/2despair}}
     </table>
 </rolltemplate><!-- Roll Template-Suggestions -->
