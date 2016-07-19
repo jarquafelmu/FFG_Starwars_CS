@@ -2701,17 +2701,9 @@ eote.process.crit = function (cmd, diceObj) {
         //find crit in critical table
         for (var key in critTable) {
             /*TODO error on split*/
-            var percent = critTable[key].percent;
-            var low = percent;
-            var high = 1000;
-
-            if (percent.indexOf(" to ") > 0) {
-                percent = percent.split(' to ');
-                low = parseInt(percent[0]);
-                high = parseInt(percent[1]);
-            } else {
-                low = parseInt(low);
-            }
+            var percent = critTable[key].percent.split(' to ');
+            var low = parseInt(percent[0]);
+            var high = percent[1] ? parseInt(percent[1]) : 1000;
 
             if ((rollTotal >= low) && (rollTotal <= high)) {
 
